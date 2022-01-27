@@ -37,10 +37,10 @@ $heading = "Property";
                                     <thead class="bg-primary-600 bg-brand-gradient">
                                         <tr>
                                             <th nowrap>
-                                                <center>Appartement #</center>
+                                                <center>Building Name</center>
                                             </th>
                                             <th nowrap>
-                                                <center>Building Name</center>
+                                                <center>Appartement #</center>
                                             </th>
                                             <th nowrap>
                                                 <center>

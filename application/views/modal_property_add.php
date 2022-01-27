@@ -2,19 +2,7 @@
 <form class="needs-validation" name='addPropertyForm' id='addPropertyForm' method='post' action="/hiringrequests/addhiringrequest" novalidate>
 
     <div class="card mb-g">
-        <div class="col-md-12 mt-3 mb-3">
-        <label class="form-label">Appartment #<span style="color: red">*</span></label>
-            <select class="custom-select" name="appartment_no" id="appartment_no" required="">
-                <option value="">Select Appartment #</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-            </select>
-            <div class="invalid-feedback">
-                Please Select Appartment Number.
-            </div>
-        </div>
-
-        <div class="col-md-12 mb-3">
+         <div class="col-md-12 mb-0">
         <label class="form-label">Building<span style="color: red">*</span></label>
             <select class="custom-select" name="building" id="building" required="">
                 <option value="">Select Building</option>
@@ -23,6 +11,17 @@
             </select>
             <div class="invalid-feedback">
                 Please Select Building.
+            </div>
+        </div>
+        <div class="col-md-12 mt-3 mb-3">
+        <label class="form-label">Appartment #<span style="color: red">*</span></label>
+            <select class="custom-select" name="appartment_no" id="appartment_no" required="">
+                <option value="">Select Appartment #</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                </select>
+            <div class="invalid-feedback">
+                Please Select Appartment Number.
             </div>
         </div>
 

@@ -1202,3 +1202,75 @@ FROM `ic_ward`
 INNER JOIN `ic_bed` ON `ic_bed`.`ward_no`=`ic_ward`.`ward_no`
 WHERE `ic_bed`.`bed_status` = 1
 DEBUG - 2022-01-27 22:23:46 --> Total execution time: 0.0540
+DEBUG - 2022-01-27 22:25:47 --> UTF-8 Support Enabled
+DEBUG - 2022-01-27 22:25:47 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2022-01-27 22:25:47 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+DEBUG - 2022-01-27 22:25:47 --> SELECT *
+FROM `ic_ward`
+INNER JOIN `ic_bed` ON `ic_bed`.`ward_no`=`ic_ward`.`ward_no`
+WHERE `ic_bed`.`bed_status` = 1
+DEBUG - 2022-01-27 22:25:47 --> Total execution time: 0.0511
+DEBUG - 2022-01-27 22:27:13 --> UTF-8 Support Enabled
+DEBUG - 2022-01-27 22:27:14 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2022-01-27 22:27:14 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+DEBUG - 2022-01-27 22:27:14 --> SELECT *
+FROM `ic_ward`
+INNER JOIN `ic_bed` ON `ic_bed`.`ward_no`=`ic_ward`.`ward_no`
+WHERE `ic_bed`.`bed_status` = 1
+DEBUG - 2022-01-27 22:27:14 --> Total execution time: 0.0522
+DEBUG - 2022-01-27 22:27:25 --> UTF-8 Support Enabled
+DEBUG - 2022-01-27 22:27:25 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2022-01-27 22:27:25 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+DEBUG - 2022-01-27 22:27:25 --> modalAddProperty
+DEBUG - 2022-01-27 22:27:25 --> Total execution time: 0.0497
+DEBUG - 2022-01-27 22:28:19 --> UTF-8 Support Enabled
+DEBUG - 2022-01-27 22:28:19 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2022-01-27 22:28:19 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+DEBUG - 2022-01-27 22:28:19 --> modalAddProperty
+DEBUG - 2022-01-27 22:28:19 --> Total execution time: 0.0459
+DEBUG - 2022-01-27 22:28:25 --> UTF-8 Support Enabled
+DEBUG - 2022-01-27 22:28:25 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2022-01-27 22:28:25 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+DEBUG - 2022-01-27 22:28:25 --> modalAddProperty
+DEBUG - 2022-01-27 22:28:25 --> Total execution time: 0.0444
+DEBUG - 2022-01-27 22:28:47 --> UTF-8 Support Enabled
+DEBUG - 2022-01-27 22:28:47 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2022-01-27 22:28:47 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+DEBUG - 2022-01-27 22:28:47 --> modalAddProperty
+DEBUG - 2022-01-27 22:28:47 --> Total execution time: 0.0440
+DEBUG - 2022-01-27 22:28:53 --> UTF-8 Support Enabled
+DEBUG - 2022-01-27 22:28:53 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2022-01-27 22:28:53 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+DEBUG - 2022-01-27 22:28:53 --> modalAddProperty
+DEBUG - 2022-01-27 22:28:53 --> Total execution time: 0.0474
+DEBUG - 2022-01-27 22:29:32 --> UTF-8 Support Enabled
+DEBUG - 2022-01-27 22:29:32 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2022-01-27 22:29:32 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+DEBUG - 2022-01-27 22:29:32 --> modalEditProperty
+DEBUG - 2022-01-27 22:29:32 --> Total execution time: 0.0460
+DEBUG - 2022-01-27 22:30:04 --> UTF-8 Support Enabled
+DEBUG - 2022-01-27 22:30:04 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2022-01-27 22:30:04 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+DEBUG - 2022-01-27 22:30:04 --> modalEditProperty
+DEBUG - 2022-01-27 22:30:04 --> Total execution time: 0.0442
+DEBUG - 2022-01-27 22:30:17 --> UTF-8 Support Enabled
+DEBUG - 2022-01-27 22:30:17 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2022-01-27 22:30:17 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+DEBUG - 2022-01-27 22:30:17 --> modalEditProperty
+DEBUG - 2022-01-27 22:30:17 --> Total execution time: 0.0434
+DEBUG - 2022-01-27 22:30:22 --> UTF-8 Support Enabled
+DEBUG - 2022-01-27 22:30:22 --> Global POST, GET and COOKIE data sanitized
+ERROR - 2022-01-27 22:30:22 --> 404 Page Not Found: Hiringrequests/addhiringrequest
+DEBUG - 2022-01-27 22:30:24 --> UTF-8 Support Enabled
+DEBUG - 2022-01-27 22:30:24 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2022-01-27 22:30:24 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+DEBUG - 2022-01-27 22:30:24 --> SELECT *
+FROM `ic_ward`
+INNER JOIN `ic_bed` ON `ic_bed`.`ward_no`=`ic_ward`.`ward_no`
+WHERE `ic_bed`.`bed_status` = 1
+DEBUG - 2022-01-27 22:30:24 --> Total execution time: 0.0537
+DEBUG - 2022-01-27 22:30:26 --> UTF-8 Support Enabled
+DEBUG - 2022-01-27 22:30:26 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2022-01-27 22:30:26 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+DEBUG - 2022-01-27 22:30:26 --> modalEditProperty
+DEBUG - 2022-01-27 22:30:26 --> Total execution time: 0.0448
