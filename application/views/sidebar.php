@@ -36,7 +36,7 @@
                                 </a>
                             </li>
                              <li>
-                                <a href="/" title="Users Management" data-filter-tags="Users Management"><i class="fas fa-users"></i>
+                                <a href="/user" title="Users Management" data-filter-tags="Users Management"><i class="fas fa-users"></i>
                                     <span class="nav-link-text" data-i18n="nav.Users Management">Users Management</span>
                                 </a>
                             </li>
@@ -51,7 +51,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="/" title="Property" data-filter-tags="Property"><i class="fas fa-cubes"></i>
+                                <a href="/property" title="Property" data-filter-tags="Property"><i class="fas fa-cubes"></i>
                                     <span class="nav-link-text" data-i18n="nav.Property">Property</span>
                                 </a>
                             </li>
@@ -61,7 +61,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="/" title="Tenant" data-filter-tags="Tenant"><i class="fas fa-user-alt"></i>
+                                <a href="/tenant" title="Tenant" data-filter-tags="Tenant"><i class="fas fa-user-alt"></i>
                                     <span class="nav-link-text" data-i18n="nav.Tenant">Tenant</span>
                                 </a>
                             </li>

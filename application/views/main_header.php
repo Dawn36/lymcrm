@@ -41,6 +41,25 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
         <link rel="stylesheet" media="screen, print" href="/assets/dist/css/notifications/sweetalert2/sweetalert2.bundle.css">
     </head>
     <body class="mod-bg-1 ">
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-right">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title h4"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                    </button>
+                </div>
+                <div id='modal-body' class="modal-body">
+
+                </div>
+                <!-- <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div> -->
+            </div>
+        </div>
+    </div>
          <p id="js-color-profile" class="d-none">
                         <span class="color-primary-50"></span>
                         <span class="color-primary-100"></span>
@@ -123,7 +142,7 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
         <script src="/assets/dist/js/datagrid/datatables/datatables.bundle.js"></script> 
         <script src="/assets/dist/js/datagrid/datatables/datatables.export.js"></script>
          <script src="/assets/dist/js/notifications/sweetalert2/sweetalert2.bundle.js"></script>
-        <script>
+
 
 
 

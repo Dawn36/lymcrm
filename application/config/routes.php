@@ -96,6 +96,12 @@ $route['apartment'] = '/ApartmentControllers';
 $route['apartment_add'] = '/ApartmentControllers/LoadAddScreen';
 $route['apartment_edit'] = '/ApartmentControllers/LoadEditScreen';
 
+// user management route
+$route['user'] = '/UserController';
+// Tenant rout
+$route['tenant'] = '/TenantController';
+// Property route
+$route['property'] = '/PropertyController';
 
 
 
