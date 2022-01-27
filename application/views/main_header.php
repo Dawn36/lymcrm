@@ -38,8 +38,7 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
         <link rel="stylesheet" media="screen, print" href="/assets/dist/css/miscellaneous/fullcalendar/fullcalendar.bundle.css">
         <link rel="stylesheet" media="screen, print" href="/assets/dist/css/miscellaneous/jqvmap/jqvmap.bundle.css">
          <link rel="stylesheet" media="screen, print" href="/assets/dist/css/theme-demo.css">
-        <!--<link rel="stylesheet" media="screen, print" href="css/your_styles.css">-->
-        <!--<link rel="stylesheet" media="screen, print" href="/assets/dist/css/datagrid/datatables/datatables.bundle.css">-->
+        <link rel="stylesheet" media="screen, print" href="/assets/dist/css/notifications/sweetalert2/sweetalert2.bundle.css">
     </head>
     <body class="mod-bg-1 ">
          <p id="js-color-profile" class="d-none">
@@ -123,6 +122,8 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
         <script src="/assets/dist/js/holder.js"></script>
         <script src="/assets/dist/js/datagrid/datatables/datatables.bundle.js"></script> 
         <script src="/assets/dist/js/datagrid/datatables/datatables.export.js"></script>
+         <script src="/assets/dist/js/notifications/sweetalert2/sweetalert2.bundle.js"></script>
+        <script>
 
 
 

@@ -75,5 +75,27 @@ $route['user_added'] = 'users/UsersAdd';
 $route['source'] = '/Bed/Source';
 $route['source_add'] = '/Bed/SourceAdd';
 $route['delete_source'] = '/Bed/SourceDelete';
+/////////////////////      Admin     ////////////////////////////////////////////
+$route['admin'] = '/AdminControllers';
+$route['admin_add'] = '/AdminControllers/LoadAddScreen';
+$route['admin_edit/:num'] = '/AdminControllers/LoadEditScreen';
+
+/////////////////////      Owner     ////////////////////////////////////////////
+
+$route['owner'] = '/OwnerControllers';
+$route['owner_add'] = '/OwnerControllers/LoadAddScreen';
+$route['owner_edit'] = '/OwnerControllers/LoadEditScreen';
+
+/////////////////////      Building     ////////////////////////////////////////////
+$route['building'] = '/BuildingControllers';
+$route['building_add'] = '/BuildingControllers/LoadAddScreen';
+$route['building_edit'] = '/BuildingControllers/LoadEditScreen';
+
+/////////////////////      Apartment      ////////////////////////////////////////////
+$route['apartment'] = '/ApartmentControllers';
+$route['apartment_add'] = '/ApartmentControllers/LoadAddScreen';
+$route['apartment_edit'] = '/ApartmentControllers/LoadEditScreen';
+
+
 
 

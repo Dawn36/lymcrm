@@ -31,7 +31,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="/users" title="Admin Management" data-filter-tags="Admin Management"><i class="fas fa-user-secret"></i>
+                                <a href="/admin" title="Admin Management" data-filter-tags="Admin Management"><i class="fas fa-user-secret"></i>
                                     <span class="nav-link-text" data-i18n="nav.Admin Management">Admin Management</span>
                                 </a>
                             </li>
@@ -41,12 +41,12 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="/" title="Owners" data-filter-tags="Owners"><i class="fas fa-user-tie"></i>
-                                    <span class="nav-link-text" data-i18n="nav.Owners">Owners</span>
+                                <a href="/owner" title="Owner" data-filter-tags="Owner"><i class="fas fa-user-tie"></i>
+                                    <span class="nav-link-text" data-i18n="nav.Owner">Owner</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="/" title="Building" data-filter-tags="Building"><i class="fas fa-building"></i>
+                                <a href="/building" title="Building" data-filter-tags="Building"><i class="fas fa-building"></i>
                                     <span class="nav-link-text" data-i18n="nav.Building">Building</span>
                                 </a>
                             </li>

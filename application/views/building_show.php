@@ -8,7 +8,7 @@
 
     <ol class="breadcrumb page-breadcrumb">
         <li class="breadcrumb-item"><a href="javascript:void(0);">Lymcrm</a></li>
-        <li class="breadcrumb-item">Admin Management</li>
+        <li class="breadcrumb-item">Building</li>
 
         <li class="position-absolute pos-top pos-right d-none d-sm-block"><span class="js-get-date"></span></li>
     </ol>
@@ -16,11 +16,11 @@
     <div id="content">
         <div class="row">
             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
-                <h1> <span class="page-title txt-color-blueDark">Admin Management</span></h1>
+                <h1> <span class="page-title txt-color-blueDark">Building</span></h1>
             </div>
             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-8">
-                <a href="/admin_add" class="btn btn-primary float-right bg-brand-gradient" type="button"><i
-                        class="fas fa-plus" style="margin-right: 4px"></i>Add Admin</a>
+                <a href="/owner_add" class="btn btn-primary float-right bg-brand-gradient" type="button"><i
+                        class="fas fa-plus" style="margin-right: 4px"></i>Add Building</a>
             </div>
         </div>
         <section id="" class="">
@@ -35,19 +35,16 @@
                                     <thead class="bg-primary-600 bg-brand-gradient">
                                         <tr>
                                             <th nowrap>
-                                                <center>Admin Name</center>
+                                                <center>Building Name</center>
                                             </th>
                                             <th nowrap>
-                                                <center>Admin Email</center>
+                                                <center>Building Address</center>
                                             </th>
                                             <th nowrap>
-                                                <center>Admin Contact#</center>
-                                            </th>
-                                             <th nowrap>
-                                                <center>Admin Password</center>
+                                                <center>Building Contact#</center>
                                             </th>
                                             <th nowrap>
-                                                <center>Admin Status</center>
+                                                <center>Status</center>
                                             </th>
                                             <th nowrap>
                                                 <center>
@@ -56,41 +53,41 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php for ($i=0; $i <count($users) ; $i++) { 
-                    
-                     ?>
-                                        <tr style="cursor:pointer" onClick="">
+                                      
+                                        <tr style="cursor:pointer" >
 
                                             <td>
-                                                <center><?php echo ucwords($users[$i]['user_name'])?></center>
+                                                <center>dasd</center>
                                             </td>
                                             <td>
-                                                <center><?php echo ucwords($users[$i]['user_name'])?></center>
+                                                <center>56</center>
                                             </td>
                                             <td>
-                                                <center><?php echo ucwords($users[$i]['user_name'])?></center>
+                                                <center>51</center>
                                             </td>
+                                            
                                             <td>
-                                                <center><?php echo ucwords($users[$i]['role_name'])?></center>
-                                            </td>
-                                            <td>
-                                                <center>
-                                                    <?php if($users[$i]['user_status']==1){echo "Active";} else {echo "Inactive";} ?>
+                                                <center>active
+                                                   
                                                 </center>
                                             </td>
 
-                                            <td style="padding:6px 12px;">
+                                            <td nowrap>
                                                 <center>
-                                                    <a href="/admin_edit/<?php echo $users[$i]['user_id']?>"
+                                                    <a href="/building_edit"
                                                         class="btn btn-sm btn-primary bg-brand-gradient"
-                                                        title="Edit Users"><i class="fal fa-edit"></i></a>&nbsp;
+                                                        title="Add Apartment"><i class="fas fa-plus"></i></a>&nbsp;
+
+                                                    <a href="/building_edit"
+                                                        class="btn btn-sm btn-primary bg-brand-gradient"
+                                                        title="Edit Building"><i class="fal fa-edit"></i></a>&nbsp;
 
                                                     <button class="btn btn-sm btn-primary bg-brand-gradient"
-                                                        title="Delete Admin"><i class="fal fa-times"></i></button>
+                                                        title="Delete Building"><i class="fal fa-times"></i></button>
                                                 </center>
                                             </td>
                                         </tr>
-                                        <?php }?>
+                                        
 
                                     </tbody>
                                 </table>
