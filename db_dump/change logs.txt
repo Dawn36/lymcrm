@@ -1,0 +1,59 @@
+ALTER TABLE `db_icportal`.`ic_infection_devices`   
+  ADD COLUMN `device_first_event` DATETIME NULL AFTER `deivce_surgery_date`;
+
+ALTER TABLE `db_icportal`.`ic_infection_devices`   
+  ADD COLUMN `deivce_intubation_date` DATETIME NULL AFTER `device_first_event`;
+
+????????????????????????????????????????????????????????????
+
+
+ALTER TABLE `db_icportal`.`ic_lovs`   
+  CHANGE `lov_name` `organism_name` VARCHAR(255) CHARSET utf8mb4 COLLATE utf8mb4_general_ci NULL,
+  CHANGE `lov_type` `antibiotic_class_1` VARCHAR(255) CHARSET utf8mb4 COLLATE utf8mb4_general_ci NULL,
+  ADD COLUMN `antibiotic_class_2` VARCHAR(255) NULL AFTER `lov_updation`,
+  ADD COLUMN `antibiotic_class_3` VARCHAR(255) NULL AFTER `antibiotic_class_2`,
+  ADD COLUMN `antibiotic_class_4` VARCHAR(255) NULL AFTER `antibiotic_class_3`,
+  ADD COLUMN `antibiotic_class_5` VARCHAR(255) NULL AFTER `antibiotic_class_4`,
+  ADD COLUMN `antibiotic_class_6` VARCHAR(255) NULL AFTER `antibiotic_class_5`,
+  ADD COLUMN `antibiotic_class_7` VARCHAR(255) NULL AFTER `antibiotic_class_6`,
+  ADD COLUMN `antibiotic_class_8` VARCHAR(255) NULL AFTER `antibiotic_class_7`,
+  ADD COLUMN `antibiotic_class_9` VARCHAR(255) NULL AFTER `antibiotic_class_8`,
+  ADD COLUMN `mbr_name` VARCHAR(255) NULL AFTER `antibiotic_class_9`;
+
+new //////////////////////////////////////////
+
+CREATE TABLE `ic_source` (
+  `record_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `source_name` varchar(255) DEFAULT NULL,
+  `status` enum('active') DEFAULT 'active',
+  PRIMARY KEY (`record_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
+
+ALTER TABLE `db_icportal`.`ic_source`   
+  CHANGE `status` `status` ENUM('active','inactive') CHARSET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT 'active'   NULL;
+
+
+
+ALTER TABLE `db_icportal`.`ic_source`   
+  ADD COLUMN `created_at` DATETIME NULL AFTER `status`,
+  ADD COLUMN `created_by` BIGINT(20) NULL AFTER `created_at`,
+  ADD COLUMN `update_at` DATETIME NULL AFTER `created_by`,
+  ADD COLUMN `update_by` BIGINT(20) NULL AFTER `update_at`;
+
+
+  ALTER TABLE `db_icportal`.`ic_culture_report`   
+  CHANGE `form_id` `form_id` BIGINT(19) NULL;
+
+ALTER TABLE `db_icportal`.`ic_culture_report`   
+  ADD COLUMN `created_at` DATETIME NULL AFTER `form_id`,
+  ADD COLUMN `created_by` BIGINT(20) NULL AFTER `created_at`;
+
+
+  ALTER TABLE `db_icportal`.`ic_infection_devices`   
+  ADD COLUMN `created_at` DATETIME NULL AFTER `worse_tracheal_secret`,
+  ADD COLUMN `created_by` BIGINT(20) NULL AFTER `created_at`;
+
+
+ALTER TABLE `db_icportal`.`ic_surveillance_form`   
+  ADD COLUMN `created_at` DATETIME NULL AFTER `form_status`,
+  ADD COLUMN `created_by` BIGINT(20) NULL AFTER `created_at`;
