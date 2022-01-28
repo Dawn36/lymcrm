@@ -35,8 +35,6 @@ class UserController extends CI_Controller
     {
         $id = $this->input->post('id');
         log_message('debug', 'modalEditUser');
-        // $hiringRequest = $this->HiringRequest->find_item($id);
-        // return  $this->load->view('Screens/modal_hiringRequest_edit', array('hiringRequest' => $hiringRequest));
         return  $this->load->view('modal_user_edit');
     }
 
@@ -44,8 +42,7 @@ class UserController extends CI_Controller
     public function deleteUser()
     {
         $id = $this->input->post('id');
-        // $item = $this->HiringRequest->delete_item($id);
-        // log_message('debug', 'item' . $item);
+      
         return true;
     }
     public function BedAdd()

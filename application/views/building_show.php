@@ -19,8 +19,8 @@
                 <h1> <span class="page-title txt-color-blueDark">Building</span></h1>
             </div>
             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-8">
-                <a href="/owner_add" class="btn btn-primary float-right bg-brand-gradient" type="button"><i
-                        class="fas fa-plus" style="margin-right: 4px"></i>Add Building</a>
+                <button href="/building_add" class="btn btn-primary float-right bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Add Building" type="button"><i
+                        class="fas fa-plus" style="margin-right: 4px"></i>Add Building</button>
             </div>
         </div>
         <section id="" class="">

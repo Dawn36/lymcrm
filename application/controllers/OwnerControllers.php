@@ -26,11 +26,11 @@ class OwnerControllers extends CI_Controller
 	public function LoadAddScreen()
 	{
 		if ($this->session->userdata('name')) {
-			$this->load->view('main_header');
-			$this->load->view('sidebar');
+			// $this->load->view('main_header');
+			// $this->load->view('sidebar');
 
-			$this->load->view('owner_add');
-			$this->load->view('footer');
+			return $this->load->view('owner_add');
+			// $this->load->view('footer');
 		} else {
 			redirect('login');
 		}
@@ -38,10 +38,10 @@ class OwnerControllers extends CI_Controller
 	public function LoadEditScreen()
 	{
 		if ($this->session->userdata('name')) {
-			$this->load->view('main_header');
-			$this->load->view('sidebar');
-			$this->load->view('owner_edit');
-			$this->load->view('footer');
+			// $this->load->view('main_header');
+			// $this->load->view('sidebar');
+			return $this->load->view('owner_edit');
+			// $this->load->view('footer');
 		} else {
 			redirect('login');
 		}

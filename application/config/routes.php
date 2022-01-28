@@ -78,7 +78,7 @@ $route['delete_source'] = '/Bed/SourceDelete';
 /////////////////////      Admin     ////////////////////////////////////////////
 $route['admin'] = '/AdminControllers';
 $route['admin_add'] = '/AdminControllers/LoadAddScreen';
-$route['admin_edit/:num'] = '/AdminControllers/LoadEditScreen';
+$route['admin_edit'] = '/AdminControllers/LoadEditScreen';
 
 /////////////////////      Owner     ////////////////////////////////////////////
 

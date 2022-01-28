@@ -39,6 +39,7 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
         <link rel="stylesheet" media="screen, print" href="/assets/dist/css/miscellaneous/jqvmap/jqvmap.bundle.css">
          <link rel="stylesheet" media="screen, print" href="/assets/dist/css/theme-demo.css">
         <link rel="stylesheet" media="screen, print" href="/assets/dist/css/notifications/sweetalert2/sweetalert2.bundle.css">
+         <link rel="stylesheet" media="screen, print" href="/assets/dist/css/notifications/toastr/toastr.css">
     </head>
     <body class="mod-bg-1 ">
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
@@ -142,11 +143,44 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
         <script src="/assets/dist/js/datagrid/datatables/datatables.bundle.js"></script> 
         <script src="/assets/dist/js/datagrid/datatables/datatables.export.js"></script>
          <script src="/assets/dist/js/notifications/sweetalert2/sweetalert2.bundle.js"></script>
-
+          <script src="/assets/dist/js/notifications/toastr/toastr.js"></script>
 
 
 
         <script>
+            function Toast(value)
+            {
+            Command: toastr["warning"](value)
+
+            toastr.options = {
+              "closeButton": false,
+              "debug": false,
+              "newestOnTop": false,
+              "progressBar": false,
+              "positionClass": "toast-top-right",
+              "preventDuplicates": false,
+              "showDuration": 300,
+              "hideDuration": 100,
+              "timeOut": 5000,
+              "extendedTimeOut": 1000,
+              "showEasing": "swing",
+              "hideEasing": "linear",
+              "showMethod": "fadeIn",
+              "hideMethod": "fadeOut"
+            }
+            }
+            function CheckValidEmail(id){
+    email = document.getElementById(id).value;
+    var emailregex = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+    if (emailregex.test(email) == false) {
+      
+        var value='Wrong Email! (Hint:abc@gmail.com)';
+        Toast(value);
+       // .then((result) => { location.replace('https://lymcrm.com/property/all-admin.php') })
+      document.getElementById(id).value='';
+      return false;
+    }
+  }
             /**
              *	This script should be placed right after the body tag for fast execution 
              *	Note: the script is written in pure javascript and does not depend on thirdparty library

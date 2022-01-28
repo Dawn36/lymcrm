@@ -1274,3 +1274,11 @@ DEBUG - 2022-01-27 22:30:26 --> Global POST, GET and COOKIE data sanitized
 DEBUG - 2022-01-27 22:30:26 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
 DEBUG - 2022-01-27 22:30:26 --> modalEditProperty
 DEBUG - 2022-01-27 22:30:26 --> Total execution time: 0.0448
+DEBUG - 2022-01-27 22:32:07 --> UTF-8 Support Enabled
+DEBUG - 2022-01-27 22:32:07 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2022-01-27 22:32:07 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+DEBUG - 2022-01-27 22:32:07 --> SELECT *
+FROM `ic_ward`
+INNER JOIN `ic_bed` ON `ic_bed`.`ward_no`=`ic_ward`.`ward_no`
+WHERE `ic_bed`.`bed_status` = 1
+DEBUG - 2022-01-27 22:32:07 --> Total execution time: 0.0517

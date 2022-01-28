@@ -1,3 +1,6 @@
+<?php
+$heading = "Owner";
+?>
 <style type="text/css">
 .mt {
     margin-top: 10px;
@@ -19,8 +22,7 @@
                 <h1> <span class="page-title txt-color-blueDark">Owner</span></h1>
             </div>
             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-8">
-                <a href="/owner_add" class="btn btn-primary float-right bg-brand-gradient" type="button"><i
-                        class="fas fa-plus" style="margin-right: 4px"></i>Add Owner</a>
+                 <button onclick="AddOwner()" class="btn btn-primary float-right bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Add Owner" type="button"><i class="fas fa-plus" style="margin-right: 4px"></i>Add Owner</button>
             </div>
         </div>
         <section id="" class="">
@@ -30,7 +32,7 @@
                     <div id="panel-1" class="panel">
                         <div class="panel-container show">
                             <div class="panel-content">
-                                <table id="datatable_tabletools"
+                                <table id="datatable_tabletools_owner"
                                     class="table table-bordered table-hover table-striped w-100">
                                     <thead class="bg-primary-600 bg-brand-gradient">
                                         <tr>
@@ -71,15 +73,14 @@
                                                    
                                                 </center>
                                             </td>
-
                                             <td style="padding:6px 12px;">
                                                 <center>
-                                                    <a href="/owner_edit"
-                                                        class="btn btn-sm btn-primary bg-brand-gradient"
-                                                        title="Edit Owner"><i class="fal fa-edit"></i></a>&nbsp;
+                                                    <button onclick="EditOwner()"
+                                                        class="btn btn-sm btn-primary bg-brand-gradient"data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Edit Owner"
+                                                        ><i class="fal fa-edit"></i></button>&nbsp;
 
-                                                    <button class="btn btn-sm btn-primary bg-brand-gradient"
-                                                        title="Delete Owner"><i class="fal fa-times"></i></button>
+                                                    <button class="btn btn-sm btn-primary bg-brand-gradient " data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Delete Owner"
+                                                        ><i class="fal fa-times"></i></button>
                                                 </center>
                                             </td>
                                         </tr>
@@ -103,9 +104,21 @@
 <!-- this overlay is activated only when mobile menu is triggered -->
 <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div>
 <script type="text/javascript">
+    function EditOwner() {
+         $.ajax({
+            url: baseurl + 'owner_edit',
+            success: function(result) {
+                $('.modal-title').html('Add Owner');
+                $('#modal-body').html(result);
+                // $('#modal-body').children()[0][0].value = id;
+                $('#myModal').modal();
+            }
+        });
+       
+    }
 $(document).ready(function() {
     // initialize datatable
-    $('#datatable_tabletools').dataTable({
+    $('#datatable_tabletools_owner').dataTable({
         responsive: true,
         lengthChange: false,
         dom:
@@ -134,44 +147,56 @@ $(document).ready(function() {
             "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
             "<'row'<'col-sm-12'tr>>" +
             "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
-        buttons: [
-            /*{
-              extend:    'colvis',
-              text:      'Column Visibility',
-              titleAttr: 'Col visibility',
-              className: 'mr-sm-3'
-            },*/
-            {
-                extend: 'pdfHtml5',
-                text: 'PDF',
-                titleAttr: 'Generate PDF',
-                className: 'btn-outline-danger btn-sm mr-1'
-            },
-            {
-                extend: 'excelHtml5',
-                text: 'Excel',
-                titleAttr: 'Generate Excel',
-                className: 'btn-outline-success btn-sm mr-1'
-            },
-            {
-                extend: 'csvHtml5',
-                text: 'CSV',
-                titleAttr: 'Generate CSV',
-                className: 'btn-outline-primary btn-sm mr-1'
-            },
-            {
-                extend: 'copyHtml5',
-                text: 'Copy',
-                titleAttr: 'Copy to clipboard',
-                className: 'btn-outline-primary btn-sm mr-1'
-            },
-            {
-                extend: 'print',
-                text: 'Print',
-                titleAttr: 'Print Table',
-                className: 'btn-outline-primary btn-sm'
-            }
-        ],
+         buttons: [
+                /*{
+                    extend:    'colvis',
+                    text:      'Column Visibility',
+                    titleAttr: 'Col visibility',
+                    className: 'mr-sm-3'
+                },*/
+                {
+                    extend: 'pdfHtml5',
+                    title: '<?= $heading; ?>',
+                    text: 'PDF',
+                    titleAttr: 'Generate PDF',
+                    className: 'btn-outline-danger btn-sm mr-1'
+                },
+                {
+                    extend: 'excelHtml5',
+                    title: '<?= $heading; ?>',
+                    text: 'Excel',
+                    titleAttr: 'Generate Excel',
+                    className: 'btn-outline-success btn-sm mr-1'
+                },
+                {
+                    extend: 'csvHtml5',
+                    title: '<?= $heading; ?>',
+                    text: 'CSV',
+                    titleAttr: 'Generate CSV',
+                    className: 'btn-outline-primary btn-sm mr-1'
+                },
+                {
+                    extend: 'copyHtml5',
+                    title: '<?= $heading; ?>',
+                    text: 'Copy',
+                    titleAttr: 'Copy to clipboard',
+                    className: 'btn-outline-primary btn-sm mr-1'
+                },
+                {
+                    extend: 'print',
+                    text: 'Print',
+                    titleAttr: 'Print Table',
+                    title: '<?= $heading; ?>',
+                    customize: function(win) {
+                        $(win.document.body).find('h1').css('text-align', 'center');
+                        $(win.document.body).css('font-size', '9px');
+                        $(win.document.body).find('table')
+                            .addClass('compact')
+                            .css('font-size', 'inherit');
+                    },
+                    className: 'btn-outline-primary btn-sm'
+                }
+            ],
 
     });
 });

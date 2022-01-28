@@ -22,7 +22,7 @@ $heading = "All Users";
                 <h1> <span class="page-title txt-color-blueDark"><?= $heading ?></span></h1>
             </div>
             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-8">
-                <button onclick="AddUser()" class="btn btn-primary float-right bg-brand-gradient" type="button"><i class="fas fa-plus" style="margin-right: 4px"></i>Add User</button>
+                <button onclick="AddUser()" class="btn btn-primary float-right bg-brand-gradient" type="button" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Add User"><i class="fas fa-plus" style="margin-right: 4px"></i>Add User</button>
             </div>
         </div>
         <section id="" class="">
@@ -78,9 +78,10 @@ $heading = "All Users";
                                                 </td>
                                                 <td style="padding:6px 12px;">
                                                     <center>
-                                                        <button onclick="EditUser(1)" class="btn btn-sm btn-primary bg-brand-gradient" title="Edit User"><i class="fal fa-edit"></i></button>&nbsp;
+                                                        <button onclick="EditUser(1)" class="btn btn-sm btn-primary bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Edit User"
+                                                        ><i class="fal fa-edit"></i></button>&nbsp;
 
-                                                        <button type="button" onclick="DeleteUser(1)" class="btn btn-sm btn-primary bg-brand-gradient" title="Delete User"><i class="fal fa-times"></i></button>
+                                                        <button type="button" onclick="DeleteUser(1)" class="btn btn-sm btn-primary bg-brand-gradient"data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Delete User"><i class="fal fa-times"></i></button>
                                                     </center>
                                                 </td>
                                             </tr>
