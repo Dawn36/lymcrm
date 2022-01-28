@@ -56,7 +56,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="/" title="Deposit Slip" data-filter-tags="Deposit Slip"><i class="fas fa-money-check-edit-alt"></i>
+                                <a href="/deposit" title="Deposit Slip" data-filter-tags="Deposit Slip"><i class="fas fa-money-check-edit-alt"></i>
                                     <span class="nav-link-text" data-i18n="nav.Deposit Slip">Deposit Slip</span>
                                 </a>
                             </li>

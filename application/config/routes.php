@@ -104,4 +104,8 @@ $route['tenant'] = '/TenantController';
 $route['property'] = '/PropertyController';
 
 
+///////////////////   Deposit slip route    //////////////////////////////////
+$route['deposit'] = '/DepositController';
+
+
 

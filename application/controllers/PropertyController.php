@@ -10,7 +10,7 @@ class PropertyController extends CI_Controller
         $this->load->model('Model_lovs', 'MLOVS');
     }
 
-    public function index()
+    public function Index()
     {
         if ($this->session->userdata('name')) {
             $this->load->view('main_header');
@@ -23,7 +23,7 @@ class PropertyController extends CI_Controller
         }
     }
     // Add User Modal
-    public function modalAddProperty()
+    public function ModalAddProperty()
     {
         log_message('debug', 'modalAddProperty');
         return  $this->load->view('modal_property_add');
@@ -31,7 +31,7 @@ class PropertyController extends CI_Controller
 
 
     // Edit User Modal
-    public function modalEditProperty()
+    public function ModalEditProperty()
     {
         $id = $this->input->post('id');
         log_message('debug', 'modalEditProperty');
@@ -41,7 +41,7 @@ class PropertyController extends CI_Controller
     }
 
     // Delete User
-    public function deleteProperty()
+    public function DeleteProperty()
     {
         $id = $this->input->post('id');
         // $item = $this->HiringRequest->delete_item($id);
