@@ -1,5 +1,5 @@
 <?php
-$heading = "All Users";
+$heading = "Apartment";
 ?>
 <style type="text/css">
     .mt {
@@ -11,7 +11,8 @@ $heading = "All Users";
 
     <ol class="breadcrumb page-breadcrumb">
         <li class="breadcrumb-item"><a href="javascript:void(0);">LymCrm</a></li>
-        <li class="breadcrumb-item">User</li>
+        <li class="breadcrumb-item" ><a href="/building">Building</a></li>
+        <li class="breadcrumb-item">Apartment</li>
 
         <li class="position-absolute pos-top pos-right d-none d-sm-block"><span class="js-get-date"></span></li>
     </ol>
@@ -22,7 +23,7 @@ $heading = "All Users";
                 <h1> <span class="page-title txt-color-blueDark"><?= $heading ?></span></h1>
             </div>
             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-8">
-                <button onclick="AddUser()" class="btn btn-primary float-right bg-brand-gradient" type="button" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Add User"><i class="fas fa-plus" style="margin-right: 4px"></i>Add User</button>
+                <button onclick="AddApartment()" class="btn btn-primary float-right bg-brand-gradient" type="button" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Add Apartment"><i class="fas fa-plus" style="margin-right: 4px"></i>Add Apartment</button>
             </div>
         </div>
         <section id="" class="">
@@ -37,17 +38,10 @@ $heading = "All Users";
                                     <thead class="bg-primary-600 bg-brand-gradient">
                                         <tr>
                                             <th nowrap>
-                                                <center>S No</center>
+                                                <center>Apartment#</center>
                                             </th>
                                             <th nowrap>
-                                                <center>Name</center>
-                                            </th>
-                                            <th nowrap>
-                                                <center>Email</center>
-                                            </th>
-                                            <th nowrap>
-                                                <center>
-                                                    <center>Status</center>
+                                                <center>Status</center>
                                             </th>
                                             <th nowrap>
                                                 <center>
@@ -56,36 +50,24 @@ $heading = "All Users";
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php for ($i = 0; $i < count($bed); $i++) {
-
-                                        ?>
+                                        
                                             <tr>
                                                 <td>
-                                                    <center><?php echo $bed[$i]['ward_no'] . " - " . $bed[$i]['ward_depart'] ?></center>
+                                                    <center>a</center>
                                                 </td>
                                                 <td>
-                                                    <center><?php echo $bed[$i]['ward_no'] . " - " . $bed[$i]['ward_depart'] ?></center>
-                                                </td>
-                                                <td>
-                                                    <center><?php echo $bed[$i]['bed_no'] ?></center>
-                                                </td>
-                                                <td>
-                                                    <center><?php if ($bed[$i]['bed_status'] == '1') {
-                                                                echo "Active";
-                                                            } else {
-                                                                echo "InActive";
-                                                            }  ?></center>
+                                                    <center>a</center>
                                                 </td>
                                                 <td style="padding:6px 12px;">
                                                     <center>
-                                                        <button onclick="EditUser(1)" class="btn btn-sm btn-primary bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Edit User"
+                                                        <button onclick="EditApartment(1)" class="btn btn-sm btn-primary bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Edit Apartment"
                                                         ><i class="fal fa-edit"></i></button>&nbsp;
 
-                                                        <button type="button" onclick="DeleteUser(1)" class="btn btn-sm btn-primary bg-brand-gradient"data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Delete User"><i class="fal fa-times"></i></button>
+                                                        <button type="button" onclick="DeleteApartment(1)" class="btn btn-sm btn-primary bg-brand-gradient"data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Delete Apartment"><i class="fal fa-times"></i></button>
                                                     </center>
                                                 </td>
                                             </tr>
-                                        <?php } ?>
+                                       
                                     </tbody>
                                 </table>
                             </div>
@@ -228,13 +210,13 @@ $heading = "All Users";
     });
 
     // add modal
-    function AddUser(id) {
+    function AddApartment(id) {
         $.ajax({
-            url: baseurl + 'user_add',
+            url: baseurl + 'apartment_add',
             success: function(result) {
-                $('.modal-title').html('Add User');
+                $('.modal-title').html('Add Apartment');
                 $('#modal-body').html(result);
-                $('#modal-body').children()[0][0].value = id;
+                // $('#modal-body').children()[0][0].value = id;
                 $('#myModal').modal();
             }
         });
@@ -242,16 +224,16 @@ $heading = "All Users";
 
 
     // Modal For Edit User
-    function EditUser(id) {
+    function EditApartment(id) {
         var value = {
             id: id
         };
         $.ajax({
-            url: baseurl + 'user_edit',
+            url: baseurl + 'apartment_edit',
             type: 'POST',
             data: value,
             success: function(result) {
-                $('.modal-title').html('Edit User');
+                $('.modal-title').html('Edit Apartment');
                 //  $('#modal-body').html(``);
                 $('#modal-body').html(result);
                 $('#myModal').modal();

@@ -23,19 +23,19 @@ class UserController extends CI_Controller
         }
     }
     // Add User Modal
-    public function modalAddUser()
+    public function LoadAddScreen()
     {
         log_message('debug', 'modaladdUser');
-        return  $this->load->view('modal_user_add');
+        return  $this->load->view('user_add');
     }
 
 
     // Edit User Modal
-    public function modalEditUser()
+    public function LoadEditScreen()
     {
         $id = $this->input->post('id');
         log_message('debug', 'modalEditUser');
-        return  $this->load->view('modal_user_edit');
+        return  $this->load->view('user_edit');
     }
 
     // Delete User

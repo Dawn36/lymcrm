@@ -23,21 +23,21 @@ class TenantController extends CI_Controller
         }
     }
     // Add User Modal
-    public function modalAddTenant()
+    public function LoadAddScreen()
     {
         log_message('debug', 'modalAddTenant');
-        return  $this->load->view('modal_tenant_add');
+        return  $this->load->view('tenant_add');
     }
 
 
     // Edit User Modal
-    public function modalEditTenant()
+    public function LoadEditScreen()
     {
         $id = $this->input->post('id');
         log_message('debug', 'modalEditTenant');
         // $hiringRequest = $this->HiringRequest->find_item($id);
         // return  $this->load->view('Screens/modal_hiringRequest_edit', array('hiringRequest' => $hiringRequest));
-        return  $this->load->view('modal_tenant_edit');
+        return  $this->load->view('tenant_edit');
     }
 
     // Delete User

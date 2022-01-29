@@ -1,10 +1,10 @@
 <?php echo validation_errors('<div class="alert alert-danger">', '</div'); ?>
-<form class="needs-validation" name='editTenantForm' id='editTenantForm' method='post' action="/hiringrequests/addhiringrequest" novalidate>
+<form class="needs-validation" name='addTenantForm' id='addTenantForm' method='post' action="/hiringrequests/addhiringrequest" novalidate>
 
     <div class="card mb-g">
         <div class="col-md-12 mt-3 mb-3">
             <label class="form-label">Tenant Name<span class="text-danger">*</span></label>
-            <input class="form-control" placeholder="Enter Tenant Name" type="text" id="name" name="name" value="Test Tenant" required="">
+            <input class="form-control" placeholder="Enter Tenant Name" type="text" id="name" name="name" required="">
             <div class="invalid-feedback">
                 Please Enter Tenant Name.
             </div>
@@ -12,7 +12,7 @@
         </div>
         <div class="col-md-12 mb-3">
             <label class="form-label">Tenant Email<span class="text-danger">*</span></label>
-            <input class="form-control" placeholder="Enter Tenant Email" type="email" id="email" name="email" value="tenant@gmail.com" required="">
+            <input class="form-control"onblur="CheckValidEmail(this.id)" placeholder="Enter Tenant Email" type="email" id="email" name="email" required="">
             <div class="invalid-feedback">
                 Please Enter Tenant Email.
             </div>
@@ -20,7 +20,7 @@
         </div>
         <div class="col-md-12 mb-3">
             <label class="form-label">Mobile<span class="text-danger">*</span></label>
-            <input class="form-control" placeholder="Enter Mobile Number" type="number" id="contact" name="contact" value="26537268" required="">
+            <input class="form-control" placeholder="Enter Mobile Number" type="number" id="contact" name="contact" required="">
             <div class="invalid-feedback">
                 Please Enter Mobile Number.
             </div>
@@ -37,9 +37,9 @@
 </form>
 
 <script>
-    $("#editTenantForm").submit(function() {
+    $("#addTenantForm").submit(function() {
 
-        var form = $("#editTenantForm")
+        var form = $("#addTenantForm")
 
         if (form[0].checkValidity() === false) {
             event.preventDefault()
@@ -48,18 +48,22 @@
         form.addClass('was-validated');
 
         if ($('#name').val() == '') {
-            alert('Name Type is required');
+             var value='Name Type is required';
+            Toast(value);
             return false;
         }
         if ($('#email').val() == '') {
-            alert('Email is required');
+             var value='Email is required';
+            Toast(value);
+            
             return false;
         }
         if ($('#contact').val() == '') {
-            alert('Mobile number is required');
+             var value='Mobile number is required';
+            Toast(value);
             return false;
         }
-        if (confirm("Do you want to edit tenant?")) {
+        if (confirm("Do you want to add tenant?")) {
             return true;
         } else {
             return false;

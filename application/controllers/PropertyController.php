@@ -23,21 +23,21 @@ class PropertyController extends CI_Controller
         }
     }
     // Add User Modal
-    public function modalAddProperty()
+    public function LoadAddScreen()
     {
         log_message('debug', 'modalAddProperty');
-        return  $this->load->view('modal_property_add');
+        return  $this->load->view('property_add');
     }
 
 
     // Edit User Modal
-    public function modalEditProperty()
+    public function LoadEditScreen()
     {
         $id = $this->input->post('id');
         log_message('debug', 'modalEditProperty');
         // $hiringRequest = $this->HiringRequest->find_item($id);
         // return  $this->load->view('Screens/modal_hiringRequest_edit', array('hiringRequest' => $hiringRequest));
-        return  $this->load->view('modal_property_edit');
+        return  $this->load->view('property_edit');
     }
 
     // Delete User

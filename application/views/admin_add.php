@@ -1,4 +1,3 @@
-<?php echo validation_errors('<div class="alert alert-danger">', '</div'); ?>
 <style type="text/css">
 .mt{
     margin-top: 10px;

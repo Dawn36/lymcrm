@@ -22,7 +22,7 @@ $heading = "Tenant";
                 <h1> <span class="page-title txt-color-blueDark"><?= $heading ?></span></h1>
             </div>
             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-8">
-                <button onclick="AddTenant()" class="btn btn-primary float-right bg-brand-gradient" type="button"><i class="fas fa-plus" style="margin-right: 4px"></i>Add Tenant</button>
+                <button onclick="AddTenant()" class="btn btn-primary float-right bg-brand-gradient" type="button" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Add Tenant"><i class="fas fa-plus" style="margin-right: 4px"></i>Add Tenant</button>
             </div>
         </div>
         <section id="" class="">
@@ -68,9 +68,9 @@ $heading = "Tenant";
                                                 </td>
                                                 <td style="padding:6px 12px;">
                                                     <center>
-                                                        <button onclick="EditTenant(1)" class="btn btn-sm btn-primary bg-brand-gradient" title="Edit Tenant"><i class="fal fa-edit"></i></button>&nbsp;
+                                                        <button onclick="EditTenant(1)" class="btn btn-sm btn-primary bg-brand-gradient"  data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Edit Tenant"><i class="fal fa-edit"></i></button>&nbsp;
 
-                                                        <button type="button" onclick="DeleteTenant(1)" class="btn btn-sm btn-primary bg-brand-gradient" title="Delete Tenant"><i class="fal fa-times"></i></button>
+                                                        <button type="button" onclick="DeleteTenant(1)" class="btn btn-sm btn-primary bg-brand-gradient"  data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Delete Tenant"><i class="fal fa-times"></i></button>
                                                     </center>
                                                 </td>
                                             </tr>
@@ -219,7 +219,7 @@ $heading = "Tenant";
     // add modal
     function AddTenant(id) {
         $.ajax({
-            url: baseurl + 'tenantcontroller/modalAddTenant',
+            url: baseurl + 'tenant_add',
             success: function(result) {
                 $('.modal-title').html('Add New Tenant');
                 $('#modal-body').html(result);
@@ -236,7 +236,7 @@ $heading = "Tenant";
             id: id
         };
         $.ajax({
-            url: baseurl + 'tenantcontroller/modalEditTenant',
+            url: baseurl + 'tenant_edit',
             type: 'POST',
             data: value,
             success: function(result) {

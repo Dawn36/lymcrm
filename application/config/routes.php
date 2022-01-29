@@ -96,12 +96,19 @@ $route['apartment'] = '/ApartmentControllers';
 $route['apartment_add'] = '/ApartmentControllers/LoadAddScreen';
 $route['apartment_edit'] = '/ApartmentControllers/LoadEditScreen';
 
-// user management route
+/////////// user management ///////////////////////////////////////////////////////////
 $route['user'] = '/UserController';
-// Tenant rout
-$route['tenant'] = '/TenantController';
-// Property route
+$route['user_add'] = '/UserController/LoadAddScreen';
+$route['user_edit'] = '/UserController/LoadEditScreen';
+///////////// Property  //////////////////////////////////////////////////////
 $route['property'] = '/PropertyController';
+$route['property_add'] = '/PropertyController/LoadAddScreen';
+$route['property_edit'] = '/PropertyController/LoadEditScreen';
+////////////////////// Tenant /////////////////////////////////////////////////
+$route['tenant'] = '/TenantController';
+$route['tenant_add'] = '/TenantController/LoadAddScreen';
+$route['tenant_edit'] = '/TenantController/LoadEditScreen';
+
 
 
 

@@ -22,7 +22,7 @@ $heading = "Property";
                 <h1> <span class="page-title txt-color-blueDark"><?= $heading ?></span></h1>
             </div>
             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-8">
-                <button onclick="AddProperty()" class="btn btn-primary float-right bg-brand-gradient" type="button"><i class="fas fa-plus" style="margin-right: 4px"></i>Add Property</button>
+                <button onclick="AddProperty()" class="btn btn-primary float-right bg-brand-gradient" type="button" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Add Property"><i class="fas fa-plus" style="margin-right: 4px"></i>Add Property</button>
             </div>
         </div>
         <section id="" class="">
@@ -75,9 +75,10 @@ $heading = "Property";
                                                 </td>
                                                 <td style="padding:6px 12px;">
                                                     <center>
-                                                        <button onclick="EditProperty(1)" class="btn btn-sm btn-primary bg-brand-gradient" title="Edit Property"><i class="fal fa-edit"></i></button>&nbsp;
+                                                        <button onclick="EditProperty(1)" class="btn btn-sm btn-primary bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Edit Property"><i class="fal fa-edit"></i></button>&nbsp;
 
-                                                        <button type="button" onclick="DeleteProperty(1)" class="btn btn-sm btn-primary bg-brand-gradient" title="Delete Property"><i class="fal fa-times"></i></button>
+                                                        <button type="button" onclick="DeleteProperty(1)" class="btn btn-sm btn-primary bg-brand-gradient"
+                                                         data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Delete Property" ><i class="fal fa-times"></i></button>
                                                     </center>
                                                 </td>
                                             </tr>
@@ -226,7 +227,7 @@ $heading = "Property";
     // add modal
     function AddProperty(id) {
         $.ajax({
-            url: baseurl + 'Propertycontroller/modalAddProperty',
+            url: baseurl + 'property_add',
             success: function(result) {
                 $('.modal-title').html('Add New Property');
                 $('#modal-body').html(result);
@@ -243,7 +244,7 @@ $heading = "Property";
             id: id
         };
         $.ajax({
-            url: baseurl + 'Propertycontroller/modalEditProperty',
+            url: baseurl + 'property_edit',
             type: 'POST',
             data: value,
             success: function(result) {

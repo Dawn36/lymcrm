@@ -47,7 +47,7 @@ margin-right: 6px;
                           Please Enter the Name.
                       </div>
                   </div>
-                   <div class="col-md-12 mb-12 mb-3">
+                   <div class="col-md-12 mb-3">
                       <label class="form-label">Email<span class="text-danger">*</span></label>
                       <input class="form-control" placeholder="Enter Email" type="text" id='email_name' name='email_name' required="" onblur="CheckValidEmail(this.id)">
                        
@@ -58,7 +58,7 @@ margin-right: 6px;
              
             
                  
-                  <div class="col-md-12 mb-12  mb-3">
+                  <div class="col-md-12  mb-3">
                       <label class="form-label">New Password<span class="text-danger">*</span></label>
                       <input class="form-control"   placeholder="New Password" type="Password" id='admin_password' name='admin_password' required=""><i id="show_password" class="fal fa-eye eye"></i>
                       <div class="invalid-feedback">
