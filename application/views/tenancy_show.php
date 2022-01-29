@@ -22,7 +22,7 @@ $heading = "Deposit Slip";
                 <h1> <span class="page-title txt-color-blueDark"><?= $heading ?></span></h1>
             </div>
             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-8">
-                <button onclick="DepositAdd()" class="btn btn-primary float-right bg-brand-gradient" type="button"><i class="fas fa-plus" style="margin-right: 4px"></i>Add Deposit Slip</button>
+                <button onclick="AddDeposit()" class="btn btn-primary float-right bg-brand-gradient" type="button"><i class="fas fa-plus" style="margin-right: 4px"></i>Add Deposit Slip</button>
             </div>
         </div>
         <section id="" class="">
@@ -88,17 +88,10 @@ $heading = "Deposit Slip";
                                             </td>
                                             <td>
                                                 <center>
-<<<<<<< Updated upstream
-                                                    <button onclick="" class="btn btn-sm btn-primary bg-brand-gradient" type="button" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="View Attachments" title="View Attachments"><i class="fal fa-camera"></i></button>&nbsp;
-                                                    <button onclick="" class="btn btn-sm btn-primary bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Edit Deposit Slip" title="Edit Deposit Slip"><i class="fal fa-edit"></i></button>&nbsp;
-                                                    <button onclick="" class="btn btn-sm btn-primary bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Send Mail" title="Send Mail"><i class="fal fa-envelope"></i></button>&nbsp;
-                                                    <button type="button" onclick="" class="btn btn-sm btn-primary bg-brand-gradient"  data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Delete Deposit" title="Delete Deposit"><i class="fal fa-times"></i></button>
-=======
-                                                    <button onclick="LoadDepositImage(id)" class="btn btn-sm btn-primary bg-brand-gradient" title="Edit Property"><i class="fal fa-camera"></i></button>&nbsp;
-                                                    <button onclick="DepositEdit(id)" class="btn btn-sm btn-primary bg-brand-gradient" title="Edit Property"><i class="fal fa-edit"></i></button>&nbsp;
-                                                    <button onclick="DepositEmail(id)" class="btn btn-sm btn-primary bg-brand-gradient" title="Edit Property"><i class="fal fa-envelope"></i></button>&nbsp;
+                                                    <button onclick="ImageDeposit(id)" class="btn btn-sm btn-primary bg-brand-gradient" title="Edit Property"><i class="fal fa-camera"></i></button>&nbsp;
+                                                    <button onclick="EditDeposit(id)" class="btn btn-sm btn-primary bg-brand-gradient" title="Edit Property"><i class="fal fa-edit"></i></button>&nbsp;
+                                                    <button onclick="EmailDeposit(id)" class="btn btn-sm btn-primary bg-brand-gradient" title="Edit Property"><i class="fal fa-envelope"></i></button>&nbsp;
                                                     <button type="button" onclick="" class="btn btn-sm btn-primary bg-brand-gradient" title="Delete Property"><i class="fal fa-times"></i></button>
->>>>>>> Stashed changes
                                                 </center>
                                             </td>
                                         </tr>
@@ -244,7 +237,7 @@ $heading = "Deposit Slip";
     });
 
     // add modal
-    function DepositAdd(id) {
+    function AddDeposit(id) {
         $.ajax({
             url: baseurl + 'deposit_add',
             success: function(result) {
@@ -258,7 +251,7 @@ $heading = "Deposit Slip";
 
 
     // Modal For Edit User
-    function DepositEdit(id) {
+    function EditDeposit(id) {
         var value = {
             id: id
         };
@@ -276,7 +269,7 @@ $heading = "Deposit Slip";
         });
     }
     // Modal For Edit User
-    function DepositEmail(id) {
+    function EmailDeposit(id) {
         var value = {
             id: id
         };
@@ -294,7 +287,7 @@ $heading = "Deposit Slip";
         });
     }
 
-    function LoadDepositImage(id) {
+    function ImageDeposit(id) {
         var value = {
             id: id
         };
@@ -303,7 +296,7 @@ $heading = "Deposit Slip";
             type: 'POST',
             data: value,
             success: function(result) {
-                $('.modal-title').html('Attachments');
+                $('.modal-title').html('Image Deposit');
                 //  $('#modal-body').html(``);
                 $('#modal-body').html(result);
                 $('#myModal').modal();

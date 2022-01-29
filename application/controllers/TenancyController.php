@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class DepositController extends CI_Controller
+class TenancyController extends CI_Controller
 {
 
 	public function __construct()
@@ -25,27 +25,27 @@ class DepositController extends CI_Controller
 		}
 	}
 
-    public function DepositAdd()
+    public function ModalAddTenancy()
     {
-        log_message('debug', 'DepositAdd');
-        return  $this->load->view('deposit_add');
+        log_message('debug', 'modalAddTenancy');
+        return  $this->load->view('modal_deposit_add');
     }
 
-    public function DepositEdit()
+    public function ModalEditTenancy()
     {
-        log_message('debug', 'DepositEdit');
-        return  $this->load->view('deposit_edit');
+        log_message('debug', 'ModalEditTenancy');
+        return  $this->load->view('modal_deposit_edit');
     }
 
-    public function DepositEmail()
+    public function ModalEmailTenancy()
     {
-        log_message('debug', 'DepositEmail');
-        return  $this->load->view('deposit_email');
+        log_message('debug', 'ModalEmailTenancy');
+        return  $this->load->view('modal_deposit_email');
     }
 
-    public function LoadDepositImage()
+    public function LoadImageTenancy()
     {
-        log_message('debug', 'ImageDeposit');
+        log_message('debug', 'ImageTenancy');
         return  $this->load->view('deposit_image');
     }
 

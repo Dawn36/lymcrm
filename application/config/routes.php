@@ -75,27 +75,28 @@ $route['user_added'] = 'users/UsersAdd';
 $route['source'] = '/Bed/Source';
 $route['source_add'] = '/Bed/SourceAdd';
 $route['delete_source'] = '/Bed/SourceDelete';
+
 /////////////////////      Admin     ////////////////////////////////////////////
 $route['admin'] = '/AdminControllers';
 $route['admin_add'] = '/AdminControllers/LoadAddScreen';
 $route['admin_edit'] = '/AdminControllers/LoadEditScreen';
 
 /////////////////////      Owner     ////////////////////////////////////////////
-
-$route['owner'] = '/OwnerControllers';
-$route['owner_add'] = '/OwnerControllers/LoadAddScreen';
-$route['owner_edit'] = '/OwnerControllers/LoadEditScreen';
+$route['owner']             = '/OwnerControllers';
+$route['owner_add']         = '/OwnerControllers/LoadAddScreen';
+$route['owner_edit']        = '/OwnerControllers/LoadEditScreen';
 
 /////////////////////      Building     ////////////////////////////////////////////
-$route['building'] = '/BuildingControllers';
-$route['building_add'] = '/BuildingControllers/LoadAddScreen';
-$route['building_edit'] = '/BuildingControllers/LoadEditScreen';
+$route['building']          = '/BuildingControllers';
+$route['building_add']      = '/BuildingControllers/LoadAddScreen';
+$route['building_edit']     = '/BuildingControllers/LoadEditScreen';
 
 /////////////////////      Apartment      ////////////////////////////////////////////
-$route['apartment'] = '/ApartmentControllers';
-$route['apartment_add'] = '/ApartmentControllers/LoadAddScreen';
-$route['apartment_edit'] = '/ApartmentControllers/LoadEditScreen';
+$route['apartment']         = '/ApartmentControllers';
+$route['apartment_add']     = '/ApartmentControllers/LoadAddScreen';
+$route['apartment_edit']    = '/ApartmentControllers/LoadEditScreen';
 
+<<<<<<< Updated upstream
 /////////// user management ///////////////////////////////////////////////////////////
 $route['user'] = '/UserController';
 $route['user_add'] = '/UserController/LoadAddScreen';
@@ -109,10 +110,27 @@ $route['tenant'] = '/TenantController';
 $route['tenant_add'] = '/TenantController/LoadAddScreen';
 $route['tenant_edit'] = '/TenantController/LoadEditScreen';
 
+=======
+/////////////////////     user management route      ////////////////////////////////////////////
+$route['user'] = '/UserController';
+
+
+// Tenant route
+$route['tenant']            = '/TenantController';
+
+
+// Property route
+$route['property']          = '/PropertyController';
+>>>>>>> Stashed changes
 
 
 ///////////////////   Deposit slip route    //////////////////////////////////
-$route['deposit'] = '/DepositController';
+$route['deposit']           = '/DepositController';
+$route['deposit_add']       = '/DepositController/DepositAdd';
+$route['deposit_edit']      = '/DepositController/DepositEdit';
+$route['deposit_email']     = '/DepositController/DepositEmail';
+$route['deposit_image']     = '/DepositController/LoadDepositImage';
 
-
+///////////////////   Tenancy route    //////////////////////////////////
+$route['tenancy'] = '/TenancyController';
 
