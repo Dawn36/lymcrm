@@ -10,7 +10,7 @@ class PropertyController extends CI_Controller
         $this->load->model('Model_lovs', 'MLOVS');
     }
 
-    public function index()
+    public function Index()
     {
         if ($this->session->userdata('name')) {
             $this->load->view('main_header');
@@ -41,7 +41,7 @@ class PropertyController extends CI_Controller
     }
 
     // Delete User
-    public function deleteProperty()
+    public function DeleteProperty()
     {
         $id = $this->input->post('id');
         // $item = $this->HiringRequest->delete_item($id);

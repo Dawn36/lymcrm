@@ -111,4 +111,8 @@ $route['tenant_edit'] = '/TenantController/LoadEditScreen';
 
 
 
+///////////////////   Deposit slip route    //////////////////////////////////
+$route['deposit'] = '/DepositController';
+
+
 

@@ -1,5 +1,5 @@
 <?php
-$heading = "Property";
+$heading = "Deposit Slip";
 ?>
 <style type="text/css">
     .mt {
@@ -11,7 +11,7 @@ $heading = "Property";
 
     <ol class="breadcrumb page-breadcrumb">
         <li class="breadcrumb-item"><a href="javascript:void(0);">LymCrm</a></li>
-        <li class="breadcrumb-item">Property</li>
+        <li class="breadcrumb-item">Deposit Slip</li>
 
         <li class="position-absolute pos-top pos-right d-none d-sm-block"><span class="js-get-date"></span></li>
     </ol>
@@ -22,7 +22,7 @@ $heading = "Property";
                 <h1> <span class="page-title txt-color-blueDark"><?= $heading ?></span></h1>
             </div>
             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-8">
-                <button onclick="AddProperty()" class="btn btn-primary float-right bg-brand-gradient" type="button" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Add Property"><i class="fas fa-plus" style="margin-right: 4px"></i>Add Property</button>
+                <button onclick="AddDeposit()" class="btn btn-primary float-right bg-brand-gradient" type="button"><i class="fas fa-plus" style="margin-right: 4px"></i>Add Deposit Slip</button>
             </div>
         </div>
         <section id="" class="">
@@ -37,51 +37,64 @@ $heading = "Property";
                                     <thead class="bg-primary-600 bg-brand-gradient">
                                         <tr>
                                             <th nowrap>
-                                                <center>Building Name</center>
+                                                <center>#</center>
                                             </th>
                                             <th nowrap>
-                                                <center>Appartement #</center>
+                                                <center>Building</center>
                                             </th>
                                             <th nowrap>
-                                                <center>
-                                                    <center>Community</center>
+                                                <center>Apartment #</center>
                                             </th>
                                             <th nowrap>
-                                                <center>
-                                                    <center>Owner Name</center>
+                                                <center>Owner Name</center>
                                             </th>
                                             <th nowrap>
-                                                <center>
-                                                    <center>Action</center>
+                                                <center>Payment Type</center>
+                                            </th>
+                                            <th nowrap>
+                                                <center>Cheque #</center>
+                                            </th>
+                                            <th nowrap>
+                                                <center>Cheque Amount</center>
+                                            </th>
+                                            <th nowrap>
+                                                <center>Action</center>
                                             </th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php for ($i = 0; $i < count($bed); $i++) {
 
-                                        ?>
-                                            <tr>
-                                                <td>
-                                                    <center><?php echo $bed[$i]['ward_no'] . " - " . $bed[$i]['ward_depart'] ?></center>
-                                                </td>
-                                                <td>
-                                                    <center>Building</center>
-                                                </td>
-                                                <td>
-                                                    <center>Community</center>
-                                                </td>
-                                                <td>
-                                                    <center>Owner</center>
-                                                </td>
-                                                <td style="padding:6px 12px;">
-                                                    <center>
-                                                        <button onclick="EditProperty(1)" class="btn btn-sm btn-primary bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Edit Property"><i class="fal fa-edit"></i></button>&nbsp;
-
-                                                        <button type="button" onclick="DeleteProperty(1)" class="btn btn-sm btn-primary bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Delete Property"><i class="fal fa-times"></i></button>
-                                                    </center>
-                                                </td>
-                                            </tr>
-                                        <?php } ?>
+                                        <tr>
+                                            <td>
+                                                <center>1</center>
+                                            </td>
+                                            <td>
+                                                <center>Building</center>
+                                            </td>
+                                            <td>
+                                                <center>Community</center>
+                                            </td>
+                                            <td>
+                                                <center>Owner</center>
+                                            </td>
+                                            <td>
+                                                <center>Cheque</center>
+                                            </td>
+                                            <td>
+                                                <center>1234</center>
+                                            </td>
+                                            <td>
+                                                <center>3000</center>
+                                            </td>
+                                            <td>
+                                                <center>
+                                                    <button onclick="" class="btn btn-sm btn-primary bg-brand-gradient" title="Edit Property"><i class="fal fa-camera"></i></button>&nbsp;
+                                                    <button onclick="" class="btn btn-sm btn-primary bg-brand-gradient" title="Edit Property"><i class="fal fa-edit"></i></button>&nbsp;
+                                                    <button onclick="" class="btn btn-sm btn-primary bg-brand-gradient" title="Edit Property"><i class="fal fa-envelope"></i></button>&nbsp;
+                                                    <button type="button" onclick="" class="btn btn-sm btn-primary bg-brand-gradient" title="Delete Property"><i class="fal fa-times"></i></button>
+                                                </center>
+                                            </td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -224,11 +237,11 @@ $heading = "Property";
     });
 
     // add modal
-    function AddProperty(id) {
+    function AddDeposit(id) {
         $.ajax({
-            url: baseurl + 'property_add',
+            url: baseurl + 'DepositController/ModalAddDeposit',
             success: function(result) {
-                $('.modal-title').html('Add New Property');
+                $('.modal-title').html('Add New Deposit');
                 $('#modal-body').html(result);
                 $('#modal-body').children()[0][0].value = id;
                 $('#myModal').modal();
@@ -243,7 +256,7 @@ $heading = "Property";
             id: id
         };
         $.ajax({
-            url: baseurl + 'property_edit',
+            url: baseurl + 'Propertycontroller/modalEditProperty',
             type: 'POST',
             data: value,
             success: function(result) {
@@ -263,7 +276,7 @@ $heading = "Property";
         };
         if (confirm('Are you sure you want to delete Property?')) {
             $.ajax({
-                url: baseurl + 'Propertycontroller/DeleteProperty',
+                url: baseurl + 'Propertycontroller/deleteProperty',
                 type: 'POST',
                 data: value,
                 success: function(result) {
