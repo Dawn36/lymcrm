@@ -88,10 +88,10 @@ $heading = "Deposit Slip";
                                             </td>
                                             <td>
                                                 <center>
-                                                    <button onclick="" class="btn btn-sm btn-primary bg-brand-gradient" title="Edit Property"><i class="fal fa-camera"></i></button>&nbsp;
-                                                    <button onclick="" class="btn btn-sm btn-primary bg-brand-gradient" title="Edit Property"><i class="fal fa-edit"></i></button>&nbsp;
-                                                    <button onclick="" class="btn btn-sm btn-primary bg-brand-gradient" title="Edit Property"><i class="fal fa-envelope"></i></button>&nbsp;
-                                                    <button type="button" onclick="" class="btn btn-sm btn-primary bg-brand-gradient" title="Delete Property"><i class="fal fa-times"></i></button>
+                                                    <button onclick="" class="btn btn-sm btn-primary bg-brand-gradient" type="button" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="View Attachments" title="View Attachments"><i class="fal fa-camera"></i></button>&nbsp;
+                                                    <button onclick="" class="btn btn-sm btn-primary bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Edit Deposit Slip" title="Edit Deposit Slip"><i class="fal fa-edit"></i></button>&nbsp;
+                                                    <button onclick="" class="btn btn-sm btn-primary bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Send Mail" title="Send Mail"><i class="fal fa-envelope"></i></button>&nbsp;
+                                                    <button type="button" onclick="" class="btn btn-sm btn-primary bg-brand-gradient"  data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Delete Deposit" title="Delete Deposit"><i class="fal fa-times"></i></button>
                                                 </center>
                                             </td>
                                         </tr>
