@@ -96,7 +96,6 @@ $route['apartment']         = '/ApartmentControllers';
 $route['apartment_add']     = '/ApartmentControllers/LoadAddScreen';
 $route['apartment_edit']    = '/ApartmentControllers/LoadEditScreen';
 
-<<<<<<< Updated upstream
 /////////// user management ///////////////////////////////////////////////////////////
 $route['user'] = '/UserController';
 $route['user_add'] = '/UserController/LoadAddScreen';
@@ -110,18 +109,6 @@ $route['tenant'] = '/TenantController';
 $route['tenant_add'] = '/TenantController/LoadAddScreen';
 $route['tenant_edit'] = '/TenantController/LoadEditScreen';
 
-=======
-/////////////////////     user management route      ////////////////////////////////////////////
-$route['user'] = '/UserController';
-
-
-// Tenant route
-$route['tenant']            = '/TenantController';
-
-
-// Property route
-$route['property']          = '/PropertyController';
->>>>>>> Stashed changes
 
 
 ///////////////////   Deposit slip route    //////////////////////////////////

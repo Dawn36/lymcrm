@@ -739,3 +739,78 @@ DEBUG - 2022-01-29 01:29:10 --> UTF-8 Support Enabled
 DEBUG - 2022-01-29 01:29:10 --> Global POST, GET and COOKIE data sanitized
 DEBUG - 2022-01-29 01:29:10 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
 DEBUG - 2022-01-29 01:29:10 --> Total execution time: 0.2074
+DEBUG - 2022-01-29 02:05:14 --> UTF-8 Support Enabled
+ERROR - 2022-01-29 02:05:14 --> Severity: error --> Exception: syntax error, unexpected '<<' (T_SL), expecting end of file C:\xampp\htdocs\lymcrm\application\config\routes.php 99
+DEBUG - 2022-01-29 02:05:22 --> UTF-8 Support Enabled
+ERROR - 2022-01-29 02:05:22 --> Severity: error --> Exception: syntax error, unexpected '<<' (T_SL), expecting end of file C:\xampp\htdocs\lymcrm\application\config\routes.php 99
+DEBUG - 2022-01-29 02:05:26 --> UTF-8 Support Enabled
+ERROR - 2022-01-29 02:05:26 --> Severity: error --> Exception: syntax error, unexpected '<<' (T_SL), expecting end of file C:\xampp\htdocs\lymcrm\application\config\routes.php 99
+DEBUG - 2022-01-29 02:05:32 --> UTF-8 Support Enabled
+ERROR - 2022-01-29 02:05:32 --> Severity: error --> Exception: syntax error, unexpected '<<' (T_SL), expecting end of file C:\xampp\htdocs\lymcrm\application\config\routes.php 99
+DEBUG - 2022-01-29 02:05:41 --> UTF-8 Support Enabled
+ERROR - 2022-01-29 02:05:41 --> Severity: error --> Exception: syntax error, unexpected '<<' (T_SL), expecting end of file C:\xampp\htdocs\lymcrm\application\config\routes.php 99
+DEBUG - 2022-01-29 02:06:57 --> UTF-8 Support Enabled
+DEBUG - 2022-01-29 02:06:57 --> No URI present. Default controller set.
+DEBUG - 2022-01-29 02:06:57 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2022-01-29 02:06:57 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+DEBUG - 2022-01-29 02:06:57 --> UTF-8 Support Enabled
+DEBUG - 2022-01-29 02:06:57 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2022-01-29 02:06:58 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+DEBUG - 2022-01-29 02:06:58 --> LANDING SESSION VALUE :: ICADMIN
+DEBUG - 2022-01-29 02:06:58 --> Total execution time: 0.1127
+DEBUG - 2022-01-29 02:07:12 --> UTF-8 Support Enabled
+DEBUG - 2022-01-29 02:07:12 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2022-01-29 02:07:12 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+DEBUG - 2022-01-29 02:07:12 --> Total execution time: 0.2853
+DEBUG - 2022-01-29 02:07:16 --> UTF-8 Support Enabled
+DEBUG - 2022-01-29 02:07:16 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2022-01-29 02:07:16 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+DEBUG - 2022-01-29 02:07:16 --> Total execution time: 0.3543
+DEBUG - 2022-01-29 02:07:19 --> UTF-8 Support Enabled
+DEBUG - 2022-01-29 02:07:20 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2022-01-29 02:07:20 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+DEBUG - 2022-01-29 02:07:20 --> Total execution time: 0.1566
+DEBUG - 2022-01-29 02:07:22 --> UTF-8 Support Enabled
+DEBUG - 2022-01-29 02:07:22 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2022-01-29 02:07:22 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+DEBUG - 2022-01-29 02:07:22 --> Total execution time: 0.1836
+DEBUG - 2022-01-29 02:07:27 --> UTF-8 Support Enabled
+DEBUG - 2022-01-29 02:07:27 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2022-01-29 02:07:27 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+DEBUG - 2022-01-29 02:07:27 --> Total execution time: 0.1452
+DEBUG - 2022-01-29 02:07:30 --> UTF-8 Support Enabled
+DEBUG - 2022-01-29 02:07:30 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2022-01-29 02:07:30 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+DEBUG - 2022-01-29 02:07:30 --> Total execution time: 0.2523
+DEBUG - 2022-01-29 02:07:33 --> UTF-8 Support Enabled
+DEBUG - 2022-01-29 02:07:33 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2022-01-29 02:07:33 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+DEBUG - 2022-01-29 02:07:33 --> Total execution time: 0.1930
+DEBUG - 2022-01-29 02:07:36 --> UTF-8 Support Enabled
+DEBUG - 2022-01-29 02:07:36 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2022-01-29 02:07:37 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+DEBUG - 2022-01-29 02:07:37 --> Total execution time: 0.4186
+DEBUG - 2022-01-29 02:07:41 --> UTF-8 Support Enabled
+DEBUG - 2022-01-29 02:07:41 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2022-01-29 02:07:41 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+DEBUG - 2022-01-29 02:07:41 --> ImageDeposit
+DEBUG - 2022-01-29 02:07:41 --> Total execution time: 0.1959
+DEBUG - 2022-01-29 02:07:42 --> UTF-8 Support Enabled
+DEBUG - 2022-01-29 02:07:42 --> Global POST, GET and COOKIE data sanitized
+ERROR - 2022-01-29 02:07:42 --> 404 Page Not Found: Img/demo
+DEBUG - 2022-01-29 02:07:42 --> UTF-8 Support Enabled
+DEBUG - 2022-01-29 02:07:42 --> Global POST, GET and COOKIE data sanitized
+ERROR - 2022-01-29 02:07:42 --> 404 Page Not Found: Img/demo
+DEBUG - 2022-01-29 02:07:48 --> UTF-8 Support Enabled
+DEBUG - 2022-01-29 02:07:48 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2022-01-29 02:07:48 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+DEBUG - 2022-01-29 02:07:48 --> DepositAdd
+DEBUG - 2022-01-29 02:07:48 --> Total execution time: 0.1407
+DEBUG - 2022-01-29 02:10:31 --> UTF-8 Support Enabled
+DEBUG - 2022-01-29 02:10:32 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2022-01-29 02:10:32 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+DEBUG - 2022-01-29 02:10:32 --> Total execution time: 0.1042
+DEBUG - 2022-01-29 02:11:23 --> UTF-8 Support Enabled
+DEBUG - 2022-01-29 02:11:23 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2022-01-29 02:11:24 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+DEBUG - 2022-01-29 02:11:24 --> Total execution time: 0.3135

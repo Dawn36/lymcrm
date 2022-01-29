@@ -88,17 +88,10 @@ $heading = "Deposit Slip";
                                             </td>
                                             <td>
                                                 <center>
-<<<<<<< Updated upstream
-                                                    <button onclick="" class="btn btn-sm btn-primary bg-brand-gradient" type="button" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="View Attachments" title="View Attachments"><i class="fal fa-camera"></i></button>&nbsp;
-                                                    <button onclick="" class="btn btn-sm btn-primary bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Edit Deposit Slip" title="Edit Deposit Slip"><i class="fal fa-edit"></i></button>&nbsp;
-                                                    <button onclick="" class="btn btn-sm btn-primary bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Send Mail" title="Send Mail"><i class="fal fa-envelope"></i></button>&nbsp;
-                                                    <button type="button" onclick="" class="btn btn-sm btn-primary bg-brand-gradient"  data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Delete Deposit" title="Delete Deposit"><i class="fal fa-times"></i></button>
-=======
-                                                    <button onclick="LoadDepositImage(id)" class="btn btn-sm btn-primary bg-brand-gradient" title="Edit Property"><i class="fal fa-camera"></i></button>&nbsp;
-                                                    <button onclick="DepositEdit(id)" class="btn btn-sm btn-primary bg-brand-gradient" title="Edit Property"><i class="fal fa-edit"></i></button>&nbsp;
-                                                    <button onclick="DepositEmail(id)" class="btn btn-sm btn-primary bg-brand-gradient" title="Edit Property"><i class="fal fa-envelope"></i></button>&nbsp;
-                                                    <button type="button" onclick="" class="btn btn-sm btn-primary bg-brand-gradient" title="Delete Property"><i class="fal fa-times"></i></button>
->>>>>>> Stashed changes
+                                                    <button onclick="LoadDepositImage(id)" type="button" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="View Attachments" class="btn btn-sm btn-primary bg-brand-gradient" title="Attachment"><i class="fal fa-camera"></i></button>&nbsp;
+                                                    <button onclick="DepositEdit(id)"  data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Edit" class="btn btn-sm btn-primary bg-brand-gradient" title="Edit"><i class="fal fa-edit"></i></button>&nbsp;
+                                                    <button onclick="DepositEmail(id)"  data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Email" class="btn btn-sm btn-primary bg-brand-gradient" title="Email"><i class="fal fa-envelope"></i></button>&nbsp;
+                                                    <button type="button" onclick="" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Delete" class="btn btn-sm btn-primary bg-brand-gradient" title="Delete" class="btn btn-sm btn-primary bg-brand-gradient" title="Delete Property"><i class="fal fa-times"></i></button>
                                                 </center>
                                             </td>
                                         </tr>
