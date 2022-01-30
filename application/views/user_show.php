@@ -33,7 +33,7 @@ $heading = "All Users";
                     <div id="panel-1" class="panel">
                         <div class="panel-container show">
                             <div class="panel-content">
-                              
+                          
                                 <table id="<? echo str_replace(' ', '', $heading) ?>_datatable_tabletools" class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline">
                                     <thead class="bg-primary-600 bg-brand-gradient">
                                         <tr>

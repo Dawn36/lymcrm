@@ -21,8 +21,6 @@ class OwnerModal  extends CI_Model{
 	 	$roleId=$this->session->userdata('role_id');
 		$this->db->select('*');
 	 	 $this->db->where('status','active');
-	 	 $id=array(3,4);
-	 	 $this->db->where_in('role_id',$id);
 	 	 $this->db->order_by('record_id', 'DESC');
 	 	$owner = $this->db->get($tableName)->result_array();
 	 	// print_r($role) ;
