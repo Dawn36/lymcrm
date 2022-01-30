@@ -34,9 +34,7 @@ class PropertyController extends CI_Controller
     public function LoadEditScreen()
     {
         $id = $this->input->post('id');
-        log_message('debug', 'modalEditProperty');
-        // $hiringRequest = $this->HiringRequest->find_item($id);
-        // return  $this->load->view('Screens/modal_hiringRequest_edit', array('hiringRequest' => $hiringRequest));
+        
         return  $this->load->view('property_edit');
     }
 

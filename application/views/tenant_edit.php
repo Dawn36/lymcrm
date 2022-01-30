@@ -1,10 +1,12 @@
-<?php echo validation_errors('<div class="alert alert-danger">', '</div'); ?>
-<form class="needs-validation" name='editTenantForm' id='editTenantForm' method='post' action="/hiringrequests/addhiringrequest" novalidate>
+<form class="needs-validation" name='editTenantForm' id='editTenantForm' method='post' action="/edit" novalidate>
+    <input type="hidden">
+    <input type="hidden" name="table_name" value="tenant">
+    <input type="hidden" name="record_id" value="<? echo $tenantData[0]['record_id'] ?>">
 
     <div class="card mb-g">
         <div class="col-md-12 mt-3 mb-3">
             <label class="form-label">Tenant Name<span class="text-danger">*</span></label>
-            <input class="form-control" placeholder="Enter Tenant Name" type="text" id="name" name="name" value="Test Tenant" required="">
+            <input class="form-control" placeholder="Enter Tenant Name" type="text" id="name" name="name" value="<? echo $tenantData[0]['name'] ?>"  required="">
             <div class="invalid-feedback">
                 Please Enter Tenant Name.
             </div>
@@ -12,15 +14,15 @@
         </div>
         <div class="col-md-12 mb-3">
             <label class="form-label">Tenant Email<span class="text-danger">*</span></label>
-            <input class="form-control" onblur="CheckValidEmail(this.id)" placeholder="Enter Tenant Email" type="email" id="email" name="email" value="tenant@gmail.com" required="">
+            <input class="form-control" onblur="CheckValidEmail(this.id)" placeholder="Enter Tenant Email" type="email" id="email" name="email" value="<? echo $tenantData[0]['email'] ?>" required="">
             <div class="invalid-feedback">
                 Please Enter Tenant Email.
             </div>
 
         </div>
         <div class="col-md-12 mb-3">
-            <label class="form-label">Mobile<span class="text-danger">*</span></label>
-            <input class="form-control" placeholder="Enter Mobile Number" type="number" id="contact" name="contact" value="26537268" required="">
+            <label class="form-label">Contact#<span class="text-danger">*</span></label>
+            <input class="form-control" placeholder="Enter Mobile Number" type="number" id="contact" name="contact" value="<? echo $tenantData[0]['phone_number'] ?>" >
             <div class="invalid-feedback">
                 Please Enter Mobile Number.
             </div>
@@ -30,14 +32,15 @@
     <div class="row">
         <div class="col-md-12 mb-3">
             <button type="button" class="btn btn-secondary float-right mr-2" data-dismiss="modal">Close</button>
-            <button id='js-save-btn' class="btn btn-primary float-right mr-2" type="submit">Add</button>
+            <button id='js-save-btn' class="btn btn-primary float-right mr-2" onclick="UpdateFromOwner()" type="submit">Update</button>
         </div>
     </div>
     </div>
 </form>
 
 <script>
-    $("#editTenantForm").submit(function() {
+    function CheckUpdateOwner()
+    {
 
         var form = $("#editTenantForm")
 
@@ -58,16 +61,23 @@
             
             return false;
         }
-        if ($('#contact').val() == '') {
-             var value='Mobile number is required';
-            Toast(value);
-            return false;
+        // if ($('#contact').val() == '') {
+        //      var value='Mobile number is required';
+        //     Toast(value);
+        //     return false;
+        // }
+    }
+      function UpdateFromOwner()
+    {
+        check=CheckUpdateOwner();
+        if(check == true)
+        {
+            if(confirm("Are you sure do you want to Update?"))
+            {
+                 $( "#editTenantForm" ).submit();
+                  var value='Update Sucessfully';
+                DeleteToast(value);
+            }
         }
-        if (confirm("Do you want to edit tenant?")) {
-            return true;
-        } else {
-            return false;
-        }
-
-    });
+    }
 </script>

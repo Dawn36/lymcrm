@@ -7,8 +7,7 @@ class AdminControllers extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('Model_user', 'MUSER');
-		$this->load->model('Model_lovs', 'MLOVS');
+		
 	}
 
 
@@ -17,7 +16,7 @@ class AdminControllers extends CI_Controller
 		if ($this->session->userdata('name')) {
 			$this->load->view('main_header');
 			$this->load->view('sidebar');
-			$data['users'] = $this->MUSER->UserShow();
+			$data='';
 			$this->load->view('admin_show', $data);
 			$this->load->view('footer');
 		} else {

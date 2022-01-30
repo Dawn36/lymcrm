@@ -19,12 +19,13 @@ $heading = "All Users";
     <div id="content">
         <div class="row">
             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
-                <h1> <span class="page-title txt-color-blueDark"><?= $heading ?></span></h1>
+                <h1> <span class="page-title txt-color-blueDark"><? echo $heading ?></span></h1>
             </div>
             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-8">
                 <button onclick="AddUser()" class="btn btn-primary float-right bg-brand-gradient" type="button" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Add User"><i class="fas fa-plus" style="margin-right: 4px"></i>Add User</button>
             </div>
         </div>
+
         <section id="" class="">
             <div class="row">
                 <!-- NEW WIDGET START -->
@@ -32,13 +33,10 @@ $heading = "All Users";
                     <div id="panel-1" class="panel">
                         <div class="panel-container show">
                             <div class="panel-content">
-                                <table id="<?= str_replace(' ', '', $heading) ?>_datatable_tabletools" class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline">
-
+                              
+                                <table id="<? echo str_replace(' ', '', $heading) ?>_datatable_tabletools" class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline">
                                     <thead class="bg-primary-600 bg-brand-gradient">
                                         <tr>
-                                            <th nowrap>
-                                                <center>S No</center>
-                                            </th>
                                             <th nowrap>
                                                 <center>Name</center>
                                             </th>
@@ -46,42 +44,81 @@ $heading = "All Users";
                                                 <center>Email</center>
                                             </th>
                                             <th nowrap>
-                                                <center>
+                                                <center>Phone Number</center>
+                                            </th>
+                                            <th nowrap>
+                                                <center>Password</center>
+                                            </th>
+                                            <th nowrap>
+                                                <center>User Type</center>
+                                            </th>
+                                            
+                                            <th nowrap>
+                                                <center>Created At</center>
+                                            </th>
+                                            <th nowrap>
+                                                <center>Updated At</center>
+                                            </th>
+                                            <th nowrap>
                                                     <center>Status</center>
                                             </th>
                                             <th nowrap>
-                                                <center>
                                                     <center>Action</center>
                                             </th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php for ($i = 0; $i < count($bed); $i++) {
-
+                                        <?php for ($i = 0; $i < count($userInfo); $i++) {
+                                            $ownerTenantId=$userInfo[$i]['owner_tenant_id'];
+                                            $usersType=$userInfo[$i]['role_id'];
+                                            $roleName='';
+                                            if($usersType == OWNER)
+                                            {
+                                                $roleName='Owner';
+                                            }
+                                            else if($usersType == TENANT)
+                                            {
+                                                $roleName='Tenant';
+                                            }
+                                            else if($usersType == SUB_ADMIN || $usersType == SUPER_ADMIN)
+                                            {
+                                                continue;
+                                            }
+                                            $userId=$userInfo[$i]['record_id'];
                                         ?>
                                             <tr>
                                                 <td>
-                                                    <center><?php echo $bed[$i]['ward_no'] . " - " . $bed[$i]['ward_depart'] ?></center>
+                                                    <center><? echo ucwords($userInfo[$i]['name']) ?></center>
                                                 </td>
                                                 <td>
-                                                    <center><?php echo $bed[$i]['ward_no'] . " - " . $bed[$i]['ward_depart'] ?></center>
+                                                    <center><? echo ucwords($userInfo[$i]['email']) ?></center>
                                                 </td>
                                                 <td>
-                                                    <center><?php echo $bed[$i]['bed_no'] ?></center>
+                                                    <center><? echo ucwords($userInfo[$i]['phone_number']) ?></center>
                                                 </td>
                                                 <td>
-                                                    <center><?php if ($bed[$i]['bed_status'] == '1') {
-                                                                echo "Active";
-                                                            } else {
-                                                                echo "InActive";
-                                                            }  ?></center>
+                                                    <center><? echo base64_decode($userInfo[$i]['password']) ?></center>
                                                 </td>
-                                                <td style="padding:6px 12px;">
+                                                <td>
+                                                    <center><? echo $roleName; ?></center>
+                                                </td>
+                                                <td>
+                                                    <center><? echo $userInfo[$i]['created_name'] ?></center>
+                                                </td>
+                                                <td>
+                                                    <center><? echo ucwords($userInfo[$i]['updated_name']) ?></center>
+                                                </td>
+                                                <td>
+                                                    <center><? echo ucwords($userInfo[$i]['status']) ?></center>
+                                                </td>
+                                                <td nowrap>
                                                     <center>
-                                                        <button onclick="EditUser(1)" class="btn btn-sm btn-primary bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Edit User"
+                                                        <button onclick="ResetUser(<? echo $userId?>)" class="btn btn-sm btn-primary bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Reset Password"
+                                                        ><i class="fas fa-key"></i></button>&nbsp;
+                                                        <button onclick="EditUser(<? echo $ownerTenantId?>,<? echo  $usersType?>,<? echo $userId?>)" class="btn btn-sm btn-primary bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Edit User"
                                                         ><i class="fal fa-edit"></i></button>&nbsp;
 
-                                                        <button type="button" onclick="DeleteUser(1)" class="btn btn-sm btn-primary bg-brand-gradient"data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Delete User"><i class="fal fa-times"></i></button>
+                                                        <button type="button" onclick="DeleteUser(<? echo $ownerTenantId?>,<? echo  $usersType?>,<? echo $userId?>)" class="btn btn-sm btn-primary bg-brand-gradient"data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Delete User"><i class="fal fa-times"></i></button>
                                                     </center>
                                                 </td>
                                             </tr>
@@ -242,9 +279,11 @@ $heading = "All Users";
 
 
     // Modal For Edit User
-    function EditUser(id) {
+    function EditUser(ownerTenantId,usersType,userId) {
         var value = {
-            id: id
+            ownerTenantId: ownerTenantId,
+            usersType: usersType,
+            userId: userId,
         };
         $.ajax({
             url: baseurl + 'user_edit',
@@ -261,24 +300,47 @@ $heading = "All Users";
     }
 
         // Delete User
-        function DeleteUser(id) {
+        function DeleteUser(ownerTenantId,usersType,userId) {
         var value = {
-            id: id
+            ownerTenantId: ownerTenantId,
+            usersType: usersType,
+            userId: userId,
         };
         if (confirm('Are you sure you want to delete user?')) {
             $.ajax({
-                url: baseurl + 'usercontroller/deleteUser',
+                url: baseurl + 'user_delete',
                 type: 'POST',
                 data: value,
                 success: function(result) {
+                    var value='Delete Sucessfully';
+                    DeleteToast(value);
+                    window.location.reload();
                     // redirect('HiringRequests/viewhiringrequest');
-                    window.location = baseurl + 'user';
+                   // window.location = baseurl + 'user_show';
 
                 }
             });
-        } else {
-            return false;
-        }
+        } 
+    }
+      function ResetUser(userId) {
+        var value = {
+            userId: userId,
+        };
+        if (confirm('Are you sure you want to rest Password?')) {
+            $.ajax({
+                url: baseurl + 'user_reset',
+                type: 'POST',
+                data: value,
+                success: function(result) {
+                    var value='Password Rest Sucessfully New password Is 1234';
+                    DeleteToast(value);
+                   // window.location.reload();
+                    // redirect('HiringRequests/viewhiringrequest');
+                   // window.location = baseurl + 'user_show';
+
+                }
+            });
+        } 
     }
 
     

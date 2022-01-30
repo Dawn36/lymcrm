@@ -23,7 +23,7 @@
                             </div>
                             <img src="/assets/dist/img/card-backgrounds/cover-2-lg.png" class="cover" alt="cover">
                         </div>
-                        <?php if($this->session->userdata('role_code') == ADMIN_ROLE) { ?>
+                        <?php if($this->session->userdata('role_id') == SUPER_ADMIN) { ?>
                         <ul id="js-nav-menu" class="nav-menu">
                             <li>
                                 <a href="/dashboard" title="Dashboard" data-filter-tags="Dashboard"><i class="fas fa-analytics"></i>
@@ -66,7 +66,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="/" title="Tenancy" data-filter-tags="Tenancy"><i class="fas fa-handshake"></i>
+                                <a href="/tenancy" title="Tenancy" data-filter-tags="Tenancy"><i class="fas fa-handshake"></i>
                                     <span class="nav-link-text" data-i18n="nav.Tenancy">Tenancy</span>
                                 </a>
                             </li>

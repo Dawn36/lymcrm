@@ -6,8 +6,7 @@ class TenantController extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('Model_bed', 'MBED');
-        $this->load->model('Model_lovs', 'MLOVS');
+       $this->load->model('OwnerModal', 'OWNER');
     }
 
     public function index()
@@ -15,7 +14,8 @@ class TenantController extends CI_Controller
         if ($this->session->userdata('name')) {
             $this->load->view('main_header');
             $this->load->view('sidebar');
-            $data['bed'] = $this->MBED->BedShow();
+            $tableName='tenant';
+            $data['tenantData'] =  $this->OWNER->ShowOwner($tableName);
             $this->load->view('tenant_show', $data);
             $this->load->view('footer');
         } else {
@@ -33,11 +33,11 @@ class TenantController extends CI_Controller
     // Edit User Modal
     public function LoadEditScreen()
     {
-        $id = $this->input->post('id');
-        log_message('debug', 'modalEditTenant');
-        // $hiringRequest = $this->HiringRequest->find_item($id);
-        // return  $this->load->view('Screens/modal_hiringRequest_edit', array('hiringRequest' => $hiringRequest));
-        return  $this->load->view('tenant_edit');
+        $arrPost = $this->input->post();
+            $id = $arrPost['id'];
+            $tableName=$arrPost['tablename'];
+            $data['tenantData'] =  $this->OWNER->ShowOwnerEdit($tableName,$id);
+        return  $this->load->view('tenant_edit',$data);
     }
 
     // Delete User

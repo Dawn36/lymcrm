@@ -155,6 +155,8 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
 
 
     <script>
+        
+
         function Toast(value) {
             Command: toastr["warning"](value)
 
@@ -174,6 +176,28 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
                 "showMethod": "fadeIn",
                 "hideMethod": "fadeOut"
             }
+        }
+        function DeleteToast(value)
+        {
+            Command: toastr["success"](value)
+
+toastr.options = {
+  "closeButton": false,
+  "debug": false,
+  "newestOnTop": false,
+  "progressBar": true,
+  "positionClass": "toast-top-right",
+  "preventDuplicates": false,
+  "onclick": null,
+  "showDuration": 300,
+  "hideDuration": 100,
+  "timeOut": 5000,
+  "extendedTimeOut": 1000,
+  "showEasing": "swing",
+  "hideEasing": "linear",
+  "showMethod": "fadeIn",
+  "hideMethod": "fadeOut"
+}
         }
 
         function CheckValidEmail(id) {

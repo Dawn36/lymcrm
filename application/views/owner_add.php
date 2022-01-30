@@ -35,11 +35,11 @@ margin-right: 6px;
             <div id="panel-1" class="panel">
                 <div class="panel-container show"> -->
                     <div class="card mb-g">
-                        <form class="needs-validation" method="post" action="/Users/UsersAddVerify" id='owneaddform' name='owneaddform' >
-                             
+                        <form class="needs-validation" method="post" action="/add" id='owneaddform' name='owneaddform' >
+                        <input type="hidden" name="table_name" value="owner">
                   <div class="col-md-12 mt-3 mb-3">
                       <label class="form-label">Name<span class="text-danger">*</span></label>
-                      <input class="form-control" placeholder="Enter Name" type="text" id='owner_name' name='owner_name' required="">
+                      <input class="form-control" placeholder="Enter Name" type="text" id='owner_name' name='name' required="">
                        
                       <div class="invalid-feedback">
                           Please Enter the Name.
@@ -47,7 +47,7 @@ margin-right: 6px;
                   </div>
                    <div class="col-md-12 mb-3">
                       <label class="form-label">Email<span class="text-danger">*</span></label>
-                      <input class="form-control" placeholder="Enter Email" type="text" id='owner_email' name='owner_email' required=""  onblur="CheckValidEmail(this.id)">
+                      <input class="form-control" placeholder="Enter Email" type="text" id='owner_email' name='email' required=""  onblur="CheckValidEmail(this.id) ,CheckEmailExit(this.value)">
                        
                       <div class="invalid-feedback">
                           Please Enter the Email.
@@ -58,7 +58,7 @@ margin-right: 6px;
                  
                   <div class="col-md-12 mb-3">
                       <label class="form-label">Contact<span class="text-danger">*</span></label>
-                      <input class="form-control"   placeholder="Enter Contact" type="number" id='contact' name='contact' required="">
+                      <input class="form-control"   placeholder="Enter Contact" type="number" id='contact' name='contact' >
                       <div class="invalid-feedback">
                           Please Enter Contact.
                       </div>
@@ -69,7 +69,7 @@ margin-right: 6px;
              <div class="row">
         <div class="col-md-12 mb-3">
             <button type="button" class="btn btn-secondary float-right mr-2" data-dismiss="modal">Close</button>
-            <button id='adminaddformsubmit' onclick="SubmitFromOwner()" class="btn btn-primary float-right mr-2" type="submit">Add</button>
+            <button id='adminaddformsubmit' onclick="SubmitFromOwner()" class="btn btn-primary float-right mr-2" type="button">Add</button>
         </div>
     </div>
           </form>
@@ -83,8 +83,41 @@ margin-right: 6px;
 <!-- this overlay is activated only when mobile menu is triggered -->
 <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div> <!-- END Page Content -->
 <script type="text/javascript">
-    function SubmitFromOwner()
+   
+     function CheckEmailExit(email){
+    
+ var data = { email: email, table_name:'owner' };
+ $.ajax({
+     url: baseurl + 'email_exit',
+     type: 'POST',
+     data: data,
+     success: function(result) {
+
+         //var result = jQuery.parseJSON(result);
+         if(result){
+             var result = jQuery.parseJSON(result);
+             console.log( result);
+             if(result.length >= 1)
+             {
+                var value='Email Already Exit';
+                Toast(value);
+                $('#owner_email').val('');
+             }
+            
+           
+         } 
+
+     },
+     error: function(xhr, textStatus, errorThrown) {
+         alert(xhr.responseText);
+     }
+ });
+
+
+}
+    function CheckFromOwner()
     {
+
         var form = $("#owneaddform")
 
         if (form[0].checkValidity() === false) {
@@ -105,16 +138,26 @@ margin-right: 6px;
             $('#owner_email').focus();
             return false;
         }
-        if ($('#contact').val() == '') {
-             var value='contact is required';
-            Toast(value);
-            $('#contact').focus();
-            return false;
-        }
-        if (confirm("Do you want to add user?")) {
-            return true;
-        } else {
-            return false;
+        // if ($('#contact').val() == '') {
+        //      var value='contact is required';
+        //     Toast(value);
+        //     $('#contact').focus();
+        //     return false;
+        // }
+        return true;
+       
+    }
+    function SubmitFromOwner()
+    {
+        check=CheckFromOwner();
+        if(check == true)
+        {
+            if(confirm("Are you sure do you want to add?"))
+            {
+                 $( "#owneaddform" ).submit();
+                  var value='Add Sucessfully';
+                DeleteToast(value);
+            }
         }
     }
 

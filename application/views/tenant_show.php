@@ -10,7 +10,7 @@ $heading = "Tenant";
 
 
     <ol class="breadcrumb page-breadcrumb">
-        <li class="breadcrumb-item"><a href="javascript:void(0);">LymCrm</a></li>
+        <li class="breadcrumb-item"><a href="javascript:void(0s);">LymCrm</a></li>
         <li class="breadcrumb-item">Tenant</li>
 
         <li class="position-absolute pos-top pos-right d-none d-sm-block"><span class="js-get-date"></span></li>
@@ -19,7 +19,7 @@ $heading = "Tenant";
     <div id="content">
         <div class="row">
             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
-                <h1> <span class="page-title txt-color-blueDark"><?= $heading ?></span></h1>
+                <h1> <span class="page-title txt-color-blueDark"><? echo $heading ?></span></h1>
             </div>
             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-8">
                 <button onclick="AddTenant()" class="btn btn-primary float-right bg-brand-gradient" type="button" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Add Tenant"><i class="fas fa-plus" style="margin-right: 4px"></i>Add Tenant</button>
@@ -43,8 +43,16 @@ $heading = "Tenant";
                                                 <center>Email</center>
                                             </th>
                                             <th nowrap>
-                                                <center>
-                                                    <center>Mobile</center>
+                                                <center>Contact#</center>
+                                            </th>
+                                            <th nowrap>
+                                                <center>Created By</center>
+                                            </th>
+                                            <th nowrap>
+                                                <center>Updated By</center>
+                                            </th>
+                                            <th nowrap>
+                                                <center>Status</center>
                                             </th>
                                             <th nowrap>
                                                 <center>
@@ -53,24 +61,39 @@ $heading = "Tenant";
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php for ($i = 0; $i < count($bed); $i++) {
-
+                                        <?php for ($i = 0; $i < count($tenantData); $i++) {
+                                            $tenantId=$tenantData[$i]['record_id'];
                                         ?>
                                             <tr>
                                                 <td>
-                                                    <center><?php echo $bed[$i]['ward_no'] . " - " . $bed[$i]['ward_depart'] ?></center>
-                                                </td>
-                                                <td>
-                                                    <center><?php echo $bed[$i]['bed_no'] ?></center>
-                                                </td>
-                                                <td>
-                                                <center>032-1768934</center>
-                                                </td>
-                                                <td style="padding:6px 12px;">
+                                                <center><? echo ucwords($tenantData[$i]['name'])?></center>
+                                            </td>
+                                            <td>
+                                                <center><? echo $tenantData[$i]['email']?></center>
+                                            </td>
+                                            <td>
+                                                <center><? echo $tenantData[$i]['phone_number']?></center>
+                                            </td>
+                                            <td>
+                                                <center><? echo $tenantData[$i]['created_name']?>
+                                                   
+                                                </center>
+                                            </td>
+                                            <td>
+                                                <center><? echo $tenantData[$i]['updated_name']?>
+                                                   
+                                                </center>
+                                            </td>
+                                            <td>
+                                                <center><? echo $tenantData[$i]['status']?>
+                                                   
+                                                </center>
+                                            </td>
+                                                <td nowrap>
                                                     <center>
-                                                        <button onclick="EditTenant(1)" class="btn btn-sm btn-primary bg-brand-gradient"  data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Edit Tenant"><i class="fal fa-edit"></i></button>&nbsp;
+                                                        <button onclick="EditTenant(<? echo $tenantId?>)" class="btn btn-sm btn-primary bg-brand-gradient"  data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Edit Tenant"><i class="fal fa-edit"></i></button>&nbsp;
 
-                                                        <button type="button" onclick="DeleteTenant(1)" class="btn btn-sm btn-primary bg-brand-gradient"  data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Delete Tenant"><i class="fal fa-times"></i></button>
+                                                        <button type="button" onclick="DeleteTenant(<? echo $tenantId?>)" class="btn btn-sm btn-primary bg-brand-gradient"  data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Delete Tenant"><i class="fal fa-times"></i></button>
                                                     </center>
                                                 </td>
                                             </tr>
@@ -93,48 +116,54 @@ $heading = "Tenant";
 <!-- this overlay is activated only when mobile menu is triggered -->
 <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div>
 <script type="text/javascript">
-    function deleted(aa) {
+     function EditTenant(id) {
+        var data = { id: id , tablename : 'tenant'};
+        $.ajax({
+            url: baseurl + 'tenant_edit',
+            type: 'POST',
+            data: data,
+            success: function(result) {
+                $('.modal-title').html('Edit Tenant');
+                //  $('#modal-body').html(``);
+                $('#modal-body').html(result);
+                $('#myModal').modal();
 
-
-
-        // var data = $("#").serialize();
-        if (confirm("Are you sure you want to delete?")) {
-            // alert(aa);
-            var data = {
-                id: aa
-            };
-            $.ajax({
-                url: baseurl + 'delete_bed',
-                type: 'POST',
-                data: data,
-                success: function(result) {
-
-                    //var result = jQuery.parseJSON(result);
-                    if (result) {
-                        var result = jQuery.parseJSON(result);
-                        console.log(result);
-                        if (result == 1) {
-                            alert("Delete Sucessfully")
-                            window.location.reload();
-                        }
-
-
-                    }
-
-                    // $('#order_total_amount').text(Math.round(total_amount));
-
-                },
-                error: function(xhr, textStatus, errorThrown) {
-                    alert(xhr.responseText);
-                }
-            });
-
+            }
+        });
+    }
+    function DeleteTenant(id) {
+        if(confirm('Are you sure you want to delete?'))
+        {
+             var data = { id: id , tablename : 'tenant'};
+         $.ajax({
+            url: baseurl + 'delete',
+            type: 'POST',
+            data: data,
+            success: function(result) {
+                var value='Delete Sucessfully';
+                DeleteToast(value);
+               window.location.reload();
+            }
+        }); 
         }
+        
+       
+    }
+ function AddTenant(id) {
+        $.ajax({
+            url: baseurl + 'tenant_add',
+            success: function(result) {
+                $('.modal-title').html('Add New Tenant');
+                $('#modal-body').html(result);
+                $('#modal-body').children()[0][0].value = id;
+                $('#myModal').modal();
+            }
+        });
     }
 
     $(document).ready(function() {
 
-        $('#<?= str_replace(' ', '', $heading) ?>_datatable_tabletools').dataTable({
+        $('#<? echo str_replace(' ', '', $heading) ?>_datatable_tabletools').dataTable({
             responsive: true,
             lengthChange: false,
             dom:
@@ -172,28 +201,28 @@ $heading = "Tenant";
                 },*/
                 {
                     extend: 'pdfHtml5',
-                    title: '<?= $heading; ?>',
+                    title: '<? echo $heading; ?>',
                     text: 'PDF',
                     titleAttr: 'Generate PDF',
                     className: 'btn-outline-danger btn-sm mr-1'
                 },
                 {
                     extend: 'excelHtml5',
-                    title: '<?= $heading; ?>',
+                    title: '<? echo $heading; ?>',
                     text: 'Excel',
                     titleAttr: 'Generate Excel',
                     className: 'btn-outline-success btn-sm mr-1'
                 },
                 {
                     extend: 'csvHtml5',
-                    title: '<?= $heading; ?>',
+                    title: '<? echo $heading; ?>',
                     text: 'CSV',
                     titleAttr: 'Generate CSV',
                     className: 'btn-outline-primary btn-sm mr-1'
                 },
                 {
                     extend: 'copyHtml5',
-                    title: '<?= $heading; ?>',
+                    title: '<? echo $heading; ?>',
                     text: 'Copy',
                     titleAttr: 'Copy to clipboard',
                     className: 'btn-outline-primary btn-sm mr-1'
@@ -202,7 +231,7 @@ $heading = "Tenant";
                     extend: 'print',
                     text: 'Print',
                     titleAttr: 'Print Table',
-                    title: '<?= $heading; ?>',
+                    title: '<? echo $heading; ?>',
                     customize: function(win) {
                         $(win.document.body).find('h1').css('text-align', 'center');
                         $(win.document.body).css('font-size', '9px');
@@ -216,59 +245,4 @@ $heading = "Tenant";
         });
     });
 
-    // add modal
-    function AddTenant(id) {
-        $.ajax({
-            url: baseurl + 'tenant_add',
-            success: function(result) {
-                $('.modal-title').html('Add New Tenant');
-                $('#modal-body').html(result);
-                $('#modal-body').children()[0][0].value = id;
-                $('#myModal').modal();
-            }
-        });
-    }
-
-
-    // Modal For Edit User
-    function EditTenant(id) {
-        var value = {
-            id: id
-        };
-        $.ajax({
-            url: baseurl + 'tenant_edit',
-            type: 'POST',
-            data: value,
-            success: function(result) {
-                $('.modal-title').html('Edit Tenant');
-                //  $('#modal-body').html(``);
-                $('#modal-body').html(result);
-                $('#myModal').modal();
-
-            }
-        });
-    }
-
-        // Delete User
-        function DeleteTenant(id) {
-        var value = {
-            id: id
-        };
-        if (confirm('Are you sure you want to delete tenant?')) {
-            $.ajax({
-                url: baseurl + 'tenantcontroller/deleteTenant',
-                type: 'POST',
-                data: value,
-                success: function(result) {
-                    // redirect('HiringRequests/viewhiringrequest');
-                    window.location = baseurl + 'tenant';
-
-                }
-            });
-        } else {
-            return false;
-        }
-    }
-
-    
 </script>

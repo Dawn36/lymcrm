@@ -6,8 +6,9 @@ class UserController extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('Model_bed', 'MBED');
-        $this->load->model('Model_lovs', 'MLOVS');
+        $this->load->model('UserModel', 'USER');
+        $this->load->model('OwnerModal', 'OWNER');
+
     }
 
     public function index()
@@ -15,7 +16,8 @@ class UserController extends CI_Controller
         if ($this->session->userdata('name')) {
             $this->load->view('main_header');
             $this->load->view('sidebar');
-            $data['bed'] = $this->MBED->BedShow();
+            $tableName='users';
+            $data['userInfo'] =$this->OWNER->ShowOwner($tableName);
             $this->load->view('user_show', $data);
             $this->load->view('footer');
         } else {
@@ -25,294 +27,140 @@ class UserController extends CI_Controller
     // Add User Modal
     public function LoadAddScreen()
     {
-        log_message('debug', 'modaladdUser');
         return  $this->load->view('user_add');
     }
-
-
     // Edit User Modal
     public function LoadEditScreen()
     {
-        $id = $this->input->post('id');
-        log_message('debug', 'modalEditUser');
-        return  $this->load->view('user_edit');
+        $arrPost = $this->input->post();
+        $userId=$arrPost['userId'];
+        $data['ownerTenantId'] = $arrPost['ownerTenantId'];
+        $data['usersType'] = $arrPost['usersType'];
+        $tableName='users';
+        $data['userInfo'] =  $this->OWNER->ShowOwnerEdit($tableName,$userId);
+        return  $this->load->view('user_edit',$data);
     }
+    ///// email owner and tenant
+    public function GetEmailTenantOwner()
+    {
+        $arrPost = $this->input->post();
+        $id = $arrPost['id'];
+        if($id == OWNER)
+        {
+            $tableName='owner';  
+        }
+        if($id == TENANT)
+        {
+            $tableName='tenant';  
+        }
+        $data= $this->USER->GetEmailTenantOwner($tableName);
+        echo json_encode($data);
 
-    // Delete User
-    public function deleteUser()
-    {
-        $id = $this->input->post('id');
-      
-        return true;
     }
-    public function BedAdd()
+    public function UserUpdate()
     {
-        if ($this->session->userdata('name')) {
-            $data['ward'] = $this->MBED->get_ward();
-            $this->load->view('main_header');
-            $this->load->view('sidebar');
-            $this->load->view('bed_add', $data);
-            $this->load->view('footer');
-        } else {
-            redirect('login');
+         if ($this->session->userdata('name')) 
+         {
+            $arrPost = $this->input->post();
+            $tableName='users';
+            $userId=$arrPost['user_id'];
+            $dataInfo['email']=$arrPost['user_email'];
+            $dataInfo['name']=$arrPost['user_name'];
+            $dataInfo['phone_number']=$arrPost['user_contact'];
+            $dataInfo['owner_tenant_id']=$arrPost['owner_tenant_id'];
+            $dataInfo['password']=base64_encode($arrPost['new_pass']);
+            $dataInfo['updated_at'] = date("Y-m-d h:i:s");
+            $dataInfo['updated_by'] =  $this->session->userdata('user_id');
+            $dataInfo['updated_name'] =  $this->session->userdata('user_name');
+            $this->USER->UpdateOwnerIsUser($dataInfo,$userId,$tableName);
+            redirect('/user');
         }
     }
-    public function BedAddVerify()
-    {
-        if ($this->session->userdata('name')) {
+    public function UserDelete(){
+        if ($this->session->userdata('name')) 
+         {
             $arrPost = $this->input->post();
-            $arrBedInfo['ward_no'] = $arrPost['ward_no'];
-            $arrBedInfo['bed_no'] = $arrPost['bed_no'];
-            $arrBedInfo['bed_creation'] = date("Y-m-d");
-            $arrBedInfo['bed_status'] = 1;
-            $check = $this->MBED->BedAdd($arrBedInfo);
+            $userId=$arrPost['userId'];
+            $usersType=$arrPost['usersType'];
+            if($usersType == TENANT)
+            {
+                $dataInfo= array();
+                $tableName='tenant';
+                $dataInfo['is_user']='no';
+                $ownerId=$arrPost['ownerTenantId'];
+                $this->USER->UpdateOwnerIsUser($dataInfo,$ownerId,$tableName);
+            }
+            else if($usersType == OWNER)
+            {
+                $dataInfo= array();
+                $tableName='owner';
+                $dataInfo['is_user']='no';
+                $tenantId=$arrPost['ownerTenantId'];
+                $this->USER->UpdateOwnerIsUser($dataInfo,$tenantId,$tableName);
+            }
+            $dataInfo= array();
+            $tableName='users';
+            $dataInfo['status']='inactive';
+            $data=$this->USER->UpdateOwnerIsUser($dataInfo,$userId,$tableName);
+            echo $data;
+        }
+
+    }
+    public function UserRest(){
+        if ($this->session->userdata('name')) 
+         {
+            $arrPost = $this->input->post();
+            $userId=$arrPost['userId'];
+            $dataInfo= array();
+            $tableName='users';
+            $dataInfo['password']=base64_encode('1234');
+            $dataInfo['last_rest_password']=date("Y-m-d h:i:s");
+            $data=$this->USER->UpdateOwnerIsUser($dataInfo,$userId,$tableName);
+            echo $data;
+        }
+
+    }
+
+     public function UserVerification()
+    {
+         if ($this->session->userdata('name')) {
+            $arrPost = $this->input->post();
+            
+            if($arrPost['user_type'] == OWNER)
+            {
+                $tableName='owner';
+                $ownerId=$arrPost['email_id'];
+                $ownerInfo['is_user']='yes';
+                $this->USER->UpdateOwnerIsUser($ownerInfo,$ownerId,$tableName);
+            }
+            if($arrPost['user_type'] == TENANT)
+            {
+                $tableName='tenant';
+                $tenantId=$arrPost['email_id'];
+                $ownerInfo['is_user']='yes';
+                $this->USER->UpdateOwnerIsUser($ownerInfo,$tenantId,$tableName);
+            }
+            $tableName = 'users';
+            $arrInfo['owner_tenant_id'] = $arrPost['email_id'];
+            $arrInfo['role_id'] = $arrPost['user_type'];
+            $arrInfo['email'] = $arrPost['email'];
+            $arrInfo['name'] = $arrPost['name'];
+            $arrInfo['phone_number'] = $arrPost['contact'];
+            $arrInfo['password'] = base64_encode($arrPost['new_pass']);
+            $arrInfo['status'] = 'active';
+            $arrInfo['created_at'] = date("Y-m-d h:i:s");
+            $arrInfo['created_by'] =  $this->session->userdata('user_id');
+            $arrInfo['created_name'] =  $this->session->userdata('user_name');
+            $check = $this->OWNER->AddOwner($arrInfo,$tableName);
             if ($check == true) {
-                redirect('/Bed');
+                redirect('/user');
             } else {
                 die("asd");
             }
-        }
-    }
-    public function BedEdit($id)
-    {
-        if ($this->session->userdata('name')) {
-            $this->load->view('main_header');
-            $this->load->view('sidebar');
-            $data['bed'] = $this->MBED->BedGet($id);
-            $this->load->view('bed_edit', $data);
-            $this->load->view('footer');
-        } else {
-            redirect('login');
-        }
-    }
-    public function UpadteBed()
-    {
-        if ($this->session->userdata('name')) {
-            $arrPost = $this->input->post();
-            $arrBedInfo['ward_no'] = $arrPost['ward_no'];
-            $arrBedInfo['bed_no'] = $arrPost['bed_no'];
-            $arrBedInfo['bed_updation'] = date("Y-m-d");
-            $id = $arrPost['id'];
-            $check = $this->MBED->UpadateBedDb($id, $arrBedInfo);
-            if ($check == true) {
-                redirect('/Bed');
-            }
-        }
-    }
-    public function bedDelete()
-    {
 
-        $post = $this->input->post();
-        $id = $post['id'];
-        $arrLovInfo['bed_status'] = 0;
-        $data = $this->MBED->delete_bed($id, $arrLovInfo);
-        if ($data == 1) {
-
-            echo json_encode($data);
-        } else {
-            return false;
         }
     }
-    public function Lovs()
-    {
-        if ($this->session->userdata('name')) {
-            $this->load->view('main_header');
-            $this->load->view('sidebar');
-            $data['lovs'] = $this->MLOVS->LovsShow();
-            $this->load->view('lovs', $data);
-            $this->load->view('footer');
-        } else {
-            redirect('login');
-        }
-    }
-
-    public function LovsAdd()
-    {
-        if ($this->session->userdata('name')) {
-            $this->load->view('main_header');
-            $this->load->view('sidebar');
-            $this->load->view('lovs_add');
-            $this->load->view('footer');
-        } else {
-            redirect('login');
-        }
-    }
-    public function LovsAddVerify()
-    {
-        if ($this->session->userdata('name')) {
-            $arrPost = $this->input->post();
-            $arrUserInfo['organism_name'] = $arrPost['organism_name'];
-            $arrUserInfo['antibiotic_class_1'] = $arrPost['antibiotic_class_1'];
-            $arrUserInfo['antibiotic_class_2'] = $arrPost['antibiotic_class_2'];
-            $arrUserInfo['antibiotic_class_3'] = $arrPost['antibiotic_class_3'];
-            $arrUserInfo['antibiotic_class_4'] = $arrPost['antibiotic_class_4'];
-            $arrUserInfo['antibiotic_class_5'] = $arrPost['antibiotic_class_5'];
-            $arrUserInfo['antibiotic_class_6'] = $arrPost['antibiotic_class_6'];
-            $arrUserInfo['antibiotic_class_7'] = $arrPost['antibiotic_class_7'];
-            $arrUserInfo['antibiotic_class_8'] = $arrPost['antibiotic_class_8'];
-            $arrUserInfo['antibiotic_class_9'] = $arrPost['antibiotic_class_9'];
-            $arrUserInfo['mbr_name'] = $arrPost['mbr_name'];
-            $arrUserInfo['lov_creation'] = date("Y-m-d");
-            $check = $this->MLOVS->LovsAdd($arrUserInfo);
-            if ($check == true) {
-                redirect('/Bed/Lovs');
-            }
-        } else {
-            redirect('login');
-        }
-    }
-    public function Lovsedit($id)
-    {
-        if ($this->session->userdata('name')) {
-            $this->load->view('main_header');
-            $this->load->view('sidebar');
-            $get = $this->MLOVS->LovsGet($id);
-            $data['lovs'] = $get;
-            $this->load->view('lovs_edit', $data);
-            $this->load->view('footer');
-        } else {
-            redirect('login');
-        }
-    }
-    public function UpadteLovs()
-    {
-        if ($this->session->userdata('name')) {
-            $arrPost = $this->input->post();
-            $arrUserInfo['organism_name'] = $arrPost['organism_name'];
-            $arrUserInfo['antibiotic_class_1'] = $arrPost['antibiotic_class_1'];
-            $arrUserInfo['antibiotic_class_2'] = $arrPost['antibiotic_class_2'];
-            $arrUserInfo['antibiotic_class_3'] = $arrPost['antibiotic_class_3'];
-            $arrUserInfo['antibiotic_class_4'] = $arrPost['antibiotic_class_4'];
-            $arrUserInfo['antibiotic_class_5'] = $arrPost['antibiotic_class_5'];
-            $arrUserInfo['antibiotic_class_6'] = $arrPost['antibiotic_class_6'];
-            $arrUserInfo['antibiotic_class_7'] = $arrPost['antibiotic_class_7'];
-            $arrUserInfo['antibiotic_class_8'] = $arrPost['antibiotic_class_8'];
-            $arrUserInfo['antibiotic_class_9'] = $arrPost['antibiotic_class_9'];
-            $arrUserInfo['mbr_name'] = $arrPost['mbr_name'];
-            $arrUserInfo['lov_updation'] = date("Y-m-d");
-            $id = $this->input->post('id');
-            $check = $this->MLOVS->UpadteLovsDb($id, $arrUserInfo);
-            if ($check == true) {
-                redirect('/Bed/Lovs');
-            }
-        }
-    }
-    public function checkOrgName()
-    {
-        if ($this->session->userdata('name')) {
-            $post = $this->input->post();
-            $org_name = strtolower($post['organism_name']);
-            $data = $this->MLOVS->check_org_name($org_name);
-            if ($data) {
-                echo json_encode($data);
-            } else {
-                return false;
-            }
-        } else {
-            redirect('login');
-        }
-    }
-    public function LovsDelete()
-    {
-
-        $post = $this->input->post();
-        $id = $post['id'];
-        $arrLovInfo['lov_status'] = 0;
-        $data = $this->MLOVS->delete_lov($id, $arrLovInfo);
-        if ($data == 1) {
-
-            echo json_encode($data);
-        } else {
-            return false;
-        }
-    }
-    public function Source()
-    {
-        if ($this->session->userdata('name')) {
-            $this->load->view('main_header');
-            $this->load->view('sidebar');
-            $dataArr = array();
-            $dataArr['tablename'] = 'ic_source';
-            $dataArr['fieldname'] = 'status';
-            $dataArr['status'] = 'active';
-            $data['data'] = $this->MLOVS->Show($dataArr);
-            $this->load->view('source', $data);
-            $this->load->view('footer');
-        } else {
-            redirect('login');
-        }
-    }
-    public function SourceAdd()
-    {
-        if ($this->session->userdata('name')) {
-            $this->load->view('main_header');
-            $this->load->view('sidebar');
-            $this->load->view('source_add');
-            $this->load->view('footer');
-        } else {
-            redirect('login');
-        }
-    }
-    public function SourceEdit($id)
-    {
-        if ($this->session->userdata('name')) {
-            $this->load->view('main_header');
-            $this->load->view('sidebar');
-            $data['source'] = $this->MLOVS->SourceGet($id);
-            $this->load->view('source_edit', $data);
-            $this->load->view('footer');
-        } else {
-            redirect('login');
-        }
-    }
-    public function SourceDelete()
-    {
-
-        $post = $this->input->post();
-
-        $id = $post['id'];
-        $tableName = $post['tableName'];
-        $arrInfo['status'] = $post['status'];
-        $data = $this->MLOVS->Delete($tableName, $id, $arrInfo);
-        if ($data == 1) {
-
-            echo json_encode($data);
-        } else {
-            return false;
-        }
-    }
-    public function SourceAddVerify()
-    {
-        if ($this->session->userdata('name')) {
-            $arrPost = $this->input->post();
-            $tableName = 'ic_source';
-            $arrInfo['source_name'] = $arrPost['source_name'];
-            $arrInfo['created_at'] = date("Y-m-d");
-            $arrInfo['created_by'] = $this->session->userdata('user_id');
-            $arrInfo['status'] = 'active';
-            $check = $this->MLOVS->Add($tableName, $arrInfo);
-            if ($check == true) {
-                redirect('/source');
-            } else {
-                die("Data not submit please go back and resubmit");
-            }
-        }
-    }
-    public function UpadteSource()
-    {
-        if ($this->session->userdata('name')) {
-            $post = $this->input->post();
-            $recordId = $post['record_id'];
-            $arrInfo['source_name'] = $post['source_name'];
-            $arrInfo['update_at'] = date("Y-m-d");
-            $arrInfo['update_by'] = $this->session->userdata('user_id');
-            $id = $arrPost['id'];
-            $check = $this->MLOVS->UpadateBedDb($recordId, $arrInfo);
-            if ($check == true) {
-                redirect('/source');
-            } else {
-                die("Data not submit please go back and resubmit");
-            }
-        }
-    }
+    
+   
+    
 }

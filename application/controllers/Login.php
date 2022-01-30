@@ -34,13 +34,16 @@ class Login extends CI_Controller {
 		 $this->form_validation->set_rules('password','User_password','required');
 		if($this->form_validation->run()){
 			$check = $this->ML->user_auth($arr);
+			
 			if(count($check) > 0)
 			{	
 				$this->session->set_userdata('name',$arr['name']);
 				$this->session->set_userdata('user_id',$check[0]['user_id']);
-				$this->session->set_userdata('role_code', $check[0]['user_role_id']);
+				$this->session->set_userdata('user_name',$check[0]['user_name']);
+				$this->session->set_userdata('email',$check[0]['email']);
+				$this->session->set_userdata('role_id', $check[0]['role_id']);
 				$this->session->set_userdata('role_name', $check[0]['role_name']);
-				log_message("debug","SESSION VALUE :: ".$this->session->userdata('name'));
+			//	log_message("debug","SESSION VALUE :: ".$this->session->userdata('name'));
 				redirect('landing_page');
 			}
 			else

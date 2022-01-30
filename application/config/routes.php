@@ -85,6 +85,11 @@ $route['admin_edit'] = '/AdminControllers/LoadEditScreen';
 $route['owner']             = '/OwnerControllers';
 $route['owner_add']         = '/OwnerControllers/LoadAddScreen';
 $route['owner_edit']        = '/OwnerControllers/LoadEditScreen';
+// add owner And tenant
+$route['add']      			= '/OwnerControllers/AddOwnerTenant';
+$route['edit']      			= '/OwnerControllers/EditOwnerTenant';
+$route['delete']      			= '/OwnerControllers/DeleteOwnerTenant';
+$route['email_exit']      		= '/OwnerControllers/EmailExit';
 
 /////////////////////      Building     ////////////////////////////////////////////
 $route['building']          = '/BuildingControllers';
@@ -100,6 +105,12 @@ $route['apartment_edit']    = '/ApartmentControllers/LoadEditScreen';
 $route['user'] = '/UserController';
 $route['user_add'] = '/UserController/LoadAddScreen';
 $route['user_edit'] = '/UserController/LoadEditScreen';
+$route['user_verification'] = '/UserController/UserVerification';
+$route['user_update'] = '/UserController/UserUpdate';
+$route['user_delete'] = '/UserController/UserDelete';
+$route['user_reset'] = '/UserController/UserRest';
+$route['owner_tenant_email'] = '/UserController/GetEmailTenantOwner';
+
 ///////////// Property  //////////////////////////////////////////////////////
 $route['property'] = '/PropertyController';
 $route['property_add'] = '/PropertyController/LoadAddScreen';

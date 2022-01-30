@@ -58,26 +58,24 @@ $heading = "All Admin";
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php for ($i=0; $i <count($users) ; $i++) { 
-                    
-                     ?>
+                                      
                                         <tr style="cursor:pointer" onClick="">
 
                                             <td>
-                                                <center><?php echo ucwords($users[$i]['user_name'])?></center>
+                                                <center>dsad</center>
                                             </td>
                                             <td>
-                                                <center><?php echo ucwords($users[$i]['user_name'])?></center>
+                                                <center>sadsad</center>
                                             </td>
                                             <td>
-                                                <center><?php echo ucwords($users[$i]['user_name'])?></center>
+                                                <center>asdsa d</center>
                                             </td>
                                             <td>
-                                                <center><?php echo ucwords($users[$i]['role_name'])?></center>
+                                                <center>asdsa d</center>
                                             </td>
                                             <td>
                                                 <center>
-                                                    <?php if($users[$i]['user_status']==1){echo "Active";} else {echo "Inactive";} ?>
+                                                    asdsa d
                                                 </center>
                                             </td>
 
@@ -94,7 +92,7 @@ $heading = "All Admin";
                                                 </center>
                                             </td>
                                         </tr>
-                                        <?php }?>
+                                        
 
                                     </tbody>
                                 </table>

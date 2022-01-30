@@ -87,7 +87,7 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
 
                                     </h1>
                                     <div class="card p-4 rounded-plus bg-faded">
-                                        <form id="js-login" method="post" novalidate="" action="/auth" onsubmit="return UserLogin()">
+                                        <form id="js-login" method="post" novalidate="" action="/auth" >
                                             <div class="form-group">
                                                 <label class="form-label" for="username">Username  </label>
                                                 <input type="text" id="user_name" name="user_name" class="form-control form-control-lg" placeholder="Enter Your Username" value="ICADMIN" required>
@@ -273,6 +273,7 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
         return false;
       }
       return true;
+       $( "#js-login" ).submit();
     }
 
 

@@ -46,6 +46,12 @@ $heading = "Owner";
                                                 <center>Contact#</center>
                                             </th>
                                             <th nowrap>
+                                                <center>Created By</center>
+                                            </th>
+                                            <th nowrap>
+                                                <center>Updated By</center>
+                                            </th>
+                                            <th nowrap>
                                                 <center>Status</center>
                                             </th>
                                             <th nowrap>
@@ -55,36 +61,49 @@ $heading = "Owner";
                                         </tr>
                                     </thead>
                                     <tbody>
-                                      
+                                        
+                                      <? for ($i=0; $i <count($ownerData) ; $i++) { 
+                                          $ownerId=$ownerData[$i]['record_id'];
+                                      ?>
                                         <tr style="cursor:pointer" >
 
                                             <td>
-                                                <center>dasd</center>
+                                                <center><? echo  ucwords($ownerData[$i]['name'])?></center>
                                             </td>
                                             <td>
-                                                <center>56</center>
+                                                <center><? echo $ownerData[$i]['email']?></center>
                                             </td>
                                             <td>
-                                                <center>51</center>
+                                                <center><? echo $ownerData[$i]['phone_number']?></center>
                                             </td>
-                                            
                                             <td>
-                                                <center>active
+                                                <center><? echo $ownerData[$i]['created_name']?>
                                                    
                                                 </center>
                                             </td>
-                                            <td style="padding:6px 12px;">
+                                            <td>
+                                                <center><? echo $ownerData[$i]['updated_name']?>
+                                                   
+                                                </center>
+                                            </td>
+                                            <td>
+                                                <center><? echo $ownerData[$i]['status']?>
+                                                   
+                                                </center>
+                                            </td>
+                                            <td nowrap>
                                                 <center>
-                                                    <button onclick="EditOwner()"
+                                                    <button onclick="EditOwner(<? echo $ownerId?>)"
                                                         class="btn btn-sm btn-primary bg-brand-gradient"data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Edit Owner"
                                                         ><i class="fal fa-edit"></i></button>&nbsp;
-
-                                                    <button class="btn btn-sm btn-primary bg-brand-gradient " data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Delete Owner"
+                                                        <? if($this->session->userdata('role_id') == SUPER_ADMIN){ ?>
+                                                    <button onclick="DeleteOwner(<? echo $ownerId?>)" class="btn btn-sm btn-primary bg-brand-gradient " data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Delete Owner"
                                                         ><i class="fal fa-times"></i></button>
+                                                    <? } ?>
                                                 </center>
                                             </td>
                                         </tr>
-                                        
+                                        <?  } ?>
 
                                     </tbody>
                                 </table>
@@ -104,10 +123,44 @@ $heading = "Owner";
 <!-- this overlay is activated only when mobile menu is triggered -->
 <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div>
 <script type="text/javascript">
-    function EditOwner() {
+    function EditOwner(id) {
+         var data = { id: id , tablename : 'owner'};
          $.ajax({
             url: baseurl + 'owner_edit',
+            type: 'POST',
+            data: data,
             success: function(result) {
+                $('.modal-title').html('Edit Owner');
+                $('#modal-body').html(result);
+                // $('#modal-body').children()[0][0].value = id;
+                $('#myModal').modal();
+            }
+        });
+       
+    }
+     function DeleteOwner(id) {
+        if(confirm('Are you sure you want to delete?'))
+        {
+             var data = { id: id , tablename : 'owner'};
+         $.ajax({
+            url: baseurl + 'delete',
+            type: 'POST',
+            data: data,
+            success: function(result) {
+                var value='Delete Sucessfully';
+                DeleteToast(value);
+               window.location.reload();
+            }
+        }); 
+        }
+        
+       
+    }
+     function AddOwner() {
+         $.ajax({
+            url: baseurl + 'owner_add',
+            success: function(result) {
+
                 $('.modal-title').html('Add Owner');
                 $('#modal-body').html(result);
                 // $('#modal-body').children()[0][0].value = id;
@@ -116,6 +169,7 @@ $heading = "Owner";
         });
        
     }
+    
 $(document).ready(function() {
     // initialize datatable
     $('#datatable_tabletools_owner').dataTable({
@@ -156,28 +210,28 @@ $(document).ready(function() {
                 },*/
                 {
                     extend: 'pdfHtml5',
-                    title: '<?= $heading; ?>',
+                    title: '<? echo $heading; ?>',
                     text: 'PDF',
                     titleAttr: 'Generate PDF',
                     className: 'btn-outline-danger btn-sm mr-1'
                 },
                 {
                     extend: 'excelHtml5',
-                    title: '<?= $heading; ?>',
+                    title: '<? echo $heading; ?>',
                     text: 'Excel',
                     titleAttr: 'Generate Excel',
                     className: 'btn-outline-success btn-sm mr-1'
                 },
                 {
                     extend: 'csvHtml5',
-                    title: '<?= $heading; ?>',
+                    title: '<? echo $heading; ?>',
                     text: 'CSV',
                     titleAttr: 'Generate CSV',
                     className: 'btn-outline-primary btn-sm mr-1'
                 },
                 {
                     extend: 'copyHtml5',
-                    title: '<?= $heading; ?>',
+                    title: '<? echo $heading; ?>',
                     text: 'Copy',
                     titleAttr: 'Copy to clipboard',
                     className: 'btn-outline-primary btn-sm mr-1'
@@ -186,7 +240,7 @@ $(document).ready(function() {
                     extend: 'print',
                     text: 'Print',
                     titleAttr: 'Print Table',
-                    title: '<?= $heading; ?>',
+                    title: '<? echo $heading; ?>',
                     customize: function(win) {
                         $(win.document.body).find('h1').css('text-align', 'center');
                         $(win.document.body).css('font-size', '9px');

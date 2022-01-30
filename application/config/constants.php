@@ -89,3 +89,12 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 
 defined('ADMIN_ROLE') OR define('ADMIN_ROLE', 32);
 defined('CONTROLLER_ROLE') OR define('CONTROLLER_ROLE', 64);
+
+//////////////////////////////////////////////
+
+
+defined('SUPER_ADMIN') OR define('SUPER_ADMIN', 1);
+defined('SUB_ADMIN') OR define('SUB_ADMIN', 2);
+defined('OWNER') OR define('OWNER', 3);
+defined('TENANT') OR define('TENANT', 4);
+

@@ -35,11 +35,12 @@ margin-right: 6px;
             <div id="panel-1" class="panel">
                 <div class="panel-container show"> -->
                     <div class="card mb-g">
-                        <form class="needs-validation" method="post" action="/Users/UsersAddVerify" id='owneeditform' name='owneeditform' >
-                             
+                        <form class="needs-validation" method="post" action="/edit" id='owneeditforms' name='owneeditform' >
+                         <input type="hidden" name="table_name" value="owner">
+                         <input type="hidden" name="record_id" value="<? echo $ownerData[0]['record_id']?>">
                   <div class="col-md-12 mt-3 mb-3">
                       <label class="form-label">Name<span class="text-danger">*</span></label>
-                      <input class="form-control" placeholder="Enter Name" type="text" id='owner_name' name='owner_name' required="">
+                      <input class="form-control" placeholder="Enter Name" type="text" id='owner_name' name='name' value="<? echo $ownerData[0]['name']?>" required="">
                        
                       <div class="invalid-feedback">
                           Please Enter the Name.
@@ -47,7 +48,7 @@ margin-right: 6px;
                   </div>
                    <div class="col-md-12 mb-3">
                       <label class="form-label">Email<span class="text-danger">*</span></label>
-                      <input class="form-control" placeholder="Enter Email" type="text" id='owner_email' name='owner_email' required=""  onblur="CheckValidEmail(this.id)">
+                      <input class="form-control" placeholder="Enter Email" type="text" id='owner_email' name='email' value="<? echo $ownerData[0]['email']?>" required=""  onblur="CheckValidEmail(this.id)">
                        
                       <div class="invalid-feedback">
                           Please Enter the Email.
@@ -58,7 +59,7 @@ margin-right: 6px;
                  
                   <div class="col-md-12 mb-3">
                       <label class="form-label">Contact<span class="text-danger">*</span></label>
-                      <input class="form-control"   placeholder="Enter Contact" type="number" id='contact' name='contact' required="">
+                      <input class="form-control"   placeholder="Enter Contact" type="number" id='contact' name='contact' value="<? echo $ownerData[0]['phone_number']?>" >
                       <div class="invalid-feedback">
                           Please Enter Contact.
                       </div>
@@ -69,7 +70,7 @@ margin-right: 6px;
              <div class="row">
         <div class="col-md-12 mb-3">
             <button type="button" class="btn btn-secondary float-right mr-2" data-dismiss="modal">Close</button>
-            <button id='adminaddformsubmit' onclick="UpdateFromOwner()" class="btn btn-primary float-right mr-2" type="submit">Update</button>
+            <button id='adminaddformsubmit' onclick="UpdateFromOwner()" class="btn btn-primary float-right mr-2" type="button">Update</button>
         </div>
     </div>
           </form>
@@ -83,10 +84,10 @@ margin-right: 6px;
 <!-- this overlay is activated only when mobile menu is triggered -->
 <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div> <!-- END Page Content -->
 <script type="text/javascript">
-    function UpdateFromOwner()
+    function CheckUpdateOwner()
     {
-        var form = $("#owneeditform")
-
+        var form = $("#owneeditforms")
+        debugger;
         if (form[0].checkValidity() === false) {
             event.preventDefault()
             event.stopPropagation()
@@ -105,16 +106,25 @@ margin-right: 6px;
             $('#owner_email').focus();
             return false;
         }
-        if ($('#contact').val() == '') {
-             var value='contact is required';
-            Toast(value);
-            $('#contact').focus();
-            return false;
-        }
-        if (confirm("Do you want to add user?")) {
-            return true;
-        } else {
-            return false;
+        // if ($('#contact').val() == '') {
+        //      var value='contact is required';
+        //     Toast(value);
+        //     $('#contact').focus();
+        //     return false;
+        // }
+        return true;
+    }
+    function UpdateFromOwner()
+    {
+        check=CheckUpdateOwner();
+        if(check == true)
+        {
+            if(confirm("Are you sure do you want to Update?"))
+            {
+                 $( "#owneeditforms" ).submit();
+                  var value='Update Sucessfully';
+                DeleteToast(value);
+            }
         }
     }
 
