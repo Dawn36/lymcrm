@@ -79,36 +79,36 @@ $heading = "All Admin";
                                         <tr style="cursor:pointer" onClick="">
 
                                             <td>
-                                                <center><? echo ucwords($adminInfo[$i]['name']) ?></center>
+                                                <center><?php echo ucwords($adminInfo[$i]['name']) ?></center>
                                             </td>
                                             <td>
-                                                <center><? echo ucwords($adminInfo[$i]['email']) ?></center>
+                                                <center><?php echo ucwords($adminInfo[$i]['email']) ?></center>
                                             </td>
                                             <td>
-                                                <center><? echo ucwords($adminInfo[$i]['phone_number']) ?></center>
+                                                <center><?php echo ucwords($adminInfo[$i]['phone_number']) ?></center>
                                             </td>
                                             <td>
-                                                <center><? echo base64_decode($adminInfo[$i]['password']) ?></center>
+                                                <center><?php echo base64_decode($adminInfo[$i]['password']) ?></center>
                                             </td>
                                              <td>
-                                                    <center><? echo $roleName; ?></center>
+                                                    <center><?php echo $roleName; ?></center>
                                                 </td>
                                             <td>
                                                 <center>
-                                                    <? echo ucwords($adminInfo[$i]['status']) ?>
+                                                    <?php echo ucwords($adminInfo[$i]['status']) ?>
                                                 </center>
                                             </td>
 
                                             <td nowrap>
                                                 <center>
-                                                    <button onclick="ResetUser(<? echo $userId?>)" class="btn btn-sm btn-primary bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Reset Password"
+                                                    <button onclick="ResetUser(<?php echo $userId?>)" class="btn btn-sm btn-primary bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Reset Password"
                                                         ><i class="fas fa-key"></i></button>&nbsp;
-                                                    <button onclick="EditAdmin(<? echo $userId ?>)"
+                                                    <button onclick="EditAdmin(<?php echo $userId ?>)"
                                                         class="btn btn-sm btn-primary bg-brand-gradient"
                                                          data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Edit Admin"
                                                         ><i class="fal fa-edit"></i></button>&nbsp;
 
-                                                    <button onclick="DeleteAdmin(<? echo $userId ?>)" class="btn btn-sm btn-primary bg-brand-gradient"
+                                                    <button onclick="DeleteAdmin(<?php echo $userId ?>)" class="btn btn-sm btn-primary bg-brand-gradient"
                                                     data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Delete Admin"
                                                         ><i class="fal fa-times"></i></button>
                                                 </center>
@@ -175,14 +175,14 @@ $heading = "All Admin";
                 },*/
                 {
                     extend: 'pdfHtml5',
-                    title: '<?= $heading; ?>',
+                    title: '<?php echo $heading; ?>',
                     text: 'PDF',
                     titleAttr: 'Generate PDF',
                     className: 'btn-outline-danger btn-sm mr-1'
                 },
                 {
                     extend: 'excelHtml5',
-                    title: '<?= $heading; ?>',
+                    title: '<?php echo $heading; ?>',
                     text: 'Excel',
                     titleAttr: 'Generate Excel',
                     className: 'btn-outline-success btn-sm mr-1'
@@ -196,7 +196,7 @@ $heading = "All Admin";
                 },
                 {
                     extend: 'copyHtml5',
-                    title: '<?= $heading; ?>',
+                    title: '<?php echo $heading; ?>',
                     text: 'Copy',
                     titleAttr: 'Copy to clipboard',
                     className: 'btn-outline-primary btn-sm mr-1'
@@ -205,7 +205,7 @@ $heading = "All Admin";
                     extend: 'print',
                     text: 'Print',
                     titleAttr: 'Print Table',
-                    title: '<?= $heading; ?>',
+                    title: '<?php echo $heading; ?>',
                     customize: function(win) {
                         $(win.document.body).find('h1').css('text-align', 'center');
                         $(win.document.body).css('font-size', '9px');

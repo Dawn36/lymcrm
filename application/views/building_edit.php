@@ -34,12 +34,14 @@ margin-right: 6px;
         <div class="col-xl-12">
             <div id="panel-1" class="panel">
                 <div class="panel-container show"> -->
+                    
                     <div class="card mb-g">
-                        <form class="needs-validation" method="post" action="/Users/UsersAddVerify" id='editbuilding' name='editbuilding' >
-                      
+                        <form class="needs-validation" method="post" action="/building_update" id='editbuilding' name='editbuilding' >
+                      <input type="hidden">
+                      <input type="hidden" name="record_id" value="<?php echo $bildingInfo[0]['record_id'] ?>">
                   <div class="col-md-12  mt-3 mb-3">
                       <label class="form-label">Building Name<span class="text-danger">*</span></label>
-                      <input class="form-control" placeholder="Enter Building Name" type="text" id='building_name' name='building_name' required="">
+                      <input class="form-control" placeholder="Enter Building Name" type="text" id='building_name' name='building_name' value="<?php echo $bildingInfo[0]['building_name'] ?>" required="">
                        
                       <div class="invalid-feedback">
                           Please Enter the Building Name.
@@ -47,7 +49,7 @@ margin-right: 6px;
                   </div>
                    <div class="col-md-12 mb-3">
                       <label class="form-label">Building Address<span class="text-danger">*</span></label>
-                      <input class="form-control" placeholder="Enter Building Address" type="text" id='building_address' name='building_address' required="">
+                      <input class="form-control" placeholder="Enter Building Address" type="text" id='building_address' value="<?php echo $bildingInfo[0]['building_address'] ?>" name='building_address' required="">
                        
                       <div class="invalid-feedback">
                           Please Enter Building Address.
@@ -56,10 +58,10 @@ margin-right: 6px;
              
                  
                   <div class="col-md-12 mb-3">
-                      <label class="form-label">Building Contact<span class="text-danger">*</span></label>
-                      <input class="form-control"   placeholder="Enter Building Contact" type="number" id='building_contact' name='building_contact' required="">
+                      <label class="form-label">Community<span class="text-danger">*</span></label>
+                      <input class="form-control" placeholder="Enter Building Contact" type="text" id='community' name='community' value="<?php echo $bildingInfo[0]['building_community'] ?>" required="">
                       <div class="invalid-feedback">
-                          Please Enter Building Contact.
+                          Please Enter Community.
                       </div>
                       
                   </div>
@@ -82,7 +84,20 @@ margin-right: 6px;
 <!-- this overlay is activated only when mobile menu is triggered -->
 <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div> <!-- END Page Content -->
 <script type="text/javascript">
-     function EditFromBuilding(){
+    function EditFromBuilding()
+    {
+        check=BuildingUpdateFrom();
+        if(check == true)
+        {
+            if(confirm("Are you sure do you want to update?"))
+            {
+                 $("#editbuilding").submit();
+                  var value='Update Sucessfully';
+                DeleteToast(value);
+            }
+        }
+    }
+     function BuildingUpdateFrom(){
 
         var form = $("#editbuilding")
 
@@ -104,28 +119,23 @@ margin-right: 6px;
             $('#building_address').focus();
             return false;
         }
-        if ($('#building_contact').val() == '') {
-             var value='Building Contact is required';
+        if ($('#community').val() == '') {
+             var value='Community is required';
             Toast(value);
-            $('#building_contact').focus();
+            $('#community').focus();
             return false;
         }
-        if (confirm("Do you want to add user?")) {
-            return true;
-        } else {
-            return false;
-        }
-
+        return true;
 }
 
-  $("#building_contact").keypress(function(e){
+  $("#community").keypress(function(e){
    var keyCode = e.keyCode || e.which;
-    var regex = /^[0-9 ]+$/;
+    var regex = /^[A-Za-z0-9 ]+$/;
     var isValid = regex.test(String.fromCharCode(keyCode));
     if (!isValid) {
        return false
        }
-    if( $("#building_contact").val().length >35 ) {
+    if( $("#community").val().length >35 ) {
             return false;
        }
   });

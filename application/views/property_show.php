@@ -19,7 +19,7 @@ $heading = "Property";
     <div id="content">
         <div class="row">
             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
-                <h1> <span class="page-title txt-color-blueDark"><?= $heading ?></span></h1>
+                <h1> <span class="page-title txt-color-blueDark"><?php echo $heading ?></span></h1>
             </div>
             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-8">
                 <button onclick="AddProperty()" class="btn btn-primary float-right bg-brand-gradient" type="button" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Add Property"><i class="fas fa-plus" style="margin-right: 4px"></i>Add Property</button>
@@ -32,7 +32,7 @@ $heading = "Property";
                     <div id="panel-1" class="panel">
                         <div class="panel-container show">
                             <div class="panel-content">
-                                <table id="<?= str_replace(' ', '', $heading) ?>_datatable_tabletools" class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline">
+                                <table id="<?php echo str_replace(' ', '', $heading) ?>_datatable_tabletools" class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline">
 
                                     <thead class="bg-primary-600 bg-brand-gradient">
                                         <tr>
@@ -177,28 +177,28 @@ $heading = "Property";
                 },*/
                 {
                     extend: 'pdfHtml5',
-                    title: '<?= $heading; ?>',
+                    title: '<?php echo $heading; ?>',
                     text: 'PDF',
                     titleAttr: 'Generate PDF',
                     className: 'btn-outline-danger btn-sm mr-1'
                 },
                 {
                     extend: 'excelHtml5',
-                    title: '<?= $heading; ?>',
+                    title: '<?php echo $heading; ?>',
                     text: 'Excel',
                     titleAttr: 'Generate Excel',
                     className: 'btn-outline-success btn-sm mr-1'
                 },
                 {
                     extend: 'csvHtml5',
-                    title: '<?= $heading; ?>',
+                    title: '<?php echo $heading; ?>',
                     text: 'CSV',
                     titleAttr: 'Generate CSV',
                     className: 'btn-outline-primary btn-sm mr-1'
                 },
                 {
                     extend: 'copyHtml5',
-                    title: '<?= $heading; ?>',
+                    title: '<?php echo $heading; ?>',
                     text: 'Copy',
                     titleAttr: 'Copy to clipboard',
                     className: 'btn-outline-primary btn-sm mr-1'
@@ -207,7 +207,7 @@ $heading = "Property";
                     extend: 'print',
                     text: 'Print',
                     titleAttr: 'Print Table',
-                    title: '<?= $heading; ?>',
+                    title: '<?php echo $heading; ?>',
                     customize: function(win) {
                         $(win.document.body).find('h1').css('text-align', 'center');
                         $(win.document.body).css('font-size', '9px');

@@ -19,7 +19,7 @@ $heading = "All Users";
     <div id="content">
         <div class="row">
             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
-                <h1> <span class="page-title txt-color-blueDark"><? echo $heading ?></span></h1>
+                <h1> <span class="page-title txt-color-blueDark"><?php echo $heading ?></span></h1>
             </div>
             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-8">
                 <button onclick="AddUser()" class="btn btn-primary float-right bg-brand-gradient" type="button" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Add User"><i class="fas fa-plus" style="margin-right: 4px"></i>Add User</button>
@@ -33,7 +33,7 @@ $heading = "All Users";
                         <div class="panel-container show">
                             <div class="panel-content">
                           
-                                <table id="<? echo str_replace(' ', '', $heading) ?>_datatable_tabletools" class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline">
+                                <table id="<?php echo str_replace(' ', '', $heading) ?>_datatable_tabletools" class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline">
                                     <thead class="bg-primary-600 bg-brand-gradient">
                                         <tr>
                                             <th nowrap>
@@ -87,37 +87,37 @@ $heading = "All Users";
                                         ?>
                                             <tr>
                                                 <td>
-                                                    <center><? echo ucwords($userInfo[$i]['name']) ?></center>
+                                                    <center><?php echo ucwords($userInfo[$i]['name']) ?></center>
                                                 </td>
                                                 <td>
-                                                    <center><? echo ucwords($userInfo[$i]['email']) ?></center>
+                                                    <center><?php echo ucwords($userInfo[$i]['email']) ?></center>
                                                 </td>
                                                 <td>
-                                                    <center><? echo ucwords($userInfo[$i]['phone_number']) ?></center>
+                                                    <center><?php echo ucwords($userInfo[$i]['phone_number']) ?></center>
                                                 </td>
                                                 <td>
-                                                    <center><? echo base64_decode($userInfo[$i]['password']) ?></center>
+                                                    <center><?php echo base64_decode($userInfo[$i]['password']) ?></center>
                                                 </td>
                                                 <td>
-                                                    <center><? echo $roleName; ?></center>
+                                                    <center><?php echo $roleName; ?></center>
                                                 </td>
                                                 <td>
-                                                    <center><? echo $userInfo[$i]['created_name'] ?></center>
+                                                    <center><?php echo $userInfo[$i]['created_name'] ?></center>
                                                 </td>
                                                 <td>
-                                                    <center><? echo ucwords($userInfo[$i]['updated_name']) ?></center>
+                                                    <center><?php echo ucwords($userInfo[$i]['updated_name']) ?></center>
                                                 </td>
                                                 <td>
-                                                    <center><? echo ucwords($userInfo[$i]['status']) ?></center>
+                                                    <center><?php echo ucwords($userInfo[$i]['status']) ?></center>
                                                 </td>
                                                 <td nowrap>
                                                     <center>
-                                                        <button onclick="ResetUser(<? echo $userId?>)" class="btn btn-sm btn-primary bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Reset Password"
+                                                        <button onclick="ResetUser(<?php echo $userId?>)" class="btn btn-sm btn-primary bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Reset Password"
                                                         ><i class="fas fa-key"></i></button>&nbsp;
-                                                        <button onclick="EditUser(<? echo $ownerTenantId?>,<? echo  $usersType?>,<? echo $userId?>)" class="btn btn-sm btn-primary bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Edit User"
+                                                        <button onclick="EditUser(<?php echo $ownerTenantId?>,<?php echo  $usersType?>,<?php echo $userId?>)" class="btn btn-sm btn-primary bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Edit User"
                                                         ><i class="fal fa-edit"></i></button>&nbsp;
-                                                         <? if($this->session->userdata('role_id') == SUPER_ADMIN){ ?>
-                                                        <button type="button" onclick="DeleteUser(<? echo $ownerTenantId?>,<? echo  $usersType?>,<? echo $userId?>)" class="btn btn-sm btn-primary bg-brand-gradient"data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Delete User"><i class="fal fa-times"></i></button>
+                                                         <?php if($this->session->userdata('role_id') == SUPER_ADMIN){ ?>
+                                                        <button type="button" onclick="DeleteUser(<?php echo $ownerTenantId?>,<?php echo  $usersType?>,<?php echo $userId?>)" class="btn btn-sm btn-primary bg-brand-gradient"data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Delete User"><i class="fal fa-times"></i></button>
                                                     <? } ?>
                                                     </center>
                                                 </td>
@@ -220,28 +220,28 @@ $heading = "All Users";
                 },*/
                 {
                     extend: 'pdfHtml5',
-                    title: '<?= $heading; ?>',
+                    title: '<?php echo $heading; ?>',
                     text: 'PDF',
                     titleAttr: 'Generate PDF',
                     className: 'btn-outline-danger btn-sm mr-1'
                 },
                 {
                     extend: 'excelHtml5',
-                    title: '<?= $heading; ?>',
+                    title: '<?php echo $heading; ?>',
                     text: 'Excel',
                     titleAttr: 'Generate Excel',
                     className: 'btn-outline-success btn-sm mr-1'
                 },
                 {
                     extend: 'csvHtml5',
-                    title: '<?= $heading; ?>',
+                    title: '<?php echo $heading; ?>',
                     text: 'CSV',
                     titleAttr: 'Generate CSV',
                     className: 'btn-outline-primary btn-sm mr-1'
                 },
                 {
                     extend: 'copyHtml5',
-                    title: '<?= $heading; ?>',
+                    title: '<?php echo $heading; ?>',
                     text: 'Copy',
                     titleAttr: 'Copy to clipboard',
                     className: 'btn-outline-primary btn-sm mr-1'
@@ -250,7 +250,7 @@ $heading = "All Users";
                     extend: 'print',
                     text: 'Print',
                     titleAttr: 'Print Table',
-                    title: '<?= $heading; ?>',
+                    title: '<?php echo $heading; ?>',
                     customize: function(win) {
                         $(win.document.body).find('h1').css('text-align', 'center');
                         $(win.document.body).css('font-size', '9px');

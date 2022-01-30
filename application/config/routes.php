@@ -101,9 +101,12 @@ $route['email_exit']      		= '/OwnerControllers/EmailExit';
 $route['building']          = '/BuildingControllers';
 $route['building_add']      = '/BuildingControllers/LoadAddScreen';
 $route['building_edit']     = '/BuildingControllers/LoadEditScreen';
+$route['building_exit']     = '/BuildingControllers/BuildingExit';
+$route['building_update']     = '/BuildingControllers/UpdateBuilding';
+$route['building_verification']     = '/BuildingControllers/BuildingVerification';
 
 /////////////////////      Apartment      ////////////////////////////////////////////
-$route['apartment']         = '/ApartmentControllers';
+$route['apartment/(:num)']  = '/ApartmentControllers/LoadApartmentScreen/$1';
 $route['apartment_add']     = '/ApartmentControllers/LoadAddScreen';
 $route['apartment_edit']    = '/ApartmentControllers/LoadEditScreen';
 

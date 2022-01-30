@@ -35,11 +35,11 @@ margin-right: 6px;
             <div id="panel-1" class="panel">
                 <div class="panel-container show"> -->
                     <div class="card mb-g">
-                        <form class="needs-validation" method="post" action="/Users/UsersAddVerify" id='addbuilding' name='addbuilding' >
+                        <form class="needs-validation" method="post" action="/building_verification" id='addbuilding' name='addbuilding' >
                       
                   <div class="col-md-12  mt-3 mb-3">
                       <label class="form-label">Building Name<span class="text-danger">*</span></label>
-                      <input class="form-control" placeholder="Enter Building Name" type="text" id='building_name' name='building_name' required="">
+                      <input class="form-control" placeholder="Enter Building Name" type="text" id='building_name' onblur="CheckExitBuilding(this.value)" name='building_name' required="">
                        
                       <div class="invalid-feedback">
                           Please Enter the Building Name.
@@ -56,10 +56,10 @@ margin-right: 6px;
              
                  
                   <div class="col-md-12 mb-3">
-                      <label class="form-label">Building Contact<span class="text-danger">*</span></label>
-                      <input class="form-control"   placeholder="Enter Building Contact" type="number" id='building_contact' name='building_contact' required="">
+                      <label class="form-label">Community<span class="text-danger">*</span></label>
+                      <input class="form-control"   placeholder="Enter Community" type="text" id='community' name='community' required="">
                       <div class="invalid-feedback">
-                          Please Enter Building Contact.
+                          Please Enter Community.
                       </div>
                       
                   </div>
@@ -82,7 +82,41 @@ margin-right: 6px;
 <!-- this overlay is activated only when mobile menu is triggered -->
 <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div> <!-- END Page Content -->
 <script type="text/javascript">
-     function AddFromBuilding(){
+    function CheckExitBuilding(buldingName) {
+        //alert(buldingName);
+        var value = {
+            buldingName: buldingName
+        };
+        $.ajax({
+            url: baseurl + 'building_exit',
+            type: 'POST',
+            data: value,
+            success: function(result) {
+               var result= JSON.parse(result);
+               if(result != '')
+               {
+                var value='Building name Already Exit';
+                Toast(value);
+                $("#building_name").val('');
+               }
+
+            }
+        });
+    }
+    function AddFromBuilding()
+    {
+        check=BuildingFrom();
+        if(check == true)
+        {
+            if(confirm("Are you sure do you want to add?"))
+            {
+                 $("#addbuilding").submit();
+                  var value='Add Sucessfully';
+                DeleteToast(value);
+            }
+        }
+    }
+     function BuildingFrom(){
 
         var form = $("#addbuilding")
 
@@ -104,28 +138,24 @@ margin-right: 6px;
             $('#building_address').focus();
             return false;
         }
-        if ($('#building_contact').val() == '') {
-             var value='Building Contact is required';
+        if ($('#community').val() == '') {
+             var value='Community is required';
             Toast(value);
-            $('#building_contact').focus();
+            $('#community').focus();
             return false;
         }
-        if (confirm("Do you want to add user?")) {
-            return true;
-        } else {
-            return false;
-        }
+       return true;
 
 }
 
-  $("#building_contact").keypress(function(e){
+  $("#community").keypress(function(e){
    var keyCode = e.keyCode || e.which;
-    var regex = /^[0-9 ]+$/;
+    var regex = /^[A-Za-z0-9 ]+$/;
     var isValid = regex.test(String.fromCharCode(keyCode));
     if (!isValid) {
        return false
        }
-    if( $("#building_contact").val().length >35 ) {
+    if( $("#community").val().length >35 ) {
             return false;
        }
   });

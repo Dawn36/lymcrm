@@ -62,42 +62,42 @@ $heading = "Owner";
                                     </thead>
                                     <tbody>
                                         
-                                      <? for ($i=0; $i <count($ownerData) ; $i++) { 
+                                      <?php for ($i=0; $i <count($ownerData) ; $i++) { 
                                           $ownerId=$ownerData[$i]['record_id'];
                                       ?>
                                         <tr style="cursor:pointer" >
 
                                             <td>
-                                                <center><? echo  ucwords($ownerData[$i]['name'])?></center>
+                                                <center><?php echo  ucwords($ownerData[$i]['name'])?></center>
                                             </td>
                                             <td>
-                                                <center><? echo $ownerData[$i]['email']?></center>
+                                                <center><?php echo $ownerData[$i]['email']?></center>
                                             </td>
                                             <td>
-                                                <center><? echo $ownerData[$i]['phone_number']?></center>
+                                                <center><?php echo $ownerData[$i]['phone_number']?></center>
                                             </td>
                                             <td>
-                                                <center><? echo $ownerData[$i]['created_name']?>
+                                                <center><?php echo $ownerData[$i]['created_name']?>
                                                    
                                                 </center>
                                             </td>
                                             <td>
-                                                <center><? echo $ownerData[$i]['updated_name']?>
+                                                <center><?php echo $ownerData[$i]['updated_name']?>
                                                    
                                                 </center>
                                             </td>
                                             <td>
-                                                <center><? echo $ownerData[$i]['status']?>
+                                                <center><?php echo $ownerData[$i]['status']?>
                                                    
                                                 </center>
                                             </td>
                                             <td nowrap>
                                                 <center>
-                                                    <button onclick="EditOwner(<? echo $ownerId?>)"
+                                                    <button onclick="EditOwner(<?php echo $ownerId?>)"
                                                         class="btn btn-sm btn-primary bg-brand-gradient"data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Edit Owner"
                                                         ><i class="fal fa-edit"></i></button>&nbsp;
-                                                        <? if($this->session->userdata('role_id') == SUPER_ADMIN){ ?>
-                                                    <button onclick="DeleteOwner(<? echo $ownerId?>)" class="btn btn-sm btn-primary bg-brand-gradient " data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Delete Owner"
+                                                        <?php if($this->session->userdata('role_id') == SUPER_ADMIN){ ?>
+                                                    <button onclick="DeleteOwner(<?php echo $ownerId?>)" class="btn btn-sm btn-primary bg-brand-gradient " data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Delete Owner"
                                                         ><i class="fal fa-times"></i></button>
                                                     <? } ?>
                                                 </center>
@@ -210,28 +210,28 @@ $(document).ready(function() {
                 },*/
                 {
                     extend: 'pdfHtml5',
-                    title: '<? echo $heading; ?>',
+                    title: '<?php echo $heading; ?>',
                     text: 'PDF',
                     titleAttr: 'Generate PDF',
                     className: 'btn-outline-danger btn-sm mr-1'
                 },
                 {
                     extend: 'excelHtml5',
-                    title: '<? echo $heading; ?>',
+                    title: '<?php echo $heading; ?>',
                     text: 'Excel',
                     titleAttr: 'Generate Excel',
                     className: 'btn-outline-success btn-sm mr-1'
                 },
                 {
                     extend: 'csvHtml5',
-                    title: '<? echo $heading; ?>',
+                    title: '<?php echo $heading; ?>',
                     text: 'CSV',
                     titleAttr: 'Generate CSV',
                     className: 'btn-outline-primary btn-sm mr-1'
                 },
                 {
                     extend: 'copyHtml5',
-                    title: '<? echo $heading; ?>',
+                    title: '<?php echo $heading; ?>',
                     text: 'Copy',
                     titleAttr: 'Copy to clipboard',
                     className: 'btn-outline-primary btn-sm mr-1'
@@ -240,7 +240,7 @@ $(document).ready(function() {
                     extend: 'print',
                     text: 'Print',
                     titleAttr: 'Print Table',
-                    title: '<? echo $heading; ?>',
+                    title: '<?php echo $heading; ?>',
                     customize: function(win) {
                         $(win.document.body).find('h1').css('text-align', 'center');
                         $(win.document.body).css('font-size', '9px');

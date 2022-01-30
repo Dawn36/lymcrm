@@ -17,9 +17,9 @@ margin-right: 6px;
 
     <div class="card mb-g">
         <input type="hidden" >
-        <input type="hidden" name="user_type" value="<? echo $usersType ?>">
-        <input type="hidden" name="user_id" value="<? echo $userInfo[0]['record_id'] ?>">
-        <input type="hidden" name="owner_tenant_id" value="<? echo $ownerTenantId ?>">
+        <input type="hidden" name="user_type" value="<?php echo $usersType ?>">
+        <input type="hidden" name="user_id" value="<?php echo $userInfo[0]['record_id'] ?>">
+        <input type="hidden" name="owner_tenant_id" value="<?php echo $ownerTenantId ?>">
     <!--     <div class="col-md-12 mt-3 mb-3">
             <label class="form-label">Select User Type<span style="color: red">*</span></label>
             <select class="custom-select" onchange="GetOwnerTenant(this.value)" name="user_type" id="user_type" required="">
@@ -35,14 +35,14 @@ margin-right: 6px;
 
         <div class="col-md-12 mt-3 mb-3">
             <label class="form-label">Email<span style="color: red">*</span></label>
-            <input class="form-control" placeholder="Enter Full Name" type="text" id="user_email" name="user_email" value="<? echo $userInfo[0]['email'] ?>" required="">  
+            <input class="form-control" placeholder="Enter Full Name" type="text" id="user_email" name="user_email" value="<?php echo $userInfo[0]['email'] ?>" required="">  
             <div class="invalid-feedback">
                 Please Select Email.
             </div>
         </div>
         <div class="col-md-12 mb-3">
             <label class="form-label">Full Name<span class="text-danger">*</span></label>
-            <input class="form-control" placeholder="Enter Full Name" type="text" id="user_name" name="user_name" value="<? echo $userInfo[0]['name'] ?>" required="">            
+            <input class="form-control" placeholder="Enter Full Name" type="text" id="user_name" name="user_name" value="<?php echo $userInfo[0]['name'] ?>" required="">            
             <div class="invalid-feedback">
                 Please Enter Full Name.
             </div>
@@ -51,7 +51,7 @@ margin-right: 6px;
         
         <div class="col-md-12 mb-3">
             <label class="form-label">Phone Number<span class="text-danger">*</span></label>
-            <input class="form-control" placeholder="Enter Phone Number" type="text" id='user_contact' name='user_contact' value="<? echo $userInfo[0]['phone_number'] ?>" required="">
+            <input class="form-control" placeholder="Enter Phone Number" type="text" id='user_contact' name='user_contact' value="<?php echo $userInfo[0]['phone_number'] ?>" required="">
 
             <div class="invalid-feedback">
                 Please Enter Phone Number.
@@ -59,7 +59,7 @@ margin-right: 6px;
         </div>
         <div class="col-md-12 mb-3">
             <label class="form-label">New Password<span class="text-danger">*</span></label>
-            <input class="form-control" placeholder="Enter Password" type="password" id='new_pass' name='new_pass' value="<? echo base64_decode($userInfo[0]['password']) ?>" required=""><i id="showss_password" class="fal fa-eye eye"></i>
+            <input class="form-control" placeholder="Enter Password" type="password" id='new_pass' name='new_pass' value="<?php echo base64_decode($userInfo[0]['password']) ?>" required=""><i id="showss_password" class="fal fa-eye eye"></i>
 
             <div class="invalid-feedback">
                 Please Enter Password.
@@ -67,7 +67,7 @@ margin-right: 6px;
         </div>
         <div class="col-md-12 mb-3">
             <label class="form-label">Confirm Password<span class="text-danger">*</span></label>
-            <input class="form-control" placeholder="Enter Confirm Password" type="password" id='confirm_passaa' name='confirm_pass' value="<? echo base64_decode($userInfo[0]['password']) ?>" required=""><i id="confirm_pass" class="fal fa-eye eye"></i>
+            <input class="form-control" placeholder="Enter Confirm Password" type="password" id='confirm_passaa' name='confirm_pass' value="<?php echo base64_decode($userInfo[0]['password']) ?>" required=""><i id="confirm_pass" class="fal fa-eye eye"></i>
 
             <div class="invalid-feedback">
                 Please Enter Confirm Password.

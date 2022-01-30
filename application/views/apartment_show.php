@@ -16,14 +16,15 @@ $heading = "Apartment";
 
         <li class="position-absolute pos-top pos-right d-none d-sm-block"><span class="js-get-date"></span></li>
     </ol>
-
+<?php print_r($apartmentInfo) ?>
+<?php print_r($buildingId) ?>
     <div id="content">
         <div class="row">
             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
-                <h1> <span class="page-title txt-color-blueDark"><?= $heading ?></span></h1>
+                <h1> <span class="page-title txt-color-blueDark"><?php echo $heading ?></span></h1>
             </div>
             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-8">
-                <button onclick="AddApartment()" class="btn btn-primary float-right bg-brand-gradient" type="button" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Add Apartment"><i class="fas fa-plus" style="margin-right: 4px"></i>Add Apartment</button>
+                <button onclick="AddApartment(<?php echo $buildingId ?>)" class="btn btn-primary float-right bg-brand-gradient" type="button" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Add Apartment"><i class="fas fa-plus" style="margin-right: 4px"></i>Add Apartment</button>
             </div>
         </div>
         <section id="" class="">
@@ -33,7 +34,7 @@ $heading = "Apartment";
                     <div id="panel-1" class="panel">
                         <div class="panel-container show">
                             <div class="panel-content">
-                                <table id="<?= str_replace(' ', '', $heading) ?>_datatable_tabletools" class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline">
+                                <table id="<?php echo str_replace(' ', '', $heading) ?>_datatable_tabletools" class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline">
 
                                     <thead class="bg-primary-600 bg-brand-gradient">
                                         <tr>
@@ -41,33 +42,47 @@ $heading = "Apartment";
                                                 <center>Apartment#</center>
                                             </th>
                                             <th nowrap>
+                                                <center>Created By</center>
+                                            </th>
+                                            <th nowrap>
+                                                <center>Updated By</center>
+                                            </th>
+                                            <th nowrap>
                                                 <center>Status</center>
                                             </th>
                                             <th nowrap>
-                                                <center>
                                                     <center>Action</center>
                                             </th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        
+                                        <?php for ($i=0; $i <count($apartmentInfo); $i++) { 
+                                       $apartmentId=$apartmentInfo[$i]['record_id'];
+                                     ?>
                                             <tr>
                                                 <td>
-                                                    <center>a</center>
+                                                    <center><?php echo ucwords($apartmentInfo[$i]['apartment_number'] )?></center>
                                                 </td>
                                                 <td>
-                                                    <center>a</center>
+                                                    <center><?php echo ucwords($apartmentInfo[$i]['created_name'] )?></center>
                                                 </td>
-                                                <td style="padding:6px 12px;">
+                                                <td>
+                                                    <center><?php echo ucwords($apartmentInfo[$i]['updated_name'] )?></center>
+                                                </td>
+                                                <td>
+                                                    <center><?php echo ucwords($apartmentInfo[$i]['status'] )?></center>
+                                                </td>
+                                                <td nowrap>
                                                     <center>
-                                                        <button onclick="EditApartment(1)" class="btn btn-sm btn-primary bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Edit Apartment"
+                                                        <button onclick="EditApartment(<?php echo $apartmentId ?>)" class="btn btn-sm btn-primary bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Edit Apartment"
                                                         ><i class="fal fa-edit"></i></button>&nbsp;
-
-                                                        <button type="button" onclick="DeleteApartment(1)" class="btn btn-sm btn-primary bg-brand-gradient"data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Delete Apartment"><i class="fal fa-times"></i></button>
+                                                        <?php if($this->session->userdata('role_id') == SUPER_ADMIN) { ?>
+                                                        <button type="button" onclick="DeleteApartment(<?php $apartmentId ?>)" class="btn btn-sm btn-primary bg-brand-gradient"data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Delete Apartment"><i class="fal fa-times"></i></button>
+                                                    <?php } ?>
                                                     </center>
                                                 </td>
                                             </tr>
-                                       
+                                       <?php } ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -127,7 +142,7 @@ $heading = "Apartment";
 
     $(document).ready(function() {
 
-        $('#<?= str_replace(' ', '', $heading) ?>_datatable_tabletools').dataTable({
+        $('#<?php echo str_replace(' ', '', $heading) ?>_datatable_tabletools').dataTable({
             responsive: true,
             lengthChange: false,
             dom:
@@ -165,7 +180,7 @@ $heading = "Apartment";
                 },*/
                 {
                     extend: 'pdfHtml5',
-                    title: '<?= $heading; ?>',
+                    title: '<?php echo $heading; ?>',
                     text: 'PDF',
                     titleAttr: 'Generate PDF',
                     className: 'btn-outline-danger btn-sm mr-1'
@@ -179,14 +194,14 @@ $heading = "Apartment";
                 },
                 {
                     extend: 'csvHtml5',
-                    title: '<?= $heading; ?>',
+                    title: '<?php echo $heading; ?>',
                     text: 'CSV',
                     titleAttr: 'Generate CSV',
                     className: 'btn-outline-primary btn-sm mr-1'
                 },
                 {
                     extend: 'copyHtml5',
-                    title: '<?= $heading; ?>',
+                    title: '<?php echo $heading; ?>',
                     text: 'Copy',
                     titleAttr: 'Copy to clipboard',
                     className: 'btn-outline-primary btn-sm mr-1'
@@ -195,7 +210,7 @@ $heading = "Apartment";
                     extend: 'print',
                     text: 'Print',
                     titleAttr: 'Print Table',
-                    title: '<?= $heading; ?>',
+                    title: '<?php echo $heading; ?>',
                     customize: function(win) {
                         $(win.document.body).find('h1').css('text-align', 'center');
                         $(win.document.body).css('font-size', '9px');

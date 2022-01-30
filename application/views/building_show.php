@@ -62,54 +62,55 @@ $heading = "Building";
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    <? for ($i=0; $i <count($buildingInfo); $i++) { 
+                                    <?php for ($i=0; $i <count($buildingInfo); $i++) { 
                                        $buildingId=$buildingInfo[$i]['record_id'];
                                      ?>
                                         <tr style="cursor:pointer" >
 
                                             <td>
-                                                <center><? echo ucwords($buildingInfo[$i]['building_name'] )?></center>
+                                                <center><?php echo ucwords($buildingInfo[$i]['building_name'] )?></center>
                                             </td>
                                             <td>
-                                                <center><? echo ucwords($buildingInfo[$i]['building_address']) ?></center>
+                                                <center><?php echo ucwords($buildingInfo[$i]['building_address']) ?></center>
                                             </td>
                                             <td>
-                                                <center><? echo ucwords($buildingInfo[$i]['building_community']) ?></center>
+                                                <center><?php echo ucwords($buildingInfo[$i]['building_community']) ?></center>
                                             </td>
                                             
                                             <td>
-                                                <center><? echo ucwords($buildingInfo[$i]['created_name']) ?>
+                                                <center><?php echo ucwords($buildingInfo[$i]['created_name']) ?>
                                                    
                                                 </center>
                                             </td>
                                             <td>
-                                                <center><? echo ucwords($buildingInfo[$i]['updated_name']) ?>
+                                                <center><?php echo ucwords($buildingInfo[$i]['updated_name']) ?>
                                                    
                                                 </center>
                                             </td>
                                             <td>
-                                                <center><? echo ucwords($buildingInfo[$i]['status']) ?>
+                                                <center><?php echo ucwords($buildingInfo[$i]['status']) ?>
                                                    
                                                 </center>
                                             </td>
 
                                             <td nowrap>
                                                 <center>
-                                                    <a href="/apartment"
+                                                    <a href="/apartment/<?php echo $buildingId ?>"
                                                         class="btn btn-sm btn-primary bg-brand-gradient"
                                                         data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Add Apartment"
                                                         ><i class="fas fa-plus"></i></a>&nbsp;
 
-                                                    <button onclick="EditBuilding(<? echo $buildingId ?>)" class="btn btn-sm btn-primary bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Edit Building"><i class="fal fa-edit"></i></button>&nbsp;
-
+                                                    <button onclick="EditBuilding(<?php echo $buildingId ?>)" class="btn btn-sm btn-primary bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Edit Building"><i class="fal fa-edit"></i></button>&nbsp;
+                                                     <?php if($this->session->userdata('role_id') == SUPER_ADMIN){ ?>
                                                     <button class="btn btn-sm btn-primary bg-brand-gradient"
-                                                    onclick="DeleteBuilding(<? echo $buildingId ?>)" class="btn btn-sm btn-primary bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Delete Building"
+                                                    onclick="DeleteBuilding(<?php echo $buildingId ?>)" class="btn btn-sm btn-primary bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Delete Building"
                                                         ><i class="fal fa-times"></i></button>
+                                                    <?php } ?>
                                                 </center>
                                             </td>
                                         </tr>
                                         
-                                        <? } ?>
+                                        <?php } ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -146,7 +147,7 @@ $heading = "Building";
     }
       function EditBuilding(id) {
         var value = {
-            id: id
+            bilding_id: id
         };
         $.ajax({
             url: baseurl + 'building_edit',
@@ -220,28 +221,28 @@ $(document).ready(function() {
             {
                 extend: 'pdfHtml5',
                 text: 'PDF',
-                 title: '<?= $heading; ?>',
+                 title: '<?php echo $heading; ?>',
                 titleAttr: 'Generate PDF',
                 className: 'btn-outline-danger btn-sm mr-1'
             },
             {
                 extend: 'excelHtml5',
                 text: 'Excel',
-                 title: '<?= $heading; ?>',
+                 title: '<?php echo $heading; ?>',
                 titleAttr: 'Generate Excel',
                 className: 'btn-outline-success btn-sm mr-1'
             },
             {
                 extend: 'csvHtml5',
                 text: 'CSV',
-                 title: '<?= $heading; ?>',
+                 title: '<?php echo $heading; ?>',
                 titleAttr: 'Generate CSV',
                 className: 'btn-outline-primary btn-sm mr-1'
             },
             {
                 extend: 'copyHtml5',
                 text: 'Copy',
-                 title: '<?= $heading; ?>',
+                 title: '<?php echo $heading; ?>',
                 titleAttr: 'Copy to clipboard',
                 className: 'btn-outline-primary btn-sm mr-1'
             },
@@ -249,7 +250,7 @@ $(document).ready(function() {
                extend: 'print',
                     text: 'Print',
                     titleAttr: 'Print Table',
-                    title: '<?= $heading; ?>',
+                    title: '<?php echo $heading; ?>',
                     customize: function(win) {
                         $(win.document.body).find('h1').css('text-align', 'center');
                         $(win.document.body).css('font-size', '9px');

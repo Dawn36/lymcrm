@@ -37,10 +37,10 @@ margin-right: 6px;
                     <div class="card mb-g">
                         <form class="needs-validation" method="post" action="/edit" id='owneeditforms' name='owneeditform' >
                          <input type="hidden" name="table_name" value="owner">
-                         <input type="hidden" name="record_id" value="<? echo $ownerData[0]['record_id']?>">
+                         <input type="hidden" name="record_id" value="<?php echo $ownerData[0]['record_id']?>">
                   <div class="col-md-12 mt-3 mb-3">
                       <label class="form-label">Name<span class="text-danger">*</span></label>
-                      <input class="form-control" placeholder="Enter Name" type="text" id='owner_name' name='name' value="<? echo $ownerData[0]['name']?>" required="">
+                      <input class="form-control" placeholder="Enter Name" type="text" id='owner_name' name='name' value="<?php echo $ownerData[0]['name']?>" required="">
                        
                       <div class="invalid-feedback">
                           Please Enter the Name.
@@ -48,7 +48,7 @@ margin-right: 6px;
                   </div>
                    <div class="col-md-12 mb-3">
                       <label class="form-label">Email<span class="text-danger">*</span></label>
-                      <input class="form-control" placeholder="Enter Email" type="text" id='owner_email' name='email' value="<? echo $ownerData[0]['email']?>" required=""  onblur="CheckValidEmail(this.id)">
+                      <input class="form-control" placeholder="Enter Email" type="text" id='owner_email' name='email' value="<?php echo $ownerData[0]['email']?>" required=""  onblur="CheckValidEmail(this.id)">
                        
                       <div class="invalid-feedback">
                           Please Enter the Email.
@@ -59,7 +59,7 @@ margin-right: 6px;
                  
                   <div class="col-md-12 mb-3">
                       <label class="form-label">Contact<span class="text-danger">*</span></label>
-                      <input class="form-control"   placeholder="Enter Contact" type="number" id='contact' name='contact' value="<? echo $ownerData[0]['phone_number']?>" >
+                      <input class="form-control"   placeholder="Enter Contact" type="number" id='contact' name='contact' value="<?php echo $ownerData[0]['phone_number']?>" >
                       <div class="invalid-feedback">
                           Please Enter Contact.
                       </div>
