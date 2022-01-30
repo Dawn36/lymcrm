@@ -49,7 +49,7 @@
         <div class="col-md-12 mt-3">
             <label class="form-label">Start And End Date<span style="color: red">*</span></label>
             <div class="input-group">
-                <input type="text" class="form-control" type="number" readonly="" id="daterange" name="daterange" placeholder="Select date" style="background: white;" required>
+                <input type="text" class="form-control" type="text" readonly="" id="daterange" name="daterange" placeholder="Select date" style="background: white;" required>
                 <div class="input-group-append">
                     <span class="input-group-text fs-xl">
                         <i class="fal fa-calendar-alt"></i>
@@ -59,7 +59,7 @@
         </div>
         <div class="col-md-12 mt-3">
             <label class="form-label">Rent Amount<span style="color: red">*</span></label>
-            <input class="form-control" placeholder=" Add Rent Amount" type="number" id="rent_amount" name="rent_amount" required>
+            <input class="form-control" placeholder=" Add Rent Amount" type="text" id="rent_amount" name="rent_amount" required>
             <div class="invalid-feedback">
                 Please Add Rent Amount.
             </div>
@@ -120,32 +120,12 @@
         <div class="col-md-12 mt-3 mb-3">
             <button type="button" class="btn btn-secondary float-right mr-2" data-dismiss="modal">Close</button>
             <button id='js-save-btn' id='depositaddformsubmit' onclick="SubmitFrom()" class="btn btn-primary float-right mr-2" type="button">Add</button>
-            <button id='js-save-btn' id='depositaddformsubmit' onclick="asad()" class="btn btn-primary float-right mr-2" type="button">asad</button>
         </div>
     </div>
     </div>
 </form>
 
 <script>
-    function asad() {
-        debugger;
-        var rentAmount = $('#rent_amount').val();
-
-        var counts = document.querySelectorAll('#amount').length;
-        var a = document.querySelectorAll('#amount');
-        var total = 0;
-        for (let index = 0; index < counts; index++) {
-            total += parseInt(a[index].value);
-        }
-
-        if (rentAmount == total) {
-            alert('all good')
-        } else {
-            alert('behnchod');
-        }
-
-    }
-
     function SubmitFrom() {
 
         var form = $("#addDepositForm")
@@ -215,30 +195,15 @@
             total += parseInt(a[index].value);
         }
 
-        if (rentAmount == total) {
-            alert('all good')
-        } else {
+        if (rentAmount != total) {
+            debugger;
             var value = 'Rent amount does not match the amounts in payments';
             Toast(value);
-            $('#amount').focus();
-
+            for (let index = 0; index < count; index++) {
+                a[index].focus();
+            }
             return false;
         }
-        // var rowcount = document.querySelectorAll('[id^=drow]').length
-
-        // var pkgValue = 0;
-        // for (let index = 0; index < rowcount; index++) {
-
-        //     rowId = $('#drow' + index)
-
-        //     var qty = parseInt($(rowId).find('#qty').val());
-        //     var unitPrice = parseFloat($(rowId).find('#unitPrice').val());
-        //     var total = qty * unitPrice;
-        //     pkgValue += parseFloat(total);
-
-        //     $(rowId).find('#total').val(total);
-        //     $('#pakage_value').val(pkgValue);
-        // }
 
         if (confirm("Do you want to add tenancy?")) {
             return true;
@@ -297,14 +262,14 @@
                         </div>
                         <div class="col-md-12 mt-3" id="cheque_no_div">
                             <label class="form-label">Cheque #<span style="color: red">*</span></label>
-                            <input class="form-control" placeholder=" Add Cheque No" type="number" id="cheque_no" name="cheque_no[]" required>
+                            <input class="form-control" placeholder=" Add Cheque No" type="text" id="cheque_no" name="cheque_no[]" value="" required>
                             <div class="invalid-feedback">
                                 Please Add Cheque No.
                             </div>
                         </div>
                         <div class="col-md-12 mt-3 mb-3">
                             <label class="form-label">Amount<span style="color: red">*</span></label>
-                            <input class="form-control" placeholder="Add Amount" id="amount" name="amount[]" required>
+                            <input class="form-control amount" placeholder="Add Amount" id="amount" name="amount[]" required>
                             <div class="invalid-feedback">
                                 Please Add Amount.
                             </div>

@@ -84,7 +84,7 @@ $heading = "Tenancy";
                                                 <center>1</center>
                                             </td>
                                             <td nowrap>
-                                                <center>1</center>
+                                                <center>586</center>
                                             </td>
                                             <td nowrap>
                                                 <center>Saima Bridge View</center>

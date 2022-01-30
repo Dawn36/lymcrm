@@ -43,6 +43,111 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
     <link rel="stylesheet" media="screen, print" href="/assets/dist/css/notifications/toastr/toastr.css">
     <link rel="stylesheet" media="screen, print" href="/assets/dist/css/miscellaneous/lightgallery/lightgallery.bundle.css">
     <link rel="stylesheet" media="screen, print" href="/assets/dist/css/formplugins/summernote/summernote.css">
+
+    <style>
+        .pace,
+        .pace-active,
+        .pace-progress {
+            background-color: #4679cc !important;
+            border-color: #4679cc !important;
+        }
+
+        .btn-primary {
+            background-color: #4679cc !important;
+            border-color: #4679cc !important;
+
+        }
+
+        .btn .btn-primary {
+            background-color: #4679cc !important;
+            border-color: #4679cc !important;
+
+        }
+
+        .bg-primary-600,
+        .bg-primary,
+        .bg-primary-500 {
+            background-color: #4679cc !important;
+            border-color: #4679cc !important;
+        }
+
+        .btn-prep {
+            background-color: white !important;
+            color: #4679cc !important;
+            border-color: #4679cc !important;
+
+        }
+
+        .btn .btn-prep {
+            background-color: white !important;
+            color: #4679cc !important;
+            border-color: #4679cc !important;
+        }
+
+        .card-title {
+            color: #4679cc !important;
+        }
+
+        .has-length .input-group-text:not([class^="bg-"]):not([class*=" bg-"]) {
+            background: #4679cc !important;
+            border-color: #4679cc !important;
+            color: #fff !important;
+        }
+
+        .form-control:focus {
+            border-color: #4679cc !important;
+        }
+
+        .custom-select:focus {
+            border-color: #4679cc !important;
+        }
+
+        .active {
+
+            background-color: #4679cc !important;
+        }
+
+        .pagination .page-link:hover {
+            background-color: #4679cc !important;
+            color: #fff;
+        }
+
+        .page-item.active .page-link {
+            background-color: #4679cc !important;
+            border-color: #4679cc !important;
+        }
+
+        a.btn.header-btn.waves-effect.waves-themed:hover {
+            background-color: #679bed !important;
+        }
+
+        .dropdown-icon-menu>ul>li .btn:hover,
+        .header-btn:hover {
+            -webkit-box-shadow: none;
+            box-shadow: none;
+            border-color: #679bed !important;
+            background: #679bed !important;
+            color: #fff;
+        }
+
+        .nav-menu li a>[class*='fa-'],
+        .nav-menu li a>.ni {
+            color: #fff !important;
+        }
+
+        td::before {
+            background: #4679cc !important;
+        }
+
+        .dtr-details::before {
+            color: #679bed !important;
+        }
+        
+        .dtr-details::after {
+            background: #679bed !important;
+        }
+    </style>
+
 </head>
 
 <body class="mod-bg-1 ">
@@ -65,27 +170,27 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
             </div>
         </div>
     </div>
-      <div class="modal fade" id="myModalCenter" tabindex="-1" role="dialog" aria-hidden="true">
-                    <div class="modal-dialog modal-lg" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 id="modal-title-center" class="modal-title"></h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
-                                </button>
-                            </div>
-                            <div id="modal-body-center" class="modal-body">
-                                
- 
-                            </div>
-                            <!-- <div class="modal-footer">
+    <div class="modal fade" id="myModalCenter" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 id="modal-title-center" class="modal-title"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                    </button>
+                </div>
+                <div id="modal-body-center" class="modal-body">
+
+
+                </div>
+                <!-- <div class="modal-footer">
                                 
                                 <button type="button" class="btn btn-primary">Change Password</button>
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             </div> -->
-                        </div>
-                    </div>
-                </div>
+            </div>
+        </div>
+    </div>
     <p id="js-color-profile" class="d-none">
         <span class="color-primary-50"></span>
         <span class="color-primary-100"></span>
@@ -178,40 +283,39 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
 
 
     <script>
-        function OpenChangePasswordModal()
-        {
-             $.ajax({
-            url: baseurl + 'admin_change_password_modal',
-            success: function(result) {
-                $('#modal-title-center').html('Change Password');
-                $('#modal-body-center').html(result);
-                // $('#modal-body').children()[0][0].value = id;
-                $('#myModalCenter').modal();
-            }
-        });
+        function OpenChangePasswordModal() {
+            $.ajax({
+                url: baseurl + 'admin_change_password_modal',
+                success: function(result) {
+                    $('#modal-title-center').html('Change Password');
+                    $('#modal-body-center').html(result);
+                    // $('#modal-body').children()[0][0].value = id;
+                    $('#myModalCenter').modal();
+                }
+            });
         }
 
         function ResetUser(userId) {
-        var value = {
-            userId: userId,
-        };
-        if (confirm('Are you sure you want to rest Password?')) {
-            $.ajax({
-                url: baseurl + 'user_reset',
-                type: 'POST',
-                data: value,
-                success: function(result) {
-                    var value='Password Rest Sucessfully New password Is 1234';
-                    DeleteToast(value);
-                   // window.location.reload();
-                    // redirect('HiringRequests/viewhiringrequest');
-                   // window.location = baseurl + 'user_show';
+            var value = {
+                userId: userId,
+            };
+            if (confirm('Are you sure you want to rest Password?')) {
+                $.ajax({
+                    url: baseurl + 'user_reset',
+                    type: 'POST',
+                    data: value,
+                    success: function(result) {
+                        var value = 'Password Rest Sucessfully New password Is 1234';
+                        DeleteToast(value);
+                        // window.location.reload();
+                        // redirect('HiringRequests/viewhiringrequest');
+                        // window.location = baseurl + 'user_show';
 
-                }
-            });
-        } 
-    }
-   
+                    }
+                });
+            }
+        }
+
         function Toast(value) {
             Command: toastr["warning"](value)
 
@@ -232,27 +336,27 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
                 "hideMethod": "fadeOut"
             }
         }
-        function DeleteToast(value)
-        {
+
+        function DeleteToast(value) {
             Command: toastr["success"](value)
 
-toastr.options = {
-  "closeButton": false,
-  "debug": false,
-  "newestOnTop": false,
-  "progressBar": true,
-  "positionClass": "toast-top-right",
-  "preventDuplicates": false,
-  "onclick": null,
-  "showDuration": 300,
-  "hideDuration": 100,
-  "timeOut": 5000,
-  "extendedTimeOut": 1000,
-  "showEasing": "swing",
-  "hideEasing": "linear",
-  "showMethod": "fadeIn",
-  "hideMethod": "fadeOut"
-}
+            toastr.options = {
+                "closeButton": false,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": true,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": 300,
+                "hideDuration": 100,
+                "timeOut": 5000,
+                "extendedTimeOut": 1000,
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
         }
 
         function CheckValidEmail(id) {
