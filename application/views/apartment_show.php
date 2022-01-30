@@ -226,7 +226,12 @@ $heading = "Apartment";
 
     // add modal
     function AddApartment(id) {
+        var value = {
+            building_id: id
+        };
         $.ajax({
+            type: 'POST',
+            data: value,
             url: baseurl + 'apartment_add',
             success: function(result) {
                 $('.modal-title').html('Add Apartment');

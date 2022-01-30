@@ -34,16 +34,17 @@ margin-right: 6px;
         <div class="col-xl-12">
             <div id="panel-1" class="panel">
                 <div class="panel-container show"> -->
+
                    <div class="row">
                      <button  class="btn btn-primary btn-sm" type="button" onclick="CreateNewElement()" style="margin-left: 78%;"><i class="fas fa-plus" style="margin-right: 4px"></i>Add More</button>
                    </div>
-            
                     <div class="card mb-g">
-                        <form class="needs-validation" method="post" action="/Users/UsersAddVerify" id='addapartment' name='addapartment' >
-                      
+                        <form class="needs-validation" method="post" action="/" id='addapartment' name='addapartment' >
+                      <input type="hidden">
+                      <input type="hidden" name="building_id" value="<?php echo $buildingId ?>">
                   <div class="col-md-12  mt-3 mb-3">
                       <label class="form-label">Apartment #<span class="text-danger">*</span></label>
-                      <input class="form-control" placeholder="Enter Apartment Number" type="text" id='apartment_num0' name='apartment_num' required="">
+                      <input class="form-control" placeholder="Enter Apartment Number" type="text" id='apartment_num0' name='apartment_num[]' required="">
                        
                       <div class="invalid-feedback">
                           Please Enter Apartment Number.
@@ -74,6 +75,48 @@ margin-right: 6px;
 <!-- this overlay is activated only when mobile menu is triggered -->
 <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div> <!-- END Page Content -->
 <script type="text/javascript">
+    function AddFromApartment()
+    {
+        check=CheckApartment();
+        if(check == true)
+        {
+            if(confirm("Are you sure do you want to add?"))
+            {
+                 $("#addapartment").submit();
+                  var value='Add Sucessfully';
+                DeleteToast(value);
+            }
+        }
+    
+    }
+     function CheckApartment()
+     {
+        debugger;
+        for (var i=0; i <= count; i++) {
+            var supportingLisn = document.getElementById('apartment_num'+ i).value;
+            if (supportingLisn == '' || supportingLisn == 0) {
+            var value='Apartment number is required';
+            Toast(value);
+            document.getElementById('apartment_num'+ i).focus();
+
+            return false;
+        }
+    }
+        if(count == 0)
+        {
+            var supportingLisn = document.getElementById('apartment_num'+ count).value;
+            if (supportingLisn == '' || supportingLisn == 0) {
+            var value='Apartment number is required';
+            Toast(value);
+            document.getElementById('apartment_num'+ count).focus();
+
+            return false;
+            }
+
+        }
+       return true;
+     }
+
      var count = 0;
    
         function CreateNewElement() {
@@ -97,7 +140,7 @@ margin-right: 6px;
             txtNewInputBox.id = "newcheck" + count;
             txtNewInputBox.innerHTML = '<div class="row"><div class="col-md-10 mt-3 mb-3" style="margin-left: 14px;">'+
                       '<label class="form-label">Apartment #<span class="text-danger">*</span></label>'+
-                      '<input class="form-control" placeholder="Enter Apartment Number" type="text" id="apartment_num'+count+'" name="apartment_num" required="">'+
+                      '<input class="form-control" placeholder="Enter Apartment Number" type="text" id="apartment_num'+count+'" name="apartment_num[]" required="">'+
                       '<div class="invalid-feedback">'+
                           'Please Enter Apartment Number.'+
                       '</div>'+
