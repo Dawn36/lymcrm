@@ -1,5 +1,8 @@
 <?php echo validation_errors('<div class="alert alert-danger">', '</div'); ?>
-<form class="needs-validation" name='addDepositForm' id='addDepositForm' method='post' action="" novalidate>
+<?php
+// print_r($buildingInfo);
+?>
+<form class="needs-validation" name='tenancy_submit' id='tenancy_submit' method='post' action="/tenancy_submit" novalidate>
 
     <div class="card mb-g">
         <div class="col-md-12 mt-3" style="display: none;">
@@ -16,9 +19,10 @@
         <div class="col-md-12 mt-3">
             <label class="form-label">Building<span style="color: red">*</span></label>
             <select class="custom-select required" name="building" id="building" required="">
-                <option value="">Select Building</option>
-                <option value="a">Building A</option>
-                <option value="b">Building B</option>
+                <?php for ($i = 0; $i < count($buildingInfo); $i++) { ?>
+                    <option value="<?php echo $buildingInfo[$i]['record_id']; ?>"><?php echo $buildingInfo[$i]['building_name']; ?></option>
+                <?php } ?>
+
             </select>
             <div class="invalid-feedback">
                 Please Select Building.
@@ -28,8 +32,6 @@
             <label class="form-label">Appartment #<span style="color: red">*</span></label>
             <select class="custom-select required" name="appartment_no" id="appartment_no" required="">
                 <option value="">Select Appartment</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
             </select>
             <div class="invalid-feedback">
                 Please Select Apartment Number.
@@ -128,7 +130,7 @@
 <script>
     function SubmitFrom() {
 
-        var form = $("#addDepositForm")
+        var form = $("#tenancy_submit")
 
         if (form[0].checkValidity() === false) {
             event.preventDefault()
@@ -188,11 +190,11 @@
         }
 
         var rentAmount = $('#rent_amount').val();
-        var count = document.querySelectorAll('#amount').length;
-        var a = document.querySelectorAll('#amount');
+        var amountCount = document.querySelectorAll('#amount').length;
+        var amount = document.querySelectorAll('#amount');
         var total = 0;
-        for (let index = 0; index < count; index++) {
-            total += parseInt(a[index].value);
+        for (let index = 0; index < amountCount; index++) {
+            total += parseInt(amount[index].value);
         }
 
         if (rentAmount != total) {
@@ -200,12 +202,23 @@
             var value = 'Rent amount does not match the amounts in payments';
             Toast(value);
             for (let index = 0; index < count; index++) {
-                a[index].focus();
+                amount[index].focus();
             }
             return false;
         }
 
+        var chequescount = document.querySelectorAll('#cheque_no').length;
+        var cheque = document.querySelectorAll('#cheque_no');
+        // for (let index = 0; index < chequescount; index++) {
+            
+        // }
+        
+
+
         if (confirm("Do you want to add tenancy?")) {
+            $("#tenancy_submit").submit();
+            var value = 'Add Sucessfully';
+            DeleteToast(value);
             return true;
         } else {
             return false;
@@ -300,5 +313,47 @@
         if (payment_type == 'cheque') {
             $(this).parent().parent().find('#cheque_no_div').show()
         }
+    });
+
+
+    $('#building').change(function() {
+        var buildingid = $('#building').val();
+
+        var value = {
+            buildingid: buildingid
+        }
+
+        $.ajax({
+            url: baseurl + 'tenancy_apartment',
+            type: 'POST',
+            data: value,
+            success: function(result) {
+                debugger;
+
+                appartments = JSON.parse(result);
+
+
+                if (appartments.length >= 1) {
+                    $('#appartment_no').html('');
+                    var option = document.createElement("option");
+                    option.text = "Select Appartment";
+                    option.value = "";
+                    var select = $("#appartment_no");
+                    select.append(option);
+
+                    for (var i = 0; i < appartments.length; i++) {
+                        var option = document.createElement("option");
+                        option.text = appartments[i].apartment_number;
+                        option.value = appartments[i].record_id;
+                        var select = $("#appartment_no");
+                        select.append(option);
+                    }
+                } else {
+                    $('#appartment_no').html('<option value="">No Appartments</option>');
+                }
+
+            }
+        });
+
     });
 </script>

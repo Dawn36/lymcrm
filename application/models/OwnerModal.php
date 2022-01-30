@@ -71,5 +71,3 @@ class OwnerModal  extends CI_Model{
 	}
 
 }
-
-?>

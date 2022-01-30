@@ -31,3 +31,41 @@ CREATE TABLE `lymcrm`.`apartment`(
   PRIMARY KEY (`record_id`)
 );
 
+
+CREATE TABLE `lymcrm`.`tenancy`(  
+  `record_id` BIGINT(20) NOT NULL AUTO_INCREMENT,
+  `tenancy_no` VARCHAR(255),
+  `building_id` VARCHAR(255),
+  `apartment_id` VARCHAR(255),
+  `tenant_id` VARCHAR(255),
+  `start_date` DATETIME,
+  `end_date` DATETIME,
+  `rent_amount` VARCHAR(255),
+  `no_of_payments` VARCHAR(255),
+  `is_renew` ENUM('yes','no') DEFAULT 'no',
+  `status` ENUM('active','inactive'),
+  `created_at` DATETIME,
+  `created_by` BIGINT(20),
+  `created_name` VARCHAR(255),
+  `updated_at` DATETIME,
+  `updated_by` BIGINT(20),
+  `updated_name` VARCHAR(255),
+  PRIMARY KEY (`record_id`)
+);
+
+CREATE TABLE `lymcrm`.`payment`(  
+  `record_id` BIGINT(20) NOT NULL AUTO_INCREMENT,
+  `tenancy_id` BIGINT(20),
+  `payment_type` ENUM('cash','cheque'),
+  `cheque_no` BIGINT(20),
+  `payment_date` DATETIME,
+  `amount` VARCHAR(255),
+  `created_at` DATETIME,
+  `created_by` BIGINT(20),
+  `created_name` VARCHAR(255),
+  `updated_at` DATETIME,
+  `updated_by` BIGINT(20),
+  `updated_name` VARCHAR(255),
+  PRIMARY KEY (`record_id`)
+);
+

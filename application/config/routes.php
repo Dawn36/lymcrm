@@ -109,11 +109,8 @@ $route['building_verification']     = '/BuildingControllers/BuildingVerification
 $route['apartment/(:num)']  = '/ApartmentControllers/LoadApartmentScreen/$1';
 $route['apartment_add']     = '/ApartmentControllers/LoadAddScreen';
 $route['apartment_verification'] = '/ApartmentControllers/ApartmentVerification';
-$route['apartment_update'] = '/ApartmentControllers/ApartmentUpdate';
 $route['apartment_edit']    = '/ApartmentControllers/LoadEditScreen';
-$route['apartment_exit']    = '/ApartmentControllers/ApartmentExit';
-$route['apartment_delete']    = '/ApartmentControllers/ApartmentDelete';
-//$route['apartment_verification']    = '/ApartmentControllers/AddVerification';
+$route['apartment_verification']    = '/ApartmentControllers/AddVerification';
 
 /////////// user management ///////////////////////////////////////////////////////////
 $route['user'] = '/UserController';
@@ -144,7 +141,9 @@ $route['deposit_email']     = '/DepositController/DepositEmail';
 $route['deposit_image']     = '/DepositController/LoadDepositImage';
 
 ///////////////////   Tenancy route    //////////////////////////////////
-$route['tenancy'] = '/TenancyController';
-$route['tenancy_add'] = '/TenancyController/AddTenancy';
-$route['tenancy_edit'] = '/TenancyController/EditTenancy';
+$route['tenancy']           = '/TenancyController';
+$route['tenancy_add']       = '/TenancyController/AddTenancy';
+$route['tenancy_edit']      = '/TenancyController/EditTenancy';
+$route['tenancy_apartment'] = '/TenancyController/ShowApartment';
+$route['tenancy_submit']    = '/TenancyController/TenancySubmit';
 

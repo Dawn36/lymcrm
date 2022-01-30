@@ -1,4 +1,6 @@
 <?php
+// print_r($tenancyInfo);
+
 $heading = "Tenancy";
 ?>
 <style type="text/css">
@@ -78,52 +80,53 @@ $heading = "Tenancy";
                                         </tr>
                                     </thead>
                                     <tbody>
-
-                                        <tr>
-                                            <td nowrap>
-                                                <center>1</center>
-                                            </td>
-                                            <td nowrap>
-                                                <center>586</center>
-                                            </td>
-                                            <td nowrap>
-                                                <center>Saima Bridge View</center>
-                                            </td>
-                                            <td nowrap>
-                                                <center>101</center>
-                                            </td>
-                                            <td nowrap>
-                                                <center>Asad</center>
-                                            </td>
-                                            <td nowrap>
-                                                <center>24-03-2022</center>
-                                            </td>
-                                            <td nowrap>
-                                                <center>24-03-2022</center>
-                                            </td>
-                                            <td nowrap>
-                                                <center>30000</center>
-                                            </td>
-                                            <td nowrap>
-                                                <center>4</center>
-                                            </td>
-                                            <td nowrap>
-                                                <center>4</center>
-                                            </td>
-                                            <td nowrap>
-                                                <center>4</center>
-                                            </td>
-                                            <td nowrap>
-                                                <center>4</center>
-                                            </td>
-                                            <td nowrap>
-                                                <center>
-                                                    <button onclick="EditTenancy(id)" class="btn btn-sm btn-primary bg-brand-gradient" title="Edit Property"><i class="fal fa-camera"></i></button>
-                                                    <button onclick="EmailTenancy(id)" class="btn btn-sm btn-primary bg-brand-gradient" title="Edit Property"><i class="fal fa-edit"></i></button>
-                                                    <button type="button" onclick="" class="btn btn-sm btn-primary bg-brand-gradient" title="Delete Property"><i class="fal fa-times"></i></button>
-                                                </center>
-                                            </td>
-                                        </tr>
+                                        <?php for ($i = 0; $i < count($tenancyInfo); $i++) { ?>
+                                            <tr>
+                                                <td nowrap>
+                                                    <center><?php echo $i+1; ?></center>
+                                                </td>
+                                                <td nowrap>
+                                                    <center><?php echo $tenancyInfo[$i]['tenancy_no'] ?></center>
+                                                </td>
+                                                <td nowrap>
+                                                    <center><?php echo $tenancyInfo[$i]['building_name'] ?></center>
+                                                </td>
+                                                <td nowrap>
+                                                    <center><?php echo $tenancyInfo[$i]['apartment_number'] ?></center>
+                                                </td>
+                                                <td nowrap>
+                                                    <center><?php echo $tenancyInfo[$i]['name'] ?></center>
+                                                </td>
+                                                <td nowrap>
+                                                    <center><?php echo date('d-M-Y', strtotime($tenancyInfo[$i]['start_date'])); ?></center>
+                                                </td>
+                                                <td nowrap>
+                                                    <center><?php echo date('d-M-Y', strtotime($tenancyInfo[$i]['end_date'])); ?></center>
+                                                </td>
+                                                <td nowrap>
+                                                    <center><?php echo $tenancyInfo[$i]['rent_amount'] ?></center>
+                                                </td>
+                                                <td nowrap>
+                                                    <center><?php echo $tenancyInfo[$i]['no_of_payments'] ?></center>
+                                                </td>
+                                                <td nowrap>
+                                                    <center><?php echo $tenancyInfo[$i]['created_name'] ?></center>
+                                                </td>
+                                                <td nowrap>
+                                                    <center><?php echo date('d-M-Y', strtotime($tenancyInfo[$i]['created_at'])); ?></center>
+                                                </td>
+                                                <td nowrap>
+                                                    <center><?php echo date('d-M-Y', strtotime($tenancyInfo[$i]['updated_at'])); ?></center>
+                                                </td>
+                                                <td nowrap>
+                                                    <center>
+                                                        <button onclick="EditTenancy(id)" class="btn btn-sm btn-primary bg-brand-gradient" title="Edit Property"><i class="fal fa-camera"></i></button>
+                                                        <button onclick="EmailTenancy(id)" class="btn btn-sm btn-primary bg-brand-gradient" title="Edit Property"><i class="fal fa-edit"></i></button>
+                                                        <button type="button" onclick="" class="btn btn-sm btn-primary bg-brand-gradient" title="Delete Property"><i class="fal fa-times"></i></button>
+                                                    </center>
+                                                </td>
+                                            </tr>
+                                        <?php } ?>
                                     </tbody>
                                 </table>
                             </div>
