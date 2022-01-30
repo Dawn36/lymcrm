@@ -1,19 +1,16 @@
 <?php 
 class AdminModal  extends CI_Model{
 
-		public function BedAdd($arrBedInfo)
+		public function PasswordExit($oldPass,$userId,$tableName)
 	 {
-	 	$result = $this->db->insert('ic_bed',$arrBedInfo);
-		log_message('debug',$this->db->last_query());
-        if($result == true)
-        {
-        	return true;
-        }
-        else
-        {
-        	return false;
-        }
-
+	 	$this->db->select('*');
+        $this->db->where('status','active');
+        $this->db->where('password',$oldPass);
+        $this->db->where('record_id',$userId);
+        log_message('debug',$this->db->last_query());
+        return $this->db->get($tableName)->result_array();    
+		
+        
 	}
 	public function BedShow()
 	 {

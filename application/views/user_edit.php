@@ -1,3 +1,18 @@
+<style type="text/css">
+.mt{
+    margin-top: 10px;
+}
+.eye{
+    float: right; 
+margin-top: -26px;
+margin-right: 6px;
+
+}
+.mr4{
+     margin-right: 4px;
+}
+
+</style>
 <form class="needs-validation" name='editUserForm' id='editUserForm' method='post' action="/user_update" novalidate>
 
     <div class="card mb-g">
@@ -44,7 +59,7 @@
         </div>
         <div class="col-md-12 mb-3">
             <label class="form-label">New Password<span class="text-danger">*</span></label>
-            <input class="form-control" placeholder="Enter Password" type="password" id='new_pass' name='new_pass' value="<? echo base64_decode($userInfo[0]['password']) ?>" required="">
+            <input class="form-control" placeholder="Enter Password" type="password" id='new_pass' name='new_pass' value="<? echo base64_decode($userInfo[0]['password']) ?>" required=""><i id="showss_password" class="fal fa-eye eye"></i>
 
             <div class="invalid-feedback">
                 Please Enter Password.
@@ -52,7 +67,7 @@
         </div>
         <div class="col-md-12 mb-3">
             <label class="form-label">Confirm Password<span class="text-danger">*</span></label>
-            <input class="form-control" placeholder="Enter Confirm Password" type="password" id='confirm_pass' name='confirm_pass' value="<? echo base64_decode($userInfo[0]['password']) ?>" required="">
+            <input class="form-control" placeholder="Enter Confirm Password" type="password" id='confirm_passaa' name='confirm_pass' value="<? echo base64_decode($userInfo[0]['password']) ?>" required=""><i id="confirm_pass" class="fal fa-eye eye"></i>
 
             <div class="invalid-feedback">
                 Please Enter Confirm Password.
@@ -123,6 +138,24 @@
 //     });
 
 // }
+  $("#showss_password").click(function(){
+ 
+    var x = document.getElementById("new_pass");
+          if (x.type === "password") {
+            x.type = "text";
+          } else {
+            x.type = "password";
+          }
+  });
+   $("#confirm_pass").click(function(){
+ 
+    var x = document.getElementById("confirm_passaa");
+          if (x.type === "password") {
+            x.type = "text";
+          } else {
+            x.type = "password";
+          }
+  });
 
 function CheckFromOwner()
 {
@@ -136,7 +169,8 @@ function CheckFromOwner()
         form.addClass('was-validated');
 
         if ($('#user_name').val() == '') {
-            alert('Name Type is required');
+            var value='Full Name is required';
+            Toast(value);
             return false;
         }
         // if ($('#user_type').val() == '') {
@@ -144,26 +178,31 @@ function CheckFromOwner()
         //     return false;
         // }
         if ($('#user_email').val() == '') {
-            alert('Email is required');
+           // alert('Email is required');
+            var value='Email is required';
+            Toast(value);
             return false;
         }
-        if ($('#user_contact').val() == '') {
-            alert('Phone number is required');
-            return false;
-        }
+        // if ($('#user_contact').val() == '') {
+        //     var value='Phone number is required';
+        //     Toast(value);
+        //     return false;
+        // }
         if ($('#new_pass').val() == '') {
-            alert('New password is required');
+            var value='New password is required';
+            Toast(value);
             return false;
         }
-        if ($('#confirm_pass').val() == '') {
-            alert('Confirm password is required');
+        if ($('#confirm_passaa').val() == '') {
+             var value='Confirm password is required';
+            Toast(value);
             return false;
         }
-         if($('#confirm_pass').val() != $('#new_pass').val())
+         if($('#confirm_passaa').val() != $('#new_pass').val())
         {
             var value='Password not match';
             Toast(value);
-            $('#confirm_pass').val('');
+            $('#confirm_passaa').val('');
             $('#new_pass').val('');
             return false;
         }
@@ -174,7 +213,7 @@ function CheckFromOwner()
         check=CheckFromOwner();
         if(check == true)
         {
-            if(confirm("Are you sure do you want to add?"))
+            if(confirm("Are you sure do you want to update?"))
             {
             
                 $("#editUserForm").submit();

@@ -1,3 +1,18 @@
+<style type="text/css">
+.mt{
+    margin-top: 10px;
+}
+.eye{
+    float: right; 
+margin-top: -26px;
+margin-right: 6px;
+
+}
+.mr4{
+     margin-right: 4px;
+}
+
+</style>
 <form class="needs-validation" name='addUserForm' id='addUserForm' method='post' action="/user_verification" novalidate>
     <input type="hidden" >
     <input type="hidden" name="email_id" id='email_id' value="" >
@@ -35,7 +50,7 @@
         
         <div class="col-md-12 mb-3">
             <label class="form-label">Phone Number<span class="text-danger">*</span></label>
-            <input class="form-control" placeholder="Enter Phone Number" type="text" id='user_contact' name='contact' required="">
+            <input class="form-control" placeholder="Enter Phone Number" type="text" id='user_contact' name='contact' >
 
             <div class="invalid-feedback">
                 Please Enter Phone Number.
@@ -43,7 +58,7 @@
         </div>
         <div class="col-md-12 mb-3">
             <label class="form-label">New Password<span class="text-danger">*</span></label>
-            <input class="form-control" placeholder="Enter Password" type="password" id='new_pass' name='new_pass' required="">
+            <input class="form-control" placeholder="Enter Password" type="password" id='new_pass' name='new_pass' required=""><i id="show_passworda" class="fal fa-eye eye"></i>
 
             <div class="invalid-feedback">
                 Please Enter Password.
@@ -51,7 +66,7 @@
         </div>
         <div class="col-md-12 mb-3">
             <label class="form-label">Confirm Password<span class="text-danger">*</span></label>
-            <input class="form-control" placeholder="Enter Confirm Password" type="password" id='confirm_pass' name='confirm_pass' required="">
+            <input class="form-control" placeholder="Enter Confirm Password" type="password" id='confirm_pass' name='confirm_pass' required=""><i id="comfirmp_password" class="fal fa-eye eye"></i>
 
             <div class="invalid-feedback">
                 Please Enter Confirm Password.
@@ -69,6 +84,24 @@
 </form>
 
 <script>
+    $("#show_passworda").click(function(){
+ 
+    var x = document.getElementById("new_pass");
+          if (x.type === "password") {
+            x.type = "text";
+          } else {
+            x.type = "password";
+          }
+  });
+   $("#comfirmp_password").click(function(){
+ 
+    var x = document.getElementById("confirm_pass");
+          if (x.type === "password") {
+            x.type = "text";
+          } else {
+            x.type = "password";
+          }
+  });
     var  resulta='';
     function GetFullName()
     {
@@ -149,11 +182,11 @@ function CheckFromOwner()
         }
         
         
-        if ($('#user_contact').val() == '') {
-             var value='Phone number is required';
-            Toast(value);
-            return false;
-        }
+        // if ($('#user_contact').val() == '') {
+        //      var value='Phone number is required';
+        //     Toast(value);
+        //     return false;
+        // }
         if ($('#new_pass').val() == '') {
             var value='New password is required';
             Toast(value);

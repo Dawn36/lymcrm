@@ -14,6 +14,7 @@ class UserModel extends CI_Model
     {
         $this->db->where('record_id',$recordId);
         $result= $this->db->update($tableName,$ownerInfo);
+        log_message('debug',$this->db->last_query());
          // print_r($edit) ;
         
         if($result == true)

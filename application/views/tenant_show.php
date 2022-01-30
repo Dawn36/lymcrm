@@ -92,8 +92,9 @@ $heading = "Tenant";
                                                 <td nowrap>
                                                     <center>
                                                         <button onclick="EditTenant(<? echo $tenantId?>)" class="btn btn-sm btn-primary bg-brand-gradient"  data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Edit Tenant"><i class="fal fa-edit"></i></button>&nbsp;
-
+                                                         <? if($this->session->userdata('role_id') == SUPER_ADMIN){ ?>
                                                         <button type="button" onclick="DeleteTenant(<? echo $tenantId?>)" class="btn btn-sm btn-primary bg-brand-gradient"  data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Delete Tenant"><i class="fal fa-times"></i></button>
+                                                    <? } ?>
                                                     </center>
                                                 </td>
                                             </tr>

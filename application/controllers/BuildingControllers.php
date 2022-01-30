@@ -7,7 +7,7 @@ class BuildingControllers extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		
+       $this->load->model('OwnerModal', 'OWNER');
 	}
 
 
@@ -16,7 +16,9 @@ class BuildingControllers extends CI_Controller
 		if ($this->session->userdata('name')) {
 			$this->load->view('main_header');
 			$this->load->view('sidebar');
-			$this->load->view('building_show');
+			$tableName='building';
+            $data['buildingInfo'] =$this->OWNER->ShowOwner($tableName);
+			$this->load->view('building_show',$data);
 			$this->load->view('footer');
 		} else {
 			redirect('login');

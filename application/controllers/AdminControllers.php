@@ -7,7 +7,9 @@ class AdminControllers extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		
+		$this->load->model('UserModel', 'USER');
+       $this->load->model('OwnerModal', 'OWNER');
+		 $this->load->model('AdminModal', 'ADMIN');
 	}
 
 
@@ -16,7 +18,8 @@ class AdminControllers extends CI_Controller
 		if ($this->session->userdata('name')) {
 			$this->load->view('main_header');
 			$this->load->view('sidebar');
-			$data='';
+			$tableName='users';
+            $data['adminInfo'] =$this->OWNER->ShowOwner($tableName);
 			$this->load->view('admin_show', $data);
 			$this->load->view('footer');
 		} else {
@@ -26,141 +29,118 @@ class AdminControllers extends CI_Controller
 	public function LoadAddScreen()
 	{
 		if ($this->session->userdata('name')) {
-			// $this->load->view('main_header');
-			// $this->load->view('sidebar');
 
 			return $this->load->view('admin_add');
-			// $this->load->view('footer');
+			
 		} else {
 			redirect('login');
 		}
 	}
+   public function ChangePasswordModal()
+   {
+      if ($this->session->userdata('name')) {
+
+         return $this->load->view('change_password');
+         
+      } else {
+         redirect('login');
+      }
+   }
 	public function LoadEditScreen()
 	{
 		if ($this->session->userdata('name')) {
-			// $this->load->view('main_header');
-			// $this->load->view('sidebar');
-			return $this->load->view('admin_edit');
-			// $this->load->view('footer');
+			$arrPost = $this->input->post();
+        	$userId=$arrPost['userId'];
+        	$tableName='users';
+        	$data['adminInfo'] =  $this->OWNER->ShowOwnerEdit($tableName,$userId);
+			return $this->load->view('admin_edit',$data);
+			
 		} else {
 			redirect('login');
 		}
 	}
+	public function AdminUpdate()
+    {
+         if ($this->session->userdata('name')) 
+         {
+            $arrPost = $this->input->post();
+            $tableName='users';
+            $userId=$arrPost['adminId'];
+            $dataInfo['email']=$arrPost['email_name'];
+            $dataInfo['name']=$arrPost['admin_name'];
+            $dataInfo['phone_number']=$arrPost['contact_number'];
+            $dataInfo['owner_tenant_id']='0';
+            $dataInfo['password']=base64_encode($arrPost['admin_password']);
+            $dataInfo['updated_at'] = date("Y-m-d h:i:s");
+            $dataInfo['updated_by'] =  $this->session->userdata('user_id');
+            $dataInfo['updated_name'] =  $this->session->userdata('user_name');
+            $this->USER->UpdateOwnerIsUser($dataInfo,$userId,$tableName);
+            redirect('/admin');
+        }
+    }
+    public function ChangePassword()
+    {
+         if ($this->session->userdata('name')) 
+         {
+            $arrPost = $this->input->post();
+            $tableName='users';
+            $userId=$this->session->userdata('user_id');
+            $dataInfo['password']=base64_encode($arrPost['new_password']);
+            $this->USER->UpdateOwnerIsUser($dataInfo,$userId,$tableName);
+            redirect('/logout');
+        }
+    }
+	 public function AdminVerification()
+    {
+         if ($this->session->userdata('name')) {
+            $arrPost = $this->input->post();
+            
+            $tableName = 'users';
+            $arrInfo['owner_tenant_id'] = '0';
+            $arrInfo['role_id'] = SUB_ADMIN;
+            $arrInfo['email'] = $arrPost['email_name'];
+            $arrInfo['name'] = $arrPost['admin_name'];
+            $arrInfo['phone_number'] = $arrPost['contact_number'];
+            $arrInfo['password'] = base64_encode($arrPost['admin_password']);
+            $arrInfo['status'] = 'active';
+            $arrInfo['created_at'] = date("Y-m-d h:i:s");
+            $arrInfo['created_by'] =  $this->session->userdata('user_id');
+            $arrInfo['created_name'] =  $this->session->userdata('user_name');
+            $check = $this->OWNER->AddOwner($arrInfo,$tableName);
+            if ($check == true) {
+                redirect('/admin');
+            } else {
+                die("asd");
+            }
 
+        }
+    }
+     public function DeleteAdmin(){
+        if ($this->session->userdata('name')) 
+         {
+            $arrPost = $this->input->post();
 
+            $userId=$arrPost['userId'];
+            $dataInfo= array();
+            $tableName='users';
+            $dataInfo['status']='inactive';
+            $data=$this->USER->UpdateOwnerIsUser($dataInfo,$userId,$tableName);
+            echo $data;
+        }
 
+    }
+     public function PasswordExit(){
+        if ($this->session->userdata('name')) 
+         {
+            $arrPost = $this->input->post();
+            $userId= $this->session->userdata('user_id');
+            $oldPass=base64_encode($arrPost['oldpass']);
+            $dataInfo= array();
+            $tableName='users';
+            $data=$this->ADMIN->PasswordExit($oldPass,$userId,$tableName);
+            echo json_encode($data);
+        }
 
-
-
-
-
-
-
-	public function UsersAdd()
-	{
-		if ($this->session->userdata('name')) {
-			$this->load->view('main_header');
-			$this->load->view('sidebar');
-			$data['role'] = $this->MUSER->UserRoleShow();
-			$this->load->view('users_add', $data);
-			$this->load->view('footer');
-		} else {
-			redirect('login');
-		}
-	}
-	public function UsersAddVerify()
-	{
-		$arrUserInfo['user_name'] = $this->input->post('user_name');
-		$arrUserInfo['user_password'] = md5($this->input->post('password'));
-		$arrUserInfo['user_role_id'] = $this->input->post('users_role');
-		$arrUserInfo['user_creation'] = date("Y-m-d");
-		$arrUserInfo['user_status'] = 1;
-		$check = $this->MUSER->UesrAdd($arrUserInfo);
-		if ($check == true) {
-			redirect('/Users');
-		}
-	}
-	public function UserEdit($id)
-	{
-		if ($this->session->userdata('name')) {
-			$this->load->view('main_header');
-			$this->load->view('sidebar');
-			$data['edit'] = $this->MUSER->UserShowEdit($id);
-			$data['role'] = $this->MUSER->GetRole();
-			$this->load->view('users_edit', $data);
-			$this->load->view('footer');
-		} else {
-			redirect('login');
-		}
-	}
-	public function UsersEditVerify()
-	{
-		$arrUserInfoUpdate['user_name'] = $this->input->post('user_name');
-		$arrUserInfoUpdate['user_role_id'] = $this->input->post('users_role');
-		$arrUserInfoUpdate['user_updation'] = date("Y-m-d");
-		$id = $this->input->post('id');
-		$check = $this->MUSER->UesrUpdate($id, $arrUserInfoUpdate);
-		if ($check == true) {
-			redirect('/Users');
-		}
-	}
-	public function UsersRole()
-	{
-		if ($this->session->userdata('name')) {
-			$this->load->view('main_header');
-			$this->load->view('sidebar');
-			$data['role'] = $this->MUSER->UserRoleShow();
-			$this->load->view('users_role_show', $data);
-			$this->load->view('footer');
-		} else {
-			redirect('login');
-		}
-	}
-	public function UsersRoleAdd()
-	{
-		if ($this->session->userdata('name')) {
-			$this->load->view('main_header');
-			$this->load->view('sidebar');
-			$this->load->view('users_role_add');
-			$this->load->view('footer');
-		} else {
-			redirect('login');
-		}
-	}
-	public function UsersRoleAddVerify()
-	{
-		$arrInfo['role_name'] = $this->input->post('user_role');
-		$arrInfo['role_creation'] = date("Y-m-d");
-		$check = $this->MUSER->UesrRoleAdd($arrInfo);
-		if ($check == true) {
-			redirect('/Users/UsersRole');
-		}
-	}
-	public function UsersRoleEdit($id)
-	{
-
-		if ($this->session->userdata('name')) {
-			$this->load->view('main_header');
-			$this->load->view('sidebar');
-			$data['edit'] = $this->MUSER->UserRoleShowEdit($id);
-			$this->load->view('users_role_edit', $data);
-			$this->load->view('footer');
-		} else {
-			redirect('login');
-		}
-	}
-	public function UsersRoleEditVerify($id)
-	{
-
-		if ($this->session->userdata('name')) {
-			$arrUpdate['role_name'] = $this->input->post('role');
-			$arrUpdate['role_updation'] = date("Y-m-d");
-			$update = $this->MUSER->UserRoleUpdate($id, $arrUpdate);
-			if ($update == true) {
-				redirect('/Users/UsersRole');
-			}
-		} else {
-			redirect('login');
-		}
-	}
+    }
+    
 }

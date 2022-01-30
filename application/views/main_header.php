@@ -65,6 +65,27 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
             </div>
         </div>
     </div>
+      <div class="modal fade" id="myModalCenter" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 id="modal-title-center" class="modal-title"></h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                                </button>
+                            </div>
+                            <div id="modal-body-center" class="modal-body">
+                                
+ 
+                            </div>
+                            <!-- <div class="modal-footer">
+                                
+                                <button type="button" class="btn btn-primary">Change Password</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
     <p id="js-color-profile" class="d-none">
         <span class="color-primary-50"></span>
         <span class="color-primary-100"></span>
@@ -157,8 +178,40 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
 
 
     <script>
-        
+        function OpenChangePasswordModal()
+        {
+             $.ajax({
+            url: baseurl + 'admin_change_password_modal',
+            success: function(result) {
+                $('#modal-title-center').html('Change Password');
+                $('#modal-body-center').html(result);
+                // $('#modal-body').children()[0][0].value = id;
+                $('#myModalCenter').modal();
+            }
+        });
+        }
 
+        function ResetUser(userId) {
+        var value = {
+            userId: userId,
+        };
+        if (confirm('Are you sure you want to rest Password?')) {
+            $.ajax({
+                url: baseurl + 'user_reset',
+                type: 'POST',
+                data: value,
+                success: function(result) {
+                    var value='Password Rest Sucessfully New password Is 1234';
+                    DeleteToast(value);
+                   // window.location.reload();
+                    // redirect('HiringRequests/viewhiringrequest');
+                   // window.location = baseurl + 'user_show';
+
+                }
+            });
+        } 
+    }
+   
         function Toast(value) {
             Command: toastr["warning"](value)
 

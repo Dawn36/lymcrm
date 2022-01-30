@@ -2,7 +2,8 @@
 SQLyog Ultimate v10.00 Beta1
 MySQL - 5.5.5-10.4.11-MariaDB : Database - lymcrm
 *********************************************************************
-*/
+*/
+
 
 /*!40101 SET NAMES utf8 */;
 
@@ -284,6 +285,7 @@ CREATE TABLE `users` (
   PRIMARY KEY (`record_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4;
 
+
 /*Data for the table `users` */
 
 insert  into `users`(`record_id`,`name`,`email`,`password`,`last_rest_password`,`phone_number`,`status`,`role_id`,`created_at`,`updated_by`,`created_by`,`updated_at`,`created_name`,`updated_name`,`owner_tenant_id`) values (1,'RTahir','32','YWE=',NULL,1,'active',1,'2021-06-09 20:13:44',NULL,20210609201344,NULL,NULL,NULL,NULL),(2,'admin','2','YWE=',NULL,1,'active',1,'2021-06-05 00:00:00',NULL,NULL,NULL,NULL,NULL,NULL),(6,'ICADMIN','32','YWE=',NULL,1,'active',1,'2021-06-05 00:00:00',NULL,NULL,NULL,NULL,NULL,NULL),(5,'CI','1','YWE=',NULL,1,'active',1,'2021-06-05 00:00:00',NULL,NULL,NULL,NULL,NULL,NULL),(11,'daw','darwingill05@rocketmail.com','MTIz',NULL,0,'inactive',3,'2022-01-30 01:45:03',NULL,6,NULL,'ICADMIN',NULL,4),(12,'aa','dawngill028@gmail.com','MTIz',NULL,2,'inactive',3,'2022-01-30 01:45:12',NULL,6,NULL,'ICADMIN',NULL,5),(10,'a','darwingill@rocsketmail.com','MTIz',NULL,0,'inactive',3,'2022-01-30 01:44:37',NULL,6,NULL,'ICADMIN',NULL,6),(13,'ad33','darwingill6@gmail.com','MTIz',NULL,232,'inactive',4,'2022-01-30 01:45:23',NULL,6,NULL,'ICADMIN',NULL,1),(14,'daw','darwingill05@rocketmail.com','MTIz',NULL,0,'active',3,'2022-01-30 01:51:53',NULL,6,NULL,'ICADMIN',NULL,4);
@@ -292,3 +294,6 @@ insert  into `users`(`record_id`,`name`,`email`,`password`,`last_rest_password`,
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
 /*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+
+

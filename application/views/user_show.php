@@ -25,7 +25,6 @@ $heading = "All Users";
                 <button onclick="AddUser()" class="btn btn-primary float-right bg-brand-gradient" type="button" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Add User"><i class="fas fa-plus" style="margin-right: 4px"></i>Add User</button>
             </div>
         </div>
-
         <section id="" class="">
             <div class="row">
                 <!-- NEW WIDGET START -->
@@ -117,8 +116,9 @@ $heading = "All Users";
                                                         ><i class="fas fa-key"></i></button>&nbsp;
                                                         <button onclick="EditUser(<? echo $ownerTenantId?>,<? echo  $usersType?>,<? echo $userId?>)" class="btn btn-sm btn-primary bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Edit User"
                                                         ><i class="fal fa-edit"></i></button>&nbsp;
-
+                                                         <? if($this->session->userdata('role_id') == SUPER_ADMIN){ ?>
                                                         <button type="button" onclick="DeleteUser(<? echo $ownerTenantId?>,<? echo  $usersType?>,<? echo $userId?>)" class="btn btn-sm btn-primary bg-brand-gradient"data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Delete User"><i class="fal fa-times"></i></button>
+                                                    <? } ?>
                                                     </center>
                                                 </td>
                                             </tr>
@@ -265,13 +265,13 @@ $heading = "All Users";
     });
 
     // add modal
-    function AddUser(id) {
+    function AddUser() {
         $.ajax({
             url: baseurl + 'user_add',
             success: function(result) {
                 $('.modal-title').html('Add User');
                 $('#modal-body').html(result);
-                $('#modal-body').children()[0][0].value = id;
+                // $('#modal-body').children()[0][0].value = id;
                 $('#myModal').modal();
             }
         });
@@ -312,6 +312,7 @@ $heading = "All Users";
                 type: 'POST',
                 data: value,
                 success: function(result) {
+                    debugger;
                     var value='Delete Sucessfully';
                     DeleteToast(value);
                     window.location.reload();
@@ -322,26 +323,7 @@ $heading = "All Users";
             });
         } 
     }
-      function ResetUser(userId) {
-        var value = {
-            userId: userId,
-        };
-        if (confirm('Are you sure you want to rest Password?')) {
-            $.ajax({
-                url: baseurl + 'user_reset',
-                type: 'POST',
-                data: value,
-                success: function(result) {
-                    var value='Password Rest Sucessfully New password Is 1234';
-                    DeleteToast(value);
-                   // window.location.reload();
-                    // redirect('HiringRequests/viewhiringrequest');
-                   // window.location = baseurl + 'user_show';
-
-                }
-            });
-        } 
-    }
+      
 
     
 </script>

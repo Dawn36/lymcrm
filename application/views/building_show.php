@@ -44,7 +44,13 @@ $heading = "Building";
                                                 <center>Building Address</center>
                                             </th>
                                             <th nowrap>
-                                                <center>Building Contact#</center>
+                                                <center>Community</center>
+                                            </th>
+                                             <th nowrap>
+                                                <center>Created By</center>
+                                            </th>
+                                             <th nowrap>
+                                                <center>Updated By</center>
                                             </th>
                                             <th nowrap>
                                                 <center>Status</center>
@@ -56,21 +62,33 @@ $heading = "Building";
                                         </tr>
                                     </thead>
                                     <tbody>
-                                      
+                                    <? for ($i=0; $i <count($buildingInfo); $i++) { 
+                                       $buildingId=$buildingInfo[$i]['record_id'];
+                                     ?>
                                         <tr style="cursor:pointer" >
 
                                             <td>
-                                                <center>dasd</center>
+                                                <center><? echo ucwords($buildingInfo[$i]['building_name'] )?></center>
                                             </td>
                                             <td>
-                                                <center>56</center>
+                                                <center><? echo ucwords($buildingInfo[$i]['building_address']) ?></center>
                                             </td>
                                             <td>
-                                                <center>51</center>
+                                                <center><? echo ucwords($buildingInfo[$i]['building_community']) ?></center>
                                             </td>
                                             
                                             <td>
-                                                <center>active
+                                                <center><? echo ucwords($buildingInfo[$i]['created_name']) ?>
+                                                   
+                                                </center>
+                                            </td>
+                                            <td>
+                                                <center><? echo ucwords($buildingInfo[$i]['updated_name']) ?>
+                                                   
+                                                </center>
+                                            </td>
+                                            <td>
+                                                <center><? echo ucwords($buildingInfo[$i]['status']) ?>
                                                    
                                                 </center>
                                             </td>
@@ -82,16 +100,16 @@ $heading = "Building";
                                                         data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Add Apartment"
                                                         ><i class="fas fa-plus"></i></a>&nbsp;
 
-                                                    <button onclick="EditBuilding(1)" class="btn btn-sm btn-primary bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Edit Building"><i class="fal fa-edit"></i></button>&nbsp;
+                                                    <button onclick="EditBuilding(<? echo $buildingId ?>)" class="btn btn-sm btn-primary bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Edit Building"><i class="fal fa-edit"></i></button>&nbsp;
 
                                                     <button class="btn btn-sm btn-primary bg-brand-gradient"
-                                                    onclick="DeleteBuilding(1)" class="btn btn-sm btn-primary bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Delete Building"
+                                                    onclick="DeleteBuilding(<? echo $buildingId ?>)" class="btn btn-sm btn-primary bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Delete Building"
                                                         ><i class="fal fa-times"></i></button>
                                                 </center>
                                             </td>
                                         </tr>
                                         
-
+                                        <? } ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -110,6 +128,22 @@ $heading = "Building";
 <!-- this overlay is activated only when mobile menu is triggered -->
 <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div>
 <script type="text/javascript">
+      function DeleteBuilding(buildingId) {
+         if(confirm('Are you sure you want to delete?'))
+        {
+             var data = { id: buildingId , tablename : 'building'};
+         $.ajax({
+            url: baseurl + 'delete',
+            type: 'POST',
+            data: data,
+            success: function(result) {
+                var value='Delete Sucessfully';
+                DeleteToast(value);
+               window.location.reload();
+            }
+        }); 
+        }
+    }
       function EditBuilding(id) {
         var value = {
             id: id

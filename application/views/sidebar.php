@@ -1,3 +1,18 @@
+<style type="text/css">
+.mt{
+    margin-top: 10px;
+}
+.eye{
+    float: right; 
+margin-top: -26px;
+margin-right: 6px;
+
+}
+.mr4{
+     margin-right: 4px;
+}
+
+</style>
                 <!-- BEGIN Left Aside -->
                 <aside class="page-sidebar">
                     <div class="page-logo">
@@ -23,7 +38,7 @@
                             </div>
                             <img src="/assets/dist/img/card-backgrounds/cover-2-lg.png" class="cover" alt="cover">
                         </div>
-                        <?php if($this->session->userdata('role_id') == SUPER_ADMIN) { ?>
+                        <?php if($this->session->userdata('role_id') == SUPER_ADMIN || $this->session->userdata('role_id') == SUB_ADMIN) { ?>
                         <ul id="js-nav-menu" class="nav-menu">
                             <li>
                                 <a href="/dashboard" title="Dashboard" data-filter-tags="Dashboard"><i class="fas fa-analytics"></i>
@@ -86,61 +101,7 @@
                     </div> <!-- END NAV FOOTER -->
                 </aside>
                 <!-- END Left Aside -->
-                 <div class="modal fade" id="default-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
-                    <div class="modal-dialog modal-lg" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">Change Password</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="col-xl-12">
-            
-                                    <form class="needs-validation" method="post" action="" id='changepasswordform' name='changepasswordform' >
-                                         <div class="form-row">
-                              <div class="col-md-6 mb-3">
-                                  <label class="form-label">Old Password<span class="text-danger">*</span></label>
-                                  <input class="form-control" placeholder="Enter Old Password" type="Password" id='old_password' name='old_password' required="">
-                                  <div class="invalid-feedback">
-                                      Please Enter the Old Password.
-                                  </div>
-                              </div>
-                              
-                          </div>
-                          <div class="form-row">
-                                 <div class="col-md-6 mb-3">
-                                  <label class="form-label">New Password<span class="text-danger">*</span></label>
-                                  <input class="form-control"   placeholder="New Password" type="Password" id='new_password' name='new_password' required="">
-                                  <div class="invalid-feedback">
-                                      Please Enter Password.
-                                  </div>
-                                  
-                              </div> 
-                              <div class="col-md-6 mb-3">
-                                  <label class="form-label">Confirm<span class="text-danger">*</span></label>
-                                  <input class="form-control"   placeholder="confirm" type="Password" id='confirm' name='confirm' required="">
-                                  <div class="invalid-feedback">
-                                      Please Enter Password.
-                                  </div>
-                                  
-                              </div>                                                   
-                              
-                          </div>
-                          
-                      </form>
-                  </div>
- 
-                            </div>
-                            <div class="modal-footer">
-                                
-                                <button type="button" class="btn btn-primary">Change Password</button>
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+               
 
 
                 <div class="page-content-wrapper">
@@ -195,8 +156,8 @@
                                                 <img src="/assets/dist/img/demo/avatars/avatar-admin.png" class="rounded-circle profile-image" alt="Dr. Codex Lantern">
                                             </span>
                                             <div class="info-card-text">
-                                                <div class="fs-lg text-truncate text-truncate-lg " style="color: white;">Dr. Codex Lantern</div>
-                                                <span class="text-truncate text-truncate-md opacity-80 "style="color: white;">drlantern@gotbootstrap.com</span>
+                                                <div class="fs-lg text-truncate text-truncate-lg " style="color: white;"><?php echo strtoupper($this->session->userdata('name')); ?></div>
+                                                <span class="text-truncate text-truncate-md opacity-80 "style="color: white;"><?php echo strtoupper($this->session->userdata('email')); ?></span>
                                             </div>
                                         </div>
                                     </div>
@@ -211,7 +172,7 @@
                                         <span data-i18n="drpdwn.print">Print</span>
                                         <i class="float-right text-muted fw-n">Ctrl + P</i>
                                     </a>
-                                   <a href="#" type="button"  class="dropdown-item" data-toggle="modal" data-target="#default-example-modal-lg">Change Password</a>
+                                   <a href="#" type="button"  class="dropdown-item" onclick="OpenChangePasswordModal()">Change Password</a>
 
                                     <div class="dropdown-divider m-0"></div>
                                     <a class="dropdown-item fw-500 pt-3 pb-3" href="/logout">

@@ -56,7 +56,7 @@ class OwnerModal  extends CI_Model{
 	 	
 	 	$this->db->where('record_id',$recordId);
 	 	$result= $this->db->update($tableName,$arrInfo);
-	 	 // print_r($edit) ;
+ log_message('debug', $this->db->last_query());
 	 	
 	 	if($result == true)
         {

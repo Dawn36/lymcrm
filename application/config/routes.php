@@ -80,6 +80,12 @@ $route['delete_source'] = '/Bed/SourceDelete';
 $route['admin'] = '/AdminControllers';
 $route['admin_add'] = '/AdminControllers/LoadAddScreen';
 $route['admin_edit'] = '/AdminControllers/LoadEditScreen';
+$route['admin_verification'] = '/AdminControllers/AdminVerification';
+$route['admin_update'] = '/AdminControllers/AdminUpdate';
+$route['admin_delete'] = '/AdminControllers/DeleteAdmin';
+$route['admin_password_exit'] = '/AdminControllers/PasswordExit';
+$route['admin_change_password_modal'] = '/AdminControllers/ChangePasswordModal';
+$route['change_password'] = '/AdminControllers/ChangePassword';
 
 /////////////////////      Owner     ////////////////////////////////////////////
 $route['owner']             = '/OwnerControllers';

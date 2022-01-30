@@ -49,6 +49,9 @@ $heading = "All Admin";
                                                 <center>Admin Password</center>
                                             </th>
                                             <th nowrap>
+                                                <center>Admin Role</center>
+                                            </th>
+                                            <th nowrap>
                                                 <center>Admin Status</center>
                                             </th>
                                             <th nowrap>
@@ -58,40 +61,60 @@ $heading = "All Admin";
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <?php for ($i = 0; $i < count($adminInfo); $i++) {
+                                            $ownerTenantId=$adminInfo[$i]['owner_tenant_id'];
+                                            $usersType=$adminInfo[$i]['role_id'];
+                                            $roleName='';
+                                            if($usersType == SUB_ADMIN)
+                                            {
+                                                $roleName='Sub Admin';
+                                            }
+                                            else if($usersType == OWNER || $usersType == SUPER_ADMIN ||$usersType == TENANT)
+                                            {
+                                                continue;
+                                            }
+                                            $userId=$adminInfo[$i]['record_id'];
+                                        ?>
                                       
                                         <tr style="cursor:pointer" onClick="">
 
                                             <td>
-                                                <center>dsad</center>
+                                                <center><? echo ucwords($adminInfo[$i]['name']) ?></center>
                                             </td>
                                             <td>
-                                                <center>sadsad</center>
+                                                <center><? echo ucwords($adminInfo[$i]['email']) ?></center>
                                             </td>
                                             <td>
-                                                <center>asdsa d</center>
+                                                <center><? echo ucwords($adminInfo[$i]['phone_number']) ?></center>
                                             </td>
                                             <td>
-                                                <center>asdsa d</center>
+                                                <center><? echo base64_decode($adminInfo[$i]['password']) ?></center>
                                             </td>
+                                             <td>
+                                                    <center><? echo $roleName; ?></center>
+                                                </td>
                                             <td>
                                                 <center>
-                                                    asdsa d
+                                                    <? echo ucwords($adminInfo[$i]['status']) ?>
                                                 </center>
                                             </td>
 
-                                            <td style="padding:6px 12px;">
+                                            <td nowrap>
                                                 <center>
-                                                    <button onclick="EditAdmin()"
+                                                    <button onclick="ResetUser(<? echo $userId?>)" class="btn btn-sm btn-primary bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Reset Password"
+                                                        ><i class="fas fa-key"></i></button>&nbsp;
+                                                    <button onclick="EditAdmin(<? echo $userId ?>)"
                                                         class="btn btn-sm btn-primary bg-brand-gradient"
                                                          data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Edit Admin"
                                                         ><i class="fal fa-edit"></i></button>&nbsp;
 
-                                                    <button class="btn btn-sm btn-primary bg-brand-gradient"
+                                                    <button onclick="DeleteAdmin(<? echo $userId ?>)" class="btn btn-sm btn-primary bg-brand-gradient"
                                                     data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Delete Admin"
                                                         ><i class="fal fa-times"></i></button>
                                                 </center>
                                             </td>
                                         </tr>
+                                    <? } ?>
                                         
 
                                     </tbody>
@@ -206,10 +229,15 @@ function AddAdmin(id) {
             }
         });
     }
-    function EditAdmin(id)
-    {
+    function EditAdmin(userId)
+    {   
+        var value = {
+            userId: userId,
+        };
         $.ajax({
             url: baseurl + 'admin_edit',
+            type: 'POST',
+            data: value,
             success: function(result) {
                 $('.modal-title').html('Edit Admin');
                 $('#modal-body').html(result);
@@ -219,42 +247,23 @@ function AddAdmin(id) {
         });
     }
 
-function deleted(aa) {
-
-
-
-        // var data = $("#").serialize();
-        if (confirm("Are you sure you want to delete?")) {
-            // alert(aa);
-            var data = {
-                id: aa
-            };
+ function DeleteAdmin(userId) {
+    //alert(userId);
+        var value = {
+            userId: userId,
+        };
+        if (confirm('Are you sure you want to delete admin?')) {
             $.ajax({
-                url: baseurl + 'delete_bed',
+                url: baseurl + 'admin_delete',
                 type: 'POST',
-                data: data,
+                data: value,
                 success: function(result) {
+                    var value='Delete Sucessfully';
+                    DeleteToast(value);
+                    window.location.reload();
 
-                    //var result = jQuery.parseJSON(result);
-                    if (result) {
-                        var result = jQuery.parseJSON(result);
-                        console.log(result);
-                        if (result == 1) {
-                            alert("Delete Sucessfully")
-                            window.location.reload();
-                        }
-
-
-                    }
-
-                    // $('#order_total_amount').text(Math.round(total_amount));
-
-                },
-                error: function(xhr, textStatus, errorThrown) {
-                    alert(xhr.responseText);
                 }
             });
-
-        }
+        } 
     }
 </script>
