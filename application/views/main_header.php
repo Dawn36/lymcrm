@@ -121,20 +121,20 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
             background-color: #679bed !important;
         }
 
-        .dropdown-icon-menu>ul>li .btn:hover,
+       /* .dropdown-icon-menu>ul>li .btn:hover,
         .header-btn:hover {
             -webkit-box-shadow: none;
             box-shadow: none;
             border-color: #679bed !important;
             background: #679bed !important;
             color: #fff;
-        }
+        }*/
 
-        .nav-menu li a>[class*='fa-'],
+        /*.nav-menu li a>[class*='fa-'],
         .nav-menu li a>.ni {
             color: #fff !important;
         }
-
+*/
         td::before {
             background: #4679cc !important;
         }
