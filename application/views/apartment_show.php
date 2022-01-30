@@ -16,8 +16,6 @@ $heading = "Apartment";
 
         <li class="position-absolute pos-top pos-right d-none d-sm-block"><span class="js-get-date"></span></li>
     </ol>
-<?php print_r($apartmentInfo) ?>
-<?php print_r($buildingId) ?>
     <div id="content">
         <div class="row">
             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
@@ -77,7 +75,7 @@ $heading = "Apartment";
                                                         <button onclick="EditApartment(<?php echo $apartmentId ?>)" class="btn btn-sm btn-primary bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Edit Apartment"
                                                         ><i class="fal fa-edit"></i></button>&nbsp;
                                                         <?php if($this->session->userdata('role_id') == SUPER_ADMIN) { ?>
-                                                        <button type="button" onclick="DeleteApartment(<?php $apartmentId ?>)" class="btn btn-sm btn-primary bg-brand-gradient"data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Delete Apartment"><i class="fal fa-times"></i></button>
+                                                        <button type="button" onclick="DeleteApartment(<?php echo $apartmentId ?>)" class="btn btn-sm btn-primary bg-brand-gradient"data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Delete Apartment"><i class="fal fa-times"></i></button>
                                                     <?php } ?>
                                                     </center>
                                                 </td>
@@ -101,44 +99,6 @@ $heading = "Apartment";
 <!-- this overlay is activated only when mobile menu is triggered -->
 <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div>
 <script type="text/javascript">
-    function deleted(aa) {
-
-
-
-        // var data = $("#").serialize();
-        if (confirm("Are you sure you want to delete?")) {
-            // alert(aa);
-            var data = {
-                id: aa
-            };
-            $.ajax({
-                url: baseurl + 'delete_bed',
-                type: 'POST',
-                data: data,
-                success: function(result) {
-
-                    //var result = jQuery.parseJSON(result);
-                    if (result) {
-                        var result = jQuery.parseJSON(result);
-                        console.log(result);
-                        if (result == 1) {
-                            alert("Delete Sucessfully")
-                            window.location.reload();
-                        }
-
-
-                    }
-
-                    // $('#order_total_amount').text(Math.round(total_amount));
-
-                },
-                error: function(xhr, textStatus, errorThrown) {
-                    alert(xhr.responseText);
-                }
-            });
-
-        }
-    }
 
     $(document).ready(function() {
 
@@ -263,18 +223,20 @@ $heading = "Apartment";
     }
 
         // Delete User
-        function DeleteUser(id) {
+        function DeleteApartment(id) {
         var value = {
             id: id
         };
-        if (confirm('Are you sure you want to delete user?')) {
+        if (confirm('Are you sure you want to delete apartment?')) {
             $.ajax({
-                url: baseurl + 'usercontroller/deleteUser',
+                url: baseurl + 'apartment_delete',
                 type: 'POST',
                 data: value,
                 success: function(result) {
-                    // redirect('HiringRequests/viewhiringrequest');
-                    window.location = baseurl + 'user';
+                   // location.reload();
+                    var value='Delete Sucessfully';
+                    DeleteToast(value);
+                    window.location.reload();
 
                 }
             });
@@ -282,6 +244,8 @@ $heading = "Apartment";
             return false;
         }
     }
+
+   
 
     
 </script>

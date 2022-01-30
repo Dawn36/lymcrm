@@ -34,12 +34,15 @@ margin-right: 6px;
         <div class="col-xl-12">
             <div id="panel-1" class="panel">
                 <div class="panel-container show"> -->
+                    <? print_r($apartmentInfo); ?>
                     <div class="card mb-g">
-                        <form class="needs-validation" method="post" action="/Users/UsersAddVerify" id='editapartment' name='editapartment' >
+                        <input type="hidden" >
+                        <input type="hidden" name="record_id" value="<? echo $apartmentInfo[0]['record_id'] ?>">
+                        <form class="needs-validation" method="post" action="/apartment_update" id='editapartment' name='editapartment' >
                       
                   <div class="col-md-12  mt-3 mb-3">
                       <label class="form-label">Apartment #<span class="text-danger">*</span></label>
-                      <input class="form-control" placeholder="Enter Apartment Number" type="text" id='apartment_num0' name='apartment_num' required="">
+                      <input class="form-control" placeholder="Enter Apartment Number" type="text" id='apartment_num0' value="<?php echo $apartmentInfo[0]['apartment_number']?>" name='apartment_num' required="">
                        
                       <div class="invalid-feedback">
                           Please Enter Apartment Number.
@@ -70,26 +73,55 @@ margin-right: 6px;
 <!-- this overlay is activated only when mobile menu is triggered -->
 <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div> <!-- END Page Content -->
 <script type="text/javascript">
-     var count = 0;
-   
-        function EditFromApartment() {
-           var form = $("#editapartment")
-
-        if (form[0].checkValidity() === false) {
-            event.preventDefault()
-            event.stopPropagation()
+     function EditFromApartment()
+    {
+        check=CheckApartment();
+        if(check == true)
+        {
+            if(confirm("Are you sure do you want to update?"))
+            {
+                 $("#editapartment").submit();
+                  var value='Update Sucessfully';
+                DeleteToast(value);
+            }
         }
-        form.addClass('was-validated');
-        var supportingLisn = document.getElementById('apartment_num'+ count).value;
-        if (supportingLisn == '' || supportingLisn == 0) {
+    
+    }
+     function CheckApartment()
+     {
+       
+            var supportingLisn = document.getElementById('apartment_num0').value;
+            if (supportingLisn == '' || supportingLisn == 0) {
             var value='Apartment number is required';
             Toast(value);
-             document.getElementById('apartment_num'+ count).focus();
+            document.getElementById('apartment_num0').focus();
 
             return false;
-        } 
+            }
+
+        
+       return true;
+     }
+     // var count = 0;
+   
+     //    function EditFromApartment() {
+     //       var form = $("#editapartment")
+
+     //    if (form[0].checkValidity() === false) {
+     //        event.preventDefault()
+     //        event.stopPropagation()
+     //    }
+     //    form.addClass('was-validated');
+     //    var supportingLisn = document.getElementById('apartment_num'+ count).value;
+     //    if (supportingLisn == '' || supportingLisn == 0) {
+     //        var value='Apartment number is required';
+     //        Toast(value);
+     //         document.getElementById('apartment_num'+ count).focus();
+
+     //        return false;
+     //    } 
             
-        }
+     //    }
 
   $("#apartment_num").keypress(function(e){
    var keyCode = e.keyCode || e.which;

@@ -39,12 +39,12 @@ margin-right: 6px;
                      <button  class="btn btn-primary btn-sm" type="button" onclick="CreateNewElement()" style="margin-left: 78%;"><i class="fas fa-plus" style="margin-right: 4px"></i>Add More</button>
                    </div>
                     <div class="card mb-g">
-                        <form class="needs-validation" method="post" action="/" id='addapartment' name='addapartment' >
+                        <form class="needs-validation" method="post" action="/apartment_verification" id='addapartment' name='addapartment' >
                       <input type="hidden">
-                      <input type="hidden" name="building_id" value="<?php echo $buildingId ?>">
+                      <input type="hidden" id='building_id' name="building_id" value="<?php echo $buildingId ?>">
                   <div class="col-md-12  mt-3 mb-3">
                       <label class="form-label">Apartment #<span class="text-danger">*</span></label>
-                      <input class="form-control" placeholder="Enter Apartment Number" type="text" id='apartment_num0' name='apartment_num[]' required="">
+                      <input class="form-control" placeholder="Enter Apartment Number" type="text" id='apartment_num0' onblur="CheckApartmentExit(this.value,this)" name='apartment_num[]' required="">
                        
                       <div class="invalid-feedback">
                           Please Enter Apartment Number.
@@ -140,7 +140,7 @@ margin-right: 6px;
             txtNewInputBox.id = "newcheck" + count;
             txtNewInputBox.innerHTML = '<div class="row"><div class="col-md-10 mt-3 mb-3" style="margin-left: 14px;">'+
                       '<label class="form-label">Apartment #<span class="text-danger">*</span></label>'+
-                      '<input class="form-control" placeholder="Enter Apartment Number" type="text" id="apartment_num'+count+'" name="apartment_num[]" required="">'+
+                      '<input class="form-control" placeholder="Enter Apartment Number" type="text" id="apartment_num'+count+'" onblur="CheckApartmentExit(this.value,this)" name="apartment_num[]" required="">'+
                       '<div class="invalid-feedback">'+
                           'Please Enter Apartment Number.'+
                       '</div>'+
@@ -177,6 +177,32 @@ margin-right: 6px;
             return false;
        }
   });
+   // Modal For Edit User
+   var object='';
+    function CheckApartmentExit(apartmentName,obj) {
+         object=obj;
+        building_id = $('#building_id').val();
+        var value = {
+            apartmentName: apartmentName,
+            building_id:building_id,
+        };
+        $.ajax({
+            url: baseurl + 'apartment_exit',
+            type: 'POST',
+            data: value,
+            success: function(result) {
+                result=JSON.parse(result);
+                 id=object.id
+                if(result != "")
+                {
+                    var value='Apartment Already Exit';
+                    Toast(value);
+                    $("#"+id).val('');
+                    $("#"+id).focus();   
+                }
+            }
+        });
+    }
  
 </script>
 

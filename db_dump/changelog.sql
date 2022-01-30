@@ -15,6 +15,8 @@ CREATE TABLE `lymcrm`.`building`(
 );
 
 
+
+
 CREATE TABLE `lymcrm`.`apartment`(  
   `record_id` BIGINT(20) NOT NULL AUTO_INCREMENT,
   `building_id` BIGINT(20),
@@ -28,3 +30,4 @@ CREATE TABLE `lymcrm`.`apartment`(
   `updated_name` VARCHAR(255),
   PRIMARY KEY (`record_id`)
 );
+

@@ -8,6 +8,7 @@ class ApartmentControllers extends CI_Controller
 	{
 		parent::__construct();
        $this->load->model('ApartmentModal', 'APARTMENT');
+       $this->load->model('OwnerModal', 'OWNER');
 		
 	}
 
@@ -41,8 +42,11 @@ class ApartmentControllers extends CI_Controller
 	public function LoadEditScreen()
 	{
 		if ($this->session->userdata('name')) {
-		
-		return	$this->load->view('apartment_edit');
+			$arrPost = $this->input->post();
+        	$apartmentId=$arrPost['id'];
+        	$tableName='apartment';
+        	$data['apartmentInfo'] =  $this->OWNER->ShowOwnerEdit($tableName,$apartmentId);
+		return	$this->load->view('apartment_edit',$data);
 		
 		} else {
 			redirect('login');
@@ -52,22 +56,18 @@ class ApartmentControllers extends CI_Controller
 	{
 		if ($this->session->userdata('name')) {
 			$arrPost = $this->input->post();
-            print_r($arrPost);
-            die();
-            $tableName = 'users';
-            $arrInfo['owner_tenant_id'] = '0';
-            $arrInfo['role_id'] = SUB_ADMIN;
-            $arrInfo['email'] = $arrPost['email_name'];
-            $arrInfo['name'] = $arrPost['admin_name'];
-            $arrInfo['phone_number'] = $arrPost['contact_number'];
-            $arrInfo['password'] = base64_encode($arrPost['admin_password']);
-            $arrInfo['status'] = 'active';
+            $tableName = 'apartment';
+            $arrInfo['building_id'] = $arrPost['building_id'];
             $arrInfo['created_at'] = date("Y-m-d h:i:s");
             $arrInfo['created_by'] =  $this->session->userdata('user_id');
             $arrInfo['created_name'] =  $this->session->userdata('user_name');
-            $check = $this->OWNER->AddOwner($arrInfo,$tableName);
+            $apartmentCount=count($arrPost['apartment_num']);
+            for ($i=0; $i <$apartmentCount; $i++) { 
+            	$arrInfo['apartment_number'] = strtolower($arrPost['apartment_num'][$i]);
+            	 $check = $this->OWNER->AddOwner($arrInfo,$tableName);
+            }
             if ($check == true) {
-                redirect('/admin');
+                redirect('/apartment/'.$arrPost['building_id']);
             } else {
                 die("asd");
             }
@@ -76,5 +76,60 @@ class ApartmentControllers extends CI_Controller
 			redirect('login');
 		}
 	}
+	public function ApartmentExit()
+	{
+		if ($this->session->userdata('name')) {
+			$arrPost = $this->input->post();
+			
+			$apartmentName=$arrPost['apartmentName'];
+			$buildingId=$arrPost['building_id'];
+			$tableName='apartment';
+            $apartmentInfo = $this->APARTMENT->ApartmentExit($tableName,$apartmentName,$buildingId);
+            echo json_encode($apartmentInfo);
+			
+		} else {
+			redirect('login');
+		}
+	}
+	public function ApartmentDelete()
+	{
+        if ($this->session->userdata('name')) {
+            $arrPost = $this->input->post();
+            $tableName = 'apartment';
+            $recordId = $arrPost['id'];
+            $arrInfo['status'] = "inactive";
+			$check = $this->OWNER->UpdateOwner($arrInfo,$tableName,$recordId);
+            // if ($check == true) {
+            //     redirect('/'.$tableName);
+            // } 
+
+        }
+	}
+	public function ApartmentUpdate()
+    {
+        if ($this->session->userdata('name')) {
+            $arrPost = $this->input->post();
+            print_r($arrPost);
+            die();
+            $tableName = '';
+            $recordId = $arrPost['record_id'];
+            $arrInfo['name'] = $arrPost['name'];
+            $arrInfo['email'] = $arrPost['email'];
+            $arrInfo['phone_number'] = $arrPost['contact'];
+            $arrInfo['updated_at'] = date("Y-m-d h:i:s");
+            $arrInfo['updated_by'] =  $this->session->userdata('user_id');
+            $arrInfo['updated_name'] =  $this->session->userdata('user_name');
+            $arrInfo['status'] = "active";
+			$check = $this->OWNER->UpdateOwner($arrInfo,$tableName,$recordId);
+            if ($check == true) {
+                redirect('/'.$tableName);
+            } else {
+              
+            }
+
+        }
+
+    }
+
 
 }
