@@ -57,12 +57,10 @@ $heading = "Property";
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php for ($i = 0; $i < count($bed); $i++) {
-
-                                        ?>
+                                        
                                             <tr>
                                                 <td>
-                                                    <center><?php echo $bed[$i]['ward_no'] . " - " . $bed[$i]['ward_depart'] ?></center>
+                                                    <center></center>
                                                 </td>
                                                 <td>
                                                     <center>Building</center>
@@ -81,7 +79,7 @@ $heading = "Property";
                                                     </center>
                                                 </td>
                                             </tr>
-                                        <?php } ?>
+                                       
                                     </tbody>
                                 </table>
                             </div>

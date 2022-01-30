@@ -6,8 +6,7 @@ class PropertyController extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('Model_bed', 'MBED');
-        $this->load->model('Model_lovs', 'MLOVS');
+   
     }
 
     public function Index()
@@ -15,7 +14,7 @@ class PropertyController extends CI_Controller
         if ($this->session->userdata('name')) {
             $this->load->view('main_header');
             $this->load->view('sidebar');
-            $data['bed'] = $this->MBED->BedShow();
+            $data['bed'] = "";
             $this->load->view('property_show', $data);
             $this->load->view('footer');
         } else {
