@@ -37,9 +37,10 @@ margin-right: 6px;
                     <? print_r($apartmentInfo); ?>
                     <div class="card mb-g">
                         <input type="hidden" >
-                        <input type="hidden" name="record_id" value="<? echo $apartmentInfo[0]['record_id'] ?>">
+                       
                         <form class="needs-validation" method="post" action="/apartment_update" id='editapartment' name='editapartment' >
-                      
+                            <input type="hidden" name="buildingId" value="<? echo $apartmentInfo[0]['building_id'] ?>">
+                       <input type="hidden" name="record_id" value="<? echo $apartmentInfo[0]['record_id'] ?>">
                   <div class="col-md-12  mt-3 mb-3">
                       <label class="form-label">Apartment #<span class="text-danger">*</span></label>
                       <input class="form-control" placeholder="Enter Apartment Number" type="text" id='apartment_num0' value="<?php echo $apartmentInfo[0]['apartment_number']?>" name='apartment_num' required="">
@@ -59,7 +60,7 @@ margin-right: 6px;
              <button type="button" class="btn btn-secondary float-right mr-2" data-dismiss="modal">Close</button>
               
            
-            <button id='adminaddformsubmit' onclick="EditFromApartment()" class="btn btn-primary float-right mr-2" type="submit">Edit</button>
+            <button id='adminaddformsubmit' onclick="EditFromApartment()" class="btn btn-primary float-right mr-2" type="button">Edit</button>
         </div>
     </div>
           

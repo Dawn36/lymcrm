@@ -109,20 +109,17 @@ class ApartmentControllers extends CI_Controller
     {
         if ($this->session->userdata('name')) {
             $arrPost = $this->input->post();
-            print_r($arrPost);
-            die();
-            $tableName = '';
+            $tableName = 'apartment';
             $recordId = $arrPost['record_id'];
-            $arrInfo['name'] = $arrPost['name'];
-            $arrInfo['email'] = $arrPost['email'];
-            $arrInfo['phone_number'] = $arrPost['contact'];
+            $buildingId = $arrPost['buildingId'];
+            $arrInfo['apartment_number'] = $arrPost['apartment_num'];
             $arrInfo['updated_at'] = date("Y-m-d h:i:s");
             $arrInfo['updated_by'] =  $this->session->userdata('user_id');
             $arrInfo['updated_name'] =  $this->session->userdata('user_name');
             $arrInfo['status'] = "active";
 			$check = $this->OWNER->UpdateOwner($arrInfo,$tableName,$recordId);
             if ($check == true) {
-                redirect('/'.$tableName);
+                redirect('/apartment/'.$buildingId);
             } else {
               
             }
