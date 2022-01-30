@@ -32,6 +32,7 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
     <link rel="stylesheet" media="screen, print" href="/assets/dist/css/statistics/chartist/chartist.css">
     <link rel="stylesheet" media="screen, print" href="/assets/dist/css/fa-brands.css">
     <link rel="stylesheet" media="screen, print" href="/assets/dist/css/fa-solid.css">
+    <link rel="stylesheet" media="screen, print" href="/assets/dist/css/formplugins/bootstrap-datepicker/bootstrap-datepicker.css">
     <link rel="stylesheet" media="screen, print" href="/assets/dist/css/formplugins/bootstrap-daterangepicker/bootstrap-daterangepicker.css">
     <link rel="stylesheet" media="screen, print" href="/assets/dist/css/formplugins/select2/select2.bundle.css">
     <link rel="stylesheet" media="screen, print" href="/assets/dist/css/miscellaneous/reactions/reactions.css">
@@ -136,6 +137,7 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
     <script src="/assets/dist/js/statistics/chartist/chartist.js"></script>
     <script src="/assets/dist/js/statistics/chartjs/chartjs.bundle.js"></script>
     <script src="/assets/dist/js/dependency/moment/moment.js"></script>
+    <script src="/assets/dist/js/formplugins/bootstrap-datepicker/bootstrap-datepicker.js"></script>
     <script src="/assets/dist/js/formplugins/bootstrap-daterangepicker/bootstrap-daterangepicker.js"></script>
     <script src="/assets/dist/js/formplugins/select2/select2.bundle.js"></script>
     <script src="/assets/dist/js/dependency/moment/moment.js"></script>

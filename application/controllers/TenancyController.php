@@ -18,35 +18,23 @@ class TenancyController extends CI_Controller
 			$this->load->view('main_header');
 			$this->load->view('sidebar');
 			// $data['users'] = $this->MUSER->UserShow();
-			$this->load->view('deposit_show');
+			$this->load->view('tenancy_show');
 			$this->load->view('footer');
 		} else {
 			redirect('login');
 		}
 	}
 
-    public function ModalAddTenancy()
+    public function AddTenancy()
     {
-        log_message('debug', 'modalAddTenancy');
-        return  $this->load->view('modal_deposit_add');
+        log_message('debug', 'AddTenancy');
+        return  $this->load->view('tenancy_add');
     }
 
-    public function ModalEditTenancy()
+    public function EditTenancy()
     {
-        log_message('debug', 'ModalEditTenancy');
-        return  $this->load->view('modal_deposit_edit');
-    }
-
-    public function ModalEmailTenancy()
-    {
-        log_message('debug', 'ModalEmailTenancy');
-        return  $this->load->view('modal_deposit_email');
-    }
-
-    public function LoadImageTenancy()
-    {
-        log_message('debug', 'ImageTenancy');
-        return  $this->load->view('deposit_image');
+        log_message('debug', 'EditTenancy');
+        return  $this->load->view('tenancy_edit');
     }
 
 }

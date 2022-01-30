@@ -40,7 +40,7 @@ $heading = "Deposit Slip";
                                                 <center>#</center>
                                             </th>
                                             <th nowrap>
-                                                <center>Building</center>
+                                                <center>Building Name</center>
                                             </th>
                                             <th nowrap>
                                                 <center>Apartment #</center>
@@ -58,6 +58,15 @@ $heading = "Deposit Slip";
                                                 <center>Cheque Amount</center>
                                             </th>
                                             <th nowrap>
+                                                <center>Created By</center>
+                                            </th>
+                                            <th nowrap>
+                                                <center>Created At</center>
+                                            </th>
+                                            <th nowrap>
+                                                <center>Updated At</center>
+                                            </th>
+                                            <th nowrap>
                                                 <center>Action</center>
                                             </th>
                                         </tr>
@@ -65,32 +74,41 @@ $heading = "Deposit Slip";
                                     <tbody>
 
                                         <tr>
-                                            <td>
+                                            <td nowrap>
                                                 <center>1</center>
                                             </td>
-                                            <td>
+                                            <td nowrap>
                                                 <center>Building</center>
                                             </td>
-                                            <td>
+                                            <td nowrap>
                                                 <center>Community</center>
                                             </td>
-                                            <td>
+                                            <td nowrap>
                                                 <center>Owner</center>
                                             </td>
-                                            <td>
+                                            <td nowrap>
                                                 <center>Cheque</center>
                                             </td>
-                                            <td>
+                                            <td nowrap>
                                                 <center>1234</center>
                                             </td>
-                                            <td>
+                                            <td nowrap>
                                                 <center>3000</center>
                                             </td>
-                                            <td>
+                                            <td nowrap>
+                                                <center>3000</center>
+                                            </td>
+                                            <td nowrap>
+                                                <center>3000</center>
+                                            </td>
+                                            <td nowrap>
+                                                <center>3000</center>
+                                            </td>
+                                            <td nowrap>
                                                 <center>
                                                     <button onclick="LoadDepositImage(id)" type="button" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="View Attachments" class="btn btn-sm btn-primary bg-brand-gradient" title="Attachment"><i class="fal fa-camera"></i></button>&nbsp;
-                                                    <button onclick="DepositEdit(id)"  data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Edit" class="btn btn-sm btn-primary bg-brand-gradient" title="Edit"><i class="fal fa-edit"></i></button>&nbsp;
-                                                    <button onclick="DepositEmail(id)"  data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Email" class="btn btn-sm btn-primary bg-brand-gradient" title="Email"><i class="fal fa-envelope"></i></button>&nbsp;
+                                                    <button onclick="DepositEdit(id)" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Edit" class="btn btn-sm btn-primary bg-brand-gradient" title="Edit"><i class="fal fa-edit"></i></button>&nbsp;
+                                                    <button onclick="DepositEmail(id)" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Email" class="btn btn-sm btn-primary bg-brand-gradient" title="Email"><i class="fal fa-envelope"></i></button>&nbsp;
                                                     <button type="button" onclick="" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Delete" class="btn btn-sm btn-primary bg-brand-gradient" title="Delete" class="btn btn-sm btn-primary bg-brand-gradient" title="Delete Property"><i class="fal fa-times"></i></button>
                                                 </center>
                                             </td>

@@ -1,5 +1,5 @@
 <?php
-$heading = "Deposit Slip";
+$heading = "Tenancy";
 ?>
 <style type="text/css">
     .mt {
@@ -11,7 +11,7 @@ $heading = "Deposit Slip";
 
     <ol class="breadcrumb page-breadcrumb">
         <li class="breadcrumb-item"><a href="javascript:void(0);">LymCrm</a></li>
-        <li class="breadcrumb-item">Deposit Slip</li>
+        <li class="breadcrumb-item">Tenancy</li>
 
         <li class="position-absolute pos-top pos-right d-none d-sm-block"><span class="js-get-date"></span></li>
     </ol>
@@ -22,7 +22,7 @@ $heading = "Deposit Slip";
                 <h1> <span class="page-title txt-color-blueDark"><?= $heading ?></span></h1>
             </div>
             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-8">
-                <button onclick="AddDeposit()" class="btn btn-primary float-right bg-brand-gradient" type="button"><i class="fas fa-plus" style="margin-right: 4px"></i>Add Deposit Slip</button>
+                <button onclick="AddTenancy()" class="btn btn-primary float-right bg-brand-gradient" type="button"><i class="fas fa-plus" style="margin-right: 4px"></i>Add Tenancy</button>
             </div>
         </div>
         <section id="" class="">
@@ -40,22 +40,37 @@ $heading = "Deposit Slip";
                                                 <center>#</center>
                                             </th>
                                             <th nowrap>
-                                                <center>Building</center>
+                                                <center>Tenancy #</center>
+                                            </th>
+                                            <th nowrap>
+                                                <center>Building Name</center>
                                             </th>
                                             <th nowrap>
                                                 <center>Apartment #</center>
                                             </th>
                                             <th nowrap>
-                                                <center>Owner Name</center>
+                                                <center>Tenant Name</center>
                                             </th>
                                             <th nowrap>
-                                                <center>Payment Type</center>
+                                                <center>Start Date</center>
                                             </th>
                                             <th nowrap>
-                                                <center>Cheque #</center>
+                                                <center>End Date</center>
                                             </th>
                                             <th nowrap>
-                                                <center>Cheque Amount</center>
+                                                <center>Rent Amount</center>
+                                            </th>
+                                            <th nowrap>
+                                                <center># Of Payments</center>
+                                            </th>
+                                            <th nowrap>
+                                                <center>Created By</center>
+                                            </th>
+                                            <th nowrap>
+                                                <center>Created At</center>
+                                            </th>
+                                            <th nowrap>
+                                                <center>Updated At</center>
                                             </th>
                                             <th nowrap>
                                                 <center>Action</center>
@@ -65,32 +80,46 @@ $heading = "Deposit Slip";
                                     <tbody>
 
                                         <tr>
-                                            <td>
+                                            <td nowrap>
                                                 <center>1</center>
                                             </td>
-                                            <td>
-                                                <center>Building</center>
+                                            <td nowrap>
+                                                <center>1</center>
                                             </td>
-                                            <td>
-                                                <center>Community</center>
+                                            <td nowrap>
+                                                <center>Saima Bridge View</center>
                                             </td>
-                                            <td>
-                                                <center>Owner</center>
+                                            <td nowrap>
+                                                <center>101</center>
                                             </td>
-                                            <td>
-                                                <center>Cheque</center>
+                                            <td nowrap>
+                                                <center>Asad</center>
                                             </td>
-                                            <td>
-                                                <center>1234</center>
+                                            <td nowrap>
+                                                <center>24-03-2022</center>
                                             </td>
-                                            <td>
-                                                <center>3000</center>
+                                            <td nowrap>
+                                                <center>24-03-2022</center>
                                             </td>
-                                            <td>
+                                            <td nowrap>
+                                                <center>30000</center>
+                                            </td>
+                                            <td nowrap>
+                                                <center>4</center>
+                                            </td>
+                                            <td nowrap>
+                                                <center>4</center>
+                                            </td>
+                                            <td nowrap>
+                                                <center>4</center>
+                                            </td>
+                                            <td nowrap>
+                                                <center>4</center>
+                                            </td>
+                                            <td nowrap>
                                                 <center>
-                                                    <button onclick="ImageDeposit(id)" class="btn btn-sm btn-primary bg-brand-gradient" title="Edit Property"><i class="fal fa-camera"></i></button>&nbsp;
-                                                    <button onclick="EditDeposit(id)" class="btn btn-sm btn-primary bg-brand-gradient" title="Edit Property"><i class="fal fa-edit"></i></button>&nbsp;
-                                                    <button onclick="EmailDeposit(id)" class="btn btn-sm btn-primary bg-brand-gradient" title="Edit Property"><i class="fal fa-envelope"></i></button>&nbsp;
+                                                    <button onclick="EditTenancy(id)" class="btn btn-sm btn-primary bg-brand-gradient" title="Edit Property"><i class="fal fa-camera"></i></button>
+                                                    <button onclick="EmailTenancy(id)" class="btn btn-sm btn-primary bg-brand-gradient" title="Edit Property"><i class="fal fa-edit"></i></button>
                                                     <button type="button" onclick="" class="btn btn-sm btn-primary bg-brand-gradient" title="Delete Property"><i class="fal fa-times"></i></button>
                                                 </center>
                                             </td>
@@ -237,11 +266,11 @@ $heading = "Deposit Slip";
     });
 
     // add modal
-    function AddDeposit(id) {
+    function AddTenancy(id) {
         $.ajax({
-            url: baseurl + 'deposit_add',
+            url: baseurl + 'tenancy_add',
             success: function(result) {
-                $('.modal-title').html('Add New Deposit');
+                $('.modal-title').html('Add New Tenancy');
                 $('#modal-body').html(result);
                 $('#modal-body').children()[0][0].value = id;
                 $('#myModal').modal();
@@ -251,16 +280,16 @@ $heading = "Deposit Slip";
 
 
     // Modal For Edit User
-    function EditDeposit(id) {
+    function EditTenancy(id) {
         var value = {
             id: id
         };
         $.ajax({
-            url: baseurl + 'deposit_edit',
+            url: baseurl + 'tenancy_edit',
             type: 'POST',
             data: value,
             success: function(result) {
-                $('.modal-title').html('Edit Deposit');
+                $('.modal-title').html('Edit Tenancy');
                 //  $('#modal-body').html(``);
                 $('#modal-body').html(result);
                 $('#myModal').modal();
@@ -269,16 +298,16 @@ $heading = "Deposit Slip";
         });
     }
     // Modal For Edit User
-    function EmailDeposit(id) {
+    function EmailTenancy(id) {
         var value = {
             id: id
         };
         $.ajax({
-            url: baseurl + 'deposit_email',
+            url: baseurl + 'Tenancy_email',
             type: 'POST',
             data: value,
             success: function(result) {
-                $('.modal-title').html('Email Deposit Slip');
+                $('.modal-title').html('Email Tenancy Slip');
                 //  $('#modal-body').html(``);
                 $('#modal-body').html(result);
                 $('#myModal').modal();
@@ -287,16 +316,16 @@ $heading = "Deposit Slip";
         });
     }
 
-    function ImageDeposit(id) {
+    function ImageTenancy(id) {
         var value = {
             id: id
         };
         $.ajax({
-            url: baseurl + 'deposit_image',
+            url: baseurl + 'Tenancy_image',
             type: 'POST',
             data: value,
             success: function(result) {
-                $('.modal-title').html('Image Deposit');
+                $('.modal-title').html('Image Tenancy');
                 //  $('#modal-body').html(``);
                 $('#modal-body').html(result);
                 $('#myModal').modal();
@@ -306,11 +335,11 @@ $heading = "Deposit Slip";
     }
 
     // Delete User
-    function DeleteDeposit(id) {
+    function DeleteTenancy(id) {
         var value = {
             id: id
         };
-        if (confirm('Are you sure you want to delete Deposit slip?')) {
+        if (confirm('Are you sure you want to delete Tenancy?')) {
             $.ajax({
                 url: baseurl + '',
                 type: 'POST',
