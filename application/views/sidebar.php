@@ -30,7 +30,7 @@ margin-right: 6px;
                     <nav id="js-primary-nav" class="primary-nav" role="navigation">
                       
                         <div class="info-card">
-                            <img data-toggle="modal" data-target="#default-example-modal-center" src="<?php echo $profilePicture ?>" class="profile-image rounded-circle" alt="Dr. Codex Lantern">
+                            <img data-toggle="modal" data-target="#default-example-modal-center" src="<?php echo $profilePicture ?>" class="profile-image rounded-circle" alt="upload picture">
                             <div class="info-card-text">
                                 <a href="#" class="d-flex align-items-center text-white">
                                     <span class="text-truncate text-truncate-sm d-inline-block">
@@ -48,11 +48,13 @@ margin-right: 6px;
                                     <span class="nav-link-text" data-i18n="nav.dashboard">Dashboard</span>
                                 </a>
                             </li>
+                            <?php if($this->session->userdata('role_id') == SUPER_ADMIN)  { ?>
                             <li>
                                 <a href="/admin" title="Admin Management" data-filter-tags="Admin Management"><i class="fas fa-user-secret"></i>
                                     <span class="nav-link-text" data-i18n="nav.Admin Management">Admin Management</span>
                                 </a>
                             </li>
+                        <?php } ?>
                              <li>
                                 <a href="/user" title="Users Management" data-filter-tags="Users Management"><i class="fas fa-users"></i>
                                     <span class="nav-link-text" data-i18n="nav.Users Management">Users Management</span>
@@ -89,7 +91,20 @@ margin-right: 6px;
                                 </a>
                             </li>
                         </ul>
-                        <?php } ?>
+                        <?php } if($this->session->userdata('role_id') == OWNER)  { ?>
+                        <ul id="js-nav-menu" class="nav-menu">
+                            <li>
+                                <a href="/owner_property" title="Property" data-filter-tags="Property"><i class="fas fa-building"></i>
+                                    <span class="nav-link-text" data-i18n="nav.Property">Property</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/dashboard" title="Tenant" data-filter-tags="Tenant"><i class="fas fa-user-alt"></i>
+                                    <span class="nav-link-text" data-i18n="nav.Tenant">Tenant</span>
+                                </a>
+                            </li>
+                        </ul>
+                    <?php } ?>
                     </nav>
                     <!-- END PRIMARY NAVIGATION -->
                     <!-- NAV FOOTER -->
@@ -147,7 +162,7 @@ margin-right: 6px;
                             <!-- app user menu -->
                             <div>
                                 <a href="#" data-toggle="dropdown" title="drlantern@gotbootstrap.com" class="header-icon d-flex align-items-center justify-content-center ml-2">
-                                    <img src="<?php echo $profilePicture ?>" class="profile-image rounded-circle" alt="Dr. Codex Lantern">
+                                    <img src="<?php echo $profilePicture ?>" class="profile-image rounded-circle" alt="">
                                     <!-- you can also add username next to the avatar with the codes below:
                                     <span class="ml-1 mr-1 text-truncate text-truncate-header hidden-xs-down">Me</span>
                                     <i class="ni ni-chevron-down hidden-xs-down"></i> -->
@@ -156,7 +171,7 @@ margin-right: 6px;
                                     <div class="dropdown-header bg-trans-gradient d-flex flex-row py-4 rounded-top">
                                         <div class="d-flex flex-row align-items-center mt-1 mb-1 ">
                                             <span class="mr-2">
-                                                <img src="<?php echo $profilePicture ?>" class="rounded-circle profile-image" alt="Dr. Codex Lantern">
+                                                <img src="<?php echo $profilePicture ?>" class="rounded-circle profile-image" alt="">
                                             </span>
                                             <div class="info-card-text">
                                                 <div class="fs-lg text-truncate text-truncate-lg " style="color: white;"><?php echo strtoupper($this->session->userdata('name')); ?></div>

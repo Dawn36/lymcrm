@@ -7,8 +7,6 @@ $heading = "Property";
     }
 </style>
 <main id="js-page-content" role="main" class="page-content">
-
-
     <ol class="breadcrumb page-breadcrumb">
         <li class="breadcrumb-item"><a href="javascript:void(0);">LymCrm</a></li>
         <li class="breadcrumb-item">Property</li>
@@ -52,34 +50,52 @@ $heading = "Property";
                                             </th>
                                             <th nowrap>
                                                 <center>
+                                                    <center>Created By</center>
+                                            </th>
+                                            <th nowrap>
+                                                <center>
+                                                    <center>Updated By</center>
+                                            </th>
+                                            <th nowrap>
+                                                <center>
                                                     <center>Action</center>
                                             </th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        
+                                        <?php for ($i=0; $i < count($propertyData); $i++) {
+                                            $recordId=$propertyData[$i]['record_id'];
+                                            $apartmentId=$propertyData[$i]['apartment_id'];
+                                            ?> 
                                             <tr>
                                                 <td>
-                                                    <center></center>
+                                                    <center><?php echo $propertyData[$i]['building_name'] ?></center>
                                                 </td>
                                                 <td>
-                                                    <center>Building</center>
+                                                    <center><?php echo $propertyData[$i]['apartment_number'] ?></center>
                                                 </td>
                                                 <td>
-                                                    <center>Community</center>
+                                                    <center><?php echo $propertyData[$i]['community_building'] ?></center>
                                                 </td>
                                                 <td>
-                                                    <center>Owner</center>
+                                                    <center><?php echo $propertyData[$i]['name'] ?></center>
+                                                </td>
+                                                <td>
+                                                    <center><?php echo $propertyData[$i]['created_name'] ?></center>
+                                                </td>
+                                                <td>
+                                                    <center><?php echo $propertyData[$i]['updated_name'] ?></center>
                                                 </td>
                                                 <td style="padding:6px 12px;">
                                                     <center>
-                                                        <button onclick="EditProperty(1)" class="btn btn-sm btn-primary bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Edit Property"><i class="fal fa-edit"></i></button>&nbsp;
-
-                                                        <button type="button" onclick="DeleteProperty(1)" class="btn btn-sm btn-primary bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Delete Property"><i class="fal fa-times"></i></button>
+                                                        <button onclick="EditProperty(<? echo $recordId ?>,<? echo $apartmentId ?>)" class="btn btn-sm btn-primary bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Edit Property"><i class="fal fa-edit"></i></button>&nbsp;
+                                                        <?php if($this->session->userdata('role_id') == SUPER_ADMIN){ ?>
+                                                        <button type="button" onclick="DeleteProperty(<? echo $recordId ?>,<? echo $apartmentId ?>)" class="btn btn-sm btn-primary bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Delete Property"><i class="fal fa-times"></i></button>
+                                                    <?php } ?>
                                                     </center>
                                                 </td>
                                             </tr>
-                                       
+                                        <?php } ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -98,44 +114,6 @@ $heading = "Property";
 <!-- this overlay is activated only when mobile menu is triggered -->
 <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div>
 <script type="text/javascript">
-    function deleted(aa) {
-
-
-
-        // var data = $("#").serialize();
-        if (confirm("Are you sure you want to delete?")) {
-            // alert(aa);
-            var data = {
-                id: aa
-            };
-            $.ajax({
-                url: baseurl + 'delete_bed',
-                type: 'POST',
-                data: data,
-                success: function(result) {
-
-                    //var result = jQuery.parseJSON(result);
-                    if (result) {
-                        var result = jQuery.parseJSON(result);
-                        console.log(result);
-                        if (result == 1) {
-                            alert("Delete Sucessfully")
-                            window.location.reload();
-                        }
-
-
-                    }
-
-                    // $('#order_total_amount').text(Math.round(total_amount));
-
-                },
-                error: function(xhr, textStatus, errorThrown) {
-                    alert(xhr.responseText);
-                }
-            });
-
-        }
-    }
 
     $(document).ready(function() {
 
@@ -222,13 +200,13 @@ $heading = "Property";
     });
 
     // add modal
-    function AddProperty(id) {
+    function AddProperty() {
         $.ajax({
             url: baseurl + 'property_add',
             success: function(result) {
                 $('.modal-title').html('Add New Property');
                 $('#modal-body').html(result);
-                $('#modal-body').children()[0][0].value = id;
+                
                 $('#myModal').modal();
             }
         });
@@ -236,9 +214,10 @@ $heading = "Property";
 
 
     // Modal For Edit User
-    function EditProperty(id) {
+    function EditProperty(recordId,apartmentId) {
         var value = {
-            id: id
+            recordId: recordId,
+            apartmentId:apartmentId,
         };
         $.ajax({
             url: baseurl + 'property_edit',
@@ -255,17 +234,19 @@ $heading = "Property";
     }
 
     // Delete User
-    function DeleteProperty(id) {
+    function DeleteProperty(recordId,apartmentId) {
         var value = {
-            id: id
+            recordId: recordId,
+            apartmentId:apartmentId,
         };
         if (confirm('Are you sure you want to delete Property?')) {
             $.ajax({
-                url: baseurl + 'Propertycontroller/DeleteProperty',
+                url: baseurl + 'delete_property',
                 type: 'POST',
                 data: value,
                 success: function(result) {
-                    // redirect('HiringRequests/viewhiringrequest');
+                    var value='Delete Sucessfully';
+                    DeleteToast(value);
                     window.location = baseurl + 'property';
 
                 }

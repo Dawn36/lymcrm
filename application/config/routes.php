@@ -97,6 +97,8 @@ $route['edit']      			= '/OwnerControllers/EditOwnerTenant';
 $route['delete']      			= '/OwnerControllers/DeleteOwnerTenant';
 $route['email_exit']      		= '/OwnerControllers/EmailExit';
 
+
+
 /////////////////////      Building     ////////////////////////////////////////////
 $route['building']          = '/BuildingControllers';
 $route['building_add']      = '/BuildingControllers/LoadAddScreen';
@@ -110,7 +112,7 @@ $route['apartment/(:num)']  = '/ApartmentControllers/LoadApartmentScreen/$1';
 $route['apartment_add']     = '/ApartmentControllers/LoadAddScreen';
 $route['apartment_verification'] = '/ApartmentControllers/ApartmentVerification';
 $route['apartment_edit']    = '/ApartmentControllers/LoadEditScreen';
-$route['apartment_verification']    = '/ApartmentControllers/AddVerification';
+$route['apartment_update']    = '/ApartmentControllers/ApartmentUpdate';
 
 /////////// user management ///////////////////////////////////////////////////////////
 $route['user'] = '/UserController';
@@ -127,6 +129,14 @@ $route['profile'] = '/UserController/uploadprofile';
 $route['property'] = '/PropertyController';
 $route['property_add'] = '/PropertyController/LoadAddScreen';
 $route['property_edit'] = '/PropertyController/LoadEditScreen';
+$route['property_verification'] = '/PropertyController/AddVerification';
+$route['property_update'] = '/PropertyController/PropertyUpdate';
+$route['building_get'] = '/PropertyController/GetBuilding';
+$route['building_apartment'] = '/PropertyController/GetApartment';
+$route['building_apartment_edit'] = '/PropertyController/BuildingApartmentEdit';
+$route['delete_property'] = '/PropertyController/DeleteProperty';
+$route['owner_property']             = '/PropertyController/GetOwnerProperty';
+
 ////////////////////// Tenant /////////////////////////////////////////////////
 $route['tenant'] = '/TenantController';
 $route['tenant_add'] = '/TenantController/LoadAddScreen';
@@ -147,4 +157,6 @@ $route['tenancy_add']       = '/TenancyController/AddTenancy';
 $route['tenancy_edit']      = '/TenancyController/EditTenancy';
 $route['tenancy_apartment'] = '/TenancyController/ShowApartment';
 $route['tenancy_submit']    = '/TenancyController/TenancySubmit';
+
+
 

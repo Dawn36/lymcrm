@@ -1,4 +1,4 @@
-<form class="needs-validation" name='addPropertyForm' id='addPropertyForm' method='post' action="/hiringrequests/addhiringrequest" novalidate>
+<form class="needs-validation" name='addPropertyForm' id='addPropertyForm' method='post' action="/property_verification" novalidate>
 
     <div class="card mb-g">
         <div class="col-md-12 mt-3" style="display: none;">
@@ -6,10 +6,8 @@
         </div>
          <div class="col-md-12 mb-3 mt-3">
         <label class="form-label">Building<span style="color: red">*</span></label>
-            <select class="custom-select" name="building" id="building" required="">
+            <select class="custom-select" onchange="GetCommunity()" name="building_id" id="building" required="">
                 <option value="">Select Building</option>
-                <option value="a">Building A</option>
-                <option value="b">Building B</option>
             </select>
             <div class="invalid-feedback">
                 Please Select Building.
@@ -17,10 +15,8 @@
         </div>
         <div class="col-md-12 mb-3">
         <label class="form-label">Appartment #<span style="color: red">*</span></label>
-            <select class="custom-select" name="appartment_no" id="appartment_no" required="">
+            <select class="custom-select" name="apartment_id" id="appartment_no" required="">
                 <option value="">Select Appartment #</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
                 </select>
             <div class="invalid-feedback">
                 Please Select Appartment Number.
@@ -37,10 +33,12 @@
 
         <div class="col-md-12 mb-3">
         <label class="form-label">Owner<span style="color: red">*</span></label>
-            <select class="custom-select" name="owner" id="owner" required="">
+            <select class="custom-select" name="owner_id" id="owner" required="">
                 <option value="">Select Owner</option>
-                <option value="a">Owner A</option>
-                <option value="b">Owner B</option>
+                <?php for ($i=0; $i <count($ownerData) ; $i++) {  ?>
+                     <option value="<?php echo $ownerData[$i]['record_id'] ?>"><?php echo $ownerData[$i]['name'] ?></option>
+                  <?php  
+                } ?>
             </select>
             <div class="invalid-feedback">
                 Please Select Owner.
@@ -51,14 +49,88 @@
     <div class="row">
         <div class="col-md-12 mb-3">
             <button type="button" class="btn btn-secondary float-right mr-2" data-dismiss="modal">Close</button>
-            <button id='js-save-btn' class="btn btn-primary float-right mr-2" type="submit">Add</button>
+            <button id='js-save-btn' onclick="SubmitProperty()" class="btn btn-primary float-right mr-2" type="button">Add</button>
         </div>
     </div>
     </div>
 </form>
 
 <script>
-    $("#addPropertyForm").submit(function() {
+    GetBuilding();
+    var buildingArr='';
+    function GetBuilding() {
+        
+        $.ajax({
+            url: baseurl + 'building_get',
+            
+            success: function(result) {
+              
+                $('#building').html('');
+                buildingArr=JSON.parse(result);
+                var option = document.createElement("option");
+            option.text = "Select Building";
+            option.value = "";
+            var select = document.getElementById("building");
+            select.appendChild(option);
+                for(var i = 0; i < buildingArr.length ; i++){
+             var option = document.createElement("option");
+            option.text = buildingArr[i].building_name;
+            option.value = buildingArr[i].record_id;
+            var select = document.getElementById("building");
+            select.appendChild(option);
+            }
+            }
+        });
+    }
+     function GetCommunity()
+    {
+        var id=$("#building").val();
+        for(var i = 0; i < buildingArr.length ; i++){
+            if(buildingArr[i].record_id == id)
+            {
+                $("#community").val(buildingArr[i].building_community);
+            }
+        }
+
+        var data = {
+        id: id
+    };
+    $.ajax({
+        url: baseurl + 'building_apartment',
+        type: 'POST',
+        data: data,
+        success: function(result) {
+           resulta=JSON.parse(result);
+          
+          if(resulta.length >= 1)
+          {
+            $('#appartment_no').html('');
+             var option = document.createElement("option");
+            option.text = "Select Appartment";
+            option.value = "";
+            var select = document.getElementById("appartment_no");
+            select.appendChild(option);
+
+            for(var i = 0; i < resulta.length ; i++){
+             var option = document.createElement("option");
+            option.text = resulta[i].apartment_number;
+            option.value = resulta[i].record_id;
+            var select = document.getElementById("appartment_no");
+            select.appendChild(option);
+            }
+          }
+          else
+          {
+            $('#appartment_no').html('<option value="">All apartment already added in list</option>');
+          }
+            
+
+        }
+    });
+
+    }
+
+    function SubmitProperty(){
 
         var form = $("#addPropertyForm")
 
@@ -89,13 +161,14 @@
             Toast(value);
             return false;
         }
-        if (confirm("Do you want to add property?")) {
-            return true;
-        } else {
-            return false;
-        }
+         if(confirm("Are you sure do you want to add?"))
+            {
+                 $("#addPropertyForm").submit();
+                  var value='Add Sucessfully';
+                DeleteToast(value);
+            }
 
-    });
+    }
       $("#community").keypress(function(e){
    var keyCode = e.keyCode || e.which;
     var regex = /^[A-Za-z0-9 ]+$/;

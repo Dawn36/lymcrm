@@ -12,7 +12,15 @@ class Login extends CI_Controller {
 	public function index()
 	{
 		if ($this->session->userdata('name')) {
-			redirect('landing_page');
+			
+			if($this->session->userdata('role_id') == OWNER)
+			{
+				redirect('owner_property');
+			}
+			else
+			{
+				redirect('landing_page');
+			}
 		
 		} else {
 			$this->load->view('view_login');
@@ -42,10 +50,19 @@ class Login extends CI_Controller {
 				$this->session->set_userdata('user_name',$check[0]['user_name']);
 				$this->session->set_userdata('email',$check[0]['email']);
 				$this->session->set_userdata('role_id', $check[0]['role_id']);
+				$this->session->set_userdata('owner_tenant_id', $check[0]['owner_tenant_id']);
 				$this->session->set_userdata('role_name', $check[0]['role_name']);
 				$this->session->set_userdata('profile_picture', $check[0]['profile_picture']);
 			//	log_message("debug","SESSION VALUE :: ".$this->session->userdata('name'));
+				if($this->session->userdata('role_id') == OWNER)
+			{
+				redirect('owner_property');
+			}
+			else
+			{
 				redirect('landing_page');
+			}
+			
 			}
 			else
 			{

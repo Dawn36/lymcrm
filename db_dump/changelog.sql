@@ -69,3 +69,30 @@ CREATE TABLE `lymcrm`.`payment`(
   PRIMARY KEY (`record_id`)
 );
 
+CREATE TABLE `lymcrm`.`property`(  
+  `record_id` BIGINT(20) NOT NULL AUTO_INCREMENT,
+  `building_id` BIGINT(20),
+  `apartment_id` BIGINT(20),
+  `owner_id` BIGINT(20),
+  `created_at` DATETIME,
+  `created_by` BIGINT(20),
+  `created_name` VARCHAR(255),
+  `updated_at` DATETIME,
+  `updated_by` BIGINT(20),
+  `updated_name` VARCHAR(255),
+  PRIMARY KEY (`record_id`)
+);
+ALTER TABLE `lymcrm`.`apartment`   
+  ADD COLUMN `is_tenant` ENUM('yes','no') DEFAULT 'no'   NULL AFTER `updated_name`;
+
+  
+ALTER TABLE `lymcrm`.`property`   
+  ADD COLUMN `community_building` VARCHAR(255) NULL AFTER `building_id`;
+
+
+ALTER TABLE `lymcrm`.`property`   
+  ADD COLUMN `status` ENUM('active','inactive') DEFAULT 'active'   NULL AFTER `owner_id`;
+
+
+ALTER TABLE `lymcrm`.`apartment`   
+  CHANGE `is_tenant` `is_owner` ENUM('yes','no') CHARSET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT 'no'   NULL;
