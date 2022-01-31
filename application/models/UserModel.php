@@ -26,5 +26,21 @@ class UserModel extends CI_Model
             return false;
         }
     }
+    public function UploadProfilePic($ownerInfo, $recordId, $tableName)
+    {
+        $this->session->unset_userdata('profile_picture');
+        $this->session->set_userdata('profile_picture', $ownerInfo['profile_picture']);
+        $this->db->where('record_id', $recordId);
+        $result = $this->db->update($tableName, $ownerInfo);
+        // print_r($edit) ;
+        log_message('debug', 'UpdateOwnerIsUser : ' . $this->db->last_query());
+
+
+        if ($result == true) {
+            return $result;
+        } else {
+            return false;
+        }
+    }
     
 }

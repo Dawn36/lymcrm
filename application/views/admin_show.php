@@ -22,7 +22,7 @@ $heading = "All Admin";
                 <h1> <span class="page-title txt-color-blueDark">Admin Management</span></h1>
             </div>
             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-8">
-                <button onclick="AddAdmin()" class="btn btn-primary float-right bg-brand-gradient" type="button" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Add Admin"><i class="fas fa-plus" style="margin-right: 4px"></i>Add Admin</button>
+                <button onclick="AddAdminScreen()" class="btn btn-primary float-right bg-brand-gradient" type="button" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Add Admin"><i class="fas fa-plus" style="margin-right: 4px"></i>Add Admin</button>
             </div>
         </div>
         <section id="" class="">
@@ -218,7 +218,7 @@ $heading = "All Admin";
             ]
         });
     });
-function AddAdmin(id) {
+function AddAdminScreen(id) {
         $.ajax({
             url: baseurl + 'admin_add',
             success: function(result) {

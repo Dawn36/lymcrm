@@ -1,3 +1,6 @@
+<?php
+                $profilePicture = $this->session->userdata('profile_picture') ? $this->session->userdata('profile_picture') : '/assets/dist/img/demo/avatars/avatar-m.png'
+                ?>
 <style type="text/css">
 .mt{
     margin-top: 10px;
@@ -27,7 +30,7 @@ margin-right: 6px;
                     <nav id="js-primary-nav" class="primary-nav" role="navigation">
                       
                         <div class="info-card">
-                            <img src="/assets/dist/img/demo/avatars/avatar-admin.png" class="profile-image rounded-circle" alt="Dr. Codex Lantern">
+                            <img data-toggle="modal" data-target="#default-example-modal-center" src="<?php echo $profilePicture ?>" class="profile-image rounded-circle" alt="Dr. Codex Lantern">
                             <div class="info-card-text">
                                 <a href="#" class="d-flex align-items-center text-white">
                                     <span class="text-truncate text-truncate-sm d-inline-block">
@@ -144,7 +147,7 @@ margin-right: 6px;
                             <!-- app user menu -->
                             <div>
                                 <a href="#" data-toggle="dropdown" title="drlantern@gotbootstrap.com" class="header-icon d-flex align-items-center justify-content-center ml-2">
-                                    <img src="/assets/dist/img/demo/avatars/avatar-admin.png" class="profile-image rounded-circle" alt="Dr. Codex Lantern">
+                                    <img src="<?php echo $profilePicture ?>" class="profile-image rounded-circle" alt="Dr. Codex Lantern">
                                     <!-- you can also add username next to the avatar with the codes below:
                                     <span class="ml-1 mr-1 text-truncate text-truncate-header hidden-xs-down">Me</span>
                                     <i class="ni ni-chevron-down hidden-xs-down"></i> -->
@@ -153,7 +156,7 @@ margin-right: 6px;
                                     <div class="dropdown-header bg-trans-gradient d-flex flex-row py-4 rounded-top">
                                         <div class="d-flex flex-row align-items-center mt-1 mb-1 ">
                                             <span class="mr-2">
-                                                <img src="/assets/dist/img/demo/avatars/avatar-admin.png" class="rounded-circle profile-image" alt="Dr. Codex Lantern">
+                                                <img src="<?php echo $profilePicture ?>" class="rounded-circle profile-image" alt="Dr. Codex Lantern">
                                             </span>
                                             <div class="info-card-text">
                                                 <div class="fs-lg text-truncate text-truncate-lg " style="color: white;"><?php echo strtoupper($this->session->userdata('name')); ?></div>
@@ -187,3 +190,58 @@ margin-right: 6px;
                     <!-- END Page Header -->
                     <!-- BEGIN Page Content -->
                     <!-- the #js-page-content id is needed for some plugins to initialize -->
+                     <div class="modal fade" id="default-example-modal-center" tabindex="-1" role="dialog" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">
+                                        Upload Profile
+                                    </h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form class="needs-validation" novalidate method="post" action="profile" name="uploadProfileForm" id="uploadProfileForm" enctype='multipart/form-data'>
+
+                                        <div class="col-md-12 mb-3">
+                                            <input class="form-control alphaonly mt-3" type="file" onchange="return fileValidation()" id='profile' name='profile' required>
+                                            <span class='error' id='usererror' name='usererror'></span>
+                                            <div class="invalid-feedback">
+                                                Please Upload a Profile Picture.
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-12 mb-3">
+                                                <button type="button" class="btn btn-secondary float-right mr-2" data-dismiss="modal">Close</button>
+                                                <button class="btn btn-primary float-right mr-2" id="upload" value='upload'>Upload</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                    <script>
+                        $('#OpenImgUpload').click(function() {
+                            $('#imgupload').trigger('click');
+                        });
+
+                        function fileValidation() {
+                            var fileInput = document.getElementById('profile');
+
+                            var filePath = fileInput.value;
+
+                            var allowedExtensions =
+                                /(\.jpg|\.jpeg|\.png|\.gif)$/i;
+
+                            if (!allowedExtensions.exec(filePath)) {
+                                alert('Invalid file type');
+                                fileInput.value = '';
+                                return false;
+                            } else {
+                                return true;
+                            }
+                        }
+                    </script>

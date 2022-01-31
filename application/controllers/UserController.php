@@ -160,6 +160,40 @@ class UserController extends CI_Controller
 
         }
     }
+     public function uploadprofile()
+    {
+        if ($this->session->userdata('name')) {
+            $config['upload_path']          = './uploads/profile/';
+            $config['allowed_types']        = 'jpg|png';
+            // $config['max_size'] = 2000;
+            // $config['max_width'] = 1500;
+            // $config['max_height'] = 1500;
+            log_message('debug', 'uploadprofile a');
+
+            $this->load->library('upload', $config);
+            if (!$this->upload->do_upload('profile')) {
+                $error = array('error' => $this->upload->display_errors());
+                log_message('debug', 'err : ' . print_r($error, true));
+            } else {
+                $data = array('upload_data' => $this->upload->data());
+                log_message('debug', 'uploadprofile b: ' . print_r($data, true));
+            }
+
+            $arrPost = $this->input->post();
+            $tableName = 'users';
+            $userId = $this->session->userdata('user_id');
+
+            $dataInfo['updated_at'] = date("Y-m-d h:i:s");
+            $dataInfo['updated_by'] =  $this->session->userdata('user_id');
+            $dataInfo['updated_name'] =  $this->session->userdata('user_name');
+            $dataInfo['profile_picture'] = base_url() . 'uploads/profile/' . $data['upload_data']['file_name'];
+
+            $result = $this->USER->UploadProfilePic($dataInfo, $userId, $tableName);
+            log_message('debug', 'uploadprofile :: ' . $result['profile_picture']);
+
+            redirect('/user');
+        }
+    }
     
    
     

@@ -121,6 +121,7 @@ $route['user_update'] = '/UserController/UserUpdate';
 $route['user_delete'] = '/UserController/UserDelete';
 $route['user_reset'] = '/UserController/UserRest';
 $route['owner_tenant_email'] = '/UserController/GetEmailTenantOwner';
+$route['profile'] = '/UserController/uploadprofile';
 
 ///////////// Property  //////////////////////////////////////////////////////
 $route['property'] = '/PropertyController';
