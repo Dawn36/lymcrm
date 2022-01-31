@@ -291,9 +291,6 @@
 
 
             </div>`);
-
-
-
         }
 
         $('.date').datepicker({
