@@ -22,7 +22,7 @@
         </div>
         <div class="col-md-12 mb-3">
             <label class="form-label">Contact#<span class="text-danger">*</span></label>
-            <input class="form-control" placeholder="Enter Mobile Number" type="number" id="contact" name="contact" value="<?php echo $tenantData[0]['phone_number'] ?>" >
+            <input class="form-control" placeholder="Enter Mobile Number" type="text" id="contact" name="contact" value="<?php echo $tenantData[0]['phone_number'] ?>" >
             <div class="invalid-feedback">
                 Please Enter Mobile Number.
             </div>
