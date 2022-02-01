@@ -2,7 +2,7 @@
  <!-- BEGIN Page Footer -->
                     <footer class="page-footer" role="contentinfo">
                         <div class="d-flex align-items-center flex-1 text-muted">
-                            <span class="hidden-md-down fw-700">2021 © IC Portal by&nbsp;</span>
+                            <span class="hidden-md-down fw-700">Created with <i class="fas fa-heart"></i> to help you&nbsp;</span>
                         </div>
                       
                     </footer>
