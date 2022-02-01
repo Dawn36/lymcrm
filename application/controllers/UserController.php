@@ -194,7 +194,11 @@ class UserController extends CI_Controller
             redirect('/user');
         }
     }
-    
+    public function LoadUserProfile()
+    {
+        
+        return  $this->load->view('profile_picture');
+    }
    
     
 }

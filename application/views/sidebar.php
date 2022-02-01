@@ -30,7 +30,7 @@ margin-right: 6px;
                     <nav id="js-primary-nav" class="primary-nav" role="navigation">
                       
                         <div class="info-card">
-                            <img data-toggle="modal" data-target="#default-example-modal-center" src="<?php echo $profilePicture ?>" class="profile-image rounded-circle" alt="upload picture">
+                            <img id='OpenImgUpload' src="<?php echo $profilePicture ?>" class="profile-image rounded-circle" alt="upload picture">
                             <div class="info-card-text">
                                 <a href="#" class="d-flex align-items-center text-white">
                                     <span class="text-truncate text-truncate-sm d-inline-block">
@@ -205,42 +205,22 @@ margin-right: 6px;
                     <!-- END Page Header -->
                     <!-- BEGIN Page Content -->
                     <!-- the #js-page-content id is needed for some plugins to initialize -->
-                     <div class="modal fade" id="default-example-modal-center" tabindex="-1" role="dialog" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h4 class="modal-title">
-                                        Upload Profile
-                                    </h4>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true"><i class="fal fa-times"></i></span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <form class="needs-validation" novalidate method="post" action="profile" name="uploadProfileForm" id="uploadProfileForm" enctype='multipart/form-data'>
-
-                                        <div class="col-md-12 mb-3">
-                                            <input class="form-control alphaonly mt-3" type="file" onchange="return fileValidation()" id='profile' name='profile' required>
-                                            <span class='error' id='usererror' name='usererror'></span>
-                                            <div class="invalid-feedback">
-                                                Please Upload a Profile Picture.
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="col-md-12 mb-3">
-                                                <button type="button" class="btn btn-secondary float-right mr-2" data-dismiss="modal">Close</button>
-                                                <button class="btn btn-primary float-right mr-2" id="upload" value='upload'>Upload</button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                 </div>
-                            </div>
-                        </div>
-                    </div>
+                    
                     <script>
+                         function AddUser() {
+                               
+                            }
                         $('#OpenImgUpload').click(function() {
-                            $('#imgupload').trigger('click');
+                            // $('#imgupload').trigger('click');
+                             $.ajax({
+                                    url: baseurl + 'profile_img',
+                                    success: function(result) {
+                                        $('#modal-title-small').html('Upload Profile');
+                                        $('#modal-body-center-small').html(result);
+                                        // $('#modal-body').children()[0][0].value = id;
+                                        $('#myModalCenterSmall').modal();
+                                    }
+                                });
                         });
 
                         function fileValidation() {
@@ -256,6 +236,7 @@ margin-right: 6px;
                                 fileInput.value = '';
                                 return false;
                             } else {
+                                
                                 return true;
                             }
                         }

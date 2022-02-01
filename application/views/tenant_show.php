@@ -23,7 +23,9 @@ $heading = "Tenant";
             </div>
             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-8">
                 <button onclick="AddTenant()" class="btn btn-primary float-right bg-brand-gradient" type="button" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Add Tenant"><i class="fas fa-plus" style="margin-right: 4px"></i>Add Tenant</button>
+                <button class=" btn btn-primary float-right bg-brand-gradient mr-3" onclick="TenantUploader()"><i class="fas fa-file-import mr-2"></i>Import Tenant</button>
             </div>
+
         </div>
         <section id="" class="">
             <div class="row">
@@ -245,5 +247,17 @@ $heading = "Tenant";
             ]
         });
     });
+     function TenantUploader() {
+         $.ajax({
+            url: baseurl + 'tenant_uploader',
+            success: function(result) {
+                $('#modal-title-small').html('Upload Tenant');
+                $('#modal-body-center-small').html(result);
+                                        // $('#modal-body').children()[0][0].value = id;
+                $('#myModalCenterSmall').modal();
+            }
+        });
+       
+    }
 
 </script>

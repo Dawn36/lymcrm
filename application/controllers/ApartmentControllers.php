@@ -81,7 +81,7 @@ class ApartmentControllers extends CI_Controller
 		if ($this->session->userdata('name')) {
 			$arrPost = $this->input->post();
 			
-			$apartmentName=$arrPost['apartmentName'];
+			$apartmentName=strtolower($arrPost['apartmentName']);
 			$buildingId=$arrPost['building_id'];
 			$tableName='apartment';
             $apartmentInfo = $this->APARTMENT->ApartmentExit($tableName,$apartmentName,$buildingId);
@@ -112,7 +112,7 @@ class ApartmentControllers extends CI_Controller
             $tableName = 'apartment';
             $recordId = $arrPost['record_id'];
             $buildingId = $arrPost['buildingId'];
-            $arrInfo['apartment_number'] = $arrPost['apartment_num'];
+            $arrInfo['apartment_number'] = strtolower($arrPost['apartment_num']);
             $arrInfo['updated_at'] = date("Y-m-d h:i:s");
             $arrInfo['updated_by'] =  $this->session->userdata('user_id');
             $arrInfo['updated_name'] =  $this->session->userdata('user_name');

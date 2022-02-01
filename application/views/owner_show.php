@@ -1,5 +1,6 @@
 <?php
 $heading = "Owner";
+
 ?>
 <style type="text/css">
 .mt {
@@ -23,6 +24,7 @@ $heading = "Owner";
             </div>
             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-8">
                  <button onclick="AddOwner()" class="btn btn-primary float-right bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Add Owner" type="button"><i class="fas fa-plus" style="margin-right: 4px"></i>Add Owner</button>
+                 <button class=" btn btn-primary float-right bg-brand-gradient mr-3" onclick="OwnerUploader()"><i class="fas fa-file-import mr-2"></i>Import Owner</button>
             </div>
         </div>
         <section id="" class="">
@@ -123,6 +125,17 @@ $heading = "Owner";
 <!-- this overlay is activated only when mobile menu is triggered -->
 <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div>
 <script type="text/javascript">
+//     if(location.href.split('=')[1].split('=')[0] == '1')
+// {
+//     Message("File Uploaded Sucessfully");
+// }
+
+// if(location.href.split('=')[1].split('=')[0] == '0')
+// {
+//     Message("Header not match"); 
+// }
+      
+
     function EditOwner(id) {
          var data = { id: id , tablename : 'owner'};
          $.ajax({
@@ -156,6 +169,11 @@ $heading = "Owner";
         
        
     }
+    function Message(message)
+    {
+        var value=message;
+        DeleteToast(value);
+    }
      function AddOwner() {
          $.ajax({
             url: baseurl + 'owner_add',
@@ -165,6 +183,18 @@ $heading = "Owner";
                 $('#modal-body').html(result);
                 // $('#modal-body').children()[0][0].value = id;
                 $('#myModal').modal();
+            }
+        });
+       
+    }
+     function OwnerUploader() {
+         $.ajax({
+            url: baseurl + 'owner_uploader',
+            success: function(result) {
+                $('#modal-title-small').html('Upload Owner');
+                $('#modal-body-center-small').html(result);
+                                        // $('#modal-body').children()[0][0].value = id;
+                $('#myModalCenterSmall').modal();
             }
         });
        

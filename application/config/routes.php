@@ -75,7 +75,8 @@ $route['user_added'] = 'users/UsersAdd';
 $route['source'] = '/Bed/Source';
 $route['source_add'] = '/Bed/SourceAdd';
 $route['delete_source'] = '/Bed/SourceDelete';
-
+//////////////////////     Image     ////////////////////////////////////////////
+$route['profile_img'] = '/UserController/LoadUserProfile';
 /////////////////////      Admin     ////////////////////////////////////////////
 $route['admin'] = '/AdminControllers';
 $route['admin_add'] = '/AdminControllers/LoadAddScreen';
@@ -91,6 +92,9 @@ $route['change_password'] = '/AdminControllers/ChangePassword';
 $route['owner']             = '/OwnerControllers';
 $route['owner_add']         = '/OwnerControllers/LoadAddScreen';
 $route['owner_edit']        = '/OwnerControllers/LoadEditScreen';
+$route['ownerCsv'] 			= '/OwnerControllers/ownerCsv';
+$route['owner_uploader'] 	= '/OwnerControllers/OwnerUploader';
+$route['download_file'] 	= '/OwnerControllers/DownloadFiles';
 // add owner And tenant
 $route['add']      			= '/OwnerControllers/AddOwnerTenant';
 $route['edit']      			= '/OwnerControllers/EditOwnerTenant';
@@ -113,6 +117,7 @@ $route['apartment_add']     = '/ApartmentControllers/LoadAddScreen';
 $route['apartment_verification'] = '/ApartmentControllers/ApartmentVerification';
 $route['apartment_edit']    = '/ApartmentControllers/LoadEditScreen';
 $route['apartment_update']    = '/ApartmentControllers/ApartmentUpdate';
+$route['apartment_exit']    = '/ApartmentControllers/ApartmentExit';
 
 /////////// user management ///////////////////////////////////////////////////////////
 $route['user'] = '/UserController';
@@ -141,7 +146,8 @@ $route['owner_property']             = '/PropertyController/GetOwnerProperty';
 $route['tenant'] = '/TenantController';
 $route['tenant_add'] = '/TenantController/LoadAddScreen';
 $route['tenant_edit'] = '/TenantController/LoadEditScreen';
-
+$route['tenantCsv']		= '/TenantController/tenantCsv';
+$route['tenant_uploader']		= '/TenantController/TenantUploader';
 
 
 ///////////////////   Deposit slip route    //////////////////////////////////

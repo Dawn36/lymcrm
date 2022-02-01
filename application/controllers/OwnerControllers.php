@@ -22,15 +22,24 @@ class OwnerControllers extends CI_Controller
 			redirect('login');
 		}
 	}
-	public function LoadAddScreen()
+	public function OwnerUploader()
 	{
 		if ($this->session->userdata('name')) {
-			return $this->load->view('owner_add');
+			return $this->load->view('owner_uploader');
 			
 		} else {
 			redirect('login');
 		}
 	}
+    public function LoadAddScreen()
+    {
+        if ($this->session->userdata('name')) {
+            return $this->load->view('owner_add');
+            
+        } else {
+            redirect('login');
+        }
+    }
 	public function LoadEditScreen()
 	{
 		if ($this->session->userdata('name')) {
@@ -122,6 +131,59 @@ class OwnerControllers extends CI_Controller
 
         }
 
+    }
+      public function DownloadFiles()
+        {
+            $this->load->helper('download');
+            $data = 'Here is some text!';
+            $name = 'testfile.csv';
+            force_download('http://localhost:1000/testfile.csv', '');
+                redirect('/owner');
+
+        }
+
+
+     public function ownerCsv()
+    {
+
+        $arrPost = $this->input->post();
+        $tableName = $arrPost['tablename'];
+
+        $filename = $_FILES["owner_csv"]["tmp_name"];
+        if ($_FILES["owner_csv"]["size"] > 0) {
+            $file = fopen($filename, "r");
+            $header = fgetcsv($file);
+
+            $name = $header[0];
+            $email = $header[1];
+            $contact = $header[2];
+
+            if (
+                $name != "name" ||
+                $email != "email" ||
+                $contact != "contact"
+            ) {
+                redirect('owner?message=0');
+                // echo '<script>alert("Column Not Matched.")</script>';
+                // }
+                // exit();
+                return false;
+            }
+
+            while (($data = fgetcsv($file, 10000, ",")) !== FALSE) {
+                log_message('debug', 'ownerCsv aa ' . print_r($data, TRUE));
+
+                $dataArr['name'] = $data[0];
+                $dataArr['email'] = $data[1];
+                $dataArr['phone_number'] = $data[2];
+                $data['ownerData'] =  $this->OWNER->AddUpdateOwnerTenant($tableName, $dataArr);
+            }
+
+            fclose($file);
+            redirect('owner?message=1');
+        } else {
+            return false;
+        }
     }
     
     

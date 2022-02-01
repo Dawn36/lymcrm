@@ -68,8 +68,11 @@ class PropertyModel  extends CI_Model{
     	$this->db->where('p.status','active');
     	$this->db->where('a.status','active');
     	$this->db->where('b.status','active');
+    	$this->db->where('u.role_id',OWNER);
+    	$this->db->where('u.owner_tenant_id',$ownerTenantId);
     	  
     	$query = $this->db->get(); 
+    	log_message('debug', $this->db->last_query());
     	return $query->result_array();
         
 	}

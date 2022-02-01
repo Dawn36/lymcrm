@@ -193,6 +193,23 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
             </div>
         </div>
     </div>
+     <div class="modal fade" id="myModalCenterSmall" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 id='modal-title-small' class="modal-title">
+                       
+                    </h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                    </button>
+                </div>
+                <div id="modal-body-center-small" class="modal-body">
+                   
+                 </div>
+            </div>
+        </div>
+    </div>
     <p id="js-color-profile" class="d-none">
         <span class="color-primary-50"></span>
         <span class="color-primary-100"></span>
