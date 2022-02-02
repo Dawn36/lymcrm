@@ -1,7 +1,7 @@
 <?php
-// print_r($tenancyInfo[0]);
+// print_r($tenancyInfo);
 
-$heading = "Tenancy";
+$heading = "Renew Tenancy";
 ?>
 <style type="text/css">
     .mt {
@@ -13,7 +13,7 @@ $heading = "Tenancy";
 
     <ol class="breadcrumb page-breadcrumb">
         <li class="breadcrumb-item"><a href="javascript:void(0);">LymCrm</a></li>
-        <li class="breadcrumb-item">Tenancy</li>
+        <li class="breadcrumb-item">Renew Tenancy</li>
 
         <li class="position-absolute pos-top pos-right d-none d-sm-block"><span class="js-get-date"></span></li>
     </ol>
@@ -38,6 +38,9 @@ $heading = "Tenancy";
 
                                     <thead class="bg-primary-600 bg-brand-gradient">
                                         <tr>
+                                            <th nowrap>
+                                                <center>#</center>
+                                            </th>
                                             <th nowrap>
                                                 <center>Tenancy #</center>
                                             </th>
@@ -78,10 +81,13 @@ $heading = "Tenancy";
                                     </thead>
                                     <tbody>
                                         <?php for ($i = 0; $i < count($tenancyInfo); $i++) {
-                                            if (strtotime((new DateTime())->format("Y-m-d H:i:s")) > strtotime($tenancyInfo[$i]['end_date'])) {
+                                            if (strtotime((new DateTime())->format("Y-m-d H:i:s")) < strtotime($tenancyInfo[$i]['end_date'])) {
                                                 continue;
                                             } ?>
                                             <tr>
+                                                <td nowrap>
+                                                    <center><?php echo $i + 1; ?></center>
+                                                </td>
                                                 <td nowrap>
                                                     <center><?php echo $tenancyInfo[$i]['tenancy_no'] ?></center>
                                                 </td>
@@ -117,9 +123,8 @@ $heading = "Tenancy";
                                                 </td>
                                                 <td nowrap>
                                                     <center>
-                                                        <button onclick="ViewSlips(id)" class="btn btn-sm btn-primary bg-brand-gradient" title="Edit Tenancy"><i class="fal fa-eye"></i></button>
-                                                        <button onclick="EditTenancy(<?php echo $tenancyInfo[$i]['record_id']; ?>)" class="btn btn-sm btn-primary bg-brand-gradient" title="Edit Tenancy"><i class="fal fa-edit"></i></button>
-                                                        <!-- <button onclick="EmailTenancy(id)" class="btn btn-sm btn-primary bg-brand-gradient" title="Edit Tenancy"><i class="fal fa-mail"></i></button> -->
+                                                        <button onclick="EditTenancy(id)" class="btn btn-sm btn-primary bg-brand-gradient" title="Edit Tenancy"><i class="fal fa-camera"></i></button>
+                                                        <button onclick="EmailTenancy(id)" class="btn btn-sm btn-primary bg-brand-gradient" title="Edit Tenancy"><i class="fal fa-edit"></i></button>
                                                         <button type="button" onclick="" class="btn btn-sm btn-primary bg-brand-gradient" title="Delete Tenancy"><i class="fal fa-times"></i></button>
                                                     </center>
                                                 </td>
@@ -280,7 +285,7 @@ $heading = "Tenancy";
     }
 
 
-    // Modal For Edit Tenancy
+    // Modal For Edit User
     function EditTenancy(id) {
         var value = {
             id: id
@@ -291,13 +296,14 @@ $heading = "Tenancy";
             data: value,
             success: function(result) {
                 $('.modal-title').html('Edit Tenancy');
+                //  $('#modal-body').html(``);
                 $('#modal-body').html(result);
                 $('#myModal').modal();
 
             }
         });
     }
-    // Modal For Edit Tenancy
+    // Modal For Edit User
     function EmailTenancy(id) {
         var value = {
             id: id
@@ -334,7 +340,7 @@ $heading = "Tenancy";
         });
     }
 
-    // Delete Tenancy
+    // Delete User
     function DeleteTenancy(id) {
         var value = {
             id: id

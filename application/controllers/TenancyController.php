@@ -36,10 +36,12 @@ class TenancyController extends CI_Controller
         return  $this->load->view('tenancy_add', $data);
     }
 
-    public function EditTenancy()
+    public function EditTenancy($recordId)
     {
         log_message('debug', 'EditTenancy');
-        return  $this->load->view('tenancy_edit');
+        $tableName = 'building';
+        $data['tenancyInfo'] = $this->TENANCY->ShowEdit($tableName, $recordId);
+        return  $this->load->view('tenancy_edit', $data);
     }
 
     public function ShowApartment()
@@ -49,7 +51,7 @@ class TenancyController extends CI_Controller
         $buildingId = $arrPost['buildingid'];
         log_message('debug', 'ShowApartment');
         $tableName = 'apartment';
-        $apartmentInfo = $this->APARTMENT->ShowApartment($tableName, $buildingId);
+        $apartmentInfo = $this->APARTMENT->ShowApartmentTenancy($tableName, $buildingId);
         echo json_encode($apartmentInfo);
     }
 
@@ -60,7 +62,7 @@ class TenancyController extends CI_Controller
             $arrPost = $this->input->post();
 
             // die(print_r($arrPost));
-
+            //tenancy table insert
             $tableName = 'tenancy';
             $arrInfo['tenancy_no']      = $arrPost['tenancy_no'];
             $arrInfo['building_id']     = $arrPost['building'];
@@ -84,7 +86,7 @@ class TenancyController extends CI_Controller
             $arrInfo['updated_name']    =  $this->session->userdata('user_name');
 
             $cid = $this->TENANCY->Add($arrInfo, $tableName);
-
+            //inserting the payments details in payment table connected to the above inserted data
             for ($i = 0; $i < $arrInfo['no_of_payments']; $i++) {
                 $tableName = 'payment';
                 $tenInfo['tenancy_id']      = $cid;
@@ -100,8 +102,27 @@ class TenancyController extends CI_Controller
 
                 $this->TENANCY->Add($tenInfo, $tableName);
             }
+            //changing the tenancy status in apartment so that it is not available
+            $tableName = 'apartment';
+            $status = $arrInfo['building_id'];
+            $this->APARTMENT->UpdateApartmentStatus($tableName, $status);
+
 
             redirect('/tenancy');
+        }
+    }
+
+    function TenancyRenew()
+    {
+        if ($this->session->userdata('name')) {
+            $this->load->view('main_header');
+            $this->load->view('sidebar');
+            $tableName = 'tenancy';
+            $data['tenancyInfo'] = $this->TENANCY->Show($tableName);
+            $this->load->view('tenancy_renew', $data);
+            $this->load->view('footer');
+        } else {
+            redirect('login');
         }
     }
 }

@@ -45,8 +45,6 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
     <link rel="stylesheet" media="screen, print" href="/assets/dist/css/formplugins/summernote/summernote.css">
 
     <style>
-
-
         .pace,
         .pace-active,
         .pace-progress {
@@ -112,18 +110,18 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
         /* .pagination .page-link:hover {
             background-color: #4679cc !important;
             color: #fff;
-        }
+        }*/
 
         .page-item.active .page-link {
             background-color: #4679cc !important;
             border-color: #4679cc !important;
-        } */
+        }
 
         a.btn.header-btn.waves-effect.waves-themed:hover {
             background-color: #679bed !important;
         }
 
-       /* .dropdown-icon-menu>ul>li .btn:hover,
+        /* .dropdown-icon-menu>ul>li .btn:hover,
         .header-btn:hover {
             -webkit-box-shadow: none;
             box-shadow: none;
@@ -144,7 +142,7 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
         .dtr-details::before {
             color: #679bed !important;
         }
-        
+
         .dtr-details::after {
             background: #679bed !important;
         }

@@ -1,6 +1,6 @@
 <?php echo validation_errors('<div class="alert alert-danger">', '</div'); ?>
 <?php
-// print_r($buildingInfo);
+ print_r($buildingInfo);
 ?>
 <form class="needs-validation" name='tenancy_submit' id='tenancy_submit' method='post' action="/tenancy_submit" novalidate>
 
