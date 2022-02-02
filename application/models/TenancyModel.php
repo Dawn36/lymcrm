@@ -47,4 +47,14 @@ class TenancyModel  extends CI_Model
         log_message('debug', $this->db->last_query());
         return $result;
     }
+
+    public function DeletePayments($data, $tableName)
+    {
+        $this->db->set('status', 'inactive');
+        $this->db->where('tenancy_id', $data['record_id']);
+        $result = $this->db->insert($tableName);
+        // print_r($role) ;
+        log_message('debug', $this->db->last_query());
+        return $result;
+    }
 }

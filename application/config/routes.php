@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /*
 | -------------------------------------------------------------------------
@@ -100,14 +100,14 @@ $route['change_password'] = '/AdminControllers/ChangePassword';
 $route['owner']             = '/OwnerControllers';
 $route['owner_add']         = '/OwnerControllers/LoadAddScreen';
 $route['owner_edit']        = '/OwnerControllers/LoadEditScreen';
-$route['ownerCsv'] 			= '/OwnerControllers/ownerCsv';
-$route['owner_uploader'] 	= '/OwnerControllers/OwnerUploader';
-$route['download_file'] 	= '/OwnerControllers/DownloadFiles';
+$route['ownerCsv']             = '/OwnerControllers/ownerCsv';
+$route['owner_uploader']     = '/OwnerControllers/OwnerUploader';
+$route['download_file']     = '/OwnerControllers/DownloadFiles';
 // add owner And tenant
-$route['add']      			= '/OwnerControllers/AddOwnerTenant';
-$route['edit']      			= '/OwnerControllers/EditOwnerTenant';
-$route['delete']      			= '/OwnerControllers/DeleteOwnerTenant';
-$route['email_exit']      		= '/OwnerControllers/EmailExit';
+$route['add']                  = '/OwnerControllers/AddOwnerTenant';
+$route['edit']                  = '/OwnerControllers/EditOwnerTenant';
+$route['delete']                  = '/OwnerControllers/DeleteOwnerTenant';
+$route['email_exit']              = '/OwnerControllers/EmailExit';
 
 
 
@@ -154,8 +154,8 @@ $route['delete_property'] = '/PropertyController/DeleteProperty';
 $route['tenant'] = '/TenantController';
 $route['tenant_add'] = '/TenantController/LoadAddScreen';
 $route['tenant_edit'] = '/TenantController/LoadEditScreen';
-$route['tenantCsv']		= '/TenantController/tenantCsv';
-$route['tenant_uploader']		= '/TenantController/TenantUploader';
+$route['tenantCsv']        = '/TenantController/tenantCsv';
+$route['tenant_uploader']        = '/TenantController/TenantUploader';
 
 
 ///////////////////   Deposit slip route    //////////////////////////////////
@@ -168,9 +168,7 @@ $route['deposit_image']     = '/DepositController/LoadDepositImage';
 ///////////////////   Tenancy route    //////////////////////////////////
 $route['tenancy']           = '/TenancyController';
 $route['tenancy_add']       = '/TenancyController/AddTenancy';
-$route['tenancy_edit']      = '/TenancyController/EditTenancy';
+$route['tenancy_edit']      = '/TenancyController/LoadEditScreen';
 $route['tenancy_apartment'] = '/TenancyController/ShowApartment';
 $route['tenancy_submit']    = '/TenancyController/TenancySubmit';
-
-
-
+$route['tenancy_update']    = '/TenancyController/TenancyUpdate';

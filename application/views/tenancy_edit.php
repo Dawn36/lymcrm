@@ -1,26 +1,27 @@
 <?php echo validation_errors('<div class="alert alert-danger">', '</div'); ?>
 <?php
- print_r($buildingInfo);
+print_r($tenancyInfo);
 ?>
-<form class="needs-validation" name='tenancy_submit' id='tenancy_submit' method='post' action="/tenancy_submit" novalidate>
+<form class="needs-validation" name='tenancy_submit' id='tenancy_submit' method='post' action="/tenancy_update" novalidate>
 
     <div class="card mb-g">
         <div class="col-md-12 mt-3" style="display: none;">
             <input type="text" style="display: none;">
         </div>
+        <input id="record_id" name="record_id" value="<?php echo $tenancyInfo[0]['record_id']; ?>" hidden required>
 
         <div class="col-md-12 mt-3">
             <label class="form-label">Tenancy #<span style="color: red">*</span></label>
-            <input class="form-control" placeholder="Add tenancy #" id="tenancy_no" name="tenancy_no" required>
+            <input class="form-control" placeholder="Add tenancy #" id="tenancy_no" name="tenancy_no" value="<?php echo $tenancyInfo[0]['tenancy_no']; ?>" readonly required>
             <div class="invalid-feedback">
                 Please Select Tenancy.
             </div>
         </div>
         <div class="col-md-12 mt-3">
             <label class="form-label">Building<span style="color: red">*</span></label>
-            <select class="custom-select required" name="building" id="building" required="">
-                <?php for ($i = 0; $i < count($buildingInfo); $i++) { ?>
-                    <option value="<?php echo $buildingInfo[$i]['record_id']; ?>"><?php echo $buildingInfo[$i]['building_name']; ?></option>
+            <select class="custom-select required" name="building" id="building" readonly required="">
+                <?php for ($i = 0; $i < count($tenancyInfo); $i++) { ?>
+                    <option selected readonly value="<?php echo $tenancyInfo[$i]['building_id']; ?>"><?php echo $tenancyInfo[$i]['building_name']; ?></option>
                 <?php } ?>
 
             </select>
@@ -30,8 +31,10 @@
         </div>
         <div class="col-md-12 mt-3">
             <label class="form-label">apartment #<span style="color: red">*</span></label>
-            <select class="custom-select required" name="apartment_no" id="apartment_no" required="">
-                <option value="">Select apartment</option>
+            <select class="custom-select required" name="apartment_no" id="apartment_no" readonly required="">
+                <?php for ($i = 0; $i < count($tenancyInfo); $i++) { ?>
+                    <option selected readonly value="<?php echo $tenancyInfo[$i]['apartment_id']; ?>"><?php echo $tenancyInfo[$i]['apartment_number']; ?></option>
+                <?php } ?>
             </select>
             <div class="invalid-feedback">
                 Please Select Apartment Number.
@@ -39,10 +42,10 @@
         </div>
         <div class="col-md-12 mt-3">
             <label class="form-label">Tenant for Tenancy<span style="color: red">*</span></label>
-            <select class="custom-select required" name="tenant" id="tenant" required="">
-                <option value="">Select Tenant</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
+            <select class="custom-select required" name="tenant" id="tenant" readonly required="">
+                <?php for ($i = 0; $i < count($tenancyInfo); $i++) { ?>
+                    <option selected readonly value="<?php echo $tenancyInfo[$i]['name']; ?>"><?php echo $tenancyInfo[$i]['name']; ?></option>
+                <?php } ?>
             </select>
             <div class="invalid-feedback">
                 Please Select Tenant.

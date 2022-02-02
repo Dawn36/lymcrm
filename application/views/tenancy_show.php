@@ -80,7 +80,9 @@ $heading = "Tenancy";
                                         <?php for ($i = 0; $i < count($tenancyInfo); $i++) {
                                             if (strtotime((new DateTime())->format("Y-m-d H:i:s")) > strtotime($tenancyInfo[$i]['end_date'])) {
                                                 continue;
-                                            } ?>
+                                            }
+                                            $recordId = $tenancyInfo[$i]['record_id'];
+                                        ?>
                                             <tr>
                                                 <td nowrap>
                                                     <center><?php echo $tenancyInfo[$i]['tenancy_no'] ?></center>
@@ -118,8 +120,7 @@ $heading = "Tenancy";
                                                 <td nowrap>
                                                     <center>
                                                         <button onclick="ViewSlips(id)" class="btn btn-sm btn-primary bg-brand-gradient" title="Edit Tenancy"><i class="fal fa-eye"></i></button>
-                                                        <button onclick="EditTenancy(<?php echo $tenancyInfo[$i]['record_id']; ?>)" class="btn btn-sm btn-primary bg-brand-gradient" title="Edit Tenancy"><i class="fal fa-edit"></i></button>
-                                                        <!-- <button onclick="EmailTenancy(id)" class="btn btn-sm btn-primary bg-brand-gradient" title="Edit Tenancy"><i class="fal fa-mail"></i></button> -->
+                                                        <button onclick="EditTenancy(<?php echo $recordId; ?>)" class="btn btn-sm btn-primary bg-brand-gradient" title="Edit Tenancy"><i class="fal fa-edit"></i></button>
                                                         <button type="button" onclick="" class="btn btn-sm btn-primary bg-brand-gradient" title="Delete Tenancy"><i class="fal fa-times"></i></button>
                                                     </center>
                                                 </td>
@@ -281,9 +282,9 @@ $heading = "Tenancy";
 
 
     // Modal For Edit Tenancy
-    function EditTenancy(id) {
+    function EditTenancy(recordId) {
         var value = {
-            id: id
+            recordId: recordId
         };
         $.ajax({
             url: baseurl + 'tenancy_edit',

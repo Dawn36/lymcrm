@@ -96,3 +96,7 @@ ALTER TABLE `lymcrm`.`property`
 
 ALTER TABLE `lymcrm`.`apartment`   
   CHANGE `is_tenant` `is_owner` ENUM('yes','no') CHARSET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT 'no'   NULL;
+
+ALTER TABLE `lymcrm`.`payment`   
+  ADD COLUMN `status` ENUM('active','inactive') NULL AFTER `updated_name`;
+

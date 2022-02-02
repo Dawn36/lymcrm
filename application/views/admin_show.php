@@ -2,9 +2,9 @@
 $heading = "All Admin";
 ?>
 <style type="text/css">
-.mt {
-    margin-top: 10px;
-}
+    .mt {
+        margin-top: 10px;
+    }
 </style>
 <main id="js-page-content" role="main" class="page-content">
 
@@ -32,8 +32,7 @@ $heading = "All Admin";
                     <div id="panel-1" class="panel">
                         <div class="panel-container show">
                             <div class="panel-content">
-                                <table id="datatable_tabletools1"
-                                    class="table table-bordered table-hover table-striped w-100">
+                                <table id="datatable_tabletools1" class="table table-bordered table-hover table-striped w-100">
                                     <thead class="bg-primary-600 bg-brand-gradient">
                                         <tr>
                                             <th nowrap>
@@ -45,7 +44,7 @@ $heading = "All Admin";
                                             <th nowrap>
                                                 <center>Admin Contact#</center>
                                             </th>
-                                             <th nowrap>
+                                            <th nowrap>
                                                 <center>Admin Password</center>
                                             </th>
                                             <th nowrap>
@@ -62,60 +61,50 @@ $heading = "All Admin";
                                     </thead>
                                     <tbody>
                                         <?php for ($i = 0; $i < count($adminInfo); $i++) {
-                                            $ownerTenantId=$adminInfo[$i]['owner_tenant_id'];
-                                            $usersType=$adminInfo[$i]['role_id'];
-                                            $roleName='';
-                                            if($usersType == SUB_ADMIN)
-                                            {
-                                                $roleName='Sub Admin';
-                                            }
-                                            else if($usersType == OWNER || $usersType == SUPER_ADMIN ||$usersType == TENANT)
-                                            {
+                                            $ownerTenantId = $adminInfo[$i]['owner_tenant_id'];
+                                            $usersType = $adminInfo[$i]['role_id'];
+                                            $roleName = '';
+                                            if ($usersType == SUB_ADMIN) {
+                                                $roleName = 'Sub Admin';
+                                            } else if ($usersType == OWNER || $usersType == SUPER_ADMIN || $usersType == TENANT) {
                                                 continue;
                                             }
-                                            $userId=$adminInfo[$i]['record_id'];
+                                            $userId = $adminInfo[$i]['record_id'];
                                         ?>
-                                      
-                                        <tr style="cursor:pointer" onClick="">
 
-                                            <td>
-                                                <center><?php echo ucwords($adminInfo[$i]['name']) ?></center>
-                                            </td>
-                                            <td>
-                                                <center><?php echo ucwords($adminInfo[$i]['email']) ?></center>
-                                            </td>
-                                            <td>
-                                                <center><?php echo ucwords($adminInfo[$i]['phone_number']) ?></center>
-                                            </td>
-                                            <td>
-                                                <center><?php echo base64_decode($adminInfo[$i]['password']) ?></center>
-                                            </td>
-                                             <td>
+                                            <tr style="cursor:pointer" onClick="">
+
+                                                <td>
+                                                    <center><?php echo ucwords($adminInfo[$i]['name']) ?></center>
+                                                </td>
+                                                <td>
+                                                    <center><?php echo ucwords($adminInfo[$i]['email']) ?></center>
+                                                </td>
+                                                <td>
+                                                    <center><?php echo ucwords($adminInfo[$i]['phone_number']) ?></center>
+                                                </td>
+                                                <td>
+                                                    <center><?php echo base64_decode($adminInfo[$i]['password']) ?></center>
+                                                </td>
+                                                <td>
                                                     <center><?php echo $roleName; ?></center>
                                                 </td>
-                                            <td>
-                                                <center>
-                                                    <?php echo ucwords($adminInfo[$i]['status']) ?>
-                                                </center>
-                                            </td>
+                                                <td>
+                                                    <center>
+                                                        <?php echo ucwords($adminInfo[$i]['status']) ?>
+                                                    </center>
+                                                </td>
 
-                                            <td nowrap>
-                                                <center>
-                                                    <button onclick="ResetUser(<?php echo $userId?>)" class="btn btn-sm btn-primary bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Reset Password"
-                                                        ><i class="fas fa-key"></i></button>&nbsp;
-                                                    <button onclick="EditAdmin(<?php echo $userId ?>)"
-                                                        class="btn btn-sm btn-primary bg-brand-gradient"
-                                                         data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Edit Admin"
-                                                        ><i class="fal fa-edit"></i></button>&nbsp;
+                                                <td nowrap>
+                                                    <center>
+                                                        <button onclick="ResetUser(<?php echo $userId ?>)" class="btn btn-sm btn-primary bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Reset Password"><i class="fas fa-key"></i></button>&nbsp;
+                                                        <button onclick="EditAdmin(<?php echo $userId ?>)" class="btn btn-sm btn-primary bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Edit Admin"><i class="fal fa-edit"></i></button>&nbsp;
+                                                        <button onclick="DeleteAdmin(<?php echo $userId ?>)" class="btn btn-sm btn-primary bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Delete Admin"><i class="fal fa-times"></i></button>
+                                                    </center>
+                                                </td>
+                                            </tr>
+                                        <? } ?>
 
-                                                    <button onclick="DeleteAdmin(<?php echo $userId ?>)" class="btn btn-sm btn-primary bg-brand-gradient"
-                                                    data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Delete Admin"
-                                                        ><i class="fal fa-times"></i></button>
-                                                </center>
-                                            </td>
-                                        </tr>
-                                    <? } ?>
-                                        
 
                                     </tbody>
                                 </table>
@@ -135,7 +124,7 @@ $heading = "All Admin";
 <!-- this overlay is activated only when mobile menu is triggered -->
 <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div>
 <script type="text/javascript">
- $(document).ready(function() {
+    $(document).ready(function() {
 
         $('#datatable_tabletools1').dataTable({
             responsive: true,
@@ -218,7 +207,8 @@ $heading = "All Admin";
             ]
         });
     });
-function AddAdminScreen(id) {
+
+    function AddAdminScreen(id) {
         $.ajax({
             url: baseurl + 'admin_add',
             success: function(result) {
@@ -229,8 +219,8 @@ function AddAdminScreen(id) {
             }
         });
     }
-    function EditAdmin(userId)
-    {   
+
+    function EditAdmin(userId) {
         var value = {
             userId: userId,
         };
@@ -247,8 +237,8 @@ function AddAdminScreen(id) {
         });
     }
 
- function DeleteAdmin(userId) {
-    //alert(userId);
+    function DeleteAdmin(userId) {
+        //alert(userId);
         var value = {
             userId: userId,
         };
@@ -258,12 +248,12 @@ function AddAdminScreen(id) {
                 type: 'POST',
                 data: value,
                 success: function(result) {
-                    var value='Delete Sucessfully';
+                    var value = 'Delete Sucessfully';
                     DeleteToast(value);
                     window.location.reload();
 
                 }
             });
-        } 
+        }
     }
 </script>
