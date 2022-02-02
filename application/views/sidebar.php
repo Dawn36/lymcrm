@@ -109,6 +109,15 @@ margin-right: 6px;
                                 </a>
                             </li>
                         </ul>
+                      <?php } if($this->session->userdata('role_id') == TENANT)  { ?>
+                        <ul id="js-nav-menu" class="nav-menu">
+                            <li>
+                                <a href="/tenant_tenancy" title="Tenancy" data-filter-tags="Tenancy"><i class="fas fa-file-contract"></i>
+                                    <span class="nav-link-text" data-i18n="nav.Tenancy">Tenancy</span>
+                                </a>
+                            </li>
+                            
+                        </ul>
                     <?php } ?>
                     </nav>
                     <!-- END PRIMARY NAVIGATION -->

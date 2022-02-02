@@ -100,6 +100,31 @@ class PropertyModel  extends CI_Model{
     	return $query->result_array();
         
 	}
+	public function GetTenantTenacy($ownerTenantId)
+	 {
+	 	$this->db->select('o.name,o.email,b.building_name,b.building_address,b.building_community,a.apartment_number,tc.start_date,tc.end_date,tc.no_of_payments');
+    	$this->db->from('users u'); 
+    	$this->db->join('tenancy tc ', 'u.owner_tenant_id = tc.tenant_id', 'INNER');
+    	$this->db->join('building b', 'tc.building_id = b.record_id', 'INNER');
+    	$this->db->join('apartment a', 'tc.apartment_id = a.record_id', 'INNER');
+    	$this->db->join('property p', 'p.apartment_id = tc.apartment_id', 'INNER');
+    	$this->db->join('owner o', 'o.record_id = p.owner_id', 'INNER');
+    	// $this->db->where('tc.building_id','p.building_id');
+    	$this->db->where('u.status','active');
+    	$this->db->where('p.status','active');
+    	$this->db->where('a.status','active');
+    	$this->db->where('b.status','active');
+    	$this->db->where('tc.status','active');
+    	$this->db->where('tc.is_renew','no');
+    	$this->db->where('u.role_id',TENANT);
+    	$this->db->where('u.owner_tenant_id',$ownerTenantId);
+    	  
+    	$query = $this->db->get(); 
+    	log_message('debug', $this->db->last_query());
+    	return $query->result_array();
+        
+	}
+	
 	
 }
 ?>

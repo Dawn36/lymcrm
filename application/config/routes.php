@@ -79,6 +79,10 @@ $route['delete_source'] = '/Bed/SourceDelete';
 $route['owner_property']             = '/PropertyController/GetOwnerProperty';
 $route['owner_tenant']             = '/PropertyController/GetOwnerTenant';
 
+/////////////////////////// Tenant Login /////////////////////////////////////////
+$route['tenant_tenancy']             = '/PropertyController/GetTenantTenacy';
+
+
 //////////////////////     Image     ////////////////////////////////////////////
 $route['profile_img'] = '/UserController/LoadUserProfile';
 /////////////////////      Admin     ////////////////////////////////////////////
