@@ -104,7 +104,7 @@ margin-right: 6px;
                                 </a>
                             </li>
                             <li>
-                                <a href="/dashboard" title="Tenant" data-filter-tags="Tenant"><i class="fas fa-user-alt"></i>
+                                <a href="/owner_tenant" title="Tenant" data-filter-tags="Tenant"><i class="fas fa-user-alt"></i>
                                     <span class="nav-link-text" data-i18n="nav.Tenant">Tenant</span>
                                 </a>
                             </li>

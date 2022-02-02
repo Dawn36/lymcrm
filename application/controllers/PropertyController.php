@@ -172,4 +172,18 @@ class PropertyController extends CI_Controller
             redirect('login');
         }
     }
+     public function GetOwnerTenant()
+    {
+        if ($this->session->userdata('name')) {
+            $this->load->view('main_header');
+            $this->load->view('sidebar');
+            $ownerTenantId=$this->session->userdata('owner_tenant_id');
+            $data['getTenantProperty'] =  $this->PROPERTY->GetOwnerTenant($ownerTenantId);
+            $this->load->view('owner_tenant',$data);
+            $this->load->view('footer');
+        } else {
+            redirect('login');
+        }
+    }
+    
 }

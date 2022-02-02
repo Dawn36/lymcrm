@@ -75,6 +75,10 @@ $route['user_added'] = 'users/UsersAdd';
 $route['source'] = '/Bed/Source';
 $route['source_add'] = '/Bed/SourceAdd';
 $route['delete_source'] = '/Bed/SourceDelete';
+/////////////////////////// Owner Login /////////////////////////////////////////
+$route['owner_property']             = '/PropertyController/GetOwnerProperty';
+$route['owner_tenant']             = '/PropertyController/GetOwnerTenant';
+
 //////////////////////     Image     ////////////////////////////////////////////
 $route['profile_img'] = '/UserController/LoadUserProfile';
 /////////////////////      Admin     ////////////////////////////////////////////
@@ -140,7 +144,7 @@ $route['building_get'] = '/PropertyController/GetBuilding';
 $route['building_apartment'] = '/PropertyController/GetApartment';
 $route['building_apartment_edit'] = '/PropertyController/BuildingApartmentEdit';
 $route['delete_property'] = '/PropertyController/DeleteProperty';
-$route['owner_property']             = '/PropertyController/GetOwnerProperty';
+
 
 ////////////////////// Tenant /////////////////////////////////////////////////
 $route['tenant'] = '/TenantController';
