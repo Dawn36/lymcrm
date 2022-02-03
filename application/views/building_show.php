@@ -24,6 +24,7 @@ $heading = "Building";
             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-8">
                 <button  class="btn btn-primary float-right bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Add Building" type="button" onclick="AddBuilding()"><i
                         class="fas fa-plus" style="margin-right: 4px"></i>Add Building</button>
+                        <button type="button" onclick="ImportBuildings()" data-trigger="hover" data-placement="top" title="" data-original-title="Import Building" class="btn btn-primary float-right bg-brand-gradient mr-3" data-original-title="Edit"><i class="fas fa-file-import mr-2"></i>Import Building</button>
             </div>
         </div>
         <section id="" class="">
@@ -175,6 +176,17 @@ $heading = "Building";
                 //  $('#modal-body').html(``);
                 $('#modal-body').html(result);
                 $('#myModal').modal();
+
+            }
+        });
+    }
+    function ImportBuildings() {
+        $.ajax({
+            url: baseurl + 'building_import',
+            success: function(result) {
+                $('#modal-title-small').html('Upload Building CSV');
+                $('#modal-body-center-small').html(result);
+                $('#myModalCenterSmall').modal();
 
             }
         });

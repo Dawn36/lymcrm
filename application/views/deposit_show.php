@@ -32,11 +32,11 @@ $heading = "Deposit Slip";
                     <div id="panel-1" class="panel">
                         <div class="panel-container show">
                             <div class="panel-content">
-                                <table id="<?= str_replace(' ', '', $heading) ?>_datatable_tabletools" class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline">
+                                <table id='example'  class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline">
 
                                     <thead class="bg-primary-600 bg-brand-gradient">
                                         <tr>
-                                            <th nowrap>
+                                            <th nowrap hidden>
                                                 <center>#</center>
                                             </th>
                                             <th nowrap>
@@ -47,6 +47,9 @@ $heading = "Deposit Slip";
                                             </th>
                                             <th nowrap>
                                                 <center>Owner Name</center>
+                                            </th>
+                                            <th nowrap>
+                                                <center>Owner Email</center>
                                             </th>
                                             <th nowrap>
                                                 <center>Payment Type</center>
@@ -73,21 +76,24 @@ $heading = "Deposit Slip";
                                     </thead>
                                     <tbody>
 
-                                        <tr>
-                                            <td nowrap>
-                                                <center>1</center>
+                                        <tr id="1">
+                                            <td nowrap hidden> 
+                                               1
                                             </td>
                                             <td nowrap>
-                                                <center>Building</center>
+                                                Building
                                             </td>
                                             <td nowrap>
-                                                <center>Community</center>
+                                               Community
                                             </td>
                                             <td nowrap>
-                                                <center>Owner</center>
+                                               Owner
                                             </td>
                                             <td nowrap>
-                                                <center>Cheque</center>
+                                               dawngill08@gmail.com
+                                            </td>
+                                            <td nowrap>
+                                                Cheque
                                             </td>
                                             <td nowrap>
                                                 <center>1234</center>
@@ -106,10 +112,9 @@ $heading = "Deposit Slip";
                                             </td>
                                             <td nowrap>
                                                 <center>
-                                                    <button onclick="LoadDepositImage(id)" type="button" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="View Attachments" class="btn btn-sm btn-primary bg-brand-gradient" title="Attachment"><i class="fal fa-camera"></i></button>&nbsp;
-                                                    <button onclick="DepositEdit(id)" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Edit" class="btn btn-sm btn-primary bg-brand-gradient" title="Edit"><i class="fal fa-edit"></i></button>&nbsp;
-                                                    <button onclick="DepositEmail(id)" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Email" class="btn btn-sm btn-primary bg-brand-gradient" title="Email"><i class="fal fa-envelope"></i></button>&nbsp;
-                                                    <button type="button" onclick="" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Delete" class="btn btn-sm btn-primary bg-brand-gradient" title="Delete" class="btn btn-sm btn-primary bg-brand-gradient" title="Delete Property"><i class="fal fa-times"></i></button>
+                                                    <button onclick="LoadDepositImage(id)" type="button" class="btn btn-sm btn-primary bg-brand-gradient"  title="Attachment"><i class="fal fa-camera"></i></button>&nbsp;
+                                                    <button onclick="DepositEmail(this)" class="btn btn-sm btn-primary bg-brand-gradient" ><i class="fal fa-envelope"></i></button>&nbsp;
+                                                    <button type="button" onclick="" class="btn btn-sm btn-primary bg-brand-gradient" title="Delete Property"><i class="fal fa-times"></i></button>
                                                 </center>
                                             </td>
                                         </tr>
@@ -131,50 +136,14 @@ $heading = "Deposit Slip";
 <!-- this overlay is activated only when mobile menu is triggered -->
 <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div>
 <script type="text/javascript">
-    function deleted(aa) {
-
-
-
-        // var data = $("#").serialize();
-        if (confirm("Are you sure you want to delete?")) {
-            // alert(aa);
-            var data = {
-                id: aa
-            };
-            $.ajax({
-                url: baseurl + '',
-                type: 'POST',
-                data: data,
-                success: function(result) {
-
-                    //var result = jQuery.parseJSON(result);
-                    if (result) {
-                        var result = jQuery.parseJSON(result);
-                        console.log(result);
-                        if (result == 1) {
-                            alert("Delete Sucessfully")
-                            window.location.reload();
-                        }
-
-
-                    }
-
-                    // $('#order_total_amount').text(Math.round(total_amount));
-
-                },
-                error: function(xhr, textStatus, errorThrown) {
-                    alert(xhr.responseText);
-                }
-            });
-
-        }
-    }
+    
 
     $(document).ready(function() {
 
-        $('#<?= str_replace(' ', '', $heading) ?>_datatable_tabletools').dataTable({
-            responsive: true,
+        $('#example').dataTable({
+            responsive: false,
             lengthChange: false,
+            scrollX: true,
             dom:
                 /*  --- Layout Structure 
                     --- Options
@@ -286,10 +255,48 @@ $heading = "Deposit Slip";
             }
         });
     }
+    var installment='';
+    var ownerEmail='';
+    var ownerName='';
+    var apartmentNo='';
+    var buildingName='';
+   $(document).ready(function() {
+    var table = $('#example').DataTable();
+     
+    $('#example tbody').on('click', 'tr', function () {
+        var data = table.row( this ).data();
+        installment=ordinal_suffix_of(parseInt(data[0]));
+        ownerEmail=data[4];
+        ownerName=data[3];
+        apartmentNo=data[2];
+        buildingName=data[1];
+        
+    } );
+} );
+   var subject="Deposit Slip for [[INSTALLMENT]] Installment";
     // Modal For Edit User
-    function DepositEmail(id) {
+    function ordinal_suffix_of(i) {
+    var j = i % 10,
+        k = i % 100;
+    if (j == 1 && k != 11) {
+        return i + "st";
+    }
+    if (j == 2 && k != 12) {
+        return i + "nd";
+    }
+    if (j == 3 && k != 13) {
+        return i + "rd";
+    }
+    return i + "th";
+}
+    function DepositEmail() {
+
         var value = {
-            id: id
+        installment:installment,
+        ownerEmail:ownerEmail,
+        ownerName:ownerName,
+        apartmentNo:apartmentNo,
+        buildingName:buildingName,
         };
         $.ajax({
             url: baseurl + 'deposit_email',
@@ -300,7 +307,17 @@ $heading = "Deposit Slip";
                 //  $('#modal-body').html(``);
                 $('#modal-body').html(result);
                 $('#myModal').modal();
+                str="<p>Dear [[OWNERNAME]],<br>Attached herewith is a deposit slip for the [[INSTALLMENT]] installment against <br> the rent of your apartment [[APARTMENTNO]],[[BUILDINGNAME]] Kindly confirm clearance with <br>your bank in due course of time. <br> Best Regards <br> FOR L.Y.M REAL ESTATE BROKERS LLC</p>";
+    
+       subject=subject.replaceAll("[[INSTALLMENT]]",installment);
+       str=str.replaceAll("[[OWNERNAME]]",ownerName);
+       str=str.replaceAll("[[INSTALLMENT]]",installment);
+       str=str.replaceAll("[[APARTMENTNO]]",apartmentNo);
+       str=str.replaceAll("[[BUILDINGNAME]]",buildingName);
+        $('#saveToLocal').summernote('code',str)
 
+                $('#to').val(ownerEmail);
+                $('#subject').val(subject);
             }
         });
     }

@@ -19,9 +19,40 @@ class DepositController extends CI_Controller
 		if ($this->session->userdata('name')) {
 			$this->load->view('main_header');
 			$this->load->view('sidebar');
-            $config['smtp_host'] = 'smtp.googlemail.com';
+            
+			// $data['users'] = $this->MUSER->UserShow();
+			$this->load->view('deposit_show');
+			$this->load->view('footer');
+		} else {
+			redirect('login');
+		}
+	}
+    public function EmailSendOwner()
+    {
+         $arrPost = $this->input->post();
+         
+           $config['upload_path']          = './uploads/deposit/';
+            $config['allowed_types']        = 'jpg|png';
+          
+            $this->load->library('upload', $config);
+            if (!$this->upload->do_upload('deposit')) {
+                $error = array('error' => $this->upload->display_errors());
+                log_message('debug', 'err : ' . print_r($error, true));
+            } else {
+                $data = array('upload_data' => $this->upload->data());
+                log_message('debug', 'uploadprofile b: ' . print_r($data, true));
+            }
+              $filePath=base_url() . 'uploads/deposit/' . $data['upload_data']['file_name'];
+              die();
+         $to = $arrPost['to'];
+         $subject = $arrPost['subject'];
+         $emailcontent = $arrPost['email_send'];
+        $dataInfo['subject'] = $arrPost['subject'];
+        $dataInfo['email_send'] = $arrPost['email_send'];
+
+        $config['smtp_host'] = 'smtp.googlemail.com';
             $config['smtp_user'] = 'dawngill08@gmail.com';
-            $config['smtp_pass'] = '';
+            $config['smtp_pass'] = 'randikechoot1A';
             $config['smtp_port'] = '465';
             $config['mailtype'] = 'html';
             $config['smtp_crypto'] = 'ssl';
@@ -34,23 +65,18 @@ class DepositController extends CI_Controller
             
 
             $this->email->from('dawngill08@gmail.com', 'Dawn');
-            $this->email->to('dawngill08@gmail.com');
+            $this->email->to($to);
             // $this->email->cc('another@another-example.com');
             // $this->email->bcc('them@their-example.com');
 
-            $this->email->subject('Email Test');
-            $this->email->message('Testing the email class.<br> ASD ');
+            $this->email->subject($subject);
+            $this->email->message($emailcontent);
+            $this->email->attach();
+           
             $this->email->send();
           //  $this->email->send();
              log_message('debug', $this->email->print_debugger());
-			// $data['users'] = $this->MUSER->UserShow();
-			$this->load->view('deposit_show');
-			$this->load->view('footer');
-		} else {
-			redirect('login');
-		}
-	}
-
+    }
     public function DepositAdd()
     {
         log_message('debug', 'DepositAdd');
@@ -95,6 +121,8 @@ class DepositController extends CI_Controller
     public function DepositEmail()
     {
         log_message('debug', 'DepositEmail');
+        
+
         return  $this->load->view('deposit_email');
     }
 

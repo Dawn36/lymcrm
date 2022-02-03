@@ -180,6 +180,7 @@ class UserController extends CI_Controller
             }
 
             $arrPost = $this->input->post();
+
             $tableName = 'users';
             $userId = $this->session->userdata('user_id');
 

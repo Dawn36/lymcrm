@@ -109,6 +109,55 @@ class BuildingControllers extends CI_Controller
 			redirect('login');
 		}
 	}
+	public function BuildingCsvImportModal()
+	{
+		return  $this->load->view('building_csv_import_modal');
+	}
+	public function BuildingCsv()
+	{
+
+		$arrPost = $this->input->post();
+		$tableName = $arrPost['tablename'];
+
+		$filename = $_FILES["building_csv"]["tmp_name"];
+		log_message('debug', 'BuildingCsv : ' . print_r($_FILES, TRUE));
+		if ($_FILES["building_csv"]["size"] > 0) {
+			$file = fopen($filename, "r");
+			$header = fgetcsv($file);
+
+			$name = $header[0];
+			$address = $header[1];
+			$community = $header[2];
+			$appartmentNo = $header[3];
+
+			if (
+				$name != "building_name" ||
+				$address != "building_address" ||
+				$community != "building_community" ||
+				$appartmentNo != "apartment_number"
+			) {
+				redirect('building');
+				// echo '<script>alert("Column Not Matched.")</script>';
+				// }
+				// exit();
+				return false;
+			}
+
+			while (($data = fgetcsv($file, 10000, ",")) !== FALSE) {
+				$dataArr['building_name'] = $data[0];
+				$dataArr['building_address'] = $data[1];
+				$dataArr['building_community'] = $data[2];
+				$apartment_number = $data[3];
+				$data['buildingData'] =  $this->BUILDING->AddUpdateBuilding($tableName, $dataArr, $apartment_number);
+			}
+
+			fclose($file);
+			redirect('building');
+		} else {
+			return false;
+		}
+	}
+
 	
 
 }

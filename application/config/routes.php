@@ -118,6 +118,7 @@ $route['building_edit']     = '/BuildingControllers/LoadEditScreen';
 $route['building_exit']     = '/BuildingControllers/BuildingExit';
 $route['building_update']     = '/BuildingControllers/UpdateBuilding';
 $route['building_verification']     = '/BuildingControllers/BuildingVerification';
+$route['building_import']     = '/BuildingControllers/BuildingCsvImportModal';
 
 /////////////////////      Apartment      ////////////////////////////////////////////
 $route['apartment/(:num)']  = '/ApartmentControllers/LoadApartmentScreen/$1';
@@ -168,6 +169,7 @@ $route['deposit_apartment']     = '/DepositController/GetApartment';
 $route['deposit_tenant']     = '/DepositController/GetTenant';
 $route['deposit_cheque']     = '/DepositController/GetCheque';
 $route['deposit_verification'] = '/DepositController/AddVerification';
+$route['email_send'] = '/DepositController/EmailSendOwner';
 
 ///////////////////   Tenancy route    //////////////////////////////////
 $route['tenancy']           = '/TenancyController';
