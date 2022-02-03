@@ -100,3 +100,26 @@ ALTER TABLE `lymcrm`.`apartment`
 ALTER TABLE `lymcrm`.`payment`   
   ADD COLUMN `status` ENUM('active','inactive') NULL AFTER `updated_name`;
 
+ALTER TABLE `lymcrm`.`payment`   
+  ADD COLUMN `is_deposit` ENUM('yes','no') DEFAULT 'no'   NULL AFTER `status`;
+
+
+  CREATE TABLE `lymcrm`.`deposit`(  
+  `record_id` BIGINT(20) NOT NULL AUTO_INCREMENT,
+  `building_id` BIGINT(20),
+  `apartment_id` BIGINT(20),
+  `tenancy_id` BIGINT(20),
+  `type` ENUM('cheque','cash'),
+  `payment_id` BIGINT(20),
+  `created_by` BIGINT(20),
+  `created_at` DATETIME,
+  `created_name` VARCHAR(255),
+  `updated_by` BIGINT(20),
+  `updated_at` DATETIME,
+  `updated_name` VARCHAR(255),
+  PRIMARY KEY (`record_id`)
+);
+
+ALTER TABLE `lymcrm`.`deposit`   
+  ADD COLUMN `status` ENUM('active','inactive') DEFAULT 'active'   NULL AFTER `updated_name`;
+

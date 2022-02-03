@@ -54,6 +54,7 @@ class PropertyModel  extends CI_Model{
     	$this->db->where('a.status','active');
     	  
     	$query = $this->db->get(); 
+    	log_message('debug', $this->db->last_query());
     	return $query->result_array();
         
 	}

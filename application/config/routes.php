@@ -164,6 +164,10 @@ $route['deposit_add']       = '/DepositController/DepositAdd';
 $route['deposit_edit']      = '/DepositController/DepositEdit';
 $route['deposit_email']     = '/DepositController/DepositEmail';
 $route['deposit_image']     = '/DepositController/LoadDepositImage';
+$route['deposit_apartment']     = '/DepositController/GetApartment';
+$route['deposit_tenant']     = '/DepositController/GetTenant';
+$route['deposit_cheque']     = '/DepositController/GetCheque';
+$route['deposit_verification'] = '/DepositController/AddVerification';
 
 ///////////////////   Tenancy route    //////////////////////////////////
 $route['tenancy']           = '/TenancyController';
