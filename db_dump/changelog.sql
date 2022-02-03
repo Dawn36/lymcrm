@@ -101,6 +101,7 @@ ALTER TABLE `lymcrm`.`payment`
   ADD COLUMN `status` ENUM('active','inactive') NULL AFTER `updated_name`;
 
 ALTER TABLE `lymcrm`.`payment`   
+<<<<<<< Updated upstream
   ADD COLUMN `is_deposit` ENUM('yes','no') DEFAULT 'no'   NULL AFTER `status`;
 
 
@@ -122,4 +123,7 @@ ALTER TABLE `lymcrm`.`payment`
 
 ALTER TABLE `lymcrm`.`deposit`   
   ADD COLUMN `status` ENUM('active','inactive') DEFAULT 'active'   NULL AFTER `updated_name`;
+=======
+  ADD COLUMN `installment` BIGINT(20) NULL AFTER `payment_date`;
+>>>>>>> Stashed changes
 

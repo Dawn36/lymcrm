@@ -1,6 +1,7 @@
 <?php echo validation_errors('<div class="alert alert-danger">', '</div'); ?>
 <?php
 // print_r($buildingInfo);
+// print_r($tenantInfo);
 ?>
 <form class="needs-validation" name='tenancy_submit' id='tenancy_submit' method='post' action="/tenancy_submit" novalidate>
 
@@ -40,9 +41,9 @@
         <div class="col-md-12 mt-3">
             <label class="form-label">Tenant for Tenancy<span style="color: red">*</span></label>
             <select class="custom-select required" name="tenant" id="tenant" required="">
-                <option value="">Select Tenant</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
+                <?php for ($i = 0; $i < count($tenantInfo); $i++) { ?>
+                    <option value="<?php echo $tenantInfo[$i]['record_id']; ?>"><?php echo $tenantInfo[$i]['name']; ?></option>
+                <?php } ?>
             </select>
             <div class="invalid-feedback">
                 Please Select Tenant.
@@ -203,16 +204,20 @@
             return false;
         }
 
-        var cheque = $("input[name='cheque_no[]']").map(function() {
-            return $(this).val();
-        }).get();
+        if ($('.cheque_no').is(":hidden")) {
 
-        var duplicates = ToFindDuplicates(cheque);
+        } else {
+            var cheque = $("input[name='cheque_no[]']").map(function() {
+                return $(this).val();
+            }).get();
 
-        if (duplicates == false) {
-            var value = 'duplicate cheque no';
-            Toast(value);
-            return false;
+            var duplicates = ToFindDuplicates(cheque);
+
+            if (duplicates == false) {
+                var value = 'duplicate cheque no';
+                Toast(value);
+                return false;
+            }
         }
 
 

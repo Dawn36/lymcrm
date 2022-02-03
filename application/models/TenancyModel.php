@@ -12,6 +12,16 @@ class TenancyModel  extends CI_Model
         return $result;
     }
 
+    public function Update($tableName, $data, $recordId)
+    {
+        $this->db->where('record_id', $recordId);
+        $this->db->update($tableName, $data);
+        $result = $this->db->insert_id();
+
+        log_message('debug', $this->db->last_query());
+        return $result;
+    }
+
     public function Show($tableName)
     {
         $userId = $this->session->userdata('user_id');
@@ -52,7 +62,7 @@ class TenancyModel  extends CI_Model
     {
         $this->db->set('status', 'inactive');
         $this->db->where('tenancy_id', $data['record_id']);
-        $result = $this->db->insert($tableName);
+        $result = $this->db->update($tableName);
         // print_r($role) ;
         log_message('debug', $this->db->last_query());
         return $result;

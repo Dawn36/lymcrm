@@ -7,7 +7,7 @@ class TenancyController extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        // $this->load->model('Model_user', 'MUSER');
+        // $this->load->moSdel('Model_user', 'MUSER');
         $this->load->model('OwnerModal', 'OWNER');
         $this->load->model('ApartmentModal', 'APARTMENT');
         $this->load->model('TenancyModel', 'TENANCY');
@@ -35,6 +35,8 @@ class TenancyController extends CI_Controller
             log_message('debug', 'AddTenancy');
             $tableName = 'building';
             $data['buildingInfo'] = $this->OWNER->ShowOwner($tableName);
+            $tableName = 'tenant';
+            $data['tenantInfo'] = $this->OWNER->ShowOwner($tableName);
             return  $this->load->view('tenancy_add', $data);
         } else {
             redirect('login');
@@ -48,9 +50,10 @@ class TenancyController extends CI_Controller
         // die(print_r($arrPost));
         //tenancy table insert
         $tableName = 'tenancy';
+        $recordId                   = $arrPost['record_id'];
         $arrInfo['tenancy_no']      = $arrPost['tenancy_no'];
         $arrInfo['building_id']     = $arrPost['building'];
-        $arrInfo['apartment_id']    = $arrPost['appartment_no'];
+        $arrInfo['apartment_id']    = $arrPost['apartment_no'];
         $arrInfo['tenant_id']       = $arrPost['tenant'];
         $daterange                  = $arrPost['daterange'];
         $date                       = explode('-', $daterange);
@@ -69,15 +72,20 @@ class TenancyController extends CI_Controller
         $arrInfo['updated_by']      =  $this->session->userdata('user_id');
         $arrInfo['updated_name']    =  $this->session->userdata('user_name');
 
-        $cid = $this->TENANCY->Add($arrInfo, $tableName);
+        $cid = $this->TENANCY->Update($tableName, $arrInfo, $recordId);
+
         $tableName = 'payment';
-        $this->TENANCY->DeletePayments($arrInfo['record_id'], $tableName);
+        $recordId = $arrPost['record_id'];
+        $this->TENANCY->DeletePayments($recordId, $tableName);
+
         //inserting the payments details in payment table connected to the above inserted data
         for ($i = 0; $i < $arrInfo['no_of_payments']; $i++) {
             $tableName = 'payment';
             $tenInfo['tenancy_id']      = $cid;
+            $tenInfo['installment']      = $i + 1;
             $tenInfo['payment_type']    = $arrPost['payment_type'][$i];
             $tenInfo['cheque_no']       = $arrPost['cheque_no'][$i];
+            $tenInfo['amount']          = $arrPost['amount'][$i];
             $tenInfo['payment_date']    = date("Y-m-d h:i:s", strtotime($arrPost['date'][$i]));
             $tenInfo['created_at']      = date("Y-m-d h:i:s");
             $tenInfo['created_by']      =  $this->session->userdata('user_id');
@@ -90,7 +98,7 @@ class TenancyController extends CI_Controller
         }
         //changing the tenancy status in apartment so that it is not available
         $tableName = 'apartment';
-        $status = $arrInfo['building_id'];
+        $status = $arrInfo['apartment_id'];
         $this->APARTMENT->UpdateApartmentStatus($tableName, $status);
 
 
@@ -104,6 +112,8 @@ class TenancyController extends CI_Controller
             log_message('debug', 'EditTenancy');
             $arrPost = $this->input->post();
             $recordId =  $arrPost['recordId'];;
+            $tableName = 'tenant';
+            $data['tenantInfo'] = $this->OWNER->ShowOwner($tableName);
             $tableName = 'tenancy';
             $data['tenancyInfo'] = $this->TENANCY->ShowEdit($tableName, $recordId);
             return  $this->load->view('tenancy_edit', $data);
@@ -138,7 +148,7 @@ class TenancyController extends CI_Controller
             $tableName = 'tenancy';
             $arrInfo['tenancy_no']      = $arrPost['tenancy_no'];
             $arrInfo['building_id']     = $arrPost['building'];
-            $arrInfo['apartment_id']    = $arrPost['appartment_no'];
+            $arrInfo['apartment_id']    = $arrPost['apartment_no'];
             $arrInfo['tenant_id']       = $arrPost['tenant'];
             $daterange                  = $arrPost['daterange'];
             $date                       = explode('-', $daterange);
@@ -162,8 +172,10 @@ class TenancyController extends CI_Controller
             for ($i = 0; $i < $arrInfo['no_of_payments']; $i++) {
                 $tableName = 'payment';
                 $tenInfo['tenancy_id']      = $cid;
+                $tenInfo['installment']     = $i + 1;
                 $tenInfo['payment_type']    = $arrPost['payment_type'][$i];
                 $tenInfo['cheque_no']       = $arrPost['cheque_no'][$i];
+                $tenInfo['amount']          = $arrPost['amount'][$i];
                 $tenInfo['payment_date']    = date("Y-m-d h:i:s", strtotime($arrPost['date'][$i]));
                 $tenInfo['created_at']      = date("Y-m-d h:i:s");
                 $tenInfo['created_by']      =  $this->session->userdata('user_id');

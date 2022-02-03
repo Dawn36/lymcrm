@@ -1,6 +1,22 @@
 <?php echo validation_errors('<div class="alert alert-danger">', '</div'); ?>
 <?php
-print_r($tenancyInfo);
+// echo ("<pre>");
+// print_r($tenancyInfo);
+// print_r($tenancyInfo[0]['start_date']);
+
+// $startDate = date('d/m/Y', strtotime($tenancyInfo[0]['start_date']));
+// $endDate = date('d/m/Y', strtotime($tenancyInfo[0]['end_date']));
+// $startDate = strtotime($startDatj
+// echo $date;
+// $startDate = explode(' ', $tenancyInfo[0]['start_date']);
+// $endDate = explode(' ', $tenancyInfo[0]['end_date']);
+
+// print_r($startDate[0]);
+// print_r($endDate[0]);
+// echo $asad = "$startDate-$endDate";
+
+// print_r($tenantInfo);
+
 ?>
 <form class="needs-validation" name='tenancy_submit' id='tenancy_submit' method='post' action="/tenancy_update" novalidate>
 
@@ -43,8 +59,8 @@ print_r($tenancyInfo);
         <div class="col-md-12 mt-3">
             <label class="form-label">Tenant for Tenancy<span style="color: red">*</span></label>
             <select class="custom-select required" name="tenant" id="tenant" readonly required="">
-                <?php for ($i = 0; $i < count($tenancyInfo); $i++) { ?>
-                    <option selected readonly value="<?php echo $tenancyInfo[$i]['name']; ?>"><?php echo $tenancyInfo[$i]['name']; ?></option>
+                <?php for ($i = 0; $i < count($tenantInfo); $i++) { ?>
+                    <option selected readonly value="<?php echo $tenantInfo[$i]['record_id']; ?>"><?php echo $tenantInfo[$i]['name']; ?></option>
                 <?php } ?>
             </select>
             <div class="invalid-feedback">
@@ -206,18 +222,21 @@ print_r($tenancyInfo);
             return false;
         }
 
-        var cheque = $("input[name='cheque_no[]']").map(function() {
-            return $(this).val();
-        }).get();
+        if ($('.cheque_no').is(":hidden")) {
 
-        var duplicates = ToFindDuplicates(cheque);
+        } else {
+            var cheque = $("input[name='cheque_no[]']").map(function() {
+                return $(this).val();
+            }).get();
 
-        if (duplicates == false) {
-            var value = 'duplicate cheque no';
-            Toast(value);
-            return false;
+            var duplicates = ToFindDuplicates(cheque);
+
+            if (duplicates == false) {
+                var value = 'duplicate cheque no';
+                Toast(value);
+                return false;
+            }
         }
-
 
         if (confirm("Do you want to add tenancy?")) {
             $("#tenancy_submit").submit();
