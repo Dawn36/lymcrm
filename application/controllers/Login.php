@@ -17,6 +17,10 @@ class Login extends CI_Controller {
 			{
 				redirect('owner_property');
 			}
+			if($this->session->userdata('role_id') == TENANT)
+			{
+				redirect('tenant_tenancy');
+			}
 			else
 			{
 				redirect('landing_page');
@@ -30,13 +34,20 @@ class Login extends CI_Controller {
 	public function logout()
 	{
 		$this->session->unset_userdata('name');
+		$this->session->unset_userdata('user_id');
+		$this->session->unset_userdata('user_name');
+		$this->session->unset_userdata('email');
+		$this->session->unset_userdata('role_id');
+		$this->session->unset_userdata('owner_tenant_id');
+		$this->session->unset_userdata('role_name');
+		$this->session->unset_userdata('profile_picture');
 		$this->load->view('view_login');
 	}
 
 	public function userAuth()
 	{
 		
-		 $arr['name'] = $this->input->post('user_name');
+		 $arr['email'] = $this->input->post('user_name');
 		 $arr['password'] = base64_encode($this->input->post('password'));
 		 $this->form_validation->set_rules('user_name','User_name','required');
 		 $this->form_validation->set_rules('password','User_password','required');
@@ -45,7 +56,7 @@ class Login extends CI_Controller {
 			
 			if(count($check) > 0)
 			{	
-				$this->session->set_userdata('name',$arr['name']);
+				$this->session->set_userdata('name',$check[0]['user_name']);
 				$this->session->set_userdata('user_id',$check[0]['user_id']);
 				$this->session->set_userdata('user_name',$check[0]['user_name']);
 				$this->session->set_userdata('email',$check[0]['email']);
@@ -57,6 +68,10 @@ class Login extends CI_Controller {
 				if($this->session->userdata('role_id') == OWNER)
 			{
 				redirect('owner_property');
+			}
+			if($this->session->userdata('role_id') == TENANT)
+			{
+				redirect('tenant_tenancy');
 			}
 			else
 			{

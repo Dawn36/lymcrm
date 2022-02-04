@@ -1,4 +1,4 @@
-<form class="needs-validation" id='emailsentform' name='emailsentform' method='post' action="/email_send">
+<form class="needs-validation" id='emailsentform' name='emailsentform' method='post' action="/email_send" enctype="multipart/form-data">
     <div class="form-row">
         <div class="col-md-12 mb-3">
 
@@ -9,6 +9,13 @@
             </div>
         </div>
     </div>
+    <input type="hidden" id="depositId" name="depositId" >
+    <input type="hidden" id="installment" name="installment" >
+    <input type="hidden" id="ownerEmail" name="ownerEmail" >
+    <input type="hidden" id="ownerName" name="ownerName" >
+    <input type="hidden" id="apartmentNo" name="apartmentNo" >
+    <input type="hidden" id="buildingName" name="buildingName" >
+    
     <div class="form-row">
         <div class="col-md-12 mb-3">
 

@@ -127,3 +127,35 @@ ALTER TABLE `lymcrm`.`deposit`
   ADD COLUMN `installment` BIGINT(20) NULL AFTER `payment_date`;
 >>>>>>> Stashed changes
 
+CREATE TABLE `lymcrm`.`deposit_attachment`(  
+  `record_id` BIGINT(20) NOT NULL AUTO_INCREMENT,
+  `deposit_id` BIGINT(20),
+  `file_name` VARCHAR(255),
+  `file_path` VARCHAR(255),
+  `file_type` VARCHAR(255),
+  `status` ENUM('active','inactive') DEFAULT 'active',
+  `created_at` DATETIME,
+  `created_by` BIGINT(20),
+  `created_name` VARCHAR(255),
+  PRIMARY KEY (`record_id`)
+);
+
+CREATE TABLE `lymcrm`.`email_self`(  
+  `record_id` BIGINT(20) NOT NULL AUTO_INCREMENT,
+  `deposit_id` BIGINT(20),
+  `owner_name` VARCHAR(255),
+  `Owner_email` VARCHAR(255),
+  `installment` VARCHAR(255),
+  `apartment_no` VARCHAR(255),
+  `building_name` VARCHAR(255),
+  `created_at` DATETIME,
+  `created_by` BIGINT(20),
+  `created_name` VARCHAR(255),
+  PRIMARY KEY (`record_id`)
+);
+
+
+ALTER TABLE `lymcrm`.`email_self`   
+  ADD COLUMN `subject` VARCHAR(255) NULL AFTER `created_name`,
+  ADD COLUMN `email_content` VARCHAR(255) NULL AFTER `subject`;
+

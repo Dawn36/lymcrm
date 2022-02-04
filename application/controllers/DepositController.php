@@ -9,7 +9,8 @@ class DepositController extends CI_Controller
 		parent::__construct();
 		 $this->load->model('DepositModel', 'DEPOSIT');
 		 $this->load->model('OwnerModal', 'OWNER');
-         $this->load->library('email');
+         $this->load->library('upload');
+        // $this->load->library('email');
 		// $this->load->model('Model_lovs', 'MLOVS');
 	}
 
@@ -20,39 +21,104 @@ class DepositController extends CI_Controller
 			$this->load->view('main_header');
 			$this->load->view('sidebar');
             
-			// $data['users'] = $this->MUSER->UserShow();
-			$this->load->view('deposit_show');
+			$data['depositSlip'] = $this->DEPOSIT->GetChequeSlip();
+			$this->load->view('deposit_show',$data);
 			$this->load->view('footer');
 		} else {
 			redirect('login');
 		}
 	}
+    public function DepositDelete()
+    {
+
+        $arrPost = $this->input->post();
+
+        $depositId = $arrPost['depositId'];
+        $paymentId = $arrPost['paymentId'];
+        $dataInfo = array();
+        $tableName = 'payment';
+        $dataInfo['is_deposit'] = 'no';
+        $check = $this->OWNER->UpdateOwner($dataInfo,$tableName,$paymentId);
+        $dataInfo = array();
+        $tableName = 'deposit';
+        $dataInfo['status'] = 'inactive';
+        $check = $this->OWNER->UpdateOwner($dataInfo,$tableName,$depositId);
+         
+        echo $check;
+        
+    }
+    private function set_upload_options()
+    {   
+    //upload an image options
+    $config = array();
+    $config['upload_path'] = './uploads/deposit/';
+    $config['allowed_types'] = 'gif|jpg|png';
+    $config['max_size']      = '0';
+    $config['overwrite']     = FALSE;
+
+    return $config;
+    }
     public function EmailSendOwner()
     {
-         $arrPost = $this->input->post();
-         
-           $config['upload_path']          = './uploads/deposit/';
-            $config['allowed_types']        = 'jpg|png';
-          
-            $this->load->library('upload', $config);
-            if (!$this->upload->do_upload('deposit')) {
-                $error = array('error' => $this->upload->display_errors());
-                log_message('debug', 'err : ' . print_r($error, true));
-            } else {
-                $data = array('upload_data' => $this->upload->data());
-                log_message('debug', 'uploadprofile b: ' . print_r($data, true));
-            }
-              $filePath=base_url() . 'uploads/deposit/' . $data['upload_data']['file_name'];
-              die();
+    $arrPost = $this->input->post();
+    $tableName = 'deposit_attachment';
+    $dataInfo = array();
+    $files = $_FILES;
+    $cpt = count($_FILES['deposit']['name']);
+  if($_FILES['deposit']['name'][0] == "")
+  {
+    $cpt=0;
+  }
+    if($arrPost['depositId'] != '')
+    {
+         for($i=0; $i<$cpt; $i++)
+    {           
+        $_FILES['deposit']['name']= $files['deposit']['name'][$i];
+        $_FILES['deposit']['type']= $files['deposit']['type'][$i];
+        $_FILES['deposit']['tmp_name']= $files['deposit']['tmp_name'][$i];
+        $_FILES['deposit']['error']= $files['deposit']['error'][$i];
+        $_FILES['deposit']['size']= $files['deposit']['size'][$i];    
+
+        $this->upload->initialize($this->set_upload_options());
+        $this->upload->do_upload('deposit');
+        $dataInfo[] = $this->upload->data();
+
+            $arrInfo['deposit_id'] = $arrPost['depositId'];
+            $arrInfo['file_name'] = $dataInfo[$i]['file_name'];
+            $arrInfo['file_path'] = base_url() . 'uploads/deposit/' . $dataInfo[$i]['file_name'];
+            $arrInfo['file_type'] = $dataInfo[$i]['file_ext'];
+            $arrInfo['created_at'] = date("Y-m-d h:i:s");
+            $arrInfo['created_by'] =  $this->session->userdata('user_id');
+            $arrInfo['created_name'] =  $this->session->userdata('user_name');
+            $arrInfo['status'] = "active";
+            $check = $this->OWNER->AddOwner($arrInfo,$tableName);
+    }
+    }
+  
+           $dataInfo=array();  
+           $tableName='email_self'; 
+        $arrPost = $this->input->post();
+        $dataInfo['subject'] = $arrPost['subject'];
+        $dataInfo['email_content'] = $arrPost['email_send'];
+        $dataInfo['installment'] = $arrPost['installment'];
+        $dataInfo['deposit_id'] = $arrPost['depositId'];
+        $dataInfo['owner_name'] = $arrPost['ownerName'];
+        $dataInfo['owner_email'] = $arrPost['ownerEmail'];
+        $dataInfo['apartment_no'] = $arrPost['apartmentNo'];
+        $dataInfo['building_name'] = $arrPost['buildingName'];
+        $dataInfo['created_at'] = date("Y-m-d h:i:s");
+        $dataInfo['created_by'] = $this->session->userdata('user_id');
+        $dataInfo['created_name'] = $this->session->userdata('user_name');
+         $check = $this->OWNER->AddOwner($dataInfo,$tableName);
+
          $to = $arrPost['to'];
          $subject = $arrPost['subject'];
          $emailcontent = $arrPost['email_send'];
-        $dataInfo['subject'] = $arrPost['subject'];
-        $dataInfo['email_send'] = $arrPost['email_send'];
+        
 
-        $config['smtp_host'] = 'smtp.googlemail.com';
-            $config['smtp_user'] = 'dawngill08@gmail.com';
-            $config['smtp_pass'] = 'randikechoot1A';
+        $config['smtp_host'] = SMTPHOST;
+            $config['smtp_user'] = SMTPUSER;
+            $config['smtp_pass'] = SMTPPASS;
             $config['smtp_port'] = '465';
             $config['mailtype'] = 'html';
             $config['smtp_crypto'] = 'ssl';
@@ -68,14 +134,21 @@ class DepositController extends CI_Controller
             $this->email->to($to);
             // $this->email->cc('another@another-example.com');
             // $this->email->bcc('them@their-example.com');
-
+            $depositId = $arrPost['depositId'];
+            $depositImg = $this->DEPOSIT->GetDepositImg($depositId);
+            for ($i=0; $i <count($depositImg) ; $i++) { 
+            //  $this->email->attach($depositImg[$i]['file_path']);
+            }
+            
+            // $this->email->attach($dataInfo[1]['full_path']);
             $this->email->subject($subject);
             $this->email->message($emailcontent);
-            $this->email->attach();
+            
            
             $this->email->send();
-          //  $this->email->send();
+           //$this->email->send();
              log_message('debug', $this->email->print_debugger());
+             redirect('/deposit');
     }
     public function DepositAdd()
     {
@@ -129,7 +202,11 @@ class DepositController extends CI_Controller
     public function LoadDepositImage()
     {
         log_message('debug', 'ImageDeposit');
-        return  $this->load->view('deposit_image');
+         $arrPost = $this->input->post();
+
+        $depositId = $arrPost['id'];
+        $data['depositImg'] = $this->DEPOSIT->GetDepositImg($depositId);
+        return  $this->load->view('deposit_image',$data);
     }
     public function AddVerification()
     {

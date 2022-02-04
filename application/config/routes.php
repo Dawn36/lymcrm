@@ -170,6 +170,7 @@ $route['deposit_tenant']     = '/DepositController/GetTenant';
 $route['deposit_cheque']     = '/DepositController/GetCheque';
 $route['deposit_verification'] = '/DepositController/AddVerification';
 $route['email_send'] = '/DepositController/EmailSendOwner';
+$route['deposit_delete'] = '/DepositController/DepositDelete';
 
 ///////////////////   Tenancy route    //////////////////////////////////
 $route['tenancy']           = '/TenancyController';

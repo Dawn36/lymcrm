@@ -25,6 +25,7 @@ $heading = "Deposit Slip";
                 <button onclick="DepositAdd()" class="btn btn-primary float-right bg-brand-gradient" type="button"><i class="fas fa-plus" style="margin-right: 4px"></i>Add Deposit Slip</button>
             </div>
         </div>
+ 
         <section id="" class="">
             <div class="row">
                 <!-- NEW WIDGET START -->
@@ -67,57 +68,52 @@ $heading = "Deposit Slip";
                                                 <center>Created At</center>
                                             </th>
                                             <th nowrap>
-                                                <center>Updated At</center>
-                                            </th>
-                                            <th nowrap>
                                                 <center>Action</center>
                                             </th>
                                         </tr>
                                     </thead>
                                     <tbody>
-
+                                        <?php for($i=0; $i< count($depositSlip); $i++){ ?>
                                         <tr id="1">
                                             <td nowrap hidden> 
-                                               1
+                                               <?php echo $depositSlip[$i]['installment'] ?>
                                             </td>
                                             <td nowrap>
-                                                Building
+                                                <?php echo $depositSlip[$i]['building_name'] ?>
                                             </td>
                                             <td nowrap>
-                                               Community
+                                               <?php echo $depositSlip[$i]['apartment_number'] ?>
                                             </td>
                                             <td nowrap>
-                                               Owner
+                                               <?php echo $depositSlip[$i]['name'] ?>
                                             </td>
                                             <td nowrap>
-                                               dawngill08@gmail.com
+                                               <?php echo $depositSlip[$i]['email'] ?>
                                             </td>
                                             <td nowrap>
-                                                Cheque
+                                                <?php echo $depositSlip[$i]['type'] ?>
                                             </td>
                                             <td nowrap>
-                                                <center>1234</center>
+                                                <center><?php echo $depositSlip[$i]['cheque_no'] ?></center>
                                             </td>
                                             <td nowrap>
-                                                <center>3000</center>
+                                                <center><?php echo $depositSlip[$i]['amount'] ?></center>
                                             </td>
                                             <td nowrap>
-                                                <center>3000</center>
+                                                <center><?php echo $depositSlip[$i]['created_name'] ?></center>
                                             </td>
                                             <td nowrap>
-                                                <center>3000</center>
-                                            </td>
-                                            <td nowrap>
-                                                <center>3000</center>
+                                                <center><?php echo date("Y-m-d",strtotime($depositSlip[$i]['created_at'])) ?></center>
                                             </td>
                                             <td nowrap>
                                                 <center>
-                                                    <button onclick="LoadDepositImage(id)" type="button" class="btn btn-sm btn-primary bg-brand-gradient"  title="Attachment"><i class="fal fa-camera"></i></button>&nbsp;
-                                                    <button onclick="DepositEmail(this)" class="btn btn-sm btn-primary bg-brand-gradient" ><i class="fal fa-envelope"></i></button>&nbsp;
-                                                    <button type="button" onclick="" class="btn btn-sm btn-primary bg-brand-gradient" title="Delete Property"><i class="fal fa-times"></i></button>
+                                                    <button onclick="LoadDepositImage(<?php echo $depositSlip[$i]['record_id'] ?>)" type="button" class="btn btn-sm btn-primary bg-brand-gradient"  title="Attachment"><i class="fal fa-camera"></i></button>&nbsp;
+                                                    <button onclick="DepositEmail(<?php echo $depositSlip[$i]['record_id'] ?>)" class="btn btn-sm btn-primary bg-brand-gradient" ><i class="fal fa-envelope"></i></button>&nbsp;
+                                                    <button type="button" onclick="DeleteDepositSlip('<?php echo $depositSlip[$i]['record_id'] ?>','<?php echo $depositSlip[$i]['payment_id'] ?>')"class="btn btn-sm btn-primary bg-brand-gradient" title="Delete Property"><i class="fal fa-times"></i></button>
                                                 </center>
                                             </td>
                                         </tr>
+                                    <?php } ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -235,7 +231,22 @@ $heading = "Deposit Slip";
             }
         });
     }
-
+    function DeleteDepositSlip(depositId,paymentId) {
+        var value = {
+            depositId: depositId,
+            paymentId: paymentId,
+        };
+        $.ajax({
+            url: baseurl + 'deposit_delete',
+            type: 'POST',
+            data: value,
+            success: function(result) {
+                var value='Delete Sucessfully';
+                DeleteToast(value);
+                window.location.reload();
+            }
+        });
+    }
 
     // Modal For Edit User
     function DepositEdit(id) {
@@ -273,7 +284,7 @@ $heading = "Deposit Slip";
         
     } );
 } );
-   var subject="Deposit Slip for [[INSTALLMENT]] Installment";
+  
     // Modal For Edit User
     function ordinal_suffix_of(i) {
     var j = i % 10,
@@ -289,10 +300,11 @@ $heading = "Deposit Slip";
     }
     return i + "th";
 }
-    function DepositEmail() {
-
+    function DepositEmail(depositId) {
+ var subject="Deposit Slip for [[INSTALLMENT]] Installment";
         var value = {
         installment:installment,
+        depositId:depositId,
         ownerEmail:ownerEmail,
         ownerName:ownerName,
         apartmentNo:apartmentNo,
@@ -318,13 +330,19 @@ $heading = "Deposit Slip";
 
                 $('#to').val(ownerEmail);
                 $('#subject').val(subject);
+                $('#depositId').val(depositId);
+                $('#installment').val(installment);
+                $('#ownerEmail').val(ownerEmail);
+                $('#ownerName').val(ownerName);
+                $('#apartmentNo').val(apartmentNo);
+                $('#buildingName').val(buildingName);
             }
         });
     }
 
     function LoadDepositImage(id) {
         var value = {
-            id: id
+            id: id,
         };
         $.ajax({
             url: baseurl + 'deposit_image',
