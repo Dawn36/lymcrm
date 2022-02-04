@@ -121,7 +121,9 @@ $heading = "Tenancy";
                                                     <center>
                                                         <button onclick="ViewSlips(id)" class="btn btn-sm btn-primary bg-brand-gradient" title="Edit Tenancy"><i class="fal fa-eye"></i></button>
                                                         <button onclick="EditTenancy(<?php echo $recordId; ?>)" class="btn btn-sm btn-primary bg-brand-gradient" title="Edit Tenancy"><i class="fal fa-edit"></i></button>
-                                                        <button type="button" onclick="" class="btn btn-sm btn-primary bg-brand-gradient" title="Delete Tenancy"><i class="fal fa-times"></i></button>
+                                                        <?php if ($this->session->userdata('role_id') == SUPER_ADMIN) { ?>
+                                                            <button type="button" onclick="DeleteTenancy(<?php echo $recordId; ?>)" class=" sbtn btn-sm btn-primary bg-brand-gradient" title="Delete Tenancy"><i class="fal fa-times"></i></button>
+                                                        <?php } ?>
                                                     </center>
                                                 </td>
                                             </tr>
@@ -337,17 +339,20 @@ $heading = "Tenancy";
 
     // Delete Tenancy
     function DeleteTenancy(id) {
+        debugger;
         var value = {
             id: id
         };
         if (confirm('Are you sure you want to delete Tenancy?')) {
             $.ajax({
-                url: baseurl + '',
+                url: baseurl + 'tenancy_delete',
                 type: 'POST',
                 data: value,
                 success: function(result) {
-                    window.location = baseurl + '';
-
+                    debugger;
+                    var value = 'Delete Sucessfully';
+                    DeleteToast(value);
+                    // window.location.reload();
                 }
             });
         } else {

@@ -58,13 +58,25 @@ class TenancyModel  extends CI_Model
         return $result;
     }
 
-    public function DeletePayments($data, $tableName)
+    public function DeletePayments($delArr, $recordId, $tableName)
     {
-        $this->db->set('status', 'inactive');
-        $this->db->where('tenancy_id', $data['record_id']);
-        $result = $this->db->update($tableName);
+
+        $this->db->where('tenancy_id', $recordId);
+        $this->db->update($tableName, $delArr);
+        $result = $this->db->insert_id();
+
         // print_r($role) ;
         log_message('debug', $this->db->last_query());
-        return $result;
+    }
+
+    public function DeleteTenancy($delArr, $recordId, $tableName)
+    {
+
+        $this->db->where('record_id', $recordId);
+        $this->db->update($tableName, $delArr);
+        $result = $this->db->insert_id();
+
+        // print_r($role) ;
+        log_message('debug', $this->db->last_query());
     }
 }

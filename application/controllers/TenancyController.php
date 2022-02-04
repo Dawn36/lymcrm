@@ -72,21 +72,23 @@ class TenancyController extends CI_Controller
         $arrInfo['updated_by']      =  $this->session->userdata('user_id');
         $arrInfo['updated_name']    =  $this->session->userdata('user_name');
 
-        $cid = $this->TENANCY->Update($tableName, $arrInfo, $recordId);
+        $this->TENANCY->Update($tableName, $arrInfo, $recordId);
+
+        $delArr['status'] = 'inactive';
 
         $tableName = 'payment';
-        $recordId = $arrPost['record_id'];
-        $this->TENANCY->DeletePayments($recordId, $tableName);
+        $this->TENANCY->DeletePayments($delArr, $recordId, $tableName);
 
         //inserting the payments details in payment table connected to the above inserted data
         for ($i = 0; $i < $arrInfo['no_of_payments']; $i++) {
             $tableName = 'payment';
-            $tenInfo['tenancy_id']      = $cid;
-            $tenInfo['installment']      = $i + 1;
+            $tenInfo['tenancy_id']      = $recordId;
+            $tenInfo['installment']     = $i + 1;
             $tenInfo['payment_type']    = $arrPost['payment_type'][$i];
             $tenInfo['cheque_no']       = $arrPost['cheque_no'][$i];
             $tenInfo['amount']          = $arrPost['amount'][$i];
             $tenInfo['payment_date']    = date("Y-m-d h:i:s", strtotime($arrPost['date'][$i]));
+            $tenInfo['status']          = 'active';
             $tenInfo['created_at']      = date("Y-m-d h:i:s");
             $tenInfo['created_by']      =  $this->session->userdata('user_id');
             $tenInfo['created_name']    =  $this->session->userdata('user_name');
@@ -196,6 +198,17 @@ class TenancyController extends CI_Controller
         }
     }
 
+    function DeleteTenancy()
+    {
+        if ($this->session->userdata('name')) {
+            $arrPost = $this->input->post();
+            $recordId = $arrPost['id'];
+            $delArr['status'] = 'inactive';
+
+            $tableName = 'tenancy';
+            $this->TENANCY->DeletePayments($delArr, $recordId, $tableName);
+        }
+    }
     function TenancyRenew()
     {
         if ($this->session->userdata('name')) {
