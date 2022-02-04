@@ -109,7 +109,9 @@ $heading = "Deposit Slip";
                                                 <center>
                                                     <button onclick="LoadDepositImage(<?php echo $depositSlip[$i]['record_id'] ?>)" type="button" class="btn btn-sm btn-primary bg-brand-gradient"  title="Attachment"><i class="fal fa-camera"></i></button>&nbsp;
                                                     <button onclick="DepositEmail(<?php echo $depositSlip[$i]['record_id'] ?>)" class="btn btn-sm btn-primary bg-brand-gradient" ><i class="fal fa-envelope"></i></button>&nbsp;
+                                                    <?php if ($this->session->userdata('role_id') == SUPER_ADMIN) { ?>
                                                     <button type="button" onclick="DeleteDepositSlip('<?php echo $depositSlip[$i]['record_id'] ?>','<?php echo $depositSlip[$i]['payment_id'] ?>')"class="btn btn-sm btn-primary bg-brand-gradient" title="Delete Property"><i class="fal fa-times"></i></button>
+                                                <?php } ?>
                                                 </center>
                                             </td>
                                         </tr>

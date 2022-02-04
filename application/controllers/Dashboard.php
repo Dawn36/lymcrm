@@ -21,11 +21,11 @@ class Dashboard extends CI_Controller {
 	}
 
 
-	public function dashboard()
-	{	
-		$this->load->model('Main_modal');
-		$data['view']=$this->MM->GetUsers();	
-		$this->load->view('dashboard' , $data );
+	// public function dashboard()
+	// {	
+	// 	$this->load->model('Main_modal');
+	// 	$data['view']=$this->MM->GetUsers();	
+	// 	$this->load->view('dashboard' , $data );
 
-	}
+	// }
 }
