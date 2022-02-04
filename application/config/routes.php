@@ -178,3 +178,4 @@ $route['tenancy_edit']      = '/TenancyController/LoadEditScreen';
 $route['tenancy_apartment'] = '/TenancyController/ShowApartment';
 $route['tenancy_submit']    = '/TenancyController/TenancySubmit';
 $route['tenancy_update']    = '/TenancyController/TenancyUpdate';
+$route['tenancy_delete']    = '/TenancyController/DeleteTenancy';

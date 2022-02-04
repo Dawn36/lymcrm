@@ -32,7 +32,7 @@ $heading = "All Users";
                     <div id="panel-1" class="panel">
                         <div class="panel-container show">
                             <div class="panel-content">
-                          
+
                                 <table id="<?php echo str_replace(' ', '', $heading) ?>_datatable_tabletools" class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline">
                                     <thead class="bg-primary-600 bg-brand-gradient">
                                         <tr>
@@ -51,7 +51,7 @@ $heading = "All Users";
                                             <th nowrap>
                                                 <center>User Type</center>
                                             </th>
-                                            
+
                                             <th nowrap>
                                                 <center>Created At</center>
                                             </th>
@@ -59,31 +59,26 @@ $heading = "All Users";
                                                 <center>Updated At</center>
                                             </th>
                                             <th nowrap>
-                                                    <center>Status</center>
+                                                <center>Status</center>
                                             </th>
                                             <th nowrap>
-                                                    <center>Action</center>
+                                                <center>Action</center>
                                             </th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php for ($i = 0; $i < count($userInfo); $i++) {
-                                            $ownerTenantId=$userInfo[$i]['owner_tenant_id'];
-                                            $usersType=$userInfo[$i]['role_id'];
-                                            $roleName='';
-                                            if($usersType == OWNER)
-                                            {
-                                                $roleName='Owner';
-                                            }
-                                            else if($usersType == TENANT)
-                                            {
-                                                $roleName='Tenant';
-                                            }
-                                            else if($usersType == SUB_ADMIN || $usersType == SUPER_ADMIN)
-                                            {
+                                            $ownerTenantId = $userInfo[$i]['owner_tenant_id'];
+                                            $usersType = $userInfo[$i]['role_id'];
+                                            $roleName = '';
+                                            if ($usersType == OWNER) {
+                                                $roleName = 'Owner';
+                                            } else if ($usersType == TENANT) {
+                                                $roleName = 'Tenant';
+                                            } else if ($usersType == SUB_ADMIN || $usersType == SUPER_ADMIN) {
                                                 continue;
                                             }
-                                            $userId=$userInfo[$i]['record_id'];
+                                            $userId = $userInfo[$i]['record_id'];
                                         ?>
                                             <tr>
                                                 <td>
@@ -112,13 +107,11 @@ $heading = "All Users";
                                                 </td>
                                                 <td nowrap>
                                                     <center>
-                                                        <button onclick="ResetUser(<?php echo $userId?>)" class="btn btn-sm btn-primary bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Reset Password"
-                                                        ><i class="fas fa-key"></i></button>&nbsp;
-                                                        <button onclick="EditUser(<?php echo $ownerTenantId?>,<?php echo  $usersType?>,<?php echo $userId?>)" class="btn btn-sm btn-primary bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Edit User"
-                                                        ><i class="fal fa-edit"></i></button>&nbsp;
-                                                         <?php if($this->session->userdata('role_id') == SUPER_ADMIN){ ?>
-                                                        <button type="button" onclick="DeleteUser(<?php echo $ownerTenantId?>,<?php echo  $usersType?>,<?php echo $userId?>)" class="btn btn-sm btn-primary bg-brand-gradient"data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Delete User"><i class="fal fa-times"></i></button>
-                                                    <? } ?>
+                                                        <button onclick="ResetUser(<?php echo $userId ?>)" class="btn btn-sm btn-primary bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Reset Password"><i class="fas fa-key"></i></button>&nbsp;
+                                                        <button onclick="EditUser(<?php echo $ownerTenantId ?>,<?php echo  $usersType ?>,<?php echo $userId ?>)" class="btn btn-sm btn-primary bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Edit User"><i class="fal fa-edit"></i></button>&nbsp;
+                                                        <?php if ($this->session->userdata('role_id') == SUPER_ADMIN) { ?>
+                                                            <button type="button" onclick="DeleteUser(<?php echo $ownerTenantId ?>,<?php echo  $usersType ?>,<?php echo $userId ?>)" class="btn btn-sm btn-primary bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Delete User"><i class="fal fa-times"></i></button>
+                                                        <? } ?>
                                                     </center>
                                                 </td>
                                             </tr>
@@ -279,7 +272,7 @@ $heading = "All Users";
 
 
     // Modal For Edit User
-    function EditUser(ownerTenantId,usersType,userId) {
+    function EditUser(ownerTenantId, usersType, userId) {
         var value = {
             ownerTenantId: ownerTenantId,
             usersType: usersType,
@@ -299,8 +292,8 @@ $heading = "All Users";
         });
     }
 
-        // Delete User
-        function DeleteUser(ownerTenantId,usersType,userId) {
+    // Delete User
+    function DeleteUser(ownerTenantId, usersType, userId) {
         var value = {
             ownerTenantId: ownerTenantId,
             usersType: usersType,
@@ -313,17 +306,14 @@ $heading = "All Users";
                 data: value,
                 success: function(result) {
                     debugger;
-                    var value='Delete Sucessfully';
+                    var value = 'Delete Sucessfully';
                     DeleteToast(value);
                     window.location.reload();
                     // redirect('HiringRequests/viewhiringrequest');
-                   // window.location = baseurl + 'user_show';
+                    // window.location = baseurl + 'user_show';
 
                 }
             });
-        } 
+        }
     }
-      
-
-    
 </script>

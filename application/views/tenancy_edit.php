@@ -4,18 +4,9 @@
 // print_r($tenancyInfo);
 // print_r($tenancyInfo[0]['start_date']);
 
-// $startDate = date('d/m/Y', strtotime($tenancyInfo[0]['start_date']));
-// $endDate = date('d/m/Y', strtotime($tenancyInfo[0]['end_date']));
-// $startDate = strtotime($startDatj
-// echo $date;
-// $startDate = explode(' ', $tenancyInfo[0]['start_date']);
-// $endDate = explode(' ', $tenancyInfo[0]['end_date']);
+$startDate = date("m/d/Y", strtotime($tenancyInfo[0]['start_date']));
+$endDate = date("m/d/Y", strtotime($tenancyInfo[0]['end_date']));
 
-// print_r($startDate[0]);
-// print_r($endDate[0]);
-// echo $asad = "$startDate-$endDate";
-
-// print_r($tenantInfo);
 
 ?>
 <form class="needs-validation" name='tenancy_submit' id='tenancy_submit' method='post' action="/tenancy_update" novalidate>
@@ -70,7 +61,7 @@
         <div class="col-md-12 mt-3">
             <label class="form-label">Start And End Date<span style="color: red">*</span></label>
             <div class="input-group">
-                <input type="text" class="form-control" type="text" readonly="" id="daterange" name="daterange" placeholder="Select date" style="background: white;" required>
+                <input type="text" class="form-control" value="<?php echo $startDate ?> - <?php echo $endDate ?>" type="text" readonly="" id="daterange" name="daterange" placeholder="Select date" style="background: white;" required>
                 <div class="input-group-append">
                     <span class="input-group-text fs-xl">
                         <i class="fal fa-calendar-alt"></i>
@@ -252,7 +243,6 @@
     $('input[name="daterange"]').daterangepicker({
         opens: 'left',
         drops: 'up',
-        minDate: new Date()
 
     }, function(start, end, label) {
         console.log("A new date selection was made: " + start.format('DD-MM-YYYY') + ' to ' + end.format('DD-MM-YYYY'));
