@@ -23,7 +23,7 @@ class Login extends CI_Controller {
 			}
 			else
 			{
-				redirect('landing_page');
+				redirect('infection_dashboard');
 			}
 		
 		} else {
@@ -75,7 +75,7 @@ class Login extends CI_Controller {
 			}
 			else
 			{
-				redirect('landing_page');
+				redirect('infection_dashboard');
 			}
 			
 			}

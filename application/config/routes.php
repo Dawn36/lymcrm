@@ -75,6 +75,10 @@ $route['user_added'] = 'users/UsersAdd';
 $route['source'] = '/Bed/Source';
 $route['source_add'] = '/Bed/SourceAdd';
 $route['delete_source'] = '/Bed/SourceDelete';
+///////////////////////////// Dashboard /////////////////////////////////////
+$route['infection_dashboard'] = '/Dashboard';
+$route['get_all_email']             = '/Dashboard/GetHistory';
+
 /////////////////////////// Owner Login /////////////////////////////////////////
 $route['owner_property']             = '/PropertyController/GetOwnerProperty';
 $route['owner_tenant']             = '/PropertyController/GetOwnerTenant';
