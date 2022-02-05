@@ -1,4 +1,6 @@
 <?php
+
+// echo '<pre>';
 // print_r($tenancyInfo[0]);
 
 $heading = "Tenancy";
@@ -68,9 +70,9 @@ $heading = "Tenancy";
                                             <th nowrap>
                                                 <center>Created At</center>
                                             </th>
-                                            <th nowrap>
+                                            <!-- <th nowrap>
                                                 <center>Updated At</center>
-                                            </th>
+                                            </th> -->
                                             <th nowrap>
                                                 <center>Action</center>
                                             </th>
@@ -83,7 +85,7 @@ $heading = "Tenancy";
                                             }
                                             $recordId = $tenancyInfo[$i]['record_id'];
                                         ?>
-                                            <tr>
+                                            <tr id="<?php echo $recordId; ?>">
                                                 <td nowrap>
                                                     <center><?php echo $tenancyInfo[$i]['tenancy_no'] ?></center>
                                                 </td>
@@ -114,15 +116,15 @@ $heading = "Tenancy";
                                                 <td nowrap>
                                                     <center><?php echo date('d-M-Y', strtotime($tenancyInfo[$i]['created_at'])); ?></center>
                                                 </td>
-                                                <td nowrap>
+                                                <!-- <td nowrap>
                                                     <center><?php echo date('d-M-Y', strtotime($tenancyInfo[$i]['updated_at'])); ?></center>
-                                                </td>
+                                                </td> -->
                                                 <td nowrap>
                                                     <center>
-                                                        <button onclick="ViewSlips(id)" class="btn btn-sm btn-primary bg-brand-gradient" title="Edit Tenancy"><i class="fal fa-eye"></i></button>
+                                                        <button onclick="ViewPayments(<?php echo $recordId; ?>)" class="btn btn-sm btn-primary bg-brand-gradient" title="View Payments"><i class="fal fa-eye"></i></button>
                                                         <button onclick="EditTenancy(<?php echo $recordId; ?>)" class="btn btn-sm btn-primary bg-brand-gradient" title="Edit Tenancy"><i class="fal fa-edit"></i></button>
                                                         <?php if ($this->session->userdata('role_id') == SUPER_ADMIN) { ?>
-                                                            <button type="button" onclick="DeleteTenancy(<?php echo $recordId; ?>)" class=" sbtn btn-sm btn-primary bg-brand-gradient" title="Delete Tenancy"><i class="fal fa-times"></i></button>
+                                                            <button type="button" onclick="DeleteTenancy(<?php echo $recordId; ?>,<?php echo $tenancyInfo[$i]['apartment_id'] ?>)" data-id="<?php echo $i; ?>" class="btn btn-sm btn-primary bg-brand-gradient" title="Delete Tenancy"><i class="fal fa-times"></i></button>
                                                         <?php } ?>
                                                     </center>
                                                 </td>
@@ -146,45 +148,6 @@ $heading = "Tenancy";
 <!-- this overlay is activated only when mobile menu is triggered -->
 <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div>
 <script type="text/javascript">
-    function deleted(aa) {
-
-
-
-        // var data = $("#").serialize();
-        if (confirm("Are you sure you want to delete?")) {
-            // alert(aa);
-            var data = {
-                id: aa
-            };
-            $.ajax({
-                url: baseurl + '',
-                type: 'POST',
-                data: data,
-                success: function(result) {
-
-                    //var result = jQuery.parseJSON(result);
-                    if (result) {
-                        var result = jQuery.parseJSON(result);
-                        console.log(result);
-                        if (result == 1) {
-                            alert("Delete Sucessfully")
-                            window.location.reload();
-                        }
-
-
-                    }
-
-                    // $('#order_total_amount').text(Math.round(total_amount));
-
-                },
-                error: function(xhr, textStatus, errorThrown) {
-                    alert(xhr.responseText);
-                }
-            });
-
-        }
-    }
-
     $(document).ready(function() {
 
         $('#<?= str_replace(' ', '', $heading) ?>_datatable_tabletools').dataTable({
@@ -338,10 +301,11 @@ $heading = "Tenancy";
     }
 
     // Delete Tenancy
-    function DeleteTenancy(id) {
-        debugger;
+    function DeleteTenancy(tenancyId, apartmentId) {
         var value = {
-            id: id
+            tenancyId: tenancyId,
+            apartmentId: apartmentId,
+
         };
         if (confirm('Are you sure you want to delete Tenancy?')) {
             $.ajax({
@@ -349,14 +313,33 @@ $heading = "Tenancy";
                 type: 'POST',
                 data: value,
                 success: function(result) {
-                    debugger;
                     var value = 'Delete Sucessfully';
                     DeleteToast(value);
-                    // window.location.reload();
+
+                    $('#' + tenancyId).next('tr.child').remove();
+                    $('#' + tenancyId).remove();
                 }
             });
+            return false;
         } else {
             return false;
         }
+    }
+
+    function ViewPayments(tenancyId) {
+        var value = {
+            tenancyId: tenancyId
+        };
+        $.ajax({
+            url: baseurl + 'tenancy_load_payments',
+            type: 'POST',
+            data: value,
+            success: function(result) {
+                $('.modal-title').html('View Payments');
+                $('#modal-body-center').html(result);
+                $('#myModalCenter').modal();
+
+            }
+        });
     }
 </script>

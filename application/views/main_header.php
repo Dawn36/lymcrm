@@ -175,7 +175,7 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 id="modal-title-center" class="modal-title"></h5>
+                    <h3 id="modal-title-center" class="modal-title"></h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true"><i class="fal fa-times"></i></span>
                     </button>

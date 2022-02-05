@@ -21,9 +21,18 @@ class ApartmentModal  extends CI_Model
         }
 
         //update the  status of an apartment when tenancy is added(tenancy)
-        public function UpdateApartmentStatus($tableName, $recordId)
+        public function UpdateApartmentStatus($tableName, $recordId, $isTenancy)
         {
-                $this->db->set('is_tenancy', 'yes');
+                // $this->db->set('is_tenancy', 'yes');
+                // $this->db->where('status', 'active');
+                // $this->db->where('record_id',  $recordId);
+                // $this->db->update($tableName);
+
+                // log_message('debug', $this->db->last_query());
+
+                // return true;
+
+                $this->db->set('is_tenancy', $isTenancy);
                 $this->db->where('status', 'active');
                 $this->db->where('record_id',  $recordId);
                 $this->db->update($tableName);

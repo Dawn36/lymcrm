@@ -185,6 +185,10 @@ $route['tenancy_apartment'] = '/TenancyController/ShowApartment';
 $route['tenancy_submit']    = '/TenancyController/TenancySubmit';
 $route['tenancy_update']    = '/TenancyController/TenancyUpdate';
 $route['tenancy_delete']    = '/TenancyController/DeleteTenancy';
+$route['tenancy_load_payments']    = '/TenancyController/TenancyLoadPayments';
 
 ///////////////////   Crond Tab route    //////////////////////////////////
 $route['email']     = '/CrondTabControllers/SetEmail';
+
+///////////////////   tenancy_renew    //////////////////////////////////
+$route['tenancy_renew']    = '/tenancyRenewController';

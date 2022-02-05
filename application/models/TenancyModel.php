@@ -79,4 +79,29 @@ class TenancyModel  extends CI_Model
         // print_r($role) ;
         log_message('debug', $this->db->last_query());
     }
+
+    public function ViewPayments($tenancyId, $tableName)
+    {
+        $this->db->select('*');
+        $this->db->where('tenancy_id', $tenancyId);
+        $this->db->where('status', 'active');
+        $result = $this->db->get($tableName)->result_array();
+
+        log_message('debug', $this->db->last_query());
+        return $result;
+        // print_r($role) ;
+    }
+
+    public function ViewTenancy($tenancyId, $tableName)
+    {
+        $this->db->select('*');
+        $this->db->join('tenant', 'tenant.record_id = tenancy.tenant_id', 'INNER');
+        $this->db->where('tenancy.record_id', $tenancyId);
+        $this->db->where('tenancy.status', 'active');
+        $result = $this->db->get($tableName)->result_array();
+
+        log_message('debug', $this->db->last_query());
+        return $result;
+        // print_r($role) ;
+    }
 }
