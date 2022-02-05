@@ -315,9 +315,9 @@ $heading = "Tenancy";
                 success: function(result) {
                     var value = 'Delete Sucessfully';
                     DeleteToast(value);
-
-                    $('#' + tenancyId).next('tr.child').remove();
-                    $('#' + tenancyId).remove();
+                     window.location.reload();
+                    // $('#' + tenancyId).next('tr.child').remove();
+                    // $('#' + tenancyId).remove();
                 }
             });
             return false;

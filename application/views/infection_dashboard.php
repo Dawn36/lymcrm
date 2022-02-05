@@ -18,16 +18,32 @@
  <?php 
 //////// paid working processbar////////////////////////
      $totalRePaid = $totalRevenue[0]['rent_amount'] + $totalPaid[0]['amount'];
-      $totalRevPaid=round(($totalRevenue[0]['rent_amount']/$totalRePaid)*100);
-      $totaldepositPaid=round(($totalPaid[0]['amount']/$totalRePaid)*100);
-
+     if($totalRePaid > 0)
+     {
+        $totalRevPaid=round(($totalRevenue[0]['rent_amount']/$totalRePaid)*100);
+        $totaldepositPaid=round(($totalPaid[0]['amount']/$totalRePaid)*100);
+     }
+     else
+     {
+        $totalRevPaid=0;
+        $totaldepositPaid=0;
+     }
 //////// Unpaid working processbar////////////////////////
       $unPaidAmount=$totalRevenue[0]['rent_amount'] - $totalPaid[0]['amount'];
      $totalReUnpaid = $totalRevenue[0]['rent_amount'] + ($unPaidAmount);
-
-      $totalRevUnPaid=round(($totalRevenue[0]['rent_amount']/$totalReUnpaid)*100);
+     if($totalReUnpaid >0)
+     {
+         $totalRevUnPaid=round(($totalRevenue[0]['rent_amount']/$totalReUnpaid)*100);
+      
       $totaldepositUnPaid=round(($unPaidAmount/$totalReUnpaid)*100);
-
+     }
+     else
+     {
+        $totalRevUnPaid=0;
+        $totaldepositUnPaid=0;
+     }
+     
+      
  ?>
 
 <input type="hidden" id="totalRevenue" value="<?php echo $totalRevenue[0]['rent_amount'] ?>">

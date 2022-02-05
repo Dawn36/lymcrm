@@ -138,7 +138,7 @@ class TenancyController extends CI_Controller
         if ($this->session->userdata('name')) {
             $arrPost = $this->input->post();
 
-            // die(print_r($arrPost));
+             // die(print_r($arrPost['datea']));
             //tenancy table insert
             $tableName = 'tenancy';
             $arrInfo['tenancy_no']      = $arrPost['tenancy_no'];
@@ -164,15 +164,17 @@ class TenancyController extends CI_Controller
 
             $cid = $this->TENANCY->Add($arrInfo, $tableName);
             //inserting the payments details in payment table connected to the above inserted data
+            $a=1;
             for ($i = 0; $i < $arrInfo['no_of_payments']; $i++) {
+                $a=$a+$i;
                 $tableName = 'payment';
                 $tenInfo['tenancy_id']      = $cid;
-                $tenInfo['installment']     = $i + 1;
+                $tenInfo['installment']     = $a;
                 $tenInfo['payment_type']    = $arrPost['payment_type'][$i];
                 $tenInfo['cheque_no']       = $arrPost['cheque_no'][$i];
                 $tenInfo['amount']          = $arrPost['amount'][$i];
                 $tenInfo['status']          = 'active';
-                $tenInfo['payment_date']    = date("Y-m-d h:i:s", strtotime($arrPost['date'][$i]));
+                $tenInfo['payment_date']    = date("Y-m-d h:i:s", strtotime($arrPost['datea'][$i]));
                 $tenInfo['created_at']      = date("Y-m-d h:i:s");
                 $tenInfo['created_by']      =  $this->session->userdata('user_id');
                 $tenInfo['created_name']    =  $this->session->userdata('user_name');

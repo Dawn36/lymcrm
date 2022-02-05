@@ -20,7 +20,9 @@
         <div class="col-md-12 mt-3">
             <label class="form-label">Building<span style="color: red">*</span></label>
             <select class="custom-select required" name="building" id="building" required="">
+                <option value="">Select Building</option>
                 <?php for ($i = 0; $i < count($buildingInfo); $i++) { ?>
+
                     <option value="<?php echo $buildingInfo[$i]['record_id']; ?>"><?php echo $buildingInfo[$i]['building_name']; ?></option>
                 <?php } ?>
 
@@ -41,6 +43,7 @@
         <div class="col-md-12 mt-3">
             <label class="form-label">Tenant for Tenancy<span style="color: red">*</span></label>
             <select class="custom-select required" name="tenant" id="tenant" required="">
+                <option value="">Select Tenant</option>
                 <?php for ($i = 0; $i < count($tenantInfo); $i++) { ?>
                     <option value="<?php echo $tenantInfo[$i]['record_id']; ?>"><?php echo $tenantInfo[$i]['name']; ?></option>
                 <?php } ?>
@@ -271,7 +274,7 @@
                         <div class="col-md-12 mt-3">
                             <label class="form-label">Date<span style="color: red">*</span></label>
                             <div class="input-group">
-                                <input type="text" class="form-control date" readonly="" placeholder="Select date" id="date" name="date[]" style="background: white;">
+                                <input type="text" class="form-control date" readonly="" placeholder="Select date" id="date" name="datea[]" style="background: white;">
                                 <div class="input-group-append">
                                     <span class="input-group-text fs-xl">
                                         <i class="fal fa-calendar-alt"></i>
