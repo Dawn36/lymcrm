@@ -40,9 +40,9 @@ class CrondTabControllers extends CI_Controller
 
 	public function SendEmail($data)
 	{
-		$config['smtp_host'] = 'smtp.googlemail.com';
-		$config['smtp_user'] = 'uhfdev@gmail.com';
-		$config['smtp_pass'] = 'karachipakistan';
+		$config['smtp_host'] = SMTPHOST;
+		$config['smtp_user'] = SMTPUSER;
+		$config['smtp_pass'] = SMTPPASS;
 		$config['smtp_port'] = '465';
 		$config['mailtype'] = 'html';
 		$config['smtp_crypto'] = 'ssl';
@@ -71,7 +71,7 @@ class CrondTabControllers extends CI_Controller
 		}
 
 		$this->email->initialize($config);
-		$this->email->from('uhfdev@gmail.com');
+		$this->email->from(SMTPUSER);
 		$this->email->to($email);
 		$this->email->subject($subject);
 		$this->email->message($message);
