@@ -21,7 +21,19 @@ class CrondTabModel extends CI_Model
                 $arrInfo['tenant_id'] = $val['record_id'];
                 $arrInfo['tenant_name'] = $val['record_id'];
                 $arrInfo['end_date'] = $val['end_date'];
-                $result = $this->db->insert('email_history', $arrInfo);
+
+                $this->db->select('*');
+                $this->db->where('tenant_id', $arrInfo['tenant_id']);
+                $this->db->where('tenant_name', $arrInfo['tenant_name']);
+                $emailRs = $this->db->get('email_history')->result_array();
+
+                if (empty($emailRs)) {
+                    $result = $this->db->insert('email_history', $arrInfo);
+                } else {
+                    $this->db->where('tenant_id', $arrInfo['tenant_id']);
+                    $this->db->where('tenant_name', $arrInfo['tenant_name']);
+                    $emailRs = $this->db->update('email_history', $arrInfo);
+                }
             }
         }
         return $rs;

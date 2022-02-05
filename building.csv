@@ -1,0 +1,8 @@
+building_name,building_address,building_community,apartment_number
+aa,aa-1,abc,1
+bb,bb-1,def,2
+aa,aa-1,abc,3
+aa,aa-1,abc,4
+bb,bb-1,def,1
+bb,bb-1,def,3
+cc,bb-1,def,3

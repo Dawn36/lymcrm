@@ -2,9 +2,9 @@
 $heading = "Building";
 ?>
 <style type="text/css">
-.mt {
-    margin-top: 10px;
-}
+    .mt {
+        margin-top: 10px;
+    }
 </style>
 <main id="js-page-content" role="main" class="page-content">
 
@@ -22,9 +22,8 @@ $heading = "Building";
                 <h1> <span class="page-title txt-color-blueDark">Building</span></h1>
             </div>
             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-8">
-                <button  class="btn btn-primary float-right bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Add Building" type="button" onclick="AddBuilding()"><i
-                        class="fas fa-plus" style="margin-right: 4px"></i>Add Building</button>
-                        <button type="button" onclick="ImportBuildings()" data-trigger="hover" data-placement="top" title="" data-original-title="Import Building" class="btn btn-primary float-right bg-brand-gradient mr-3" data-original-title="Edit"><i class="fas fa-file-import mr-2"></i>Import Building</button>
+                <button class="btn btn-primary float-right bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Add Building" type="button" onclick="AddBuilding()"><i class="fas fa-plus" style="margin-right: 4px"></i>Add Building</button>
+                <button type="button" onclick="ImportBuildings()" data-trigger="hover" data-placement="top" title="" data-original-title="Import Building" class="btn btn-primary float-right bg-brand-gradient mr-3" data-original-title="Edit"><i class="fas fa-file-import mr-2"></i>Import Building</button>
             </div>
         </div>
         <section id="" class="">
@@ -34,8 +33,7 @@ $heading = "Building";
                     <div id="panel-1" class="panel">
                         <div class="panel-container show">
                             <div class="panel-content">
-                                <table id="datatable_tabletools_building"
-                                    class="table table-bordered table-hover table-striped w-100">
+                                <table id="datatable_tabletools_building" class="table table-bordered table-hover table-striped w-100">
                                     <thead class="bg-primary-600 bg-brand-gradient">
                                         <tr>
                                             <th nowrap>
@@ -47,10 +45,10 @@ $heading = "Building";
                                             <th nowrap>
                                                 <center>Community</center>
                                             </th>
-                                             <th nowrap>
+                                            <th nowrap>
                                                 <center>Created By</center>
                                             </th>
-                                             <th nowrap>
+                                            <th nowrap>
                                                 <center>Updated By</center>
                                             </th>
                                             <th nowrap>
@@ -63,54 +61,49 @@ $heading = "Building";
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    <?php for ($i=0; $i <count($buildingInfo); $i++) { 
-                                       $buildingId=$buildingInfo[$i]['record_id'];
-                                     ?>
-                                        <tr style="cursor:pointer" >
+                                        <?php for ($i = 0; $i < count($buildingInfo); $i++) {
+                                            $buildingId = $buildingInfo[$i]['record_id'];
+                                        ?>
+                                            <tr style="cursor:pointer">
 
-                                            <td>
-                                                <center><?php echo ucwords($buildingInfo[$i]['building_name'] )?></center>
-                                            </td>
-                                            <td>
-                                                <center><?php echo ucwords($buildingInfo[$i]['building_address']) ?></center>
-                                            </td>
-                                            <td>
-                                                <center><?php echo ucwords($buildingInfo[$i]['building_community']) ?></center>
-                                            </td>
-                                            
-                                            <td>
-                                                <center><?php echo ucwords($buildingInfo[$i]['created_name']) ?>
-                                                   
-                                                </center>
-                                            </td>
-                                            <td>
-                                                <center><?php echo ucwords($buildingInfo[$i]['updated_name']) ?>
-                                                   
-                                                </center>
-                                            </td>
-                                            <td>
-                                                <center><?php echo ucwords($buildingInfo[$i]['status']) ?>
-                                                   
-                                                </center>
-                                            </td>
+                                                <td>
+                                                    <center><?php echo ucwords($buildingInfo[$i]['building_name']) ?></center>
+                                                </td>
+                                                <td>
+                                                    <center><?php echo ucwords($buildingInfo[$i]['building_address']) ?></center>
+                                                </td>
+                                                <td>
+                                                    <center><?php echo ucwords($buildingInfo[$i]['building_community']) ?></center>
+                                                </td>
 
-                                            <td nowrap>
-                                                <center>
-                                                    <a href="/apartment/<?php echo $buildingId ?>"
-                                                        class="btn btn-sm btn-primary bg-brand-gradient"
-                                                        data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Add Apartment"
-                                                        ><i class="fas fa-plus"></i></a>&nbsp;
+                                                <td>
+                                                    <center><?php echo ucwords($buildingInfo[$i]['created_name']) ?>
 
-                                                    <button onclick="EditBuilding(<?php echo $buildingId ?>)" class="btn btn-sm btn-primary bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Edit Building"><i class="fal fa-edit"></i></button>&nbsp;
-                                                     <?php if($this->session->userdata('role_id') == SUPER_ADMIN){ ?>
-                                                    <button class="btn btn-sm btn-primary bg-brand-gradient"
-                                                    onclick="DeleteBuilding(<?php echo $buildingId ?>)" class="btn btn-sm btn-primary bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Delete Building"
-                                                        ><i class="fal fa-times"></i></button>
-                                                    <?php } ?>
-                                                </center>
-                                            </td>
-                                        </tr>
-                                        
+                                                    </center>
+                                                </td>
+                                                <td>
+                                                    <center><?php echo ucwords($buildingInfo[$i]['updated_name']) ?>
+
+                                                    </center>
+                                                </td>
+                                                <td>
+                                                    <center><?php echo ucwords($buildingInfo[$i]['status']) ?>
+
+                                                    </center>
+                                                </td>
+
+                                                <td nowrap>
+                                                    <center>
+                                                        <a href="/apartment/<?php echo $buildingId ?>" class="btn btn-sm btn-primary bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Add Apartment"><i class="fas fa-plus"></i></a>&nbsp;
+
+                                                        <button onclick="EditBuilding(<?php echo $buildingId ?>)" class="btn btn-sm btn-primary bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Edit Building"><i class="fal fa-edit"></i></button>&nbsp;
+                                                        <?php if ($this->session->userdata('role_id') == SUPER_ADMIN) { ?>
+                                                            <button class="btn btn-sm btn-primary bg-brand-gradient" onclick="DeleteBuilding(<?php echo $buildingId ?>)" class="btn btn-sm btn-primary bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Delete Building"><i class="fal fa-times"></i></button>
+                                                        <?php } ?>
+                                                    </center>
+                                                </td>
+                                            </tr>
+
                                         <?php } ?>
                                     </tbody>
                                 </table>
@@ -130,23 +123,26 @@ $heading = "Building";
 <!-- this overlay is activated only when mobile menu is triggered -->
 <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div>
 <script type="text/javascript">
-      function DeleteBuilding(buildingId) {
-         if(confirm('Are you sure you want to delete?'))
-        {
-             var data = { id: buildingId , tablename : 'building'};
-         $.ajax({
-            url: baseurl + 'delete',
-            type: 'POST',
-            data: data,
-            success: function(result) {
-                var value='Delete Sucessfully';
-                DeleteToast(value);
-               window.location.reload();
-            }
-        }); 
+    function DeleteBuilding(buildingId) {
+        if (confirm('Are you sure you want to delete?')) {
+            var data = {
+                id: buildingId,
+                tablename: 'building'
+            };
+            $.ajax({
+                url: baseurl + 'delete',
+                type: 'POST',
+                data: data,
+                success: function(result) {
+                    var value = 'Delete Sucessfully';
+                    DeleteToast(value);
+                    window.location.reload();
+                }
+            });
         }
     }
-      function EditBuilding(id) {
+
+    function EditBuilding(id) {
         var value = {
             bilding_id: id
         };
@@ -163,6 +159,7 @@ $heading = "Building";
             }
         });
     }
+
     function AddBuilding(id) {
         var value = {
             id: id
@@ -180,6 +177,7 @@ $heading = "Building";
             }
         });
     }
+
     function ImportBuildings() {
         $.ajax({
             url: baseurl + 'building_import',
@@ -192,74 +190,74 @@ $heading = "Building";
         });
     }
 
-$(document).ready(function() {
-    // initialize datatable
-    $('#datatable_tabletools_building').dataTable({
-        responsive: true,
-        lengthChange: false,
-        dom:
-            /*  --- Layout Structure 
-              --- Options
-              l - length changing input control
-              f - filtering input
-              t - The table!
-              i - Table information summary
-              p - pagination control
-              r - processing display element
-              B - buttons
-              R - ColReorder
-              S - Select
+    $(document).ready(function() {
+        // initialize datatable
+        $('#datatable_tabletools_building').dataTable({
+            responsive: true,
+            lengthChange: false,
+            dom:
+                /*  --- Layout Structure 
+                  --- Options
+                  l - length changing input control
+                  f - filtering input
+                  t - The table!
+                  i - Table information summary
+                  p - pagination control
+                  r - processing display element
+                  B - buttons
+                  R - ColReorder
+                  S - Select
 
-              --- Markup
-              < and >       - div element
-              <"class" and >    - div with a class
-              <"#id" and >    - div with an ID
-              <"#id.class" and >  - div with an ID and a class
+                  --- Markup
+                  < and >       - div element
+                  <"class" and >    - div with a class
+                  <"#id" and >    - div with an ID
+                  <"#id.class" and >  - div with an ID and a class
 
-              --- Further reading
-              https://datatables.net/reference/option/dom
-              --------------------------------------
-             */
-            "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
-            "<'row'<'col-sm-12'tr>>" +
-            "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
-        buttons: [
-            /*{
-              extend:    'colvis',
-              text:      'Column Visibility',
-              titleAttr: 'Col visibility',
-              className: 'mr-sm-3'
-            },*/
-            {
-                extend: 'pdfHtml5',
-                text: 'PDF',
-                 title: '<?php echo $heading; ?>',
-                titleAttr: 'Generate PDF',
-                className: 'btn-outline-danger btn-sm mr-1'
-            },
-            {
-                extend: 'excelHtml5',
-                text: 'Excel',
-                 title: '<?php echo $heading; ?>',
-                titleAttr: 'Generate Excel',
-                className: 'btn-outline-success btn-sm mr-1'
-            },
-            {
-                extend: 'csvHtml5',
-                text: 'CSV',
-                 title: '<?php echo $heading; ?>',
-                titleAttr: 'Generate CSV',
-                className: 'btn-outline-primary btn-sm mr-1'
-            },
-            {
-                extend: 'copyHtml5',
-                text: 'Copy',
-                 title: '<?php echo $heading; ?>',
-                titleAttr: 'Copy to clipboard',
-                className: 'btn-outline-primary btn-sm mr-1'
-            },
-            {
-               extend: 'print',
+                  --- Further reading
+                  https://datatables.net/reference/option/dom
+                  --------------------------------------
+                 */
+                "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
+                "<'row'<'col-sm-12'tr>>" +
+                "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+            buttons: [
+                /*{
+                  extend:    'colvis',
+                  text:      'Column Visibility',
+                  titleAttr: 'Col visibility',
+                  className: 'mr-sm-3'
+                },*/
+                {
+                    extend: 'pdfHtml5',
+                    text: 'PDF',
+                    title: '<?php echo $heading; ?>',
+                    titleAttr: 'Generate PDF',
+                    className: 'btn-outline-danger btn-sm mr-1'
+                },
+                {
+                    extend: 'excelHtml5',
+                    text: 'Excel',
+                    title: '<?php echo $heading; ?>',
+                    titleAttr: 'Generate Excel',
+                    className: 'btn-outline-success btn-sm mr-1'
+                },
+                {
+                    extend: 'csvHtml5',
+                    text: 'CSV',
+                    title: '<?php echo $heading; ?>',
+                    titleAttr: 'Generate CSV',
+                    className: 'btn-outline-primary btn-sm mr-1'
+                },
+                {
+                    extend: 'copyHtml5',
+                    text: 'Copy',
+                    title: '<?php echo $heading; ?>',
+                    titleAttr: 'Copy to clipboard',
+                    className: 'btn-outline-primary btn-sm mr-1'
+                },
+                {
+                    extend: 'print',
                     text: 'Print',
                     titleAttr: 'Print Table',
                     title: '<?php echo $heading; ?>',
@@ -272,8 +270,8 @@ $(document).ready(function() {
                     },
                     className: 'btn-outline-primary btn-sm'
                 }
-        ],
+            ],
 
+        });
     });
-});
 </script>

@@ -28,7 +28,7 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
     <link rel="stylesheet" media="screen, print" href="/assets/dist/css/vendors.bundle.css">
     <link rel="stylesheet" media="screen, print" href="/assets/dist/css/app.bundle.css">
     <!-- Place favicon.ico in the root directory -->
-    <link rel="apple-touch-icon" sizes="180x180" href="/assets/dist/img/favicon/apple-touch-icon.png">
+    <!-- <link rel="apple-touch-icon" sizes="180x180" href="/assets/dist/img/favicon/apple-touch-icon.png"> -->
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/dist/img/logo-2.png">
     <link rel="mask-icon" href="/assets/dist/img/favicon/safari-pinned-tab.svg" color="#5bbad5">
     <!-- Optional: page related CSS-->
@@ -48,24 +48,32 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
                         <h2 class="fs-xxl fw-900 ml-5" style="color: #007bff;">
                             Log in
                         </h2>
-
-
-                        </h1>
+                        <?php
+                        if (!empty($success_msg)) {
+                            echo '<p class="status-msg success">' . $success_msg . '</p>';
+                        } elseif (!empty($error_msg)) {
+                            echo '<p class="status-msg error">' . $error_msg . '</p>';
+                        }
+                        ?>
                         <form id="js-login" method="post" novalidate="" action="/auth">
                             <div class="form-group">
                                 <label class="form-label text-white" for="username">Email</label>
-                                <input style="background-color: white; border-radius: 50px;" type="text" id="user_name" name="user_name" class="bg-white form-control form-control-lg" placeholder="Email" required>
+                                <input style="background-color: white; border-radius: 50px;" type="text" id="user_name" name="user_name" class="bg-white form-control form-control-lg" placeholder="Email" required="">
                                 <div class="invalid-feedback">No, you missed this one.</div>
+                                <?php echo form_error('email', '<p class="help-block">', '</p>'); ?>
+
                                 <!-- <div class="help-block">Your unique user name</div> -->
                             </div>
                             <div class="form-group">
                                 <label class="form-label text-white" for="password">Password</label>
-                                <input style="border-radius: 50px;" type="password" id="password" name="password" class="bg-white form-control form-control-lg" placeholder="Enter Your Password" value="123456789" required>
+                                <input style="border-radius: 50px;" type="password" id="password" name="password" class="bg-white form-control form-control-lg" placeholder="Password" required="">
                                 <div class="invalid-feedback">Sorry, you missed this one.</div>
+                                <?php echo form_error('password', '<p class="help-block">', '</p>'); ?>
+
                                 <!-- <div class="help-block">Your password</div> -->
                             </div>
                             <div class="form-group">
-                                <button id="js-login-btn" style="background-color: #007bff; border-radius: 50px;" onclick="UserLogin()" type="submit" class="text-white btn btn-block btn-lg">login</button>
+                                <button id="js-login-btn" style="background-color: #007bff; border-radius: 50px;" name="loginSubmit" type="submit" class="text-white btn btn-block btn-lg">login</button>
                             </div>
                     </div>
                     </form>
@@ -186,34 +194,34 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
                 }
             });
 
-            function UserLogin() {
-                var element = document.getElementById("remove");
-                element.classList.add("d-none");
-                var userName = document.getElementById('user_name').value;
-                if (userName == "") {
-                    var element = document.getElementById("remove")
-                    element.classList.remove("d-none");
-                    document.getElementById("alert").innerHTML = "Please Enter User Id!";
-                    document.getElementById("text").innerHTML = "User <strong>Id</strong> must be <strong>Filled</strong>.";
+            // function UserLogin() {
+            //     var element = document.getElementById("remove");
+            //     element.classList.add("d-none");
+            //     var userName = document.getElementById('user_name').value;
+            //     if (userName == "") {
+            //         var element = document.getElementById("remove")
+            //         element.classList.remove("d-none");
+            //         document.getElementById("alert").innerHTML = "Please Enter User Id!";
+            //         document.getElementById("text").innerHTML = "User <strong>Id</strong> must be <strong>Filled</strong>.";
 
-                    // alert('Please Enter User Id!');
+            //         // alert('Please Enter User Id!');
 
-                    $("#user_name").focus();
-                    return false;
-                }
-                var password = document.getElementById('password').value;
-                if (password == "") {
-                    var element = document.getElementById("remove")
-                    element.classList.remove("d-none");
-                    document.getElementById("alert").innerHTML = "Please Enter Password!";
-                    document.getElementById("text").innerHTML = "User <strong>Password</strong> must be <strong>Filled</strong>.";
+            //         $("#user_name").focus();
+            //         return false;
+            //     }
+            //     var password = document.getElementById('password').value;
+            //     if (password == "") {
+            //         var element = document.getElementById("remove")
+            //         element.classList.remove("d-none");
+            //         document.getElementById("alert").innerHTML = "Please Enter Password!";
+            //         document.getElementById("text").innerHTML = "User <strong>Password</strong> must be <strong>Filled</strong>.";
 
-                    $("#password").focus();
-                    return false;
-                }
-                return true;
-                $("#js-login").submit();
-            }
+            //         $("#password").focus();
+            //         return false;
+            //     }
+            //     return true;
+            //     $("#js-login").submit();
+            // }
         </script>
 </body>
 

@@ -123,6 +123,7 @@ $route['building_exit']     = '/BuildingControllers/BuildingExit';
 $route['building_update']     = '/BuildingControllers/UpdateBuilding';
 $route['building_verification']     = '/BuildingControllers/BuildingVerification';
 $route['building_import']     = '/BuildingControllers/BuildingCsvImportModal';
+$route['buildingCsv']     = '/BuildingControllers/BuildingCsv';
 
 /////////////////////      Apartment      ////////////////////////////////////////////
 $route['apartment/(:num)']  = '/ApartmentControllers/LoadApartmentScreen/$1';

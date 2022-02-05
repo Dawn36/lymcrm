@@ -14,10 +14,13 @@ class OwnerModal  extends CI_Model
 	}
 	public function ShowOwner($tableName)
 	{
+		log_message('debug', 'ShowOwner');
+
 		$userId = $this->session->userdata('user_id');
 		$roleId = $this->session->userdata('role_id');
 		$this->db->select('*');
-		$this->db->where('status', 'active');
+		if ($tableName != 'email_history')
+			$this->db->where('status', 'active');
 		$this->db->order_by('record_id', 'DESC');
 		$owner = $this->db->get($tableName)->result_array();
 		// print_r($role) ;
