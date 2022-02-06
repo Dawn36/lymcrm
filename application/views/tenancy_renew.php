@@ -3,7 +3,7 @@
 // echo '<pre>';
 // print_r($tenancyInfo[0]);
 
-$heading = "Tenancy Renew";
+$heading = "Renew Tenancy";
 ?>
 <style type="text/css">
     .mt {
@@ -31,7 +31,7 @@ $heading = "Tenancy Renew";
                     <div id="panel-1" class="panel">
                         <div class="panel-container show">
                             <div class="panel-content">
-                                <table id="<?= str_replace(' ', '', $heading) ?>_datatable_tabletools" class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline">
+                                <table id="renu_datatable_tabletools" class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline">
 
                                     <thead class="bg-primary-600 bg-brand-gradient">
                                         <tr>
@@ -116,11 +116,10 @@ $heading = "Tenancy Renew";
                                                 </td> -->
                                                 <td nowrap>
                                                     <center>
-                                                        <button data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Renew Tenancy" onclick="RenewTenancy(<?php echo $recordId; ?>)" class="btn btn-sm btn-primary bg-brand-gradient" title="Renew Tenancy" <?php if ($tenancyInfo[$i]['is_renew'] == 'yes') { ?> disabled <?php } ?>><i class="fal fa-check"></i></button>
-                                                        <button data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="View Payments" onclick="ViewPayments(<?php echo $recordId; ?>)" class="btn btn-sm btn-primary bg-brand-gradient" title="View Payments"><i class="fal fa-eye"></i></button>
-                                                        <!-- <button onclick="EditTenancy(<?php echo $recordId; ?>)" class="btn btn-sm btn-primary bg-brand-gradient" title="Edit Tenancy"><i class="fal fa-edit"></i></button> -->
+                                                        <button  onclick="ViewPayments(<?php echo $recordId; ?>)" class="btn btn-sm btn-primary bg-brand-gradient" title="Payment Details"><i class="fal fa-eye"></i></button>
+                                                        <button title="Renew Tenancy" onclick="RenewTenancy(<?php echo $recordId; ?>)" class="btn btn-sm btn-primary bg-brand-gradient" title="Renew Tenancy" <?php if ($tenancyInfo[$i]['is_renew'] == 'yes') { ?> disabled <?php } ?>><i class="fal fa-check"></i></button>
                                                         <?php if ($this->session->userdata('role_id') == SUPER_ADMIN) { ?>
-                                                            <button data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Delete Tenancy" type="button" onclick="DeleteTenancy(<?php echo $recordId; ?>,<?php echo $tenancyInfo[$i]['apartment_id'] ?>)" data-id="<?php echo $i; ?>" class="btn btn-sm btn-primary bg-brand-gradient" title="Delete Tenancy"><i class="fal fa-times"></i></button>
+                                                            <button title="Delete Tenancy" type="button" onclick="DeleteTenancy(<?php echo $recordId; ?>,<?php echo $tenancyInfo[$i]['apartment_id'] ?>)" data-id="<?php echo $i; ?>" class="btn btn-sm btn-primary bg-brand-gradient" title="Delete Tenancy" <?php if ($tenancyInfo[$i]['is_renew'] == 'yes') { ?> disabled <?php } ?>><i class="fal fa-times"></i></button>
                                                         <?php } ?>
                                                     </center>
                                                 </td>
@@ -146,7 +145,7 @@ $heading = "Tenancy Renew";
 <script type="text/javascript">
     $(document).ready(function() {
 
-        $('#<?= str_replace(' ', '', $heading) ?>_datatable_tabletools').dataTable({
+        $('#renu_datatable_tabletools').dataTable({
             responsive: true,
             lengthChange: false,
             dom:
@@ -303,23 +302,52 @@ $heading = "Tenancy Renew";
             apartmentId: apartmentId,
 
         };
-        if (confirm('Are you sure you want to delete Tenancy?')) {
-            $.ajax({
-                url: baseurl + 'tenancy_delete',
-                type: 'POST',
-                data: value,
-                success: function(result) {
-                    var value = 'Delete Sucessfully';
-                    DeleteToast(value);
-                    //  window.location.reload();
-                    $('#' + tenancyId).next('tr.child').remove();
-                    $('#' + tenancyId).remove();
-                }
-            });
-            return false;
-        } else {
-            return false;
-        }
+        Swal.fire(
+                    {
+                        title: "Are you sure want to delete?",
+                        text: "You won't be able to revert this!",
+                        type: "warning",
+                        confirmButtonColor: '#437dd0',
+                        showCancelButton: true,
+                        confirmButtonText: "Yes, delete it!",
+                    }).then(function(result)
+                    {
+                        if (result.value)
+                        {
+                            $.ajax({
+                                url: baseurl + 'tenancy_delete',
+                                type: 'POST',
+                                data: value,
+                                success: function(result) {
+                                   // var value = 'Delete Sucessfully';
+                                    //DeleteToast(value);
+                                    //  window.location.reload();
+                                    $('#' + tenancyId).next('tr.child').remove();
+                                    $('#' + tenancyId).remove();
+                                }
+                            });
+                           // var value='Update Sucessfully';
+                            //DeleteToast(value);
+                            Swal.fire("Deleted!", "Deleted Sucessfully.", "success");
+                        }
+                    });
+        // if (confirm('Are you sure you want to delete Tenancy?')) {
+        //     $.ajax({
+        //         url: baseurl + 'tenancy_delete',
+        //         type: 'POST',
+        //         data: value,
+        //         success: function(result) {
+        //             var value = 'Delete Sucessfully';
+        //             DeleteToast(value);
+        //             //  window.location.reload();
+        //             $('#' + tenancyId).next('tr.child').remove();
+        //             $('#' + tenancyId).remove();
+        //         }
+        //     });
+        //     return false;
+        // } else {
+        //     return false;
+        // }
     }
 
     function ViewPayments(tenancyId) {

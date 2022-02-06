@@ -49,7 +49,7 @@ class TenancyModel  extends CI_Model
         $this->db->join('tenant', 'tenant.record_id = tenancy.tenant_id', 'INNER');
         $this->db->where('tenancy.record_id', $recordId);
         $this->db->where('tenancy.status', 'active');
-        $this->db->where('tenancy.is_renew', 'yes');
+        $this->db->where('tenancy.is_renew', 'no');
 
         $result = $this->db->get($tableName)->result_array();
         // print_r($role) ;

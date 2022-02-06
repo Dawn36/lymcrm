@@ -223,15 +223,31 @@
             }
         }
 
-
-        if (confirm("Do you want to add tenancy?")) {
-            $("#tenancy_submit").submit();
-            var value = 'Add Sucessfully';
-            DeleteToast(value);
-            return true;
-        } else {
-            return false;
-        }
+        Swal.fire(
+                    {
+                        title: "Are you sure you want to add?",
+                        text: "You won't be able to revert this!",
+                        type: "warning",
+                        confirmButtonColor: '#437dd0',
+                        showCancelButton: true,
+                        confirmButtonText: "Yes, Add it!",
+                    }).then(function(result)
+                    {
+                        if (result.value)
+                        {
+                            $("#tenancy_submit").submit();
+                            Swal.fire("Added!", "added Sucessfully.", "success");
+                        }
+                    });
+            
+        // if (confirm("Do you want to add tenancy?")) {
+        //     $("#tenancy_submit").submit();
+        //     var value = 'Add Sucessfully';
+        //     DeleteToast(value);
+        //     return true;
+        // } else {
+        //     return false;
+        // }
 
     }
 

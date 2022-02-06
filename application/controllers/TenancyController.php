@@ -47,7 +47,7 @@ class TenancyController extends CI_Controller
     {
         $arrPost = $this->input->post();
 
-        die(print_r($arrPost));
+       // die(print_r($arrPost));
         //tenancy table insert
         $tableName = 'tenancy';
         $recordId                   = $arrPost['record_id'];

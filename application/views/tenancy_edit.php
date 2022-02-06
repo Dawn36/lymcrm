@@ -131,7 +131,7 @@ $endDate = date("m/d/Y", strtotime($tenancyInfo[0]['end_date']));
     <div class="row">
         <div class="col-md-12 mt-3 mb-3">
             <button type="button" class="btn btn-secondary float-right mr-2" data-dismiss="modal">Close</button>
-            <button id='js-save-btn' id='depositaddformsubmit' onclick="SubmitFrom()" class="btn btn-primary float-right mr-2" type="button">Add</button>
+            <button id='js-save-btn' id='depositaddformsubmit' onclick="SubmitFrom()" class="btn btn-primary float-right mr-2" type="button">Update</button>
         </div>
     </div>
     </div>
@@ -228,15 +228,32 @@ $endDate = date("m/d/Y", strtotime($tenancyInfo[0]['end_date']));
                 return false;
             }
         }
-
-        if (confirm("Do you want to add tenancy?")) {
-            $("#tenancy_submit").submit();
-            var value = 'Add Sucessfully';
-            DeleteToast(value);
-            return true;
-        } else {
-            return false;
-        }
+          Swal.fire(
+                    {
+                        title: "Are you sure you want to update?",
+                        text: "You won't be able to revert this!",
+                        type: "warning",
+                        confirmButtonColor: '#437dd0',
+                        showCancelButton: true,
+                        confirmButtonText: "Yes, update it!",
+                    }).then(function(result)
+                    {
+                        if (result.value)
+                        {
+                            $("#tenancy_submit").submit();
+                           // var value='Update Sucessfully';
+                            //DeleteToast(value);
+                            Swal.fire("Updated!", "Update Sucessfully.", "success");
+                        }
+                    });
+        // if (confirm("Do you want to add tenancy?")) {
+        //     $("#tenancy_submit").submit();
+        //     var value = 'Add Sucessfully';
+        //     DeleteToast(value);
+        //     return true;
+        // } else {
+        //     return false;
+        // }
 
     }
 

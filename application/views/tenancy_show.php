@@ -306,23 +306,52 @@ $heading = "Tenancy";
             tenancyId: tenancyId,
             apartmentId: apartmentId,
         };
-        if (confirm('Are you sure you want to delete Tenancy?')) {
-            $.ajax({
-                url: baseurl + 'tenancy_delete',
-                type: 'POST',
-                data: value,
-                success: function(result) {
-                    var value = 'Delete Sucessfully';
-                    DeleteToast(value);
-                    //  window.location.reload();
-                    $('#' + tenancyId).next('tr.child').remove();
-                    $('#' + tenancyId).remove();
-                }
-            });
-            return false;
-        } else {
-            return false;
-        }
+        Swal.fire(
+                    {
+                        title: "Are you sure want to delete?",
+                        text: "You won't be able to revert this!",
+                        type: "warning",
+                        confirmButtonColor: '#437dd0',
+                        showCancelButton: true,
+                        confirmButtonText: "Yes, delete it!",
+                    }).then(function(result)
+                    {
+                        if (result.value)
+                        {
+                            $.ajax({
+                                url: baseurl + 'tenancy_delete',
+                                type: 'POST',
+                                data: value,
+                                success: function(result) {
+                                   // var value = 'Delete Sucessfully';
+                                 //   DeleteToast(value);
+                                    //  window.location.reload();
+                                    $('#' + tenancyId).next('tr.child').remove();
+                                    $('#' + tenancyId).remove();
+                                }
+                            });
+                           // var value='Update Sucessfully';
+                            //DeleteToast(value);
+                            Swal.fire("Deleted!", "Deleted Sucessfully.", "success");
+                        }
+                    });
+        // if (confirm('Are you sure you want to delete Tenancy?')) {
+        //     $.ajax({
+        //         url: baseurl + 'tenancy_delete',
+        //         type: 'POST',
+        //         data: value,
+        //         success: function(result) {
+        //             var value = 'Delete Sucessfully';
+        //             DeleteToast(value);
+        //             //  window.location.reload();
+        //             $('#' + tenancyId).next('tr.child').remove();
+        //             $('#' + tenancyId).remove();
+        //         }
+        //     });
+        //     return false;
+        // } else {
+        //     return false;
+        // }
     }
 
     function ViewPayments(tenancyId) {
