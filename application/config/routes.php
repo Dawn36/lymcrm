@@ -58,23 +58,10 @@ $route['translate_uri_dashes'] = FALSE;
 $route['login'] = 'login';
 $route['auth'] = 'login/userAuth';
 $route['landing_page'] = 'login/landingPage';
+$route['logoutNew'] = 'AdminControllers/logout';
 $route['logout'] = 'login/logout';
-$route['infection_form'] = 'infection/index';
-$route['info_submit'] = 'infection/formDataSubmit';
-$route['info_updation'] = 'infection/formDataUpation';
-$route['viewdata'] = 'infection/viewSubmitedFormData';
-$route['get_antibiotic'] = 'infection/getAntibioticsList';
-$route['get_bed'] = 'infection/getBedList';
-$route['check_org_name'] = 'bed/checkOrgName';
-$route['check_mr_num'] = 'infection/checkMrNumber';
-$route['delete_lov'] = '/Bed/LovsDelete';
-$route['delete_ward'] = '/Ward/WardDelete';
-$route['delete_bed'] = '/Bed/bedDelete';
-$route['check_ward'] = 'ward/checkWard';
-$route['user_added'] = 'users/UsersAdd';
-$route['source'] = '/Bed/Source';
-$route['source_add'] = '/Bed/SourceAdd';
-$route['delete_source'] = '/Bed/SourceDelete';
+;
+
 ///////////////////////////// Dashboard /////////////////////////////////////
 $route['infection_dashboard'] = '/Dashboard';
 $route['get_all_email']             = '/Dashboard/GetHistory';
