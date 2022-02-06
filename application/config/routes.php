@@ -191,4 +191,6 @@ $route['tenancy_load_payments']    = '/TenancyController/TenancyLoadPayments';
 $route['email']     = '/CrondTabControllers/SetEmail';
 
 ///////////////////   tenancy_renew    //////////////////////////////////
-$route['tenancy_renew']    = '/tenancyRenewController';
+$route['tenancy_renew']    = '/TenancyRenewController';
+$route['tenancy_renew_add']    = '/TenancyRenewController/TenancyRenewAdd';
+$route['tenancy_renew_submit']    = '/TenancyRenewController/TenancyRenewSubmit';

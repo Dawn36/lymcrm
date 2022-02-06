@@ -121,10 +121,10 @@ $heading = "Tenancy";
                                                 </td> -->
                                                 <td nowrap>
                                                     <center>
-                                                        <button onclick="ViewPayments(<?php echo $recordId; ?>)" class="btn btn-sm btn-primary bg-brand-gradient" title="View Payments"><i class="fal fa-eye"></i></button>
-                                                        <button onclick="EditTenancy(<?php echo $recordId; ?>)" class="btn btn-sm btn-primary bg-brand-gradient" title="Edit Tenancy"><i class="fal fa-edit"></i></button>
+                                                        <button onclick="ViewPayments(<?php echo $recordId; ?>)" class="btn btn-sm btn-primary bg-brand-gradient" title="View Payments" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="View Payments"><i class="fal fa-eye"></i></button>
+                                                        <button onclick="EditTenancy(<?php echo $recordId; ?>)" class="btn btn-sm btn-primary bg-brand-gradient" title="Edit Tenancy" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Edit Tenancy"><i class="fal fa-edit"></i></button>
                                                         <?php if ($this->session->userdata('role_id') == SUPER_ADMIN) { ?>
-                                                            <button type="button" onclick="DeleteTenancy(<?php echo $recordId; ?>,<?php echo $tenancyInfo[$i]['apartment_id'] ?>)" data-id="<?php echo $i; ?>" class="btn btn-sm btn-primary bg-brand-gradient" title="Delete Tenancy"><i class="fal fa-times"></i></button>
+                                                            <button type="button" onclick="DeleteTenancy(<?php echo $recordId; ?>,<?php echo $tenancyInfo[$i]['apartment_id'] ?>,<?php echo $tenancyInfo[$i]['tenancy_no'] ?>)" data-id="<?php echo $i; ?>" class="btn btn-sm btn-primary bg-brand-gradient" title="Delete Tenancy" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Delete Tenancy"><i class="fal fa-times"></i></button>
                                                         <?php } ?>
                                                     </center>
                                                 </td>
@@ -305,7 +305,6 @@ $heading = "Tenancy";
         var value = {
             tenancyId: tenancyId,
             apartmentId: apartmentId,
-
         };
         if (confirm('Are you sure you want to delete Tenancy?')) {
             $.ajax({
@@ -315,7 +314,7 @@ $heading = "Tenancy";
                 success: function(result) {
                     var value = 'Delete Sucessfully';
                     DeleteToast(value);
-                   //  window.location.reload();
+                    //  window.location.reload();
                     $('#' + tenancyId).next('tr.child').remove();
                     $('#' + tenancyId).remove();
                 }

@@ -308,7 +308,6 @@ $endDate = date("m/d/Y", strtotime($tenancyInfo[0]['end_date']));
 
         $('.date').datepicker({
             format: 'dd/mm/yyyy',
-            startDate: '0',
             autoclose: 'true'
         });
     });

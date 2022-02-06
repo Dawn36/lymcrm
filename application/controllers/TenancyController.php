@@ -47,7 +47,7 @@ class TenancyController extends CI_Controller
     {
         $arrPost = $this->input->post();
 
-        // die(print_r($arrPost));
+        die(print_r($arrPost));
         //tenancy table insert
         $tableName = 'tenancy';
         $recordId                   = $arrPost['record_id'];
@@ -57,6 +57,8 @@ class TenancyController extends CI_Controller
         $arrInfo['tenant_id']       = $arrPost['tenant'];
         $daterange                  = $arrPost['daterange'];
         $date                       = explode('-', $daterange);
+        $date[0]                    = str_replace('/', '-', $date[0]);
+        $date[1]                    = str_replace('/', '-', $date[1]);
         $startDate                  = date("Y-m-d h:i:s", strtotime($date[0]));
         $endDate                    = date("Y-m-d h:i:s", strtotime($date[1]));
         $arrInfo['start_date']      = $startDate;
@@ -138,7 +140,7 @@ class TenancyController extends CI_Controller
         if ($this->session->userdata('name')) {
             $arrPost = $this->input->post();
 
-             // die(print_r($arrPost['datea']));
+            // die(print_r($arrPost));
             //tenancy table insert
             $tableName = 'tenancy';
             $arrInfo['tenancy_no']      = $arrPost['tenancy_no'];
@@ -147,6 +149,8 @@ class TenancyController extends CI_Controller
             $arrInfo['tenant_id']       = $arrPost['tenant'];
             $daterange                  = $arrPost['daterange'];
             $date                       = explode('-', $daterange);
+            $date[0]                    = str_replace('/', '-', $date[0]);
+            $date[1]                    = str_replace('/', '-', $date[1]);
             $startDate                  = date("Y-m-d h:i:s", strtotime($date[0]));
             $endDate                    = date("Y-m-d h:i:s", strtotime($date[1]));
             $arrInfo['start_date']      = $startDate;
@@ -164,17 +168,16 @@ class TenancyController extends CI_Controller
 
             $cid = $this->TENANCY->Add($arrInfo, $tableName);
             //inserting the payments details in payment table connected to the above inserted data
-            $a=1;
             for ($i = 0; $i < $arrInfo['no_of_payments']; $i++) {
-                $a=$a+$i;
                 $tableName = 'payment';
                 $tenInfo['tenancy_id']      = $cid;
-                $tenInfo['installment']     = $a;
+                $tenInfo['installment']     = $i + 1;
                 $tenInfo['payment_type']    = $arrPost['payment_type'][$i];
                 $tenInfo['cheque_no']       = $arrPost['cheque_no'][$i];
                 $tenInfo['amount']          = $arrPost['amount'][$i];
                 $tenInfo['status']          = 'active';
-                $tenInfo['payment_date']    = date("Y-m-d h:i:s", strtotime($arrPost['datea'][$i]));
+                $date                       = str_replace('/', '-', $arrPost['date'][$i]);
+                $tenInfo['payment_date']    = date("Y-m-d h:i:s", strtotime($date));
                 $tenInfo['created_at']      = date("Y-m-d h:i:s");
                 $tenInfo['created_by']      =  $this->session->userdata('user_id');
                 $tenInfo['created_name']    =  $this->session->userdata('user_name');
@@ -197,6 +200,11 @@ class TenancyController extends CI_Controller
     {
         if ($this->session->userdata('name')) {
             $arrPost = $this->input->post();
+
+            $apartmentId = $arrPost['apartmentId'];
+            $tableName = 'tenancy';
+            $this->TENANCY->ActivatePreviousTenancy($apartmentId, $tableName);
+
             $recordId = $arrPost['tenancyId'];
             $delArr['status'] = 'inactive';
             $tableName = 'tenancy';

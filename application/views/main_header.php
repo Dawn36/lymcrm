@@ -108,6 +108,34 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
             background-color: #4679cc !important;
         }
 
+        .active .start-date .in-range .available {
+            background-color: #4679cc !important;
+
+        }
+
+        .daterangepicker table tr td.active.active {
+            background-color: #4679cc !important;
+
+        }
+
+        .daterangepicker table tr td.active.active:hover {
+            background-color: #679bed !important;
+
+        }
+
+        .active .day {
+            background-color: #4679cc !important;
+
+        }
+
+        .datepicker table tr td.active {
+            background-color: #4679cc !important;
+        }
+
+        .datepicker table tr td.active:active:hover {
+            background-color: #679bed !important;
+        }
+
         /* .pagination .page-link:hover {
             background-color: #4679cc !important;
             color: #fff;

@@ -1,5 +1,5 @@
 <?php
-class TenancyModel  extends CI_Model
+class TenancyRenewModel  extends CI_Model
 {
 
     public function Add($arrInfo, $tableName)
@@ -12,7 +12,7 @@ class TenancyModel  extends CI_Model
         return $result;
     }
 
-    public function Update($tableName, $data, $recordId)
+    public function Update($tableName, $recordId, $data)
     {
         $this->db->where('record_id', $recordId);
         $this->db->update($tableName, $data);
@@ -49,7 +49,6 @@ class TenancyModel  extends CI_Model
         $this->db->join('tenant', 'tenant.record_id = tenancy.tenant_id', 'INNER');
         $this->db->where('tenancy.record_id', $recordId);
         $this->db->where('tenancy.status', 'active');
-        $this->db->where('tenancy.is_renew', 'yes');
 
         $result = $this->db->get($tableName)->result_array();
         // print_r($role) ;
@@ -102,20 +101,5 @@ class TenancyModel  extends CI_Model
         log_message('debug', $this->db->last_query());
         return $result;
         // print_r($role) ;
-    }
-
-    public function ActivatePreviousTenancy($apartmentId, $tableName)
-    {
-        $query = $this->db->query("SELECT * FROM $tableName where `apartment_id` = '$apartmentId' AND `status` = 'active' ORDER BY record_id DESC LIMIT 1,1");
-        $result = $query->result_array();
-        $recordId = $result[0]['record_id'];
-        $data['is_renew'] = 'no';
-
-        $this->db->where('record_id', $recordId);
-        $this->db->update($tableName, $data);
-        $result = $this->db->insert_id();
-
-        // print_r($role) ;
-        log_message('debug', $this->db->last_query());
     }
 }

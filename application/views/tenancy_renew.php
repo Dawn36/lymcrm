@@ -1,7 +1,9 @@
 <?php
-// print_r($tenancyInfo);
 
-$heading = "Renew Tenancy";
+// echo '<pre>';
+// print_r($tenancyInfo[0]);
+
+$heading = "Tenancy Renew";
 ?>
 <style type="text/css">
     .mt {
@@ -13,19 +15,14 @@ $heading = "Renew Tenancy";
 
     <ol class="breadcrumb page-breadcrumb">
         <li class="breadcrumb-item"><a href="javascript:void(0);">LymCrm</a></li>
-        <li class="breadcrumb-item">Renew Tenancy</li>
+        <li class="breadcrumb-item">Tenancy Renew</li>
 
         <li class="position-absolute pos-top pos-right d-none d-sm-block"><span class="js-get-date"></span></li>
     </ol>
 
     <div id="content">
-        <div class="row">
-            <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
-                <h1> <span class="page-title txt-color-blueDark"><?= $heading ?></span></h1>
-            </div>
-            <div class="col-xs-12 col-sm-7 col-md-7 col-lg-8">
-                <button onclick="AddTenancy()" class="btn btn-primary float-right bg-brand-gradient" type="button"><i class="fas fa-plus" style="margin-right: 4px"></i>Add Tenancy</button>
-            </div>
+        <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+            <h1> <span class="page-title txt-color-blueDark"><?= $heading ?></span></h1>
         </div>
         <section id="" class="">
             <div class="row">
@@ -38,9 +35,6 @@ $heading = "Renew Tenancy";
 
                                     <thead class="bg-primary-600 bg-brand-gradient">
                                         <tr>
-                                            <th nowrap>
-                                                <center>#</center>
-                                            </th>
                                             <th nowrap>
                                                 <center>Tenancy #</center>
                                             </th>
@@ -71,9 +65,9 @@ $heading = "Renew Tenancy";
                                             <th nowrap>
                                                 <center>Created At</center>
                                             </th>
-                                            <th nowrap>
+                                            <!-- <th nowrap>
                                                 <center>Updated At</center>
-                                            </th>
+                                            </th> -->
                                             <th nowrap>
                                                 <center>Action</center>
                                             </th>
@@ -83,11 +77,10 @@ $heading = "Renew Tenancy";
                                         <?php for ($i = 0; $i < count($tenancyInfo); $i++) {
                                             if (strtotime((new DateTime())->format("Y-m-d H:i:s")) < strtotime($tenancyInfo[$i]['end_date'])) {
                                                 continue;
-                                            } ?>
-                                            <tr>
-                                                <td nowrap>
-                                                    <center><?php echo $i + 1; ?></center>
-                                                </td>
+                                            }
+                                            $recordId = $tenancyInfo[$i]['record_id'];
+                                        ?>
+                                            <tr id="<?php echo $recordId; ?>">
                                                 <td nowrap>
                                                     <center><?php echo $tenancyInfo[$i]['tenancy_no'] ?></center>
                                                 </td>
@@ -118,14 +111,17 @@ $heading = "Renew Tenancy";
                                                 <td nowrap>
                                                     <center><?php echo date('d-M-Y', strtotime($tenancyInfo[$i]['created_at'])); ?></center>
                                                 </td>
-                                                <td nowrap>
+                                                <!-- <td nowrap>
                                                     <center><?php echo date('d-M-Y', strtotime($tenancyInfo[$i]['updated_at'])); ?></center>
-                                                </td>
+                                                </td> -->
                                                 <td nowrap>
                                                     <center>
-                                                        <button onclick="EditTenancy(id)" class="btn btn-sm btn-primary bg-brand-gradient" title="Edit Tenancy"><i class="fal fa-camera"></i></button>
-                                                        <button onclick="EmailTenancy(id)" class="btn btn-sm btn-primary bg-brand-gradient" title="Edit Tenancy"><i class="fal fa-edit"></i></button>
-                                                        <button type="button" onclick="" class="btn btn-sm btn-primary bg-brand-gradient" title="Delete Tenancy"><i class="fal fa-times"></i></button>
+                                                        <button data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Renew Tenancy" onclick="RenewTenancy(<?php echo $recordId; ?>)" class="btn btn-sm btn-primary bg-brand-gradient" title="Renew Tenancy" <?php if ($tenancyInfo[$i]['is_renew'] == 'yes') { ?> disabled <?php } ?>><i class="fal fa-check"></i></button>
+                                                        <button data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="View Payments" onclick="ViewPayments(<?php echo $recordId; ?>)" class="btn btn-sm btn-primary bg-brand-gradient" title="View Payments"><i class="fal fa-eye"></i></button>
+                                                        <!-- <button onclick="EditTenancy(<?php echo $recordId; ?>)" class="btn btn-sm btn-primary bg-brand-gradient" title="Edit Tenancy"><i class="fal fa-edit"></i></button> -->
+                                                        <?php if ($this->session->userdata('role_id') == SUPER_ADMIN) { ?>
+                                                            <button data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Delete Tenancy" type="button" onclick="DeleteTenancy(<?php echo $recordId; ?>,<?php echo $tenancyInfo[$i]['apartment_id'] ?>)" data-id="<?php echo $i; ?>" class="btn btn-sm btn-primary bg-brand-gradient" title="Delete Tenancy"><i class="fal fa-times"></i></button>
+                                                        <?php } ?>
                                                     </center>
                                                 </td>
                                             </tr>
@@ -148,45 +144,6 @@ $heading = "Renew Tenancy";
 <!-- this overlay is activated only when mobile menu is triggered -->
 <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div>
 <script type="text/javascript">
-    function deleted(aa) {
-
-
-
-        // var data = $("#").serialize();
-        if (confirm("Are you sure you want to delete?")) {
-            // alert(aa);
-            var data = {
-                id: aa
-            };
-            $.ajax({
-                url: baseurl + '',
-                type: 'POST',
-                data: data,
-                success: function(result) {
-
-                    //var result = jQuery.parseJSON(result);
-                    if (result) {
-                        var result = jQuery.parseJSON(result);
-                        console.log(result);
-                        if (result == 1) {
-                            alert("Delete Sucessfully")
-                            window.location.reload();
-                        }
-
-
-                    }
-
-                    // $('#order_total_amount').text(Math.round(total_amount));
-
-                },
-                error: function(xhr, textStatus, errorThrown) {
-                    alert(xhr.responseText);
-                }
-            });
-
-        }
-    }
-
     $(document).ready(function() {
 
         $('#<?= str_replace(' ', '', $heading) ?>_datatable_tabletools').dataTable({
@@ -285,10 +242,10 @@ $heading = "Renew Tenancy";
     }
 
 
-    // Modal For Edit User
-    function EditTenancy(id) {
+    // Modal For Edit Tenancy
+    function EditTenancy(recordId) {
         var value = {
-            id: id
+            recordId: recordId
         };
         $.ajax({
             url: baseurl + 'tenancy_edit',
@@ -296,14 +253,13 @@ $heading = "Renew Tenancy";
             data: value,
             success: function(result) {
                 $('.modal-title').html('Edit Tenancy');
-                //  $('#modal-body').html(``);
                 $('#modal-body').html(result);
                 $('#myModal').modal();
 
             }
         });
     }
-    // Modal For Edit User
+    // Modal For Edit Tenancy
     function EmailTenancy(id) {
         var value = {
             id: id
@@ -340,23 +296,63 @@ $heading = "Renew Tenancy";
         });
     }
 
-    // Delete User
-    function DeleteTenancy(id) {
+    // Delete Tenancy
+    function DeleteTenancy(tenancyId, apartmentId) {
         var value = {
-            id: id
+            tenancyId: tenancyId,
+            apartmentId: apartmentId,
+
         };
         if (confirm('Are you sure you want to delete Tenancy?')) {
             $.ajax({
-                url: baseurl + '',
+                url: baseurl + 'tenancy_delete',
                 type: 'POST',
                 data: value,
                 success: function(result) {
-                    window.location = baseurl + '';
-
+                    var value = 'Delete Sucessfully';
+                    DeleteToast(value);
+                    //  window.location.reload();
+                    $('#' + tenancyId).next('tr.child').remove();
+                    $('#' + tenancyId).remove();
                 }
             });
+            return false;
         } else {
             return false;
         }
+    }
+
+    function ViewPayments(tenancyId) {
+        var value = {
+            tenancyId: tenancyId
+        };
+        $.ajax({
+            url: baseurl + 'tenancy_load_payments',
+            type: 'POST',
+            data: value,
+            success: function(result) {
+                $('.modal-title').html('View Payments');
+                $('#modal-body-center').html(result);
+                $('#myModalCenter').modal();
+
+            }
+        });
+    }
+
+    function RenewTenancy(recordId) {
+        var value = {
+            recordId: recordId
+        };
+        $.ajax({
+            url: baseurl + 'tenancy_renew_add',
+            type: 'POST',
+            data: value,
+            success: function(result) {
+                $('.modal-title').html('Renew Tenancy');
+                $('#modal-body').html(result);
+                $('#myModal').modal();
+
+            }
+        });
     }
 </script>
