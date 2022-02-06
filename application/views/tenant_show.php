@@ -135,20 +135,49 @@ $heading = "Tenant";
         });
     }
     function DeleteTenant(id) {
-        if(confirm('Are you sure you want to delete?'))
-        {
-             var data = { id: id , tablename : 'tenant'};
-         $.ajax({
-            url: baseurl + 'delete',
-            type: 'POST',
-            data: data,
-            success: function(result) {
-                var value='Delete Sucessfully';
-                DeleteToast(value);
-               window.location.reload();
-            }
-        }); 
-        }
+        var data = { id: id , tablename : 'tenant'};
+        Swal.fire(
+                    {
+                        title: "Are you sure want to delete?",
+                        text: "You won't be able to revert this!",
+                        type: "warning",
+                        confirmButtonColor: '#437dd0',
+                        showCancelButton: true,
+                        confirmButtonText: "Yes, delete it!",
+                    }).then(function(result)
+                    {
+                        if (result.value)
+                        {
+                               
+                                 $.ajax({
+                                    url: baseurl + 'delete',
+                                    type: 'POST',
+                                    data: data,
+                                    success: function(result) {
+                                       // var value='Delete Sucessfully';
+                                        //DeleteToast(value);
+                                       window.location.reload();
+                                    }
+                                }); 
+                           // var value='Update Sucessfully';
+                            //DeleteToast(value);
+                            Swal.fire("Deleted!", "Deleted Sucessfully.", "success");
+                        }
+                    });
+        // if(confirm('Are you sure you want to delete?'))
+        // {
+        //      var data = { id: id , tablename : 'tenant'};
+        //  $.ajax({
+        //     url: baseurl + 'delete',
+        //     type: 'POST',
+        //     data: data,
+        //     success: function(result) {
+        //         var value='Delete Sucessfully';
+        //         DeleteToast(value);
+        //        window.location.reload();
+        //     }
+        // }); 
+        // }
         
        
     }

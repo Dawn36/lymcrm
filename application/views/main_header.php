@@ -329,6 +329,7 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
 
 
     <script>
+       
         function OpenChangePasswordModal() {
             $.ajax({
                 url: baseurl + 'admin_change_password_modal',
@@ -345,21 +346,51 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
             var value = {
                 userId: userId,
             };
-            if (confirm('Are you sure you want to rest Password?')) {
-                $.ajax({
-                    url: baseurl + 'user_reset',
-                    type: 'POST',
-                    data: value,
-                    success: function(result) {
-                        var value = 'Password Rest Sucessfully New password Is 1234';
-                        DeleteToast(value);
-                        // window.location.reload();
-                        // redirect('HiringRequests/viewhiringrequest');
-                        // window.location = baseurl + 'user_show';
+             Swal.fire(
+                    {
+                        title: "Are you sure want to Reset User?",
+                        text: "You won't be able to revert this!",
+                        type: "warning",
+                        confirmButtonColor: '#437dd0',
+                        showCancelButton: true,
+                        confirmButtonText: "Yes, reset it!",
+                    }).then(function(result)
+                    {
+                        if (result.value)
+                        {
+                             $.ajax({
+                                url: baseurl + 'user_reset',
+                                type: 'POST',
+                                data: value,
+                                success: function(result) {
+                                    //var value = 'Password Rest Sucessfully New password Is 1234';
+                                  //  DeleteToast(value);
+                                     window.location.reload();
+                                    // redirect('HiringRequests/viewhiringrequest');
+                                    // window.location = baseurl + 'user_show';
 
-                    }
-                });
-            }
+                                }
+                            });
+                           // var value='Update Sucessfully';
+                            //DeleteToast(value);
+                            Swal.fire("Rest!", "Password Rest Sucessfully New password Is 1234.", "success");
+                        }
+                    });
+            // if (confirm('Are you sure you want to rest Password?')) {
+            //     $.ajax({
+            //         url: baseurl + 'user_reset',
+            //         type: 'POST',
+            //         data: value,
+            //         success: function(result) {
+            //             var value = 'Password Rest Sucessfully New password Is 1234';
+            //             DeleteToast(value);
+            //             // window.location.reload();
+            //             // redirect('HiringRequests/viewhiringrequest');
+            //             // window.location = baseurl + 'user_show';
+
+            //         }
+            //     });
+            // }
         }
 
         function Toast(value) {

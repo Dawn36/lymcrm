@@ -238,16 +238,43 @@ $heading = "Deposit Slip";
             depositId: depositId,
             paymentId: paymentId,
         };
-        $.ajax({
-            url: baseurl + 'deposit_delete',
-            type: 'POST',
-            data: value,
-            success: function(result) {
-                var value='Delete Sucessfully';
-                DeleteToast(value);
-                window.location.reload();
-            }
-        });
+        Swal.fire(
+                    {
+                        title: "Are you sure want to delete?",
+                        text: "You won't be able to revert this!",
+                        type: "warning",
+                        confirmButtonColor: '#437dd0',
+                        showCancelButton: true,
+                        confirmButtonText: "Yes, delete it!",
+                    }).then(function(result)
+                    {
+                        if (result.value)
+                        {
+                            $.ajax({
+                                    url: baseurl + 'deposit_delete',
+                                    type: 'POST',
+                                    data: value,
+                                    success: function(result) {
+                                        var value='Delete Sucessfully';
+                                        DeleteToast(value);
+                                        window.location.reload();
+                                    }
+                                });
+                           // var value='Update Sucessfully';
+                            //DeleteToast(value);
+                            Swal.fire("Deleted!", "Deleted Sucessfully.", "success");
+                        }
+                    });
+        // $.ajax({
+        //     url: baseurl + 'deposit_delete',
+        //     type: 'POST',
+        //     data: value,
+        //     success: function(result) {
+        //         var value='Delete Sucessfully';
+        //         DeleteToast(value);
+        //         window.location.reload();
+        //     }
+        // });
     }
 
     // Modal For Edit User

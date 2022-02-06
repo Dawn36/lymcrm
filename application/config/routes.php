@@ -55,7 +55,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 $route['default_controller'] = 'login';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
-$route['login'] = 'login/index';
+$route['login'] = 'login';
 $route['auth'] = 'login/userAuth';
 $route['landing_page'] = 'login/landingPage';
 $route['logout'] = 'login/logout';
@@ -132,6 +132,7 @@ $route['apartment_verification'] = '/ApartmentControllers/ApartmentVerification'
 $route['apartment_edit']    = '/ApartmentControllers/LoadEditScreen';
 $route['apartment_update']    = '/ApartmentControllers/ApartmentUpdate';
 $route['apartment_exit']    = '/ApartmentControllers/ApartmentExit';
+$route['apartment_delete']    = '/ApartmentControllers/ApartmentDelete';
 
 /////////// user management ///////////////////////////////////////////////////////////
 $route['user'] = '/UserController';

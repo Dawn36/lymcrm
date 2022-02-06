@@ -79,12 +79,31 @@ margin-right: 6px;
         check=CheckApartment();
         if(check == true)
         {
-            if(confirm("Are you sure do you want to update?"))
-            {
-                 $("#editapartment").submit();
-                  var value='Update Sucessfully';
-                DeleteToast(value);
-            }
+            
+                 Swal.fire(
+                    {
+                        title: "Are you sure you want to update?",
+                        text: "You won't be able to revert this!",
+                        type: "warning",
+                        confirmButtonColor: '#437dd0',
+                        showCancelButton: true,
+                        confirmButtonText: "Yes, update it!",
+                    }).then(function(result)
+                    {
+                        if (result.value)
+                        {
+                            $("#editapartment").submit();
+                           // var value='Update Sucessfully';
+                            //DeleteToast(value);
+                            Swal.fire("Updated!", "Update Sucessfully.", "success");
+                        }
+                    });
+            // if(confirm("Are you sure do you want to update?"))
+            // {
+            //      $("#editapartment").submit();
+            //       var value='Update Sucessfully';
+            //     DeleteToast(value);
+            // }
         }
     
     }

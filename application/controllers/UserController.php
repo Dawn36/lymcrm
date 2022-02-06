@@ -191,8 +191,18 @@ class UserController extends CI_Controller
 
             $result = $this->USER->UploadProfilePic($dataInfo, $userId, $tableName);
             log_message('debug', 'uploadprofile :: ' . $result['profile_picture']);
-
-            redirect('/user');
+            if($this->session->userdata('user_id') == OWNER)
+            {
+                redirect('/owner_property');   
+            }
+            if($this->session->userdata('user_id') == TENANT)
+            {
+                redirect('/tenant_tenancy');   
+            }
+            else{
+               redirect('/user'); 
+            }
+            
         }
     }
     public function LoadUserProfile()

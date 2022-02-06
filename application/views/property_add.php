@@ -161,12 +161,30 @@
             Toast(value);
             return false;
         }
-         if(confirm("Are you sure do you want to add?"))
-            {
-                 $("#addPropertyForm").submit();
-                  var value='Add Sucessfully';
-                DeleteToast(value);
-            }
+         Swal.fire(
+                    {
+                        title: "Are you sure you want to add?",
+                        text: "You won't be able to revert this!",
+                        type: "warning",
+                        confirmButtonColor: '#437dd0',
+                        showCancelButton: true,
+                        confirmButtonText: "Yes, Add it!",
+                    }).then(function(result)
+                    {
+                        if (result.value)
+                        {
+                            $("#addPropertyForm").submit();
+                           // var value='Update Sucessfully';
+                            //DeleteToast(value);
+                            Swal.fire("Added!", "added Sucessfully.", "success");
+                        }
+                    });
+         // if(confirm("Are you sure do you want to add?"))
+         //    {
+         //         $("#addPropertyForm").submit();
+         //          var value='Add Sucessfully';
+         //        DeleteToast(value);
+         //    }
 
     }
       $("#community").keypress(function(e){

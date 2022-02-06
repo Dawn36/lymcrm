@@ -227,22 +227,49 @@ $heading = "Apartment";
         var value = {
             id: id
         };
-        if (confirm('Are you sure you want to delete apartment?')) {
-            $.ajax({
-                url: baseurl + 'apartment_delete',
-                type: 'POST',
-                data: value,
-                success: function(result) {
-                   // location.reload();
-                    var value='Delete Sucessfully';
-                    DeleteToast(value);
-                    window.location.reload();
+        Swal.fire(
+                    {
+                        title: "Are you sure want to delete?",
+                        text: "You won't be able to revert this!",
+                        type: "warning",
+                        confirmButtonColor: '#437dd0',
+                        showCancelButton: true,
+                        confirmButtonText: "Yes, delete it!",
+                    }).then(function(result)
+                    {
+                        if (result.value)
+                        {
+                             $.ajax({
+                                url: baseurl + 'apartment_delete',
+                                type: 'POST',
+                                data: value,
+                                success: function(result) {
+                                   // location.reload();
+                                    var value='Delete Sucessfully';
+                                    DeleteToast(value);
+                                    window.location.reload();
 
-                }
-            });
-        } else {
-            return false;
-        }
+                                }
+                            });
+                                           // var value='Update Sucessfully';
+                            //DeleteToast(value);
+                            Swal.fire("Deleted!", "Deleted Sucessfully.", "success");
+                        }
+                    });
+        // if (confirm('Are you sure you want to delete apartment?')) {
+        //     $.ajax({
+        //         url: baseurl + 'apartment_delete',
+        //         type: 'POST',
+        //         data: value,
+        //         success: function(result) {
+        //            // location.reload();
+        //             var value='Delete Sucessfully';
+        //             DeleteToast(value);
+        //             window.location.reload();
+
+        //         }
+        //     });
+        // } 
     }
 
    

@@ -242,18 +242,37 @@ $heading = "All Admin";
         var value = {
             userId: userId,
         };
-        if (confirm('Are you sure you want to delete admin?')) {
-            $.ajax({
-                url: baseurl + 'admin_delete',
-                type: 'POST',
-                data: value,
-                success: function(result) {
-                    var value = 'Delete Sucessfully';
-                    DeleteToast(value);
-                    window.location.reload();
+      
+             Swal.fire(
+                    {
+                        title: "Are you sure want to delete?",
+                        text: "You won't be able to revert this!",
+                        type: "warning",
+                        confirmButtonColor: '#437dd0',
+                        showCancelButton: true,
+                        confirmButtonText: "Yes, delete it!",
+                    }).then(function(result)
+                    {
+                        if (result.value)
+                        {
+                            $.ajax({
+                                url: baseurl + 'admin_delete',
+                                type: 'POST',
+                                data: value,
+                                success: function(result) {
+                                    
+                                    // var value = 'Delete Sucessfully';
+                                    // DeleteToast(value);
+                                     window.location.reload();
 
-                }
-            });
-        }
+                                }
+                            });
+                           // var value='Update Sucessfully';
+                            //DeleteToast(value);
+                            Swal.fire("Deleted!", "Deleted Sucessfully.", "success");
+                        }
+                    });
+            
+        
     }
 </script>

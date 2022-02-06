@@ -55,7 +55,9 @@
             /(\.jpg|\.jpeg|\.png|\.gif)$/i;
 
         if (!allowedExtensions.exec(filePath)) {
-            alert('Invalid file type only png file is accepted!');
+           // alert('Invalid file type only png file is accepted!');
+            value='Invalid file type only png, jpg, jpeg, gif file is accepted!';
+            Toast(value);
             fileInput.value = '';
             return false;
         } else {
@@ -73,8 +75,9 @@
         height: 200
     });
     function SendMail(){
+        
         $("#emailsentform").submit();
-                  var value='Sent Sucessfully';
-                DeleteToast(value);
+          var value='Sent Sucessfully';
+        DeleteToast(value);
     }
 </script>

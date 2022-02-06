@@ -7,7 +7,7 @@
                         <?php for ($i=0; $i <count($depositImg) ; $i++) { 
                           
                         ?>
-                        <a href="<?php echo $depositImg[$i]['file_path'] ?>" target="_blank"><img class="img-responsive" src="<?php echo $depositImg[$i]['file_path'] ?>" alt="image"></a>
+                        <a href="<?php echo $depositImg[$i]['file_path'] ?>" target="_blank"><img class="img-responsive" src="<?php echo $depositImg[$i]['file_path'] ?>" alt="image" style="height: 118px; width: 118px"></a>
                             
                        <?php }  ?>
 

@@ -124,22 +124,52 @@ $heading = "Building";
 <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div>
 <script type="text/javascript">
     function DeleteBuilding(buildingId) {
-        if (confirm('Are you sure you want to delete?')) {
-            var data = {
-                id: buildingId,
-                tablename: 'building'
-            };
-            $.ajax({
-                url: baseurl + 'delete',
-                type: 'POST',
-                data: data,
-                success: function(result) {
-                    var value = 'Delete Sucessfully';
-                    DeleteToast(value);
-                    window.location.reload();
-                }
-            });
-        }
+         Swal.fire(
+                    {
+                        title: "Are you sure want to delete?",
+                        text: "You won't be able to revert this!",
+                        type: "warning",
+                        confirmButtonColor: '#437dd0',
+                        showCancelButton: true,
+                        confirmButtonText: "Yes, delete it!",
+                    }).then(function(result)
+                    {
+                        if (result.value)
+                        {
+                              var data = {
+                                    id: buildingId,
+                                    tablename: 'building'
+                                };
+                                $.ajax({
+                                    url: baseurl + 'delete',
+                                    type: 'POST',
+                                    data: data,
+                                    success: function(result) {
+                                        var value = 'Delete Sucessfully';
+                                        DeleteToast(value);
+                                        window.location.reload();
+                                    }
+                                });
+                           // var value='Update Sucessfully';
+                            //DeleteToast(value);
+                            Swal.fire("Deleted!", "Deleted Sucessfully.", "success");
+                        }
+                    });
+            // var data = {
+            //     id: buildingId,
+            //     tablename: 'building'
+            // };
+            // $.ajax({
+            //     url: baseurl + 'delete',
+            //     type: 'POST',
+            //     data: data,
+            //     success: function(result) {
+            //         var value = 'Delete Sucessfully';
+            //         DeleteToast(value);
+            //         window.location.reload();
+            //     }
+            // });
+        
     }
 
     function EditBuilding(id) {

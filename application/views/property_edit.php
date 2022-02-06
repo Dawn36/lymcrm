@@ -137,14 +137,33 @@
             Toast(value);
             return false;
         }
-        if (confirm("Do you want to Update property?")) {
-              $("#editPropertyForm").submit();
-                  var value='Update Sucessfully';
-                DeleteToast(value);
+        
+                 Swal.fire(
+                    {
+                        title: "Are you sure you want to update?",
+                        text: "You won't be able to revert this!",
+                        type: "warning",
+                        confirmButtonColor: '#437dd0',
+                        showCancelButton: true,
+                        confirmButtonText: "Yes, update it!",
+                    }).then(function(result)
+                    {
+                        if (result.value)
+                        {
+                           $("#editPropertyForm").submit();
+                           // var value='Update Sucessfully';
+                            //DeleteToast(value);
+                            Swal.fire("Updated!", "Update Sucessfully.", "success");
+                        }
+                    });
+        // if (confirm("Do you want to Update property?")) {
+        //       $("#editPropertyForm").submit();
+        //           var value='Update Sucessfully';
+        //         DeleteToast(value);
            
-        } else {
-            return false;
-        }
+        // } else {
+        //     return false;
+        // }
 }
  $("#community").keypress(function(e){
    var keyCode = e.keyCode || e.which;

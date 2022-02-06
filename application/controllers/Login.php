@@ -69,9 +69,11 @@ class Login extends CI_Controller
 				} else {
 					redirect('infection_dashboard');
 				}
-			} else {
-				redirect('login');
-			}
+			} 
+			// else {
+			// 	$this->load->view('view_login');
+
+			// }
 		}
 		$this->load->view('view_login');
 	}

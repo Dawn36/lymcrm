@@ -151,12 +151,30 @@ function AddAdmin()
         check=CheckFromAdmin();
         if(check == true)
         {
-            if(confirm("Are you sure do you want to add?"))
-            {
-                 $("#adminaddform").submit();
-                  var value='Add Sucessfully';
-                DeleteToast(value);
-            }
+             Swal.fire(
+                    {
+                        title: "Are you sure you want to add?",
+                        text: "You won't be able to revert this!",
+                        type: "warning",
+                        confirmButtonColor: '#437dd0',
+                        showCancelButton: true,
+                        confirmButtonText: "Yes, Add it!",
+                    }).then(function(result)
+                    {
+                        if (result.value)
+                        {
+                            $("#adminaddform").submit();
+                           // var value='Update Sucessfully';
+                            //DeleteToast(value);
+                            Swal.fire("Added!", "added Sucessfully.", "success");
+                        }
+                    });
+            // if(confirm("Are you sure do you want to add?"))
+            // {
+            //      $("#adminaddform").submit();
+            //       var value='Add Sucessfully';
+            //     DeleteToast(value);
+            // }
         }
     }
   $("#admin_name").keypress(function(e){

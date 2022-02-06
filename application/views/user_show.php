@@ -299,21 +299,52 @@ $heading = "All Users";
             usersType: usersType,
             userId: userId,
         };
-        if (confirm('Are you sure you want to delete user?')) {
-            $.ajax({
-                url: baseurl + 'user_delete',
-                type: 'POST',
-                data: value,
-                success: function(result) {
-                    debugger;
-                    var value = 'Delete Sucessfully';
-                    DeleteToast(value);
-                    window.location.reload();
-                    // redirect('HiringRequests/viewhiringrequest');
-                    // window.location = baseurl + 'user_show';
+        Swal.fire(
+                    {
+                        title: "Are you sure want to delete?",
+                        text: "You won't be able to revert this!",
+                        type: "warning",
+                        confirmButtonColor: '#437dd0',
+                        showCancelButton: true,
+                        confirmButtonText: "Yes, delete it!",
+                    }).then(function(result)
+                    {
+                        if (result.value)
+                        {
+                           $.ajax({
+                            url: baseurl + 'user_delete',
+                            type: 'POST',
+                            data: value,
+                            success: function(result) {
+                              //  debugger;
+                               // var value = 'Delete Sucessfully';
+                               // DeleteToast(value);
+                                window.location.reload();
+                                // redirect('HiringRequests/viewhiringrequest');
+                                // window.location = baseurl + 'user_show';
 
-                }
-            });
-        }
+                            }
+                        });
+                           // var value='Update Sucessfully';
+                            //DeleteToast(value);
+                            Swal.fire("Deleted!", "Deleted Sucessfully.", "success");
+                        }
+                    });
+        // if (confirm('Are you sure you want to delete user?')) {
+        //     $.ajax({
+        //         url: baseurl + 'user_delete',
+        //         type: 'POST',
+        //         data: value,
+        //         success: function(result) {
+        //             debugger;
+        //             var value = 'Delete Sucessfully';
+        //             DeleteToast(value);
+        //             window.location.reload();
+        //             // redirect('HiringRequests/viewhiringrequest');
+        //             // window.location = baseurl + 'user_show';
+
+        //         }
+        //     });
+        // }
     }
 </script>

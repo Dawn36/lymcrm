@@ -124,13 +124,30 @@ margin-right: 6px;
         check=SubmitFromAdminEdit();
         if(check == true)
         {
-            if(confirm("Are you sure do you want to update?"))
-            {
+          
+                 Swal.fire(
+                    {
+                        title: "Are you sure you want to update?",
+                        text: "You won't be able to revert this!",
+                        type: "warning",
+                        confirmButtonColor: '#437dd0',
+                        showCancelButton: true,
+                        confirmButtonText: "Yes, update it!",
+                    }).then(function(result)
+                    {
+                        if (result.value)
+                        {
+                            $("#admineditform").submit();
+                           // var value='Update Sucessfully';
+                            //DeleteToast(value);
+                            Swal.fire("Updated!", "Update Sucessfully.", "success");
+                        }
+                    });
             
-                $("#admineditform").submit();
-                  var value='Update Sucessfully';
-                DeleteToast(value);
-            }
+                // $("#admineditform").submit();
+                //   var value='Update Sucessfully';
+                // DeleteToast(value);
+            
         }
     }
 

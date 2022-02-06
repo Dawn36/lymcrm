@@ -32,7 +32,7 @@
     <div class="row">
         <div class="col-md-12 mb-3">
             <button type="button" class="btn btn-secondary float-right mr-2" data-dismiss="modal">Close</button>
-            <button id='js-save-btn' class="btn btn-primary float-right mr-2" onclick="UpdateFromOwner()" type="submit">Update</button>
+            <button id='js-save-btn' class="btn btn-primary float-right mr-2" onclick="UpdateFromOwner()" type="button">Update</button>
         </div>
     </div>
     </div>
@@ -61,6 +61,7 @@
             
             return false;
         }
+        return true;
         // if ($('#contact').val() == '') {
         //      var value='Mobile number is required';
         //     Toast(value);
@@ -71,13 +72,31 @@
     {
         check=CheckUpdateOwner();
         if(check == true)
-        {
-            if(confirm("Are you sure do you want to Update?"))
-            {
-                 $( "#editTenantForm" ).submit();
-                  var value='Update Sucessfully';
-                DeleteToast(value);
-            }
+        {   
+            Swal.fire(
+                    {
+                        title: "Are you sure you want to update?",
+                        text: "You won't be able to revert this!",
+                        type: "warning",
+                        confirmButtonColor: '#437dd0',
+                        showCancelButton: true,
+                        confirmButtonText: "Yes, update it!",
+                    }).then(function(result)
+                    {
+                        if (result.value)
+                        {
+                            $("#editTenantForm").submit();
+                           // var value='Update Sucessfully';
+                            //DeleteToast(value);
+                            Swal.fire("Updated!", "Update Sucessfully.", "success");
+                        }
+                    });
+            // if(confirm("Are you sure do you want to Update?"))
+            // {
+            //      $( "#editTenantForm" ).submit();
+            //       var value='Update Sucessfully';
+            //     DeleteToast(value);
+            // }
         }
     }
 </script>
