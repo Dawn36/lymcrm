@@ -32,20 +32,20 @@ class TenancyRenewController extends CI_Controller
     {
         if ($this->session->userdata('name')) {
             $arrPost = $this->input->post();
-            $recordId = $arrPost['tenancyId'];
-            $delArr['status'] = 'active';
-            $tableName = 'tenancy';
-            $this->TENANCY->DeleteTenancy($delArr, $recordId, $tableName);
 
             $recordId = $arrPost['apartmentId'];
             $tableName = 'apartment';
             $isTenancy = 'no';
             $this->APARTMENT->UpdateApartmentStatus($tableName, $recordId, $isTenancy);
 
-            $delArr['status'] = 'active';
-            $recordId = $arrPost['tenancyId'];
-            $tableName = 'payment';
-            $this->TENANCY->DeletePayments($delArr, $recordId, $tableName);
+            $tableName                  = 'tenancy';
+            $recordId                   = $arrPost['tenancyId'];
+            $reInfo['is_renew']         = 'yes';
+            $reInfo['status']           = 'active';
+            $reInfo['updated_at']       = date("Y-m-d h:i:s");
+            $reInfo['updated_by']       = $this->session->userdata('user_id');
+            $reInfo['updated_name']     = $this->session->userdata('user_name');
+            $this->TENANCY->Update($tableName, $recordId, $reInfo);
 
             redirect('/tenancy');
         }

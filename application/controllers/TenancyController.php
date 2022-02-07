@@ -47,7 +47,7 @@ class TenancyController extends CI_Controller
     {
         $arrPost = $this->input->post();
 
-       // die(print_r($arrPost));
+        // die(print_r($arrPost));
         //tenancy table insert
         $tableName = 'tenancy';
         $recordId                   = $arrPost['record_id'];
@@ -88,7 +88,8 @@ class TenancyController extends CI_Controller
             $tenInfo['payment_type']    = $arrPost['payment_type'][$i];
             $tenInfo['cheque_no']       = $arrPost['cheque_no'][$i];
             $tenInfo['amount']          = $arrPost['amount'][$i];
-            $tenInfo['payment_date']    = date("Y-m-d h:i:s", strtotime($arrPost['date'][$i]));
+            $date                       = str_replace('/', '-', $arrPost['date'][$i]);
+            $tenInfo['payment_date']    = date("Y-m-d h:i:s", strtotime($date));
             $tenInfo['status']          = 'active';
             $tenInfo['created_at']      = date("Y-m-d h:i:s");
             $tenInfo['created_by']      =  $this->session->userdata('user_id');
@@ -113,6 +114,8 @@ class TenancyController extends CI_Controller
             $data['tenantInfo'] = $this->OWNER->ShowOwner($tableName);
             $tableName = 'tenancy';
             $data['tenancyInfo'] = $this->TENANCY->ShowEdit($tableName, $recordId);
+            $tableName = 'payment';
+            $data['paymentInfo'] = $this->TENANCY->ViewPayments($recordId, $tableName);
             return  $this->load->view('tenancy_edit', $data);
         } else {
             redirect('login');

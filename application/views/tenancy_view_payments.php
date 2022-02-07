@@ -56,7 +56,7 @@ $heading = "Tenancy";
                                                     <center><?php echo $tenancyInfo[$i]['tenancy_no'] ?></center>
                                                 </td>
                                                 <td nowrap>
-                                                    <center><?php echo $tenancyInfo[$i]['name'] ?></center>
+                                                    <center><?php echo ucfirst($tenancyInfo[$i]['name']) ?></center>
                                                 </td>
                                                 <td nowrap>
                                                     <center><?php echo date('d-M-Y', strtotime($tenancyInfo[$i]['start_date'])); ?></center>
@@ -124,7 +124,7 @@ $heading = "Tenancy";
                                                     <center><?php echo $i + 1 ?></center>
                                                 </td>
                                                 <td nowrap>
-                                                    <center><?php echo $paymentInfo[$i]['payment_type'] ?></center>
+                                                    <center><?php echo ucfirst($paymentInfo[$i]['payment_type']) ?></center>
                                                 </td>
                                                 <td nowrap>
                                                     <center><?php echo $paymentInfo[$i]['cheque_no'] ?></center>

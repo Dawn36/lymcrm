@@ -59,8 +59,7 @@ $route['login'] = 'login';
 $route['auth'] = 'login/userAuth';
 $route['landing_page'] = 'login/landingPage';
 $route['logoutNew'] = 'AdminControllers/logout';
-$route['logout'] = 'login/logout';
-;
+$route['logout'] = 'login/logout';;
 
 ///////////////////////////// Dashboard /////////////////////////////////////
 $route['infection_dashboard'] = '/Dashboard';
@@ -182,3 +181,4 @@ $route['email']     = '/CrondTabControllers/SetEmail';
 $route['tenancy_renew']    = '/TenancyRenewController';
 $route['tenancy_renew_add']    = '/TenancyRenewController/TenancyRenewAdd';
 $route['tenancy_renew_submit']    = '/TenancyRenewController/TenancyRenewSubmit';
+$route['tenancy_renew_delete']    = '/TenancyRenewController/DeleteTenancy';

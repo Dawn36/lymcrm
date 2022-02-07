@@ -85,13 +85,13 @@ $heading = "Renew Tenancy";
                                                     <center><?php echo $tenancyInfo[$i]['tenancy_no'] ?></center>
                                                 </td>
                                                 <td nowrap>
-                                                    <center><?php echo $tenancyInfo[$i]['building_name'] ?></center>
+                                                    <center><?php echo ucfirst($tenancyInfo[$i]['building_name']); ?></center>
                                                 </td>
                                                 <td nowrap>
                                                     <center><?php echo $tenancyInfo[$i]['apartment_number'] ?></center>
                                                 </td>
                                                 <td nowrap>
-                                                    <center><?php echo $tenancyInfo[$i]['name'] ?></center>
+                                                    <center><?php echo ucfirst($tenancyInfo[$i]['name']); ?></center>
                                                 </td>
                                                 <td nowrap>
                                                     <center><?php echo date('d-M-Y', strtotime($tenancyInfo[$i]['start_date'])); ?></center>
@@ -106,7 +106,7 @@ $heading = "Renew Tenancy";
                                                     <center><?php echo $tenancyInfo[$i]['no_of_payments'] ?></center>
                                                 </td>
                                                 <td nowrap>
-                                                    <center><?php echo $tenancyInfo[$i]['created_name'] ?></center>
+                                                    <center><?php echo ucfirst($tenancyInfo[$i]['created_name']); ?></center>
                                                 </td>
                                                 <td nowrap>
                                                     <center><?php echo date('d-M-Y', strtotime($tenancyInfo[$i]['created_at'])); ?></center>
@@ -116,7 +116,7 @@ $heading = "Renew Tenancy";
                                                 </td> -->
                                                 <td nowrap>
                                                     <center>
-                                                        <button  onclick="ViewPayments(<?php echo $recordId; ?>)" class="btn btn-sm btn-primary bg-brand-gradient" title="Payment Details"><i class="fal fa-eye"></i></button>
+                                                        <button onclick="ViewPayments(<?php echo $recordId; ?>)" class="btn btn-sm btn-primary bg-brand-gradient" title="Payment Details"><i class="fal fa-eye"></i></button>
                                                         <button title="Renew Tenancy" onclick="RenewTenancy(<?php echo $recordId; ?>)" class="btn btn-sm btn-primary bg-brand-gradient" title="Renew Tenancy" <?php if ($tenancyInfo[$i]['is_renew'] == 'yes') { ?> disabled <?php } ?>><i class="fal fa-check"></i></button>
                                                         <?php if ($this->session->userdata('role_id') == SUPER_ADMIN) { ?>
                                                             <button title="Delete Tenancy" type="button" onclick="DeleteTenancy(<?php echo $recordId; ?>,<?php echo $tenancyInfo[$i]['apartment_id'] ?>)" data-id="<?php echo $i; ?>" class="btn btn-sm btn-primary bg-brand-gradient" title="Delete Tenancy" <?php if ($tenancyInfo[$i]['is_renew'] == 'yes') { ?> disabled <?php } ?>><i class="fal fa-times"></i></button>
@@ -302,35 +302,32 @@ $heading = "Renew Tenancy";
             apartmentId: apartmentId,
 
         };
-        Swal.fire(
-                    {
-                        title: "Are you sure want to delete?",
-                        text: "You won't be able to revert this!",
-                        type: "warning",
-                        confirmButtonColor: '#437dd0',
-                        showCancelButton: true,
-                        confirmButtonText: "Yes, delete it!",
-                    }).then(function(result)
-                    {
-                        if (result.value)
-                        {
-                            $.ajax({
-                                url: baseurl + 'tenancy_delete',
-                                type: 'POST',
-                                data: value,
-                                success: function(result) {
-                                   // var value = 'Delete Sucessfully';
-                                    //DeleteToast(value);
-                                    //  window.location.reload();
-                                    $('#' + tenancyId).next('tr.child').remove();
-                                    $('#' + tenancyId).remove();
-                                }
-                            });
-                           // var value='Update Sucessfully';
-                            //DeleteToast(value);
-                            Swal.fire("Deleted!", "Deleted Sucessfully.", "success");
-                        }
-                    });
+        Swal.fire({
+            title: "Are you sure want to delete?",
+            text: "You won't be able to revert this!",
+            type: "warning",
+            confirmButtonColor: '#437dd0',
+            showCancelButton: true,
+            confirmButtonText: "Yes, delete it!",
+        }).then(function(result) {
+            if (result.value) {
+                $.ajax({
+                    url: baseurl + 'tenancy_renew_delete',
+                    type: 'POST',
+                    data: value,
+                    success: function(result) {
+                        // var value = 'Delete Sucessfully';
+                        //DeleteToast(value);
+                        window.location.reload();
+                        // $('#' + tenancyId).next('tr.child').remove();
+                        // $('#' + tenancyId).remove();
+                    }
+                });
+                // var value='Update Sucessfully';
+                //DeleteToast(value);
+                Swal.fire("Deleted!", "Deleted Sucessfully.", "success");
+            }
+        });
         // if (confirm('Are you sure you want to delete Tenancy?')) {
         //     $.ajax({
         //         url: baseurl + 'tenancy_delete',

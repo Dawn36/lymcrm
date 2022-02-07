@@ -23,7 +23,7 @@
                 <option value="">Select Building</option>
                 <?php for ($i = 0; $i < count($buildingInfo); $i++) { ?>
 
-                    <option value="<?php echo $buildingInfo[$i]['record_id']; ?>"><?php echo $buildingInfo[$i]['building_name']; ?></option>
+                    <option value="<?php echo $buildingInfo[$i]['record_id']; ?>"><?php echo ucfirst($buildingInfo[$i]['building_name']); ?></option>
                 <?php } ?>
 
             </select>
@@ -32,7 +32,7 @@
             </div>
         </div>
         <div class="col-md-12 mt-3">
-            <label class="form-label">apartment #<span style="color: red">*</span></label>
+            <label class="form-label">Apartment #<span style="color: red">*</span></label>
             <select class="custom-select required" name="apartment_no" id="apartment_no" required="">
                 <option value="">Select apartment</option>
             </select>
@@ -45,7 +45,7 @@
             <select class="custom-select required" name="tenant" id="tenant" required="">
                 <option value="">Select Tenant</option>
                 <?php for ($i = 0; $i < count($tenantInfo); $i++) { ?>
-                    <option value="<?php echo $tenantInfo[$i]['record_id']; ?>"><?php echo $tenantInfo[$i]['name']; ?></option>
+                    <option value="<?php echo $tenantInfo[$i]['record_id']; ?>"><?php echo ucfirst($tenantInfo[$i]['name']); ?></option>
                 <?php } ?>
             </select>
             <div class="invalid-feedback">
@@ -223,23 +223,20 @@
             }
         }
 
-        Swal.fire(
-                    {
-                        title: "Are you sure you want to add?",
-                        text: "You won't be able to revert this!",
-                        type: "warning",
-                        confirmButtonColor: '#437dd0',
-                        showCancelButton: true,
-                        confirmButtonText: "Yes, Add it!",
-                    }).then(function(result)
-                    {
-                        if (result.value)
-                        {
-                            $("#tenancy_submit").submit();
-                            Swal.fire("Added!", "added Sucessfully.", "success");
-                        }
-                    });
-            
+        Swal.fire({
+            title: "Are you sure you want to add?",
+            text: "You won't be able to revert this!",
+            type: "warning",
+            confirmButtonColor: '#437dd0',
+            showCancelButton: true,
+            confirmButtonText: "Yes, Add it!",
+        }).then(function(result) {
+            if (result.value) {
+                $("#tenancy_submit").submit();
+                Swal.fire("Added!", "Added Sucessfully.", "success");
+            }
+        });
+
         // if (confirm("Do you want to add tenancy?")) {
         //     $("#tenancy_submit").submit();
         //     var value = 'Add Sucessfully';
@@ -320,8 +317,8 @@
 
         $('.datepicker').datepicker({
             format: 'd/M/yyyy',
-            autoclose: 'true'
-        });
+            autoclose: 'true',
+        }).datepicker("setDate", 'now');
 
         $('#appendrow').on('focus', ".datepicker", function() {
             $(this).datepicker();
