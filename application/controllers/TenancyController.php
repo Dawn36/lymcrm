@@ -76,17 +76,18 @@ class TenancyController extends CI_Controller
 
         $this->TENANCY->Update($tableName, $arrInfo, $recordId);
 
-        $delArr['status'] = 'inactive';
-        $tableName = 'payment';
-        $this->TENANCY->DeletePayments($delArr, $recordId, $tableName);
-
         //inserting the payments details in payment table connected to the above inserted data
         for ($i = 0; $i < $arrInfo['no_of_payments']; $i++) {
             $tableName = 'payment';
+            $paymentId                  = $arrPost['payment_id'][$i];
             $tenInfo['tenancy_id']      = $recordId;
             $tenInfo['installment']     = $i + 1;
             $tenInfo['payment_type']    = $arrPost['payment_type'][$i];
-            $tenInfo['cheque_no']       = $arrPost['cheque_no'][$i];
+            if ($tenInfo['payment_type'] == 'cash') {
+                $tenInfo['cheque_no'] = 0;
+            } else {
+                $tenInfo['cheque_no']       = $arrPost['cheque_no'][$i];
+            }
             $tenInfo['amount']          = $arrPost['amount'][$i];
             $date                       = str_replace('/', '-', $arrPost['date'][$i]);
             $tenInfo['payment_date']    = date("Y-m-d h:i:s", strtotime($date));
@@ -98,7 +99,7 @@ class TenancyController extends CI_Controller
             $tenInfo['updated_by']      = $this->session->userdata('user_id');
             $tenInfo['updated_name']    =  $this->session->userdata('user_name');
 
-            $this->TENANCY->Add($tenInfo, $tableName);
+            $this->TENANCY->Update($tableName, $tenInfo, $paymentId);
         }
         redirect('/tenancy');
     }
@@ -217,11 +218,6 @@ class TenancyController extends CI_Controller
             $tableName = 'apartment';
             $isTenancy = 'no';
             $this->APARTMENT->UpdateApartmentStatus($tableName, $recordId, $isTenancy);
-
-            $delArr['status'] = 'inactive';
-            $recordId = $arrPost['tenancyId'];
-            $tableName = 'payment';
-            $this->TENANCY->DeletePayments($delArr, $recordId, $tableName);
 
             redirect('/tenancy');
         }

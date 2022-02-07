@@ -29,7 +29,7 @@ $endDate = date("d/M/Y", strtotime($tenancyInfo[0]['end_date']));
             <label class="form-label">Building<span style="color: red">*</span></label>
             <select class="custom-select required" name="building" id="building" readonly required="">
                 <?php for ($i = 0; $i < count($tenancyInfo); $i++) { ?>
-                    <option selected readonly value="<?php echo $tenancyInfo[$i]['building_id']; ?>"><?php echo $tenancyInfo[$i]['building_name']; ?></option>
+                    <option selected readonly value="<?php echo $tenancyInfo[$i]['building_id']; ?>"><?php echo ucfirst($tenancyInfo[$i]['building_name']); ?></option>
                 <?php } ?>
 
             </select>
@@ -84,7 +84,7 @@ $endDate = date("d/M/Y", strtotime($tenancyInfo[0]['end_date']));
         </div>
         <div class="col-md-12 mt-3 mb-3">
             <label class="form-label">No of Payments<span style="color: red">*</span></label>
-            <input class="form-control" placeholder="Add no of payments" value="<?php echo $tenancyInfo[0]['no_of_payments']; ?>" id="no_of_payments" name="no_of_payments" required>
+            <input class="form-control" placeholder="Add no of payments" value="<?php echo $tenancyInfo[0]['no_of_payments']; ?>" id="no_of_payments" name="no_of_payments" readonly required>
             <div class="invalid-feedback">
                 Please Add No Of Payments.
             </div>
@@ -94,6 +94,8 @@ $endDate = date("d/M/Y", strtotime($tenancyInfo[0]['end_date']));
 
     <div id="appendrow">
         <?php for ($i = 0; $i < count($paymentInfo); $i++) { ?>
+
+            <input value="<?php echo $paymentInfo[$i]['record_id']; ?>" id="payment_id" name="payment_id[]" style="display : none">
             <div class="card mb-g">
                 <div class="col-md-12 mt-3" style="display: none;">
                     <input type="text" style="display: none;">
@@ -244,7 +246,6 @@ $endDate = date("d/M/Y", strtotime($tenancyInfo[0]['end_date']));
         }
         Swal.fire({
             title: "Are you sure you want to update?",
-            text: "You won't be able to revert this!",
             type: "warning",
             confirmButtonColor: '#437dd0',
             showCancelButton: true,

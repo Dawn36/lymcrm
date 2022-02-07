@@ -225,7 +225,6 @@
 
         Swal.fire({
             title: "Are you sure you want to add?",
-            text: "You won't be able to revert this!",
             type: "warning",
             confirmButtonColor: '#437dd0',
             showCancelButton: true,
