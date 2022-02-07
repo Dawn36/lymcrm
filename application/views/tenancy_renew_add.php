@@ -250,6 +250,7 @@
     $('input[name="daterange"]').daterangepicker({
         opens: 'left',
         drops: 'up',
+        minDate: new Date(),
         locale: {
             format: 'DD/MMM/YYYY'
         }
