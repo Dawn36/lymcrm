@@ -75,7 +75,7 @@ $heading = "Renew Tenancy";
                                     </thead>
                                     <tbody>
                                         <?php for ($i = 0; $i < count($tenancyInfo); $i++) {
-                                            if (strtotime((new DateTime())->format("Y-m-d H:i:s")) < strtotime($tenancyInfo[$i]['end_date'])) {
+                                            if (strtotime((new DateTime())->format("Y-m-d H:i:s")) <= strtotime($tenancyInfo[$i]['end_date'])) {
                                                 continue;
                                             }
                                             $recordId = $tenancyInfo[$i]['record_id'];

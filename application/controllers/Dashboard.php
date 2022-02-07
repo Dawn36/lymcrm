@@ -15,12 +15,15 @@ class Dashboard extends CI_Controller
 		if ($this->session->userdata('name')) {
 			$this->load->view('main_header');
 			$this->load->view('sidebar');
-			$data['ownerCount']=$this->DASHBOARD->GetOwnerCount();
-			$data['propertyCount']=$this->DASHBOARD->GetPropertyCount();
-			$data['tenantCount']=$this->DASHBOARD->GetTenantCount();
-			$data['emailSelf']=$this->DASHBOARD->GetEmailSelf();
-			$data['totalRevenue']=$this->DASHBOARD->GetTotalRevenue();
-			$data['totalPaid']=$this->DASHBOARD->GetTotalPaid();
+			$data['subCount'] = $this->DASHBOARD->GetSubAdminCount();
+			$data['userCount'] = $this->DASHBOARD->GetUsersCount();
+			$data['renewCount'] = $this->DASHBOARD->GetRenewCount();
+			$data['ownerCount'] = $this->DASHBOARD->GetOwnerCount();
+			$data['propertyCount'] = $this->DASHBOARD->GetPropertyCount();
+			$data['tenantCount'] = $this->DASHBOARD->GetTenantCount();
+			$data['emailSelf'] = $this->DASHBOARD->GetEmailSelf();
+			$data['totalRevenue'] = $this->DASHBOARD->GetTotalRevenue();
+			$data['totalPaid'] = $this->DASHBOARD->GetTotalPaid();
 			$tableName = 'email_history';
 			$data['emailInfo'] =  $this->OWNER->ShowOwner($tableName);
 			$this->load->view('infection_dashboard', $data);
@@ -32,15 +35,14 @@ class Dashboard extends CI_Controller
 
 
 	public function GetHistory()
-	{	
-		 if ($this->session->userdata('name')) {
-		 	$arrPost = $this->input->post();
-        	$depositId=$arrPost['depositId'];	
-		 	$data['emailHistory']=$this->DASHBOARD->GetEmailHistory($depositId);
-            return $this->load->view('email_self_history' ,$data);
-        } else {
-            redirect('login');
-        }
-
+	{
+		if ($this->session->userdata('name')) {
+			$arrPost = $this->input->post();
+			$depositId = $arrPost['depositId'];
+			$data['emailHistory'] = $this->DASHBOARD->GetEmailHistory($depositId);
+			return $this->load->view('email_self_history', $data);
+		} else {
+			redirect('login');
+		}
 	}
 }

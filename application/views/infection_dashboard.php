@@ -15,40 +15,34 @@
     background-color: #6e96d7 !important;
     }*/
  </style>
- <?php 
-//////// paid working processbar////////////////////////
-     $totalRePaid = $totalRevenue[0]['rent_amount'] + $totalPaid[0]['amount'];
-     if($totalRePaid > 0)
-     {
-        $totalRevPaid=round(($totalRevenue[0]['rent_amount']/$totalRePaid)*100);
-        $totaldepositPaid=round(($totalPaid[0]['amount']/$totalRePaid)*100);
-     }
-     else
-     {
-        $totalRevPaid=0;
-        $totaldepositPaid=0;
-     }
-//////// Unpaid working processbar////////////////////////
-      $unPaidAmount=$totalRevenue[0]['rent_amount'] - $totalPaid[0]['amount'];
-     $totalReUnpaid = $totalRevenue[0]['rent_amount'] + ($unPaidAmount);
-     if($totalReUnpaid >0)
-     {
-         $totalRevUnPaid=round(($totalRevenue[0]['rent_amount']/$totalReUnpaid)*100);
-      
-      $totaldepositUnPaid=round(($unPaidAmount/$totalReUnpaid)*100);
-     }
-     else
-     {
-        $totalRevUnPaid=0;
-        $totaldepositUnPaid=0;
-     }
-     
-      
- ?>
+ <?php
+    //////// paid working processbar////////////////////////
+    $totalRePaid = $totalRevenue[0]['rent_amount'] + $totalPaid[0]['amount'];
+    if ($totalRePaid > 0) {
+        $totalRevPaid = round(($totalRevenue[0]['rent_amount'] / $totalRePaid) * 100);
+        $totaldepositPaid = round(($totalPaid[0]['amount'] / $totalRePaid) * 100);
+    } else {
+        $totalRevPaid = 0;
+        $totaldepositPaid = 0;
+    }
+    //////// Unpaid working processbar////////////////////////
+    $unPaidAmount = $totalRevenue[0]['rent_amount'] - $totalPaid[0]['amount'];
+    $totalReUnpaid = $totalRevenue[0]['rent_amount'] + ($unPaidAmount);
+    if ($totalReUnpaid > 0) {
+        $totalRevUnPaid = round(($totalRevenue[0]['rent_amount'] / $totalReUnpaid) * 100);
 
-<input type="hidden" id="totalRevenue" value="<?php echo $totalRevenue[0]['rent_amount'] ?>">
-<input type="hidden" id="paid" value="<?php echo $totalPaid[0]['amount'] ?> ">
-<input type="hidden" id="unPaid" value="<?php echo $totalRevenue[0]['rent_amount'] - $totalPaid[0]['amount']?>">
+        $totaldepositUnPaid = round(($unPaidAmount / $totalReUnpaid) * 100);
+    } else {
+        $totalRevUnPaid = 0;
+        $totaldepositUnPaid = 0;
+    }
+
+
+    ?>
+
+ <input type="hidden" id="totalRevenue" value="<?php echo $totalRevenue[0]['rent_amount'] ?>">
+ <input type="hidden" id="paid" value="<?php echo $totalPaid[0]['amount'] ?> ">
+ <input type="hidden" id="unPaid" value="<?php echo $totalRevenue[0]['rent_amount'] - $totalPaid[0]['amount'] ?>">
  <main id="js-page-content" role="main" class="page-content">
      <ol class="breadcrumb page-breadcrumb">
          <li class="breadcrumb-item"><a href="javascript:void(0);">Lym</a></li>
@@ -90,13 +84,13 @@
                                      Total Revenue
                                  </div>
                                  <div class="progress progress-xs mb-3">
-                                     <div class="progress-bar" role="progressbar" style="width: <?php echo $totalRevPaid?>%;background-color: #6e96d7;" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
+                                     <div class="progress-bar" role="progressbar" style="width: <?php echo $totalRevPaid ?>%;background-color: #6e96d7;" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
                                  </div>
                                  <div class="d-flex mt-2 mb-1 fs-xs " style="color: #ffca5b;">
                                      Total Deposit
                                  </div>
                                  <div class="progress progress-xs mb-3">
-                                     <div class="progress-bar bg-danger-500" role="progressbar" style="width: <?php echo $totaldepositPaid?>%; background-color: #ffca5b;" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+                                     <div class="progress-bar bg-danger-500" role="progressbar" style="width: <?php echo $totaldepositPaid ?>%; background-color: #ffca5b;" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
                                  </div>
 
                              </div>
@@ -124,13 +118,13 @@
                                      Total Revenue
                                  </div>
                                  <div class="progress progress-xs mb-3">
-                                     <div class="progress-bar" role="progressbar" style="width: <?php echo $totalRevUnPaid?>%; background-color: #6e96d7;" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
+                                     <div class="progress-bar" role="progressbar" style="width: <?php echo $totalRevUnPaid ?>%; background-color: #6e96d7;" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
                                  </div>
                                  <div class="d-flex mt-2 mb-1 fs-xs " style="color: #ffca5b;">
                                      Total Deposit
                                  </div>
                                  <div class="progress progress-xs mb-3">
-                                     <div class="progress-bar bg-danger-500" role="progressbar" style="width: <?php echo $totaldepositUnPaid?>%; background-color: #ffca5b;" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+                                     <div class="progress-bar bg-danger-500" role="progressbar" style="width: <?php echo $totaldepositUnPaid ?>%; background-color: #ffca5b;" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
                                  </div>
 
                              </div>
@@ -141,41 +135,76 @@
          </div>
      </div>
      <div class="row">
+         <?php if ($this->session->userdata('role_id') == SUPER_ADMIN) { ?>
+             <div class="col-sm-3 col-xl-3">
+                 <div class="p-3 bg-info-200 rounded overflow-hidden position-relative text-white mb-g">
+                     <div class="">
+                         <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                             <?php echo $subCount[0]['sub_admin_count'] ?>
+                             <small class="m-0 l-h-n">Total number of Sub Admin</small>
+                         </h3>
+                     </div>
+                     <i class="fal fa-user-tie position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size: 6rem;"></i>
+                 </div>
+             </div>
+         <?php } ?>
+         <div class="col-sm-3 col-xl-3">
+             <div class="p-3 rounded overflow-hidden position-relative text-white mb-g" style="background-color: #d76e6e;">
+                 <div class="">
+                     <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                         <?php echo $userCount[0]['users_count'] ?>
+                         <small class="m-0 l-h-n">Total number of Users</small>
+                     </h3>
+                 </div>
+                 <i class="fal fa-users position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
+             </div>
+         </div>
          <div class="col-sm-3 col-xl-3">
              <div class="p-3 bg-primary-300 rounded overflow-hidden position-relative text-white mb-g">
                  <div class="">
                      <h3 class="display-4 d-block l-h-n m-0 fw-500">
-                         <?php echo $ownerCount[0]['owner_count']?>
-                         <small class="m-0 l-h-n">Total number of owner</small>
+                         <?php echo $ownerCount[0]['owner_count'] ?>
+                         <small class="m-0 l-h-n">Total number of Owner</small>
                      </h3>
                  </div>
-                 <i class="fal fa-user position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
-             </div>
-         </div>
-         <div class="col-sm-3 col-xl-3">
-             <div class="p-3 bg-warning-400 rounded overflow-hidden position-relative text-white mb-g">
-                 <div class="">
-                     <h3 class="display-4 d-block l-h-n m-0 fw-500">
-                         <?php echo $propertyCount[0]['property_count']?> 
-                         <small class="m-0 l-h-n">Total number of property</small>
-                     </h3>
-                 </div>
-                 <i class="fal fa-gem position-absolute pos-right pos-bottom opacity-15  mb-n1 mr-n4" style="font-size: 6rem;"></i>
+                 <i class="fal fa-user-friends position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
              </div>
          </div>
          <div class="col-sm-3 col-xl-3">
              <div class="p-3 bg-success-200 rounded overflow-hidden position-relative text-white mb-g">
                  <div class="">
                      <h3 class="display-4 d-block l-h-n m-0 fw-500">
-                         <?php echo $tenantCount[0]['tenant_count']?> 
-                         <small class="m-0 l-h-n">Total number of tenants</small>
+                         <?php echo $tenantCount[0]['tenant_count'] ?>
+                         <small class="m-0 l-h-n">Total number of Tenants</small>
                      </h3>
                  </div>
-                 <i class="fal fa-lightbulb position-absolute pos-right pos-bottom opacity-15 mb-n5 mr-n6" style="font-size: 8rem;"></i>
+                 <i class="fal fa-user-friends position-absolute pos-right pos-bottom opacity-15 mb-n5 mr-n6" style="font-size: 8rem;"></i>
              </div>
          </div>
          <div class="col-sm-3 col-xl-3">
-             <div class="p-3 bg-info-200 rounded overflow-hidden position-relative text-white mb-g">
+             <div class="p-3 bg-warning-400 rounded overflow-hidden position-relative text-white mb-g">
+                 <div class="">
+                     <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                         <?php echo $propertyCount[0]['property_count'] ?>
+                         <small class="m-0 l-h-n">Total number of Property</small>
+                     </h3>
+                 </div>
+                 <i class="fal fa-home position-absolute pos-right pos-bottom opacity-15  mb-n1 mr-n4" style="font-size: 6rem;"></i>
+             </div>
+         </div>
+         <div class="col-sm-3 col-xl-3">
+             <div class="p-3 rounded overflow-hidden position-relative text-white mb-g" style="background-color: #3cbb58;">
+                 <div class="">
+                     <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                         <?php echo $renewCount[0]['renew_count'] ?>
+                         <small class="m-0 l-h-n">Total number of Renew</small>
+                     </h3>
+                 </div>
+                 <i class="fal fa-file-contract position-absolute pos-right pos-bottom opacity-15  mb-n1 mr-n4" style="font-size: 6rem;"></i>
+             </div>
+         </div>
+         <div class="col-sm-3 col-xl-3">
+             <div class="p-3 rounded overflow-hidden position-relative text-white mb-g" style="background-color: #ffb270;">
                  <div class="">
                      <h3 class="display-4 d-block l-h-n m-0 fw-500">
                          <?php echo $totalPaid[0]['amount'] ?>
@@ -185,13 +214,14 @@
                  <i class="fal fa-globe position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size: 6rem;"></i>
              </div>
          </div>
+
      </div>
      <div class="row">
          <div class="col-sm-6 col-xl-6">
-             <div class="p-3 bg-primary-300 rounded overflow-hidden position-relative text-white mb-g">
+             <div class="p-3 rounded overflow-hidden position-relative text-white mb-g" style="background-color: #6d7ea5;">
                  <div class="">
                      <h3 class="display-4 d-block l-h-n m-0 fw-500">
-                         <?php echo $totalRevenue[0]['rent_amount'] - $totalPaid[0]['amount']?>
+                         <?php echo $totalRevenue[0]['rent_amount'] - $totalPaid[0]['amount'] ?>
                          <small class="m-0 l-h-n">Unpaid</small>
                      </h3>
                  </div>
@@ -199,10 +229,10 @@
              </div>
          </div>
          <div class="col-sm-6 col-xl-6">
-             <div class="p-3 bg-warning-400 rounded overflow-hidden position-relative text-white mb-g">
+             <div class="p-3 rounded overflow-hidden position-relative text-white mb-g" style="background-color: #88b1b5;">
                  <div class="">
                      <h3 class="display-4 d-block l-h-n m-0 fw-500">
-                          <?php echo $totalRevenue[0]['rent_amount'] ?>
+                         <?php echo $totalRevenue[0]['rent_amount'] ?>
                          <small class="m-0 l-h-n">Total revenue</small>
                      </h3>
                  </div>
@@ -265,31 +295,31 @@
                                  </tr>
                              </thead>
                              <tbody>
-                                   <?php for ($i=0; $i < count($emailSelf) ; $i++) { 
-                                    
+                                 <?php for ($i = 0; $i < count($emailSelf); $i++) {
+
                                     ?>
-                                            <tr>
-                                                <td>
-                                                    <center><?php echo ucwords($emailSelf[$i]['owner_name'])?></center>
-                                                </td>
-                                                <td>
-                                                    <center><?php echo $emailSelf[$i]['ccount']?></center>
-                                                </td>
-                                                <td>
-                                                    <center><?php echo date("Y-m-d",strtotime($emailSelf[$i]['created_at']))?><br> <?php echo date("h:i A",strtotime($emailSelf[$i]['created_at']))?></center>
-                                                </td>
-                                                <td>
-                                                    <center><?php echo ucwords($emailSelf[$i]['created_name'])?></center>
-                                                </td>
-                                                
-                                                <td nowrap>
-                                                    <center>
-                                                        <button onclick="GetHistory(<?php echo $emailSelf[$i]['deposit_id']?>)" class="btn btn-sm btn-primary bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="History"><i class="fal fa-eye"></i></button>&nbsp;
-                                                        
-                                                    </center>
-                                                </td>
-                                            </tr>
-                                        <?php }  ?>
+                                     <tr>
+                                         <td>
+                                             <center><?php echo ucwords($emailSelf[$i]['owner_name']) ?></center>
+                                         </td>
+                                         <td>
+                                             <center><?php echo $emailSelf[$i]['ccount'] ?></center>
+                                         </td>
+                                         <td>
+                                             <center><?php echo date("Y-m-d", strtotime($emailSelf[$i]['created_at'])) ?><br> <?php echo date("h:i A", strtotime($emailSelf[$i]['created_at'])) ?></center>
+                                         </td>
+                                         <td>
+                                             <center><?php echo ucwords($emailSelf[$i]['created_name']) ?></center>
+                                         </td>
+
+                                         <td nowrap>
+                                             <center>
+                                                 <button onclick="GetHistory(<?php echo $emailSelf[$i]['deposit_id'] ?>)" class="btn btn-sm btn-primary bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="History"><i class="fal fa-eye"></i></button>&nbsp;
+
+                                             </center>
+                                         </td>
+                                     </tr>
+                                 <?php }  ?>
 
                              </tbody>
                          </table>
@@ -382,9 +412,9 @@
  <!-- The order of scripts is irrelevant. Please check out the plugin pages for more details about these plugins below: -->
 
  <script>
-     var totalRevenue=parseInt($('#totalRevenue').val());
-                       var paid=parseInt($('#paid').val());
-                       var unPaid=parseInt($('#unPaid').val());
+     var totalRevenue = parseInt($('#totalRevenue').val());
+     var paid = parseInt($('#paid').val());
+     var unPaid = parseInt($('#unPaid').val());
      var pieChart = function() {
          var data = {
              series: [totalRevenue, paid]
@@ -429,21 +459,22 @@
          pieChart2();
 
      });
-      function GetHistory(depositId) {
-        var value = {
-            depositId: depositId,
-           
-        };
-        $.ajax({
-            url: baseurl + 'get_all_email',
-            type: 'POST',
-            data: value,
-            success: function(result) {
-                $('#modal-title-center').html('Email Self History');
-                $('#modal-body-center').html(result);
-                $('#myModalCenter').modal();
 
-            }
-        });
-    }
+     function GetHistory(depositId) {
+         var value = {
+             depositId: depositId,
+
+         };
+         $.ajax({
+             url: baseurl + 'get_all_email',
+             type: 'POST',
+             data: value,
+             success: function(result) {
+                 $('#modal-title-center').html('Email Self History');
+                 $('#modal-body-center').html(result);
+                 $('#myModalCenter').modal();
+
+             }
+         });
+     }
  </script>
