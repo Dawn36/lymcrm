@@ -1,4 +1,4 @@
-<form class="needs-validation" novalidate method="post" action="buildingCsv" name="uploadBuildingForm" id="uploadBuildingForm" enctype='multipart/form-data'>
+<form class="needs-validation" novalidate method="post" action="/buildingCsv" name="uploadBuildingForm" id="uploadBuildingForm" enctype='multipart/form-data'>
     <input type="hidden" name="tablename" value="building">
     <div class="col-md-12 mb-3">
         <input class="form-control alphaonly mt-3" type="file" onchange="return fileValidation()" id='building_csv' name='building_csv' required>
@@ -34,6 +34,7 @@
             Toast(value);
             return false;
         } else {
+            $("#uploadBuildingForm").submit();
             var value = 'File Uploaded Sucessfully';
             DeleteToast(value);
         }
