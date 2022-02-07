@@ -108,8 +108,8 @@ $profilePicture = $this->session->userdata('profile_picture') ? $this->session->
                     </a>
                 </li>
                 <li>
-                    <a href="/owner_tenant" title="Tenant" data-filter-tags="Tenant"><i class="fas fa-user-alt"></i>
-                        <span class="nav-link-text" data-i18n="nav.Tenant">Tenant</span>
+                    <a href="/owner_tenant" title="Tenant/Tenancy" data-filter-tags="Tenant"><i class="fas fa-user-alt"></i>
+                        <span class="nav-link-text" data-i18n="nav.Tenant">Tenant/Tenancy</span>
                     </a>
                 </li>
             </ul>

@@ -163,6 +163,8 @@ class UserController extends CI_Controller
      public function uploadprofile()
     {
         if ($this->session->userdata('name')) {
+           
+
             $config['upload_path']          = './uploads/profile/';
             $config['allowed_types']        = 'jpg|png';
             // $config['max_size'] = 2000;
@@ -180,16 +182,31 @@ class UserController extends CI_Controller
             }
 
             $arrPost = $this->input->post();
-
+           
+            
             $tableName = 'users';
             $userId = $this->session->userdata('user_id');
+
+            $name=$arrPost['uname'];
+            $dataInfo['name'] = $name;
 
             $dataInfo['updated_at'] = date("Y-m-d h:i:s");
             $dataInfo['updated_by'] =  $this->session->userdata('user_id');
             $dataInfo['updated_name'] =  $this->session->userdata('user_name');
-            $dataInfo['profile_picture'] = base_url() . 'uploads/profile/' . $data['upload_data']['file_name'];
+            // print_r($_FILES['profile']['name']);
+            // die();
+            if( $_FILES['profile']['name'] != "")
+            {
+                $dataInfo['profile_picture'] = base_url() . 'uploads/profile/' . $data['upload_data']['file_name'];
+                $profileNot=1;
+            }
+            else
+            {
+                $profileNot=0;
+            }
 
-            $result = $this->USER->UploadProfilePic($dataInfo, $userId, $tableName);
+
+            $result = $this->USER->UploadProfilePic($dataInfo, $userId, $tableName,$profileNot);
             log_message('debug', 'uploadprofile :: ' . $result['profile_picture']);
             if($this->session->userdata('user_id') == OWNER)
             {

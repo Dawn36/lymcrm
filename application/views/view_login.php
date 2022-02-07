@@ -33,8 +33,8 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
     <link rel="mask-icon" href="/assets/dist/img/favicon/safari-pinned-tab.svg" color="#5bbad5">
     <!-- Optional: page related CSS-->
     <link rel="stylesheet" media="screen, print" href="/assets/dist/css/fa-brands.css">
-    <link rel="stylesheet" href="assets/css/layout.css">
-    <link rel="stylesheet" href="assets/dist/css/style.css">
+    <link rel="stylesheet" href="/assets/css/layout.css">
+    <link rel="stylesheet" href="/assets/dist/css/style.css">
 </head>
 
 <body style="font-family: Arial">
@@ -44,7 +44,7 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
                 <div class="col col-md-4 col-lg-4">
                     <div class="col-lg-10 ml-5" style="margin: 10%; padding: 5%;">
 
-                        <img src="assets/dist/img/logo-2.png">
+                        <img src="/assets/dist/img/logo-2.png">
                         <h2 class="fs-xxl fw-900 ml-5" style="color: #007bff;">
                             Log in
                         </h2>
@@ -79,7 +79,7 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
                     </form>
                 </div>
                 <div class="col col-md-8 col-lg-8">
-                    <img src="assets/dist/img/backgrounds/bg-login.jpg" style="display: flex; height: 100%; width: 90%; float: right;">
+                    <img src="/assets/dist/img/backgrounds/bg-login.jpg" style="display: flex; height: 100%; width: 90%; float: right;">
 
                     <div class="login-content">
                         <h1>LYM CRM</h1>
