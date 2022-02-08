@@ -16,11 +16,12 @@ $profilePicture = $this->session->userdata('profile_picture') ? $this->session->
     .mr4 {
         margin-right: 4px;
     }
+    .pointer {cursor: pointer;}
 </style>
 <!-- BEGIN Left Aside -->
 <aside class="page-sidebar">
     <div class="page-logo">
-        <a href="#" class="page-logo-link press-scale-down d-flex align-items-center position-relative" data-toggle="modal" data-target="#modal-shortcut">
+        <a href="/infection_dashboard" class="page-logo-link press-scale-down d-flex align-items-center position-relative" >
             <!-- <img src="/ssets/dist/img/logo-2.png" alt="SmartAdmin WebApp" aria-roledescription="logo"> -->
             <img src="/assets/dist/img/logo-2.png" style="height: 50px;margin-left: 44px;">
 
@@ -33,7 +34,7 @@ $profilePicture = $this->session->userdata('profile_picture') ? $this->session->
     <nav id="js-primary-nav" class="primary-nav" role="navigation">
 
         <div class="info-card">
-            <img id='OpenImgUpload' src="<?php echo $profilePicture ?>" class="profile-image rounded-circle" alt="upload picture">
+            <img id='OpenImgUpload' src="<?php echo $profilePicture ?>" class="profile-image rounded-circle pointer" alt="upload picture">
             <div class="info-card-text">
                 <a href="#" class="d-flex align-items-center text-white">
                     <span class="text-truncate text-truncate-sm d-inline-block">
@@ -180,8 +181,8 @@ $profilePicture = $this->session->userdata('profile_picture') ? $this->session->
         <div class="ml-auto d-flex">
             <!-- app user menu -->
             <div>
-                <a href="#" data-toggle="dropdown" title="drlantern@gotbootstrap.com" class="header-icon d-flex align-items-center justify-content-center ml-2">
-                    <img src="<?php echo $profilePicture ?>" class="profile-image rounded-circle" alt="">
+                <a href="#" data-toggle="dropdown" title="" class="header-icon d-flex align-items-center justify-content-center ml-2 ">
+                    <img src="<?php echo $profilePicture ?>" class="profile-image rounded-circle pointer" alt="">
                     <!-- you can also add username next to the avatar with the codes below:
                                     <span class="ml-1 mr-1 text-truncate text-truncate-header hidden-xs-down">Me</span>
                                     <i class="ni ni-chevron-down hidden-xs-down"></i> -->

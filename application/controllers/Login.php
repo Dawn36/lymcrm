@@ -44,14 +44,15 @@ class Login extends CI_Controller
 	public function userAuth()
 	{
 
-		$arr['email'] = $this->input->post('user_name');
-		$arr['password'] = base64_encode($this->input->post('password'));
-		$this->form_validation->set_rules('user_name', 'User_name', 'required');
-		$this->form_validation->set_rules('password', 'User_password', 'required');
-		if ($this->form_validation->run()) {
+		$data = array();
+		$this->form_validation->set_rules('user_name', 'Username', 'required|valid_email');
+		$this->form_validation->set_rules('password', 'Password', 'required');
+		if ($this->form_validation->run() == true) {
+			$arr['email'] = trim($this->input->post('user_name'));
+			$arr['password'] = trim(base64_encode($this->input->post('password')));
 			$check = $this->ML->user_auth($arr);
 
-			if (count($check) > 0) {
+			if ($check) {
 				$this->session->set_userdata('name', $check[0]['user_name']);
 				$this->session->set_userdata('user_id', $check[0]['user_id']);
 				$this->session->set_userdata('user_name', $check[0]['user_name']);
@@ -60,7 +61,6 @@ class Login extends CI_Controller
 				$this->session->set_userdata('owner_tenant_id', $check[0]['owner_tenant_id']);
 				$this->session->set_userdata('role_name', $check[0]['role_name']);
 				$this->session->set_userdata('profile_picture', $check[0]['profile_picture']);
-				//	log_message("debug","SESSION VALUE :: ".$this->session->userdata('name'));
 				if ($this->session->userdata('role_id') == OWNER) {
 					redirect('owner_property');
 				}
@@ -69,13 +69,13 @@ class Login extends CI_Controller
 				} else {
 					redirect('infection_dashboard');
 				}
-			} 
-			// else {
-			// 	$this->load->view('view_login');
-
-			// }
+			} else {
+				$data['error_msg'] = 'Wrong email or password, please try again.';
+			}
+		} else {
+			$data['error_msg'] = 'Please fill all the mandatory fields.';
 		}
-		$this->load->view('view_login');
+		$this->load->view('view_login', $data);
 	}
 
 	public function landingPage()
@@ -90,7 +90,7 @@ class Login extends CI_Controller
 			$this->load->view('infection_dashboard', $data);
 			$this->load->view('footer');
 		} else {
-			$this->load->view('view_login');
+			$this->load->view('logout');
 		}
 	}
 }

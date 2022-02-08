@@ -50,27 +50,24 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
                         </h2>
                         <?php
                         if (!empty($success_msg)) {
-                            echo '<p class="status-msg success">' . $success_msg . '</p>';
+                            echo '<b class="help-block">' . $success_msg . '</b>';
                         } elseif (!empty($error_msg)) {
-                            echo '<p class="status-msg error">' . $error_msg . '</p>';
+                            echo '<b class="help-block mb-2">' . $error_msg . '</b>';
                         }
                         ?>
+
                         <form id="js-login" method="post" novalidate="" action="/auth">
                             <div class="form-group">
                                 <label class="form-label text-white" for="username">Email</label>
-                                <input style="background-color: white; border-radius: 50px;" type="text" id="user_name" name="user_name" class="bg-white form-control form-control-lg" placeholder="Email" required="">
+                                <input style="background-color: white; border-radius: 50px;" type="email" id="user_name" name="user_name" class="bg-white form-control form-control-lg" placeholder="Email" required="">
                                 <div class="invalid-feedback">No, you missed this one.</div>
-                                <?php echo form_error('email', '<p class="help-block">', '</p>'); ?>
-
-                                <!-- <div class="help-block">Your unique user name</div> -->
+                                <?php echo form_error('user_name', '<p class="help-block">', '</p>'); ?>
                             </div>
                             <div class="form-group">
                                 <label class="form-label text-white" for="password">Password</label>
                                 <input style="border-radius: 50px;" type="password" id="password" name="password" class="bg-white form-control form-control-lg" placeholder="Password" required="">
                                 <div class="invalid-feedback">Sorry, you missed this one.</div>
                                 <?php echo form_error('password', '<p class="help-block">', '</p>'); ?>
-
-                                <!-- <div class="help-block">Your password</div> -->
                             </div>
                             <div class="form-group">
                                 <button id="js-login-btn" style="background-color: #007bff; border-radius: 50px;" name="loginSubmit" type="submit" class="text-white btn btn-block btn-lg">login</button>
@@ -158,17 +155,6 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
         <script src="/assets/dist/js/jquery.js"></script>
         <script src="/assets/dist/js/custom.js"></script>
         <script>
-            $(document).ready(function() {
-                <?php if ($user_msg) { ?>
-                    var element = document.getElementById("remove")
-                    element.classList.remove("d-none");
-                    document.getElementById("alert").innerHTML = "Invalid";
-                    document.getElementById("text").innerHTML = "<?php echo $user_msg; ?>";
-
-                <?php } ?>
-
-            });
-
             $("#js-login-btn").click(function(event) {
 
                 // Fetch form to apply custom Bootstrap validation
@@ -184,7 +170,7 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
             });
             $("#user_name").keypress(function(e) {
                 var keyCode = e.keyCode || e.which;
-                var regex = /^[A-Za-z ]+$/;
+                var regex = /^[A-Za-z@.]+$/;
                 var isValid = regex.test(String.fromCharCode(keyCode));
                 if (!isValid) {
                     return false

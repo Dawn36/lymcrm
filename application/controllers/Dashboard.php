@@ -29,7 +29,7 @@ class Dashboard extends CI_Controller
 			$this->load->view('infection_dashboard', $data);
 			$this->load->view('footer');
 		} else {
-			redirect('view_login');
+			redirect('login');
 		}
 	}
 

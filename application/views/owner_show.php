@@ -79,17 +79,17 @@ $heading = "Owner";
                                                 <center><?php echo $ownerData[$i]['phone_number']?></center>
                                             </td>
                                             <td>
-                                                <center><?php echo $ownerData[$i]['created_name']?>
+                                                <center><?php echo ucwords($ownerData[$i]['created_name'])?>
                                                    
                                                 </center>
                                             </td>
                                             <td>
-                                                <center><?php echo $ownerData[$i]['updated_name']?>
+                                                <center><?php echo ucwords($ownerData[$i]['updated_name'])?>
                                                    
                                                 </center>
                                             </td>
                                             <td>
-                                                <center><?php echo $ownerData[$i]['status']?>
+                                                <center><?php echo ucwords($ownerData[$i]['status'])?>
                                                    
                                                 </center>
                                             </td>
