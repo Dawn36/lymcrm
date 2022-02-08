@@ -46,6 +46,17 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
     <link rel="stylesheet" media="screen, print" href="/assets/dist/css/formplugins/summernote/summernote.css">
 
     <style>
+
+
+.pagination .page-link:hover {
+    background-color: #4679cb !important;
+    /* color: #fff; */
+}
+        .header-btn[data-class='mobile-nav-on']{
+            border-color: #4679cb !important;
+            background-color: #4679cb !important;
+            background-image: linear-gradient(to top, #4679cc, #4679cb) !important;
+        }
         .pace,
         .pace-active,
         .pace-progress {

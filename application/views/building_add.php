@@ -39,7 +39,7 @@ margin-right: 6px;
                       
                   <div class="col-md-12  mt-3 mb-3">
                       <label class="form-label">Building Name<span class="text-danger">*</span></label>
-                      <input class="form-control" placeholder="Enter Building Name" type="text" id='building_name' onblur="CheckExitBuilding(this.value)" name='building_name' required="">
+                      <input class="form-control" placeholder="Enter Building Name" type="text" id='building_name' onkeyup="CheckExitBuilding(this.value)" name='building_name' required="">
                        
                       <div class="invalid-feedback">
                           Please Enter the Building Name.

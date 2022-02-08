@@ -35,6 +35,7 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
     <link rel="stylesheet" media="screen, print" href="/assets/dist/css/fa-brands.css">
     <link rel="stylesheet" href="/assets/css/layout.css">
     <link rel="stylesheet" href="/assets/dist/css/style.css">
+    <link rel="stylesheet" media="screen, print" href="/assets/dist/css/notifications/toastr/toastr.css">
 </head>
 
 <body style="font-family: Arial">
@@ -48,27 +49,29 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
                         <h2 class="fs-xxl fw-900 ml-5" style="color: #007bff;">
                             Log in
                         </h2>
-                        <?php
-                        if (!empty($success_msg)) {
-                            echo '<b class="help-block">' . $success_msg . '</b>';
-                        } elseif (!empty($error_msg)) {
-                            echo '<b class="help-block mb-2">' . $error_msg . '</b>';
-                        }
-                        ?>
+                        
 
                         <form id="js-login" method="post" novalidate="" action="/auth">
                             <div class="form-group">
                                 <label class="form-label text-white" for="username">Email</label>
-                                <input style="background-color: white; border-radius: 50px;" type="email" id="user_name" name="user_name" class="bg-white form-control form-control-lg" placeholder="Email" required="">
-                                <div class="invalid-feedback">No, you missed this one.</div>
+                                <input style="background-color: white; border-radius: 50px;" onblur="CheckValidEmail(this.id)" type="email" id="user_name" name="user_name" class="bg-white form-control form-control-lg" placeholder="Email" required="">
+                                <div class="invalid-feedback" style="color: red;">Please enter email</div>
                                 <?php echo form_error('user_name', '<p class="help-block">', '</p>'); ?>
                             </div>
                             <div class="form-group">
                                 <label class="form-label text-white" for="password">Password</label>
                                 <input style="border-radius: 50px;" type="password" id="password" name="password" class="bg-white form-control form-control-lg" placeholder="Password" required="">
-                                <div class="invalid-feedback">Sorry, you missed this one.</div>
+                                <div class="invalid-feedback" style="color: red;">Please enter password</div>
                                 <?php echo form_error('password', '<p class="help-block">', '</p>'); ?>
+                                <?php
+                        if (!empty($success_msg)) {
+                            echo '<b class="help-block ">' . $success_msg . '</b>';
+                        } elseif (!empty($error_msg)) {
+                            echo '<b class="help-block mb-2" style="color: red;">' . $error_msg . '</b>';
+                        }
+                        ?>
                             </div>
+
                             <div class="form-group">
                                 <button id="js-login-btn" style="background-color: #007bff; border-radius: 50px;" name="loginSubmit" type="submit" class="text-white btn btn-block btn-lg">login</button>
                             </div>
@@ -154,6 +157,7 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
         <script src="/assets/dist/js/app.bundle.js"></script>
         <script src="/assets/dist/js/jquery.js"></script>
         <script src="/assets/dist/js/custom.js"></script>
+        <script src="/assets/dist/js/notifications/toastr/toastr.js"></script>
         <script>
             $("#js-login-btn").click(function(event) {
 
@@ -179,6 +183,38 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
                     return false;
                 }
             });
+            function CheckValidEmail(id) {
+            email = document.getElementById(id).value;
+            var emailregex = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+            if (emailregex.test(email) == false) {
+
+                var value = 'Wrong Email! (Hint:abc@gmail.com)';
+                Toast(value);
+                // .then((result) => { location.replace('https://lymcrm.com/property/all-admin.php') })
+                document.getElementById(id).value = '';
+                return false;
+            }
+        }
+        function Toast(value) {
+            Command: toastr["warning"](value)
+
+            toastr.options = {
+                "closeButton": false,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": false,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": false,
+                "showDuration": 300,
+                "hideDuration": 100,
+                "timeOut": 5000,
+                "extendedTimeOut": 1000,
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+        }
 
             // function UserLogin() {
             //     var element = document.getElementById("remove");

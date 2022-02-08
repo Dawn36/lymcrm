@@ -10,6 +10,9 @@
      .ct-series-a .ct-area {
          fill: #6e96d7 !important;
      }
+     .ct-label{
+        font-weight: bold;
+     }
 
      /*.progress-bar {
     background-color: #6e96d7 !important;
@@ -136,19 +139,19 @@
      </div>
      <div class="row">
          <?php if ($this->session->userdata('role_id') == SUPER_ADMIN) { ?>
-             <div class="col-sm-3 col-xl-3">
+             <div class="col-sm-4 col-xl-4">
                  <div class="p-3 bg-info-200 rounded overflow-hidden position-relative text-white mb-g">
                      <div class="">
                          <h3 class="display-4 d-block l-h-n m-0 fw-500">
                              <?php echo $subCount[0]['sub_admin_count'] ?>
-                             <small class="m-0 l-h-n">Total number of Sub Admin</small>
+                             <small class="m-0 l-h-n">Total number of Sub Admins</small>
                          </h3>
                      </div>
                      <i class="fal fa-user-tie position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size: 6rem;"></i>
                  </div>
              </div>
          <?php } ?>
-         <div class="col-sm-3 col-xl-3">
+         <div class="col-sm-4 col-xl-4">
              <div class="p-3 rounded overflow-hidden position-relative text-white mb-g" style="background-color: #d76e6e;">
                  <div class="">
                      <h3 class="display-4 d-block l-h-n m-0 fw-500">
@@ -159,18 +162,18 @@
                  <i class="fal fa-users position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
              </div>
          </div>
-         <div class="col-sm-3 col-xl-3">
+         <div class="col-sm-4 col-xl-4">
              <div class="p-3 bg-primary-300 rounded overflow-hidden position-relative text-white mb-g">
                  <div class="">
                      <h3 class="display-4 d-block l-h-n m-0 fw-500">
                          <?php echo $ownerCount[0]['owner_count'] ?>
-                         <small class="m-0 l-h-n">Total number of Owner</small>
+                         <small class="m-0 l-h-n">Total number of Owners</small>
                      </h3>
                  </div>
                  <i class="fal fa-user-friends position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
              </div>
          </div>
-         <div class="col-sm-3 col-xl-3">
+         <div class="col-sm-4 col-xl-4">
              <div class="p-3 bg-success-200 rounded overflow-hidden position-relative text-white mb-g">
                  <div class="">
                      <h3 class="display-4 d-block l-h-n m-0 fw-500">
@@ -181,29 +184,33 @@
                  <i class="fal fa-user-friends position-absolute pos-right pos-bottom opacity-15 mb-n5 mr-n6" style="font-size: 8rem;"></i>
              </div>
          </div>
-         <div class="col-sm-3 col-xl-3">
+         <div class="col-sm-4 col-xl-4">
              <div class="p-3 bg-warning-400 rounded overflow-hidden position-relative text-white mb-g">
                  <div class="">
                      <h3 class="display-4 d-block l-h-n m-0 fw-500">
                          <?php echo $propertyCount[0]['property_count'] ?>
-                         <small class="m-0 l-h-n">Total number of Property</small>
+                         <small class="m-0 l-h-n">Total number of Propertys</small>
                      </h3>
                  </div>
                  <i class="fal fa-home position-absolute pos-right pos-bottom opacity-15  mb-n1 mr-n4" style="font-size: 6rem;"></i>
              </div>
          </div>
-         <div class="col-sm-3 col-xl-3">
+         <div class="col-sm-4 col-xl-4">
              <div class="p-3 rounded overflow-hidden position-relative text-white mb-g" style="background-color: #3cbb58;">
                  <div class="">
                      <h3 class="display-4 d-block l-h-n m-0 fw-500">
                          <?php echo $renewCount[0]['renew_count'] ?>
-                         <small class="m-0 l-h-n">Total number of Renew</small>
+                         <small class="m-0 l-h-n">Total number of Renews</small>
                      </h3>
                  </div>
                  <i class="fal fa-file-contract position-absolute pos-right pos-bottom opacity-15  mb-n1 mr-n4" style="font-size: 6rem;"></i>
              </div>
          </div>
-         <div class="col-sm-3 col-xl-3">
+         
+
+     </div>
+     <div class="row">
+     <div class="col-sm-4 col-xl-4">
              <div class="p-3 rounded overflow-hidden position-relative text-white mb-g" style="background-color: #ffb270;">
                  <div class="">
                      <h3 class="display-4 d-block l-h-n m-0 fw-500">
@@ -214,10 +221,8 @@
                  <i class="fal fa-globe position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size: 6rem;"></i>
              </div>
          </div>
-
-     </div>
-     <div class="row">
-         <div class="col-sm-6 col-xl-6">
+     
+         <div class="col-sm-4 col-xl-4">
              <div class="p-3 rounded overflow-hidden position-relative text-white mb-g" style="background-color: #6d7ea5;">
                  <div class="">
                      <h3 class="display-4 d-block l-h-n m-0 fw-500">
@@ -228,7 +233,7 @@
                  <i class="fal fa-user position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
              </div>
          </div>
-         <div class="col-sm-6 col-xl-6">
+         <div class="col-sm-4 col-xl-4">
              <div class="p-3 rounded overflow-hidden position-relative text-white mb-g" style="background-color: #88b1b5;">
                  <div class="">
                      <h3 class="display-4 d-block l-h-n m-0 fw-500">
@@ -423,6 +428,7 @@
          var sum = function(a, b) {
              return a + b
          };
+
 
          new Chartist.Pie('#pieChart', data, {
              labelInterpolationFnc: function(value) {

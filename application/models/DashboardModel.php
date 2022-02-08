@@ -4,6 +4,10 @@ class DashboardModel  extends CI_Model
 	function GetEmailSelf()
 	{
 		$this->db->select('DISTINCT(deposit_id),owner_name, COUNT(deposit_id) AS ccount,deposit_id, created_at, created_name');
+		$this->db->where('deposit_id is NOT NULL', NULL, FALSE);
+		$this->db->where('owner_name is NOT NULL', NULL, FALSE);
+		$this->db->where('owner_email is NOT NULL', NULL, FALSE);
+		$this->db->where('apartment_no is NOT NULL', NULL, FALSE);
 		$this->db->group_by("deposit_id");
 		$this->db->order_by("record_id", "DESC");
 		$data = $this->db->get('email_self')->result_array();
