@@ -57,7 +57,7 @@ margin-right: 6px;
                  
                  
                   <div class="col-md-12 mb-3">
-                      <label class="form-label">Contact<span class="text-danger">*</span></label>
+                      <label class="form-label">Contact</label>
                       <input class="form-control"   placeholder="Enter Contact" type="text" id='contact' name='contact' >
                       <div class="invalid-feedback">
                           Please Enter Contact.

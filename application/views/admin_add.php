@@ -34,7 +34,7 @@ margin-right: 6px;
                       </div>
                   </div>
                   <div class="col-md-12 mb-12 mb-3">
-                      <label class="form-label">Phone Number<span class="text-danger">*</span></label>
+                      <label class="form-label">Phone Number</label>
                       <input class="form-control" placeholder="Enter Email" type="text" id='contact_name' name='contact_number' >
                        
                       <div class="invalid-feedback">

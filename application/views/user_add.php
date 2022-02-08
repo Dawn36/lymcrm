@@ -49,7 +49,7 @@ margin-right: 6px;
         </div>
         
         <div class="col-md-12 mb-3">
-            <label class="form-label">Phone Number<span class="text-danger">*</span></label>
+            <label class="form-label">Phone Number</label>
             <input class="form-control" placeholder="Enter Phone Number" type="text" id='user_contact' name='contact' >
 
             <div class="invalid-feedback">
