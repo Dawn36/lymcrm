@@ -68,6 +68,7 @@ $route['get_all_email']             = '/Dashboard/GetHistory';
 /////////////////////////// Owner Login /////////////////////////////////////////
 $route['owner_property']             = '/PropertyController/GetOwnerProperty';
 $route['owner_tenant']             = '/PropertyController/GetOwnerTenant';
+$route['tenancy_payments_deposit'] = '/PropertyController/GetOwnerTenantDeposit';
 
 /////////////////////////// Tenant Login /////////////////////////////////////////
 $route['tenant_tenancy']             = '/PropertyController/GetTenantTenacy';

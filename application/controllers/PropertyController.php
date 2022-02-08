@@ -185,6 +185,19 @@ class PropertyController extends CI_Controller
             redirect('login');
         }
     }
+     public function GetOwnerTenantDeposit()
+    {
+        if ($this->session->userdata('name')) {
+           
+            $arrPost = $this->input->post();
+            $tenancyId = $arrPost['tenancyId'];
+            $data['getdeposit'] =  $this->PROPERTY->GetOwnerDeposit($tenancyId);
+           return $this->load->view('owner_deposit',$data);
+           
+        } else {
+            redirect('login');
+        }
+    }
      public function GetTenantTenacy()
     {
         if ($this->session->userdata('name')) {

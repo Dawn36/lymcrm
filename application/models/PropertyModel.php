@@ -79,7 +79,7 @@ class PropertyModel  extends CI_Model{
 	}
 	public function GetOwnerTenant($ownerTenantId)
 	 {
-	 	$this->db->select('tc.record_id,t.name,tc.no_of_payments,t.email,b.building_name, b.building_address, b.building_community, a.apartment_number, tc.start_date,tc.end_date,tc.is_renew');
+	 	$this->db->select('tc.record_id,t.name,tc.no_of_payments,t.email,b.building_name, b.building_address, b.building_community, a.apartment_number, tc.start_date,tc.end_date,tc.is_renew,tc.record_id AS tenancyId');
     	$this->db->from('users u'); 
     	$this->db->join('property p', 'p.owner_id = u.owner_tenant_id', 'INNER');
     	$this->db->join('building b', 'b.record_id=p.building_id', 'INNER');
@@ -123,6 +123,20 @@ class PropertyModel  extends CI_Model{
     	$query = $this->db->get(); 
     	log_message('debug', $this->db->last_query());
     	return $query->result_array();
+        
+	}
+	public function GetOwnerDeposit($tenancyId)
+	 {
+	 	$this->db->select('*');
+	 	$this->db->from('deposit d'); 
+    	$this->db->join('payment pay', 'pay.record_id=d.payment_id', 'INNER');
+        $this->db->where('d.status','active');
+        $this->db->where('d.tenancy_id',$tenancyId);
+        $this->db->where('pay.is_deposit','yes');
+        $query = $this->db->get(); 
+        log_message('debug',$this->db->last_query());
+        return   $query->result_array();
+		
         
 	}
 	

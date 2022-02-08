@@ -31,9 +31,9 @@ $heading = "Property";
                                             <th nowrap>
                                                 <center>Tenant Name</center>
                                             </th>
-                                             <th nowrap>
+                                            <!--  <th nowrap>
                                                 <center>Tenant Email</center>
-                                            </th>
+                                            </th> -->
                                             <th nowrap>
                                                 <center>Building Name</center>
                                             </th>
@@ -55,19 +55,22 @@ $heading = "Property";
                                             <th nowrap>
                                                 <center>Number Of payment</center>
                                             </th>
+                                            <th nowrap>
+                                                <center>Action</center>
+                                            </th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                      <?php for ($i=0; $i <count($getTenantProperty);$i++) { 
-                                        
+                                        $tenancyId=$getTenantProperty[$i]['tenancyId'] ;
                                      ?>
                                         <tr>
                                             <td>
                                                 <center><?php echo $getTenantProperty[$i]['name'] ?></center>
                                             </td>
-                                            <td>
+                                            <!-- <td>
                                                 <center><?php echo $getTenantProperty[$i]['email'] ?></center>
-                                            </td>
+                                            </td> -->
                                             <td>
                                                 <center><?php echo $getTenantProperty[$i]['building_name'] ?></center>
                                             </td>
@@ -89,6 +92,12 @@ $heading = "Property";
                                             <td>
                                                 <center><?php echo $getTenantProperty[$i]['no_of_payments'] ?></center>
                                             </td>
+                                             <td nowrap>
+                                                <center> <button onclick="ViewPayments(<?php echo $tenancyId; ?>)" class="btn btn-sm btn-primary bg-brand-gradient payment"
+                                                data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="View Payments" ><i class="fal fa-eye"></i></button>
+                                                    <button onclick="ViewPaymentsDeposit(<?php echo $tenancyId; ?>)" class="btn btn-sm btn-primary bg-brand-gradient payment" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="View Payments Deposit" ><i class="fas fa-money-check-edit-alt"></i></button>
+                                                </center>
+                                            </td>
                                         </tr>
                                     <?php } ?>
                                     </tbody>
@@ -107,6 +116,38 @@ $heading = "Property";
 <!-- this overlay is activated only when mobile menu is triggered -->
 <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div>
 <script type="text/javascript">
+    function ViewPayments(tenancyId) {
+        var value = {
+            tenancyId: tenancyId
+        };
+        $.ajax({
+            url: baseurl + 'tenancy_load_payments',
+            type: 'POST',
+            data: value,
+            success: function(result) {
+                $('.modal-title').html('View Payments');
+                $('#modal-body-center').html(result);
+                $('#myModalCenter').modal();
+
+            }
+        });
+    }
+     function ViewPaymentsDeposit(tenancyId) {
+        var value = {
+            tenancyId: tenancyId
+        };
+        $.ajax({
+            url: baseurl + 'tenancy_payments_deposit',
+            type: 'POST',
+            data: value,
+            success: function(result) {
+                $('.modal-title').html('View Payments Deposit');
+                $('#modal-body-center').html(result);
+                $('#myModalCenter').modal();
+
+            }
+        });
+    }
 
 $(document).ready(function() {
     // initialize datatable
