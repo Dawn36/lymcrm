@@ -46,8 +46,10 @@ class DashboardModel  extends CI_Model
 	}
 	function GetRenewCount()
 	{
+	    $date=Date("Y-m-d");
 		$this->db->select('COUNT(*) AS renew_count');
-		$this->db->where('status', 'active')->where("`end_date` <= CURDATE()");
+		$this->db->where('status', 'active');
+		$this->db->where('DATE(end_date) <=', $date);
 		$this->db->where('is_renew', 'no');
 		$data = $this->db->get('tenancy')->result_array();
 		// print_r($role) ;

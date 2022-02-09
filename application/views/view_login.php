@@ -73,7 +73,7 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
                             </div>
 
                             <div class="form-group">
-                                <button id="js-login-btn" style="background-color: #007bff; border-radius: 50px;" name="loginSubmit" type="submit" class="text-white btn btn-block btn-lg">login</button>
+                                <button id="js-login-btn" style="background-color: #007bff; border-radius: 50px;" name="loginSubmit" type="submit" class="text-white btn btn-block btn-lg"><b>Login</b></button>
                             </div>
                     </div>
                     </form>
@@ -83,7 +83,7 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
 
                     <div class="login-content">
                         <h1>LYM CRM</h1>
-                        <p> <a href="https://www.lymrealestate.com">Visit Our Website</a></p>
+                        <p> <a href="https://www.lymrealestate.com"><b style="text-decoration: underline">Visit Our Website</b></a></p>
                     </div>
                 </div>
             </div>

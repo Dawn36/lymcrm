@@ -46,8 +46,8 @@ $profilePicture = $this->session->userdata('profile_picture') ? $this->session->
             <img src="/assets/dist/img/card-backgrounds/cover-2-lg.png" class="cover" alt="cover">
         </div>
         <?php if ($this->session->userdata('role_id') == SUPER_ADMIN || $this->session->userdata('role_id') == SUB_ADMIN) { ?>
-            <ul id="js-nav-menu" class="nav-menu">
-                <li>
+            <ul id="js-nav-menu" class="swatches nav-menu">
+                <li class="">
                     <a href="/dashboard" title="Dashboard" data-filter-tags="Dashboard"><i class="fas fa-analytics"></i>
                         <span class="nav-link-text" data-i18n="nav.dashboard">Dashboard</span>
                     </a>
@@ -227,6 +227,10 @@ $profilePicture = $this->session->userdata('profile_picture') ? $this->session->
     <!-- the #js-page-content id is needed for some plugins to initialize -->
 
     <script>
+        $(".swatches li").click(function() {
+    $(".swatches li").removeClass('active');
+    $(this).addClass('active');
+});
         function AddUser() {
 
         }
