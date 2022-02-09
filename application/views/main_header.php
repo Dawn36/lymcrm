@@ -190,7 +190,7 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
 
 </head>
 
-<body class="mod-bg-1 ">
+<body class="mod-bg-1 desktop chrome webkit pace-done header-function-fixed blur">
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-dialog-right">
             <div class="modal-content">
@@ -465,7 +465,7 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
          **/
         'use strict';
 
-        var classHolder = document.getElementsByTagName("BODY")[0],
+        var classHolder = '',
             /** 
              * Load from localstorage
              **/
@@ -476,7 +476,7 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
          * Load theme options
          **/
         if (themeSettings.themeOptions) {
-            classHolder.className = themeSettings.themeOptions;
+            //classHolder.className = themeSettings.themeOptions;
             console.log("%c✔ Theme settings loaded", "color: #148f32");
         } else {
             console.log("Heads up! Theme settings is empty or does not exist, loading default settings...");

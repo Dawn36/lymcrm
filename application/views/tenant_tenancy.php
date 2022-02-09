@@ -96,6 +96,7 @@ $heading = "Property";
                                                 <center> <button onclick="ViewPayments(<?php echo $tenancyId; ?>)" class="btn btn-sm btn-primary bg-brand-gradient payment"
                                                 data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="View Payments" ><i class="fal fa-eye"></i></button>
                                                     <button onclick="ViewPaymentsDeposit(<?php echo $tenancyId; ?>)" class="btn btn-sm btn-primary bg-brand-gradient payment" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="View Payments Deposit" ><i class="fas fa-money-check-edit-alt"></i></button>
+                                                    <button onclick="ViewDepositAttr(<?php echo $tenancyId; ?>)" class="btn btn-sm btn-primary bg-brand-gradient " data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="View Deposit Attachment " ><i class="fal fa-camera"></i></button>
                                                 </center>
                                             </td>
                                         </tr>
@@ -128,6 +129,23 @@ $heading = "Property";
                 $('.modal-title').html('View Payments');
                 $('#modal-body-center').html(result);
                 $('#myModalCenter').modal();
+
+            }
+        });
+    }
+    function ViewDepositAttr(tenancyId) {
+         var value = {
+            tenancyId: tenancyId,
+        };
+        $.ajax({
+            url: baseurl + 'tenant_deposit_image',
+            type: 'POST',
+            data: value,
+            success: function(result) {
+                $('.modal-title').html('Attachments');
+                //  $('#modal-body').html(``);
+                $('#modal-body').html(result);
+                $('#myModal').modal();
 
             }
         });

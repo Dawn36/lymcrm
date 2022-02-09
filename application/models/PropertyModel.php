@@ -139,6 +139,17 @@ class PropertyModel  extends CI_Model{
 		
         
 	}
+	   public function GetDepositImgs($tenancyId)
+    {
+        $this->db->select('*');
+        $this->db->from('deposit d'); 
+        $this->db->join('deposit_attachment da', 'd.record_id=da.deposit_id', 'INNER');
+        $this->db->where('d.tenancy_id',$tenancyId);
+        $this->db->where('d.status','active');
+        $query = $this->db->get(); 
+        log_message('debug', $this->db->last_query());
+        return $query->result_array();   
+    }
 	
 	
 }

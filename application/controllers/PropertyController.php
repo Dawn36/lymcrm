@@ -211,6 +211,16 @@ class PropertyController extends CI_Controller
             redirect('login');
         }
     }
+    public function LoadDepositImage()
+    {
+        log_message('debug', 'ImageDeposit');
+        $arrPost = $this->input->post();
+
+        $tenancyId = $arrPost['tenancyId'];
+        $data['depositImg'] = $this->PROPERTY->GetDepositImgs($tenancyId);
+        return  $this->load->view('deposit_image', $data);
+    }
+
     
     
 }
