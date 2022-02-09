@@ -33,8 +33,8 @@ class TenancyController extends CI_Controller
         if ($this->session->userdata('name')) {
 
             log_message('debug', 'AddTenancy');
-            $tableName = 'building';
-            $data['buildingInfo'] = $this->OWNER->ShowOwner($tableName);
+            //$tableName = 'building';
+            $data['buildingInfo'] = $this->TENANCY->GetOwnerBuilding();
             $tableName = 'tenant';
             $data['tenantInfo'] = $this->OWNER->ShowOwner($tableName);
             return  $this->load->view('tenancy_add', $data);

@@ -118,4 +118,16 @@ class TenancyModel  extends CI_Model
         // print_r($role) ;
         log_message('debug', $this->db->last_query());
     }
+     public function GetOwnerBuilding()
+    {
+        $userId = $this->session->userdata('user_id');
+        $this->db->select('DISTINCT(building_id) AS record_id , b.building_name');
+        $this->db->from('building b'); 
+        $this->db->join('property p', 'b.record_id=p.building_id', 'INNER');
+        $this->db->where('p.status', 'active');
+        $query = $this->db->get(); 
+        // print_r($role) ;
+        log_message('debug', $this->db->last_query());
+        return $query->result_array();
+    }
 }
