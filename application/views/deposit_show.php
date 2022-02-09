@@ -97,7 +97,7 @@ $heading = "Deposit Slip";
                                                 <center><?php echo $depositSlip[$i]['cheque_no'] ?></center>
                                             </td>
                                             <td nowrap>
-                                                <center><?php echo $depositSlip[$i]['amount'] ?></center>
+                                                <center><?php echo number_format($depositSlip[$i]['amount']) ?></center>
                                             </td>
                                             <td nowrap>
                                                 <center><?php echo $depositSlip[$i]['created_name'] ?></center>

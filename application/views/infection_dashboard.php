@@ -143,7 +143,7 @@
                  <div class="p-3 bg-info-200 rounded overflow-hidden position-relative text-white mb-g">
                      <div class="">
                          <h3 class="display-4 d-block l-h-n m-0 fw-500">
-                             <?php echo $subCount[0]['sub_admin_count'] ?>
+                             <?php echo number_format($subCount[0]['sub_admin_count']) ?>
                              <small class="m-0 l-h-n">Total number of Sub Admins</small>
                          </h3>
                      </div>
@@ -155,7 +155,7 @@
              <div class="p-3 rounded overflow-hidden position-relative text-white mb-g" style="background-color: #d76e6e;">
                  <div class="">
                      <h3 class="display-4 d-block l-h-n m-0 fw-500">
-                         <?php echo $userCount[0]['users_count'] ?>
+                         <?php echo number_format($userCount[0]['users_count']) ?>
                          <small class="m-0 l-h-n">Total number of Users</small>
                      </h3>
                  </div>
@@ -166,7 +166,7 @@
              <div class="p-3 bg-primary-300 rounded overflow-hidden position-relative text-white mb-g">
                  <div class="">
                      <h3 class="display-4 d-block l-h-n m-0 fw-500">
-                         <?php echo $ownerCount[0]['owner_count'] ?>
+                         <?php echo number_format($ownerCount[0]['owner_count']) ?>
                          <small class="m-0 l-h-n">Total number of Owners</small>
                      </h3>
                  </div>
@@ -177,7 +177,7 @@
              <div class="p-3 bg-success-200 rounded overflow-hidden position-relative text-white mb-g">
                  <div class="">
                      <h3 class="display-4 d-block l-h-n m-0 fw-500">
-                         <?php echo $tenantCount[0]['tenant_count'] ?>
+                         <?php echo number_format($tenantCount[0]['tenant_count']) ?>
                          <small class="m-0 l-h-n">Total number of Tenants</small>
                      </h3>
                  </div>
@@ -188,7 +188,7 @@
              <div class="p-3 bg-warning-400 rounded overflow-hidden position-relative text-white mb-g">
                  <div class="">
                      <h3 class="display-4 d-block l-h-n m-0 fw-500">
-                         <?php echo $propertyCount[0]['property_count'] ?>
+                         <?php echo number_format($propertyCount[0]['property_count']) ?>
                          <small class="m-0 l-h-n">Total number of Propertys</small>
                      </h3>
                  </div>
@@ -199,7 +199,7 @@
              <div class="p-3 rounded overflow-hidden position-relative text-white mb-g" style="background-color: #3cbb58;">
                  <div class="">
                      <h3 class="display-4 d-block l-h-n m-0 fw-500">
-                         <?php echo $renewCount[0]['renew_count'] ?>
+                         <?php echo number_format($renewCount[0]['renew_count']) ?>
                          <small class="m-0 l-h-n">Total number of Renews</small>
                      </h3>
                  </div>
@@ -214,7 +214,7 @@
              <div class="p-3 rounded overflow-hidden position-relative text-white mb-g" style="background-color: #ffb270;">
                  <div class="">
                      <h3 class="display-4 d-block l-h-n m-0 fw-500">
-                         <?php echo $totalPaid[0]['amount'] ?>
+                         <?php echo number_format($totalPaid[0]['amount']) ?>
                          <small class="m-0 l-h-n">Paid</small>
                      </h3>
                  </div>
@@ -226,7 +226,7 @@
              <div class="p-3 rounded overflow-hidden position-relative text-white mb-g" style="background-color: #6d7ea5;">
                  <div class="">
                      <h3 class="display-4 d-block l-h-n m-0 fw-500">
-                         <?php echo $totalRevenue[0]['rent_amount'] - $totalPaid[0]['amount'] ?>
+                         <?php echo number_format($totalRevenue[0]['rent_amount'] - $totalPaid[0]['amount']) ?>
                          <small class="m-0 l-h-n">Unpaid</small>
                      </h3>
                  </div>
@@ -237,7 +237,7 @@
              <div class="p-3 rounded overflow-hidden position-relative text-white mb-g" style="background-color: #88b1b5;">
                  <div class="">
                      <h3 class="display-4 d-block l-h-n m-0 fw-500">
-                         <?php echo $totalRevenue[0]['rent_amount'] ?>
+                         <?php echo number_format($totalRevenue[0]['rent_amount']) ?>
                          <small class="m-0 l-h-n">Total revenue</small>
                      </h3>
                  </div>
