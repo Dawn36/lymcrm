@@ -103,7 +103,7 @@ class PropertyModel  extends CI_Model{
 	}
 	public function GetTenantTenacy($ownerTenantId)
 	 {
-	 	$this->db->select('o.name,o.email,b.building_name,b.building_address,b.building_community,a.apartment_number,tc.start_date,tc.end_date,tc.no_of_payments');
+	 	$this->db->select('o.name,o.email,b.building_name,b.building_address,b.building_community,a.apartment_number,tc.start_date,tc.end_date,tc.no_of_payments,tc.record_id AS tenancyId');
     	$this->db->from('users u'); 
     	$this->db->join('tenancy tc ', 'u.owner_tenant_id = tc.tenant_id', 'INNER');
     	$this->db->join('building b', 'tc.building_id = b.record_id', 'INNER');
