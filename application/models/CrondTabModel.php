@@ -19,7 +19,7 @@ class CrondTabModel extends CI_Model
             foreach ($rs as $key => $val) {
                 log_message('debug', print_r($val, TRUE));
                 $arrInfo['tenant_id'] = $val['record_id'];
-                $arrInfo['tenant_name'] = $val['record_id'];
+                $arrInfo['tenant_name'] = $val['name'];
                 $arrInfo['end_date'] = $val['end_date'];
 
                 $this->db->select('*');
