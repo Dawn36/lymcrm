@@ -7,6 +7,7 @@ class ApartmentModal  extends CI_Model
                 $this->db->select('*');
                 $this->db->where('status', 'active');
                 $this->db->where('building_id', $buildingId);
+                $this->db->order_by("record_id", "ASC");
                 log_message('debug', $this->db->last_query());
                 return $this->db->get($tableName)->result_array();
         }
