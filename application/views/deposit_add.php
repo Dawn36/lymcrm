@@ -129,11 +129,11 @@
           if(resulta.length >= 1)
           {
             $('#tenant').html('');
-             var option = document.createElement("option");
-            option.text = "Select Tenant";
-            option.value = "";
-            var select = document.getElementById("tenant");
-            select.appendChild(option);
+            //  var option = document.createElement("option");
+            // option.text = "Select Tenant";
+            // option.value = "";
+            // var select = document.getElementById("tenant");
+            // select.appendChild(option);
 
             for(var i = 0; i < resulta.length ; i++){
              var option = document.createElement("option");
