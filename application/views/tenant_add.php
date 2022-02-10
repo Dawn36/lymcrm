@@ -13,7 +13,7 @@
         </div>
         <div class="col-md-12 mb-3">
             <label class="form-label">Tenant Email<span class="text-danger">*</span></label>
-            <input class="form-control" onblur="CheckValidEmail(this.id) ,CheckEmailExit(this.value)" placeholder="Enter Tenant Email" type="email" id="tenant_email" name="email" required="">
+            <input class="form-control" onblur="CheckValidEmail(this.id) " placeholder="Enter Tenant Email" type="email" id="tenant_email" name="email" required="">
             <div class="invalid-feedback">
                 Please Enter Tenant Email.
             </div>
@@ -38,11 +38,9 @@
 </form>
 
 <script>
-    var emailCheck;
 
-    $('#tenant_email').blur(function() {
-        // function CheckEmailExit(email) {
-
+    //$('#tenant_email').blur(function() {
+         function CheckEmailExit(email) {
         var data = {
             email: email,
             table_name: 'tenant'
@@ -57,15 +55,27 @@
                 if (result) {
                     var result = jQuery.parseJSON(result);
                     console.log(result);
-                    if (result.length >= 1) {
+                    if (result.length != "") {
                         var value = 'Email Already Exit';
                         Toast(value);
-                        // $('#tenant_email').val('');
-                        emailCheck = false;
-                        return false;
+                        $('#tenant_email').val('');
+                       
                     } else {
-                        emailCheck = true;
-                        return true;
+                       Swal.fire({
+                        title: "Are you sure you want to add?",
+                        //text: "You won't be able to revert this!",
+                        type: "warning",
+                        confirmButtonColor: '#437dd0',
+                        showCancelButton: true,
+                        confirmButtonText: "Yes, Add it!",
+                    }).then(function(result) {
+                        if (result.value) {
+                            $("#addTenantForm").submit();
+                            // var value='Update Sucessfully';
+                            //DeleteToast(value);
+                            Swal.fire("Added!", "added Sucessfully.", "success");
+                        }
+                    });
                     }
                 }
             },
@@ -74,8 +84,8 @@
             }
         });
 
-
-    });
+}
+    //});
 
     function CheckFromOwner() {
         var form = $("#addTenantForm")
@@ -96,33 +106,15 @@
             Toast(value);
             return false;
         }
-        if (emailCheck == false) {
-            var value = 'Email Already Exit';
-            Toast(value);
-            $('#tenant_email').focus();
-            return false;
-        }
+       
         return true;
     }
 
     function SubmitFromOwner() {
         check = CheckFromOwner();
         if (check == true) {
-            Swal.fire({
-                title: "Are you sure you want to add?",
-                text: "You won't be able to revert this!",
-                type: "warning",
-                confirmButtonColor: '#437dd0',
-                showCancelButton: true,
-                confirmButtonText: "Yes, Add it!",
-            }).then(function(result) {
-                if (result.value) {
-                    $("#addTenantForm").submit();
-                    // var value='Update Sucessfully';
-                    //DeleteToast(value);
-                    Swal.fire("Added!", "added Sucessfully.", "success");
-                }
-            });
+            email=$("#tenant_email").val();
+            CheckEmailExit(email);
             // if(confirm("Are you sure do you want to add?"))
             // {
             //      $( "#addTenantForm" ).submit();
@@ -131,4 +123,15 @@
             // }
         }
     }
+    $("#contact").keypress(function(e) {
+        var keyCode = e.keyCode || e.which;
+        var regex = /^[0-9 ]+$/;
+        var isValid = regex.test(String.fromCharCode(keyCode));
+        if (!isValid) {
+            return false
+        }
+        if ($("#contact").val().length > 35) {
+            return false;
+        }
+    });
 </script>

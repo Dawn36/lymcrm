@@ -48,7 +48,7 @@
         </div>
         <div class="col-md-12 mb-3">
             <label class="form-label">Email<span class="text-danger">*</span></label>
-            <input class="form-control" placeholder="Enter Email" type="text" id='owner_email' name='email' required="" onblur="CheckValidEmail(this.id) ,CheckEmailExit(this.value)">
+            <input class="form-control" placeholder="Enter Email" type="text" id='owner_email' name='email' required="" onblur="CheckValidEmail(this.id) ">
 
             <div class="invalid-feedback">
                 Please Enter the Email.
@@ -86,7 +86,7 @@
 <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div> <!-- END Page Content -->
 <script type="text/javascript">
     var emailCheck;
-    $('#owner_email').blur(function() {
+    function  CheckEmailExit(email){
         var data = {
             email: email,
             table_name: 'owner'
@@ -104,19 +104,34 @@
                     if (result.length >= 1) {
                         var value = 'Email Already Exit';
                         Toast(value);
-                        // $('#owner_email').val('');
-                        emailCheck = false;
-                        return false;
-                    } else {
-                        emailCheck = true;
-                        return true;
+                         $('#owner_email').val('');
+                       
+                    }
+                    else
+                    {
+                        Swal.fire({
+                title: "Are you sure you want to add?",
+                text: "You won't be able to revert this!",
+                type: "warning",
+                confirmButtonColor: '#437dd0',
+                showCancelButton: true,
+                confirmButtonText: "Yes, Add it!",
+            }).then(function(result) {
+                if (result.value) {
+                   
+                    $("#owneaddform").submit();
+                    // var value='Update Sucessfully';
+                    //DeleteToast(value);
+                    Swal.fire("Added!", "added Sucessfully.", "success");
+                }
+            });
+                        
                     }
                 }
             },
         });
 
-
-    });
+}
 
     function CheckFromOwner() {
 
@@ -141,7 +156,7 @@
             $('#owner_email').focus();
             return false;
         }
-        if (emailCheck == false) {
+        if (emailCheck == "") {
             var value = 'Email Already Exit';
             Toast(value);
             $('#owner_email').focus();
@@ -153,22 +168,11 @@
 
     function SubmitFromOwner() {
         check = CheckFromOwner();
+        
         if (check == true) {
-            Swal.fire({
-                title: "Are you sure you want to add?",
-                text: "You won't be able to revert this!",
-                type: "warning",
-                confirmButtonColor: '#437dd0',
-                showCancelButton: true,
-                confirmButtonText: "Yes, Add it!",
-            }).then(function(result) {
-                if (result.value) {
-                    $("#owneaddform").submit();
-                    // var value='Update Sucessfully';
-                    //DeleteToast(value);
-                    Swal.fire("Added!", "added Sucessfully.", "success");
-                }
-            });
+             email=$("#owner_email").val();
+                     CheckEmailExit(email);
+            
         }
     }
 

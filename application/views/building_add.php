@@ -40,7 +40,7 @@
 
         <div class="col-md-12  mt-3 mb-3">
             <label class="form-label">Building Name<span class="text-danger">*</span></label>
-            <input class="form-control" placeholder="Enter Building Name" type="text" id='building_name' onkeyup="CheckExitBuilding(this.value)" name='building_name' required="">
+            <input class="form-control" placeholder="Enter Building Name" type="text" id='building_name'  name='building_name' required="">
 
             <div class="invalid-feedback">
                 Please Enter the Building Name.
@@ -83,10 +83,9 @@
 <!-- this overlay is activated only when mobile menu is triggered -->
 <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div> <!-- END Page Content -->
 <script type="text/javascript">
-    var buildingCheck;
     // $('#building_name').blur(function() {
     function CheckExitBuilding(buldingName) {
-        // alert(building_name);
+         alert(buldingName);
         var value = {
             buldingName: buldingName
         };
@@ -99,12 +98,25 @@
                 if (result != '') {
                     var value = 'Building name Already Exit';
                     Toast(value);
-                    // $("#building_name").val('');
-                    buildingCheck = false;
-                    return false;
+                    $("#building_name").val('');
+                   
                 } else {
-                    buildingCheck = true;
-                    return true;
+                     Swal.fire({
+                title: "Are you sure you want to add?",
+                // text: "You won't be able to revert this!",
+                type: "warning",
+                confirmButtonColor: '#437dd0',
+                showCancelButton: true,
+                confirmButtonText: "Yes, Add it!",
+            }).then(function(result) {
+                if (result.value) {
+                    $("#addbuilding").submit();
+                    // var value='Update Sucessfully';
+                    //DeleteToast(value);
+                    Swal.fire("Added!", "added Sucessfully.", "success");
+                }
+            });
+                   
                 }
             }
         });
@@ -138,34 +150,15 @@
             $('#community').focus();
             return false;
         }
-        if (buildingCheck == false) {
-            var value = 'Building name Already Exit';
-            Toast(value);
-            $('#building_name').focus();
-            return false;
-        }
-        return true;
+    return true;
 
     }
 
     function AddFromBuilding() {
         check = BuildingFrom();
         if (check == true) {
-            Swal.fire({
-                title: "Are you sure you want to add?",
-                text: "You won't be able to revert this!",
-                type: "warning",
-                confirmButtonColor: '#437dd0',
-                showCancelButton: true,
-                confirmButtonText: "Yes, Add it!",
-            }).then(function(result) {
-                if (result.value) {
-                    $("#addbuilding").submit();
-                    // var value='Update Sucessfully';
-                    //DeleteToast(value);
-                    Swal.fire("Added!", "added Sucessfully.", "success");
-                }
-            });
+            buldingName=$("#building_name").val();
+           CheckExitBuilding(buldingName);
             // if(confirm("Are you sure do you want to add?"))
             // {
             //      $("#addbuilding").submit();
