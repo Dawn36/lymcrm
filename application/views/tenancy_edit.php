@@ -128,7 +128,7 @@ $endDate = date("d/M/Y", strtotime($tenancyInfo[0]['end_date']));
                 </div>
                 <div class="col-md-12 mt-3" id="cheque_no_div" <?php if ($paymentInfo[$i]['payment_type'] == 'cash') { ?> style="display: none;" <?php } ?>>
                     <label class="form-label">Cheque #<span style="color: red">*</span></label>
-                    <input class="form-control" placeholder=" Add Cheque No" value="<?php echo $paymentInfo[$i]['cheque_no'] ?>" type="number" id="cheque_no" name="cheque_no[]" required>
+                    <input class="form-control cheque_no" placeholder=" Add Cheque No" value="<?php echo $paymentInfo[$i]['cheque_no'] ?>" type="number" id="cheque_no" name="cheque_no[]" required>
                     <div class="invalid-feedback">
                         Please Add Cheque No.
                     </div>
@@ -228,7 +228,6 @@ $endDate = date("d/M/Y", strtotime($tenancyInfo[0]['end_date']));
             Toast(value);
             return false;
         }
-
 
         if ($('.cheque_no:visible').length > 0) {
 
