@@ -114,6 +114,7 @@ class TenancyRenewController extends CI_Controller
             $arrInfo['no_of_payments']  = $arrPost['no_of_payments'];
             $arrInfo['is_renew']        = 'no';
             $arrInfo['status']          = 'active';
+            $arrInfo['from_renew']      = 'yes';
             $arrInfo['created_at']      = date("Y-m-d h:i:s");
             $arrInfo['created_by']      =  $this->session->userdata('user_id');
             $arrInfo['created_name']    =  $this->session->userdata('user_name');

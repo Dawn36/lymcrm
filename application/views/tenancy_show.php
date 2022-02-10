@@ -85,7 +85,7 @@ $heading = "Tenancy";
                                             }
                                             $recordId = $tenancyInfo[$i]['record_id'];
                                         ?>
-                                            <tr id="<?php echo $recordId; ?>">
+                                            <tr id="<?php echo $recordId; ?>" <?php if ($tenancyInfo[$i]['from_renew'] == 'yes') { ?> style="background-color: #1cd599cc;" <? } ?>>
                                                 <td nowrap>
                                                     <center><?php echo $tenancyInfo[$i]['tenancy_no'] ?></center>
                                                 </td>

@@ -159,3 +159,6 @@ ALTER TABLE `lymcrm`.`email_self`
   ADD COLUMN `subject` VARCHAR(255) NULL AFTER `created_name`,
   ADD COLUMN `email_content` VARCHAR(255) NULL AFTER `subject`;
 
+ALTER TABLE `lymcrm`.`tenancy`   
+  ADD COLUMN `from_renew` ENUM('yes','no') DEFAULT 'no'   NULL AFTER `updated_name`;
+
