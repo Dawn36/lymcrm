@@ -98,7 +98,7 @@ class PropertyController extends CI_Controller
             if ($check == true) {
                 redirect('/property');
             } else {
-                die("asd");
+                redirect('/property');
             }
             }
             

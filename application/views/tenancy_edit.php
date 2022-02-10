@@ -236,7 +236,8 @@ $endDate = date("d/M/Y", strtotime($tenancyInfo[0]['end_date']));
                 return $(this).val();
             }).get();
 
-            var duplicates = ToFindDuplicates(cheque);
+           // var duplicates = ToFindDuplicates(cheque);
+            var duplicates = true;
 
             if (duplicates == false) {
                 var value = 'duplicate cheque no';
