@@ -229,21 +229,24 @@ $endDate = date("d/M/Y", strtotime($tenancyInfo[0]['end_date']));
             return false;
         }
 
-        if ($('.cheque_no').is(":hidden")) {
 
-        } else {
-            var cheque = $("input[name='cheque_no[]']").map(function() {
-                return $(this).val();
-            }).get();
+        if ($('.cheque_no:visible').length > 0) {
 
-           // var duplicates = ToFindDuplicates(cheque);
-            var duplicates = true;
+            for (let i = 0; i < $(".cheque_no:visible").length; i++) {
+                for (let j = i + 1; j < $(".cheque_no:visible").length; j++) {
 
-            if (duplicates == false) {
-                var value = 'duplicate cheque no';
-                Toast(value);
-                return false;
+                    if ($('.cheque_no:visible')[i].value == $('.cheque_no:visible')[j].value) {
+                        var value = 'duplicate cheque no';
+                        Toast(value);
+                        $('.cheque_no:visible')[i].focus();
+                        $('.cheque_no:visible')[j].focus();
+                        return false;
+                        break;
+                    }
+
+                }
             }
+
         }
         Swal.fire({
             title: "Are you sure you want to update?",

@@ -207,20 +207,24 @@
             return false;
         }
 
-        if ($('.cheque_no').is(":hidden")) {
+        debugger;
+        if ($('.cheque_no:visible').length > 0) {
 
-        } else {
-            var cheque = $("input[name='cheque_no[]']").map(function() {
-                return $(this).val();
-            }).get();
+            for (let i = 0; i < $(".cheque_no:visible").length; i++) {
+                for (let j = i + 1; j < $(".cheque_no:visible").length; j++) {
 
-            var duplicates = ToFindDuplicates(cheque);
+                    if ($('.cheque_no:visible')[i].value == $('.cheque_no:visible')[j].value) {
+                        var value = 'duplicate cheque no';
+                        Toast(value);
+                        $('.cheque_no:visible')[i].focus();
+                        $('.cheque_no:visible')[j].focus();
+                        return false;
+                        break;
+                    }
 
-            if (duplicates == false) {
-                var value = 'duplicate cheque no';
-                Toast(value);
-                return false;
+                }
             }
+
         }
 
         Swal.fire({
@@ -377,26 +381,26 @@
 
     });
 
-    function ToFindDuplicates(cheque) {
-        let toMap = {};
-        let resultToReturn = false;
-        for (let i = 0; i < cheque.length; i++) {
+    // function ToFindDuplicates(cheque) {
+    //     let toMap = {};
+    //     let resultToReturn = false;
+    //     for (let i = 0; i < cheque.length; i++) {
 
-            if (toMap[cheque[i]]) {
-                resultToReturn = true;
-                // terminate the loop
-                break;
-            }
+    //         if (toMap[cheque[i]]) {
+    //             resultToReturn = true;
+    //             // terminate the loop
+    //             break;
+    //         }
 
-            toMap[cheque[i]] = true;
-        }
+    //         toMap[cheque[i]] = true;
+    //     }
 
-        if (resultToReturn) {
-            console.log('Duplicate elements exist');
-            return false
-        } else {
-            console.log('Duplicates dont exist ');
-            return true;
-        }
-    }
+    //     if (resultToReturn) {
+    //         console.log('Duplicate elements exist');
+    //         return false
+    //     } else {
+    //         console.log('Duplicates dont exist ');
+    //         return true;
+    //     }
+    // }
 </script>
