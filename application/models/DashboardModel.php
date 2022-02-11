@@ -46,7 +46,7 @@ class DashboardModel  extends CI_Model
 	}
 	function GetRenewCount()
 	{
-	    $date=Date("Y-m-d");
+		$date = Date("Y-m-d");
 		$this->db->select('COUNT(*) AS renew_count');
 		$this->db->where('status', 'active');
 		$this->db->where('DATE(end_date) <=', $date);
@@ -87,6 +87,7 @@ class DashboardModel  extends CI_Model
 	function GetTotalRevenue()
 	{
 		$this->db->select('SUM(rent_amount) AS rent_amount ');
+		$this->db->where('status', 'active');
 		$data = $this->db->get('tenancy')->result_array();
 		// print_r($role) ;
 		log_message('debug', $this->db->last_query());

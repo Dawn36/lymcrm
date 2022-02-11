@@ -10,8 +10,9 @@
      .ct-series-a .ct-area {
          fill: #6e96d7 !important;
      }
-     .ct-label{
-        font-weight: bold;
+
+     .ct-label {
+         font-weight: bold;
      }
 
      /*.progress-bar {
@@ -124,7 +125,7 @@
                                      <div class="progress-bar" role="progressbar" style="width: <?php echo $totalRevUnPaid ?>%; background-color: #6e96d7;" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
                                  </div>
                                  <div class="d-flex mt-2 mb-1 fs-xs " style="color: #ffca5b;">
-                                     Total Deposit
+                                     Total Remaining
                                  </div>
                                  <div class="progress progress-xs mb-3">
                                      <div class="progress-bar bg-danger-500" role="progressbar" style="width: <?php echo $totaldepositUnPaid ?>%; background-color: #ffca5b;" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
@@ -206,11 +207,8 @@
                  <i class="fal fa-file-contract position-absolute pos-right pos-bottom opacity-15  mb-n1 mr-n4" style="font-size: 6rem;"></i>
              </div>
          </div>
-         
 
-     </div>
-     <div class="row">
-     <div class="col-sm-4 col-xl-4">
+         <div class="col-sm-4 col-xl-4">
              <div class="p-3 rounded overflow-hidden position-relative text-white mb-g" style="background-color: #ffb270;">
                  <div class="">
                      <h3 class="display-4 d-block l-h-n m-0 fw-500">
@@ -221,7 +219,7 @@
                  <i class="fal fa-globe position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size: 6rem;"></i>
              </div>
          </div>
-     
+
          <div class="col-sm-4 col-xl-4">
              <div class="p-3 rounded overflow-hidden position-relative text-white mb-g" style="background-color: #6d7ea5;">
                  <div class="">
