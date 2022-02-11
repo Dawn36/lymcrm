@@ -12,7 +12,7 @@ $heading = "Tenancy";
         margin-top: 10px;
     }
 </style>
-<main id="js-page-content" role="main" class="page-content">
+<main id="js-page-content" role="main">
 
 
     <div id="content">

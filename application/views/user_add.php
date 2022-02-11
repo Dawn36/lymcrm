@@ -1,21 +1,22 @@
 <style type="text/css">
-.mt{
-    margin-top: 10px;
-}
-.eye{
-    float: right; 
-margin-top: -26px;
-margin-right: 6px;
+    .mt {
+        margin-top: 10px;
+    }
 
-}
-.mr4{
-     margin-right: 4px;
-}
+    .eye {
+        float: right;
+        margin-top: -26px;
+        margin-right: 6px;
 
+    }
+
+    .mr4 {
+        margin-right: 4px;
+    }
 </style>
 <form class="needs-validation" name='addUserForm' id='addUserForm' method='post' action="/user_verification" novalidate>
-    <input type="hidden" >
-    <input type="hidden" name="email_id" id='email_id' value="" >
+    <input type="hidden">
+    <input type="hidden" name="email_id" id='email_id' value="">
     <div class="card mb-g">
         <div class="col-md-12 mt-3 mb-3">
             <label class="form-label">Select User Type<span style="color: red">*</span></label>
@@ -33,7 +34,7 @@ margin-right: 6px;
             <label class="form-label">Email<span style="color: red">*</span></label>
             <select class="custom-select" name="email" id="user_email" required="" onchange="GetFullName()">
                 <option value="">Select Email</option>
-                
+
             </select>
             <div class="invalid-feedback">
                 Please Select Email.
@@ -41,16 +42,16 @@ margin-right: 6px;
         </div>
         <div class="col-md-12  mb-3">
             <label class="form-label">Full Name<span class="text-danger">*</span></label>
-            <input class="form-control" placeholder="Enter Full Name" type="text" id="user_name" name="name" required="">            
+            <input class="form-control" placeholder="Enter Full Name" type="text" id="user_name" name="name" required="">
             <div class="invalid-feedback">
                 Please Enter Full Name.
             </div>
 
         </div>
-        
+
         <div class="col-md-12 mb-3">
             <label class="form-label">Phone Number</label>
-            <input class="form-control" placeholder="Enter Phone Number" type="text" id='user_contact' name='contact' >
+            <input class="form-control" placeholder="Enter Phone Number" type="text" id='user_contact' name='contact'>
 
             <div class="invalid-feedback">
                 Please Enter Phone Number.
@@ -84,79 +85,74 @@ margin-right: 6px;
 </form>
 
 <script>
-    $("#show_passworda").click(function(){
- 
-    var x = document.getElementById("new_pass");
-          if (x.type === "password") {
+    $("#show_passworda").click(function() {
+
+        var x = document.getElementById("new_pass");
+        if (x.type === "password") {
             x.type = "text";
-          } else {
+        } else {
             x.type = "password";
-          }
-  });
-   $("#comfirmp_password").click(function(){
- 
-    var x = document.getElementById("confirm_pass");
-          if (x.type === "password") {
+        }
+    });
+    $("#comfirmp_password").click(function() {
+
+        var x = document.getElementById("confirm_pass");
+        if (x.type === "password") {
             x.type = "text";
-          } else {
+        } else {
             x.type = "password";
-          }
-  });
-    var  resulta='';
-    function GetFullName()
-    {
-        var id=$("#user_email").find(':selected').data('record_id');
-        for(var i = 0; i < resulta.length ; i++){
-            if(resulta[i].record_id == id)
-            {
+        }
+    });
+    var resulta = '';
+
+    function GetFullName() {
+        var id = $("#user_email").find(':selected').data('record_id');
+        for (var i = 0; i < resulta.length; i++) {
+            if (resulta[i].record_id == id) {
                 $("#user_name").val(resulta[i].name);
                 $("#user_contact").val(resulta[i].phone_number);
             }
         }
     }
-    
-function GetOwnerTenant(id)
-{
-    var data = {
-        id: id
-    };
-    $.ajax({
-        url: baseurl + 'owner_tenant_email',
-        type: 'POST',
-        data: data,
-        success: function(result) {
-           resulta=JSON.parse(result);
-          
-          if(resulta.length >= 1)
-          {
-            $('#user_email').html('');
-             var option = document.createElement("option");
-            option.text = "Select Email";
-            option.value = "";
-            var select = document.getElementById("user_email");
-            select.appendChild(option);
 
-            for(var i = 0; i < resulta.length ; i++){
-             var option = document.createElement("option");
-            option.text = resulta[i].email;
-            option.value = resulta[i].email;
-            option.setAttribute('data-record_id', resulta[i].record_id);
-            var select = document.getElementById("user_email");
-            select.appendChild(option);
+    function GetOwnerTenant(id) {
+        var data = {
+            id: id
+        };
+        $.ajax({
+            url: baseurl + 'owner_tenant_email',
+            type: 'POST',
+            data: data,
+            success: function(result) {
+                resulta = JSON.parse(result);
+
+                if (resulta.length >= 1) {
+                    $('#user_email').html('');
+                    var option = document.createElement("option");
+                    option.text = "Select Email";
+                    option.value = "";
+                    var select = document.getElementById("user_email");
+                    select.appendChild(option);
+
+                    for (var i = 0; i < resulta.length; i++) {
+                        var option = document.createElement("option");
+                        option.text = resulta[i].email;
+                        option.value = resulta[i].email;
+                        option.setAttribute('data-record_id', resulta[i].record_id);
+                        var select = document.getElementById("user_email");
+                        select.appendChild(option);
+                    }
+                } else {
+                    $('#user_email').html('<option value="">All user already added in list</option>');
+                }
+
+
             }
-          }
-          else
-          {
-            $('#user_email').html('<option value="">All user already added in list</option>');
-          }
-            
+        });
 
-        }
-    });
+    }
 
-}
-function CheckFromOwner()
-{
+    function CheckFromOwner() {
         var form = $("#addUserForm")
 
         if (form[0].checkValidity() === false) {
@@ -166,70 +162,65 @@ function CheckFromOwner()
         form.addClass('was-validated');
 
         if ($('#user_type').val() == '') {
-            var value='User Type is required';
+            var value = 'User Type is required';
             Toast(value);
             return false;
         }
         if ($('#user_email').val() == '') {
-            var value='Email is required';
+            var value = 'Email is required';
             Toast(value);
             return false;
         }
         if ($('#user_name').val() == '') {
-            var value='Name Full is required';
+            var value = 'Name Full is required';
             Toast(value);
             return false;
         }
-        
-        
+
+
         // if ($('#user_contact').val() == '') {
         //      var value='Phone number is required';
         //     Toast(value);
         //     return false;
         // }
         if ($('#new_pass').val() == '') {
-            var value='New password is required';
+            var value = 'New password is required';
             Toast(value);
             return false;
         }
         if ($('#confirm_pass').val() == '') {
-            var value='Confirm password is required';
+            var value = 'Confirm password is required';
             Toast(value);
             return false;
         }
-        if($('#confirm_pass').val() != $('#new_pass').val())
-        {
-            var value='Password not match';
+        if ($('#confirm_pass').val() != $('#new_pass').val()) {
+            var value = 'Password not match';
             Toast(value);
             $('#confirm_pass').val('');
             $('#new_pass').val('');
             return false;
         }
         return true;
-   }
-    function AddUsers()
-    {
-        check=CheckFromOwner();
-        if(check == true)
-        {
-             Swal.fire(
-                    {
-                        title: "Are you sure you want to add?",
-                        text: "You won't be able to revert this!",
-                        type: "warning",
-                        confirmButtonColor: '#437dd0',
-                        showCancelButton: true,
-                        confirmButtonText: "Yes, Add it!",
-                    }).then(function(result)
-                    {
-                        if (result.value)
-                        {
-                           var recordId=$("#user_email").find(':selected').data('record_id');
-                $('#email_id').val(recordId);
-                 $("#addUserForm").submit();
-                            Swal.fire("Added!", "added Sucessfully.", "success");
-                        }
-                    });
+    }
+
+    function AddUsers() {
+        check = CheckFromOwner();
+        if (check == true) {
+            Swal.fire({
+                title: "Are you sure you want to add?",
+                text: "You won't be able to revert this!",
+                type: "warning",
+                confirmButtonColor: '#437dd0',
+                showCancelButton: true,
+                confirmButtonText: "Yes, Add it!",
+            }).then(function(result) {
+                if (result.value) {
+                    var recordId = $("#user_email").find(':selected').data('record_id');
+                    $('#email_id').val(recordId);
+                    $("#addUserForm").submit();
+                    Swal.fire("Added!", "added Sucessfully.", "success");
+                }
+            });
             // if(confirm("Are you sure do you want to add?"))
             // {
             //     var recordId=$("#user_email").find(':selected').data('record_id');

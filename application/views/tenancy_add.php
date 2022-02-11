@@ -65,7 +65,7 @@
         </div>
         <div class="col-md-12 mt-3">
             <label class="form-label">Rent Amount<span style="color: red">*</span></label>
-            <input class="form-control" placeholder=" Add Rent Amount" type="text" id="rent_amount" name="rent_amount" required>
+            <input class="form-control" placeholder=" Add Rent Amount" type="text" id="rent_amount" name="rent_amount" autocomplete="off" required>
             <div class="invalid-feedback">
                 Please Add Rent Amount.
             </div>
@@ -302,7 +302,7 @@
                         </div>
                         <div class="col-md-12 mt-3" id="cheque_no_div">
                             <label class="form-label">Cheque #<span style="color: red">*</span></label>
-                            <input class="form-control cheque_no" placeholder=" Add Cheque No" type="text" id="cheque_no" name="cheque_no[]" value="" required>
+                            <input class="form-control cheque_no" placeholder=" Add Cheque No" type="text" id="cheque_no" name="cheque_no[]" value="" autocomplete="off" required>
                             <div class="invalid-feedback">
                                 Please Add Cheque No.
                             </div>

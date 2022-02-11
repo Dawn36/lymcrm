@@ -2,9 +2,9 @@
 $heading = "Property";
 ?>
 <style type="text/css">
-.mt {
-    margin-top: 10px;
-}
+    .mt {
+        margin-top: 10px;
+    }
 </style>
 <main id="js-page-content" role="main" class="page-content">
 
@@ -24,8 +24,7 @@ $heading = "Property";
                     <div id="panel-1" class="panel">
                         <div class="panel-container show">
                             <div class="panel-content">
-                                <table id="datatable_tabletools_owner"
-                                    class="table table-bordered table-hover table-striped w-100">
+                                <table id="datatable_tabletools_owner" class="table table-bordered table-hover table-striped w-100">
                                     <thead class="bg-primary-600 bg-brand-gradient">
                                         <tr>
                                             <th nowrap>
@@ -49,7 +48,7 @@ $heading = "Property";
                                             <th nowrap>
                                                 <center>Start Date</center>
                                             </th>
-                                             <th nowrap>
+                                            <th nowrap>
                                                 <center>End Date</center>
                                             </th>
                                             <th nowrap>
@@ -61,46 +60,45 @@ $heading = "Property";
                                         </tr>
                                     </thead>
                                     <tbody>
-                                     <?php for ($i=0; $i <count($getTenantTenancy);$i++) { 
-                                        $tenancyId=$getTenantTenancy[$i]['tenancyId'] ;
-                                     ?>
-                                        <tr>
-                                            <td>
-                                                <center><?php echo $getTenantTenancy[$i]['name'] ?></center>
-                                            </td>
-                                           <!--  <td>
+                                        <?php for ($i = 0; $i < count($getTenantTenancy); $i++) {
+                                            $tenancyId = $getTenantTenancy[$i]['tenancyId'];
+                                        ?>
+                                            <tr>
+                                                <td>
+                                                    <center><?php echo $getTenantTenancy[$i]['name'] ?></center>
+                                                </td>
+                                                <!--  <td>
                                                 <center><?php echo $getTenantTenancy[$i]['email'] ?></center>
                                             </td> -->
-                                            <td>
-                                                <center><?php echo $getTenantTenancy[$i]['building_name'] ?></center>
-                                            </td>
-                                            <td>
-                                                <center><?php echo $getTenantTenancy[$i]['building_address'] ?></center>
-                                            </td>
-                                            <td>
-                                                <center><?php echo $getTenantTenancy[$i]['building_community'] ?></center>
-                                            </td>
-                                            <td>
-                                                <center><?php echo $getTenantTenancy[$i]['apartment_number'] ?></center>
-                                            </td>
-                                            <td>
-                                                <center><?php echo $getTenantTenancy[$i]['start_date'] ?></center>
-                                            </td>
-                                            <td>
-                                                <center><?php echo $getTenantTenancy[$i]['end_date'] ?></center>
-                                            </td>
-                                            <td>
-                                                <center><?php echo $getTenantTenancy[$i]['no_of_payments'] ?></center>
-                                            </td>
-                                            <td nowrap>
-                                                <center> <button onclick="ViewPayments(<?php echo $tenancyId; ?>)" class="btn btn-sm btn-primary bg-brand-gradient payment"
-                                                data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="View Payments" ><i class="fal fa-eye"></i></button>
-                                                    <button onclick="ViewPaymentsDeposit(<?php echo $tenancyId; ?>)" class="btn btn-sm btn-primary bg-brand-gradient payment" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="View Payments Deposit" ><i class="fas fa-money-check-edit-alt"></i></button>
-                                                    <button onclick="ViewDepositAttr(<?php echo $tenancyId; ?>)" class="btn btn-sm btn-primary bg-brand-gradient " data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="View Deposit Attachment " ><i class="fal fa-camera"></i></button>
-                                                </center>
-                                            </td>
-                                        </tr>
-                                    <?php } ?>
+                                                <td>
+                                                    <center><?php echo $getTenantTenancy[$i]['building_name'] ?></center>
+                                                </td>
+                                                <td>
+                                                    <center><?php echo $getTenantTenancy[$i]['building_address'] ?></center>
+                                                </td>
+                                                <td>
+                                                    <center><?php echo $getTenantTenancy[$i]['building_community'] ?></center>
+                                                </td>
+                                                <td>
+                                                    <center><?php echo $getTenantTenancy[$i]['apartment_number'] ?></center>
+                                                </td>
+                                                <td>
+                                                    <center><?php echo date('Y-m-d', strtotime($getTenantTenancy[$i]['start_date'])); ?></center>
+                                                </td>
+                                                <td>
+                                                    <center><?php echo date('Y-m-d', strtotime($getTenantTenancy[$i]['end_date'])); ?></center>
+                                                </td>
+                                                <td>
+                                                    <center><?php echo $getTenantTenancy[$i]['no_of_payments'] ?></center>
+                                                </td>
+                                                <td nowrap>
+                                                    <center> <button onclick="ViewPayments(<?php echo $tenancyId; ?>)" class="btn btn-sm btn-primary bg-brand-gradient payment" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="View Payments"><i class="fal fa-eye"></i></button>
+                                                        <button onclick="ViewPaymentsDeposit(<?php echo $tenancyId; ?>)" class="btn btn-sm btn-primary bg-brand-gradient payment" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="View Payments Deposit"><i class="fas fa-money-check-edit-alt"></i></button>
+                                                        <button onclick="ViewDepositAttr(<?php echo $tenancyId; ?>)" class="btn btn-sm btn-primary bg-brand-gradient " data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="View Deposit Attachment "><i class="fal fa-camera"></i></button>
+                                                    </center>
+                                                </td>
+                                            </tr>
+                                        <?php } ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -133,8 +131,9 @@ $heading = "Property";
             }
         });
     }
+
     function ViewDepositAttr(tenancyId) {
-         var value = {
+        var value = {
             tenancyId: tenancyId,
         };
         $.ajax({
@@ -150,7 +149,8 @@ $heading = "Property";
             }
         });
     }
-     function ViewPaymentsDeposit(tenancyId) {
+
+    function ViewPaymentsDeposit(tenancyId) {
         var value = {
             tenancyId: tenancyId
         };
@@ -167,38 +167,38 @@ $heading = "Property";
         });
     }
 
-$(document).ready(function() {
-    // initialize datatable
-    $('#datatable_tabletools_owner').dataTable({
-        responsive: true,
-        lengthChange: false,
-        dom:
-            /*  --- Layout Structure 
-              --- Options
-              l - length changing input control
-              f - filtering input
-              t - The table!
-              i - Table information summary
-              p - pagination control
-              r - processing display element
-              B - buttons
-              R - ColReorder
-              S - Select
+    $(document).ready(function() {
+        // initialize datatable
+        $('#datatable_tabletools_owner').dataTable({
+            responsive: true,
+            lengthChange: false,
+            dom:
+                /*  --- Layout Structure 
+                  --- Options
+                  l - length changing input control
+                  f - filtering input
+                  t - The table!
+                  i - Table information summary
+                  p - pagination control
+                  r - processing display element
+                  B - buttons
+                  R - ColReorder
+                  S - Select
 
-              --- Markup
-              < and >       - div element
-              <"class" and >    - div with a class
-              <"#id" and >    - div with an ID
-              <"#id.class" and >  - div with an ID and a class
+                  --- Markup
+                  < and >       - div element
+                  <"class" and >    - div with a class
+                  <"#id" and >    - div with an ID
+                  <"#id.class" and >  - div with an ID and a class
 
-              --- Further reading
-              https://datatables.net/reference/option/dom
-              --------------------------------------
-             */
-            "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
-            "<'row'<'col-sm-12'tr>>" +
-            "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
-         buttons: [
+                  --- Further reading
+                  https://datatables.net/reference/option/dom
+                  --------------------------------------
+                 */
+                "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
+                "<'row'<'col-sm-12'tr>>" +
+                "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+            buttons: [
                 /*{
                     extend:    'colvis',
                     text:      'Column Visibility',
@@ -249,6 +249,6 @@ $(document).ready(function() {
                 }
             ],
 
+        });
     });
-});
 </script>

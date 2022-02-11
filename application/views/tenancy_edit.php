@@ -324,7 +324,7 @@ $endDate = date("d/M/Y", strtotime($tenancyInfo[0]['end_date']));
                         </div>
                         <div class="col-md-12 mt-3" id="cheque_no_div">
                             <label class="form-label">Cheque #<span style="color: red">*</span></label>
-                            <input class="form-control cheque_no" placeholder=" Add Cheque No" type="text" id="cheque_no" name="cheque_no[]" value="" required>
+                            <input class="form-control cheque_no" placeholder=" Add Cheque No" type="text" id="cheque_no" name="cheque_no[]" value="" autocomplete="off" required>
                             <div class="invalid-feedback">
                                 Please Add Cheque No.
                             </div>

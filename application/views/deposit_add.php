@@ -9,10 +9,10 @@
             <label class="form-label">Building<span style="color: red">*</span></label>
             <select class="custom-select required" name="building_id" id="building" onchange="GetApartment()" required="">
                 <option value="">Select Building</option>
-                <?php for ($i=0; $i <count($buildingData) ; $i++) { 
-                  ?>
-                   <option value="<?php echo $buildingData[$i]['building_id'] ?>"><?php echo $buildingData[$i]['building_name'] ?></option>
-               <?php } ?>
+                <?php for ($i = 0; $i < count($buildingData); $i++) {
+                ?>
+                    <option value="<?php echo $buildingData[$i]['building_id'] ?>"><?php echo ucfirst($buildingData[$i]['building_name']) ?></option>
+                <?php } ?>
             </select>
             <div class="invalid-feedback">
                 Please Select Building.
@@ -27,11 +27,11 @@
                 Please Select Appartment Number.
             </div>
         </div>
-         <div class="col-md-12 mt-3">
+        <div class="col-md-12 mt-3">
             <label class="form-label">Tenant<span style="color: red">*</span></label>
             <select class="custom-select required" name="tenant_id" id="tenant" required="">
                 <option value="">Select Tenant</option>
-                
+
             </select>
             <div class="invalid-feedback">
                 Please Select Tenant Number.
@@ -53,7 +53,7 @@
             <label class="form-label">Cheque #<span style="color: red">*</span></label>
             <select class="custom-select required" name="cheque_no" id="cheque_no" required="">
                 <option value="">Select Cheque</option>
-                
+
             </select>
             <div class="invalid-feedback">
                 Please Select Cheque Number.
@@ -71,126 +71,117 @@
 </form>
 
 <script>
-     function GetCheque()
-    {
-        var type=$("#type").val();
-        var tenantId=$("#tenant").val();
+    function GetCheque() {
+        var type = $("#type").val();
+        var tenantId = $("#tenant").val();
         var data = {
-        type: type,
-        tenantId: tenantId
-    };
-    $.ajax({
-        url: baseurl + 'deposit_cheque',
-        type: 'POST',
-        data: data,
-        success: function(result) {
-           resulta=JSON.parse(result);
-          
-          if(resulta.length >= 1)
-          {
-            $('#cheque_no').html('');
-             var option = document.createElement("option");
-            option.text = "Select Cheque";
-            option.value = "";
-            var select = document.getElementById("cheque_no");
-            select.appendChild(option);
+            type: type,
+            tenantId: tenantId
+        };
+        $.ajax({
+            url: baseurl + 'deposit_cheque',
+            type: 'POST',
+            data: data,
+            success: function(result) {
+                resulta = JSON.parse(result);
 
-            for(var i = 0; i < resulta.length ; i++){
-             var option = document.createElement("option");
-            option.text = resulta[i].cheque_no;
-            option.value = resulta[i].record_id;
-            var select = document.getElementById("cheque_no");
-            select.appendChild(option);
+                if (resulta.length >= 1) {
+                    $('#cheque_no').html('');
+                    var option = document.createElement("option");
+                    option.text = "Select Cheque";
+                    option.value = "";
+                    var select = document.getElementById("cheque_no");
+                    select.appendChild(option);
+
+                    for (var i = 0; i < resulta.length; i++) {
+                        var option = document.createElement("option");
+                        option.text = resulta[i].cheque_no;
+                        option.value = resulta[i].record_id;
+                        var select = document.getElementById("cheque_no");
+                        select.appendChild(option);
+                    }
+                } else {
+                    $('#cheque_no').html('<option value="">No Cheque Found</option>');
+                }
+
+
             }
-          }
-          else
-          {
-            $('#cheque_no').html('<option value="">No Cheque Found</option>');
-          }
-            
-
-        }
-    });
+        });
     }
-    function GetTenant()
-    {
-        var appartmentId=$("#appartment_no").val();
+
+    function GetTenant() {
+        var appartmentId = $("#appartment_no").val();
         //alert(appartmentId);
         var data = {
-        appartmentId: appartmentId
-    };
-    $.ajax({
-        url: baseurl + 'deposit_tenant',
-        type: 'POST',
-        data: data,
-        success: function(result) {
-           resulta=JSON.parse(result);
-          debugger;
-          if(resulta.length >= 1)
-          {
-            $('#tenant').html('');
-            //  var option = document.createElement("option");
-            // option.text = "Select Tenant";
-            // option.value = "";
-            // var select = document.getElementById("tenant");
-            // select.appendChild(option);
+            appartmentId: appartmentId
+        };
+        $.ajax({
+            url: baseurl + 'deposit_tenant',
+            type: 'POST',
+            data: data,
+            success: function(result) {
+                resulta = JSON.parse(result);
+                debugger;
+                if (resulta.length >= 1) {
+                    $('#tenant').html('');
+                    //  var option = document.createElement("option");
+                    // option.text = "Select Tenant";
+                    // option.value = "";
+                    // var select = document.getElementById("tenant");
+                    // select.appendChild(option);
 
-            for(var i = 0; i < resulta.length ; i++){
-             var option = document.createElement("option");
-            option.text = resulta[i].name;
-            option.value = resulta[i].record_id;
-            var select = document.getElementById("tenant");
-            select.appendChild(option);
+                    for (var i = 0; i < resulta.length; i++) {
+                        var option = document.createElement("option");
+                        option.text = resulta[i].name;
+                        option.value = resulta[i].record_id;
+                        var select = document.getElementById("tenant");
+                        select.appendChild(option);
+                    }
+                } else {
+                    $('#tenant').html('<option value="">No Tenant Found</option>');
+                }
+
+
             }
-          }
-          else
-          {
-            $('#tenant').html('<option value="">No Tenant Found</option>');
-          }
-            
-
-        }
-    });
+        });
     }
-    function GetApartment()
-    {
-        var building=$("#building").val();
+
+    function GetApartment() {
+        var building = $("#building").val();
         var data = {
-        building: building
-    };
-    $.ajax({
-        url: baseurl + 'deposit_apartment',
-        type: 'POST',
-        data: data,
-        success: function(result) {
-           resulta=JSON.parse(result);
-          
-          if(resulta.length >= 1)
-          {
-            $('#appartment_no').html('');
-             var option = document.createElement("option");
-            option.text = "Select Appartment";
-            option.value = "";
-            var select = document.getElementById("appartment_no");
-            select.appendChild(option);
+            building: building
+        };
+        $.ajax({
+            url: baseurl + 'deposit_apartment',
+            type: 'POST',
+            data: data,
+            success: function(result) {
+                resulta = JSON.parse(result);
 
-            for(var i = 0; i < resulta.length ; i++){
-             var option = document.createElement("option");
-            option.text = resulta[i].apartment_number;
-            option.value = resulta[i].apartment_id;
-            var select = document.getElementById("appartment_no");
-            select.appendChild(option);
+                if (resulta.length >= 1) {
+                    $('#appartment_no').html('');
+                    var option = document.createElement("option");
+                    option.text = "Select Appartment";
+                    option.value = "";
+                    var select = document.getElementById("appartment_no");
+                    select.appendChild(option);
+
+                    for (var i = 0; i < resulta.length; i++) {
+                        var option = document.createElement("option");
+                        option.text = resulta[i].apartment_number;
+                        option.value = resulta[i].apartment_id;
+                        var select = document.getElementById("appartment_no");
+                        select.appendChild(option);
+                    }
+                } else {
+                    $('#appartment_no').html('<option value="">No Apartment Found</option>');
+                }
+
+
             }
-          }
-          else
-          {
-            $('#appartment_no').html('<option value="">No Apartment Found</option>');
-          }
-            
-
-        }
-    });
+        });
     }
+
     function SubmitFrom() {
 
         var form = $("#addDepositForm")
@@ -231,24 +222,21 @@
             $('#cheque_no').focus();
             return false;
         }
-         Swal.fire(
-                    {
-                        title: "Are you sure you want to add?",
-                        text: "You won't be able to revert this!",
-                        type: "warning",
-                        confirmButtonColor: '#437dd0',
-                        showCancelButton: true,
-                        confirmButtonText: "Yes, Add it!",
-                    }).then(function(result)
-                    {
-                        if (result.value)
-                        {
-                           $("#addDepositForm").submit();
-                           // var value='Update Sucessfully';
-                            //DeleteToast(value);
-                            Swal.fire("Added!", "added Sucessfully.", "success");
-                        }
-                    });
+        Swal.fire({
+            title: "Are you sure you want to add?",
+            text: "You won't be able to revert this!",
+            type: "warning",
+            confirmButtonColor: '#437dd0',
+            showCancelButton: true,
+            confirmButtonText: "Yes, Add it!",
+        }).then(function(result) {
+            if (result.value) {
+                $("#addDepositForm").submit();
+                // var value='Update Sucessfully';
+                //DeleteToast(value);
+                Swal.fire("Added!", "added Sucessfully.", "success");
+            }
+        });
         // if (confirm("Do you want to add Deposit Slip?")) {
         //    $("#addDepositForm").submit();
         //     var value = 'Add Sucessfully';

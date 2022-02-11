@@ -46,6 +46,8 @@
         <div class="col-md-12 mt-3">
             <label class="form-label">Tenant for Tenancy<span style="color: red">*</span></label>
             <select class="custom-select required" name="tenant" id="tenant" readonly required="">
+                <option selected value="<?php echo $tenancyInfo[0]['tenant_id']; ?>"><?php echo ucfirst($tenancyInfo[0]['name']); ?></option>
+
                 <?php for ($i = 0; $i < count($tenantInfo); $i++) { ?>
                     <option selected readonly value="<?php echo $tenantInfo[$i]['record_id']; ?>"><?php echo ucfirst($tenantInfo[$i]['name']); ?></option>
                 <?php } ?>
@@ -302,7 +304,7 @@
                         </div>
                         <div class="col-md-12 mt-3" id="cheque_no_div">
                             <label class="form-label">Cheque #<span style="color: red">*</span></label>
-                            <input class="form-control cheque_no" placeholder=" Add Cheque No" type="text" id="cheque_no" name="cheque_no[]" value="" required>
+                            <input class="form-control cheque_no" placeholder=" Add Cheque No" type="text" id="cheque_no" name="cheque_no[]" value="" autocomplete="off" required>
                             <div class="invalid-feedback">
                                 Please Add Cheque No.
                             </div>
