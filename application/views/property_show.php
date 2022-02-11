@@ -63,13 +63,13 @@ $heading = "Property";
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php for ($i=0; $i < count($propertyData); $i++) {
-                                            $recordId=$propertyData[$i]['record_id'];
-                                            $apartmentId=$propertyData[$i]['apartment_id'];
-                                            ?> 
+                                        <?php for ($i = 0; $i < count($propertyData); $i++) {
+                                            $recordId = $propertyData[$i]['record_id'];
+                                            $apartmentId = $propertyData[$i]['apartment_id'];
+                                        ?>
                                             <tr>
                                                 <td>
-                                                    <center><?php echo $propertyData[$i]['building_name'] ?></center>
+                                                    <center><?php echo ucfirst($propertyData[$i]['building_name']) ?></center>
                                                 </td>
                                                 <td>
                                                     <center><?php echo $propertyData[$i]['apartment_number'] ?></center>
@@ -89,9 +89,9 @@ $heading = "Property";
                                                 <td style="padding:6px 12px;">
                                                     <center>
                                                         <button onclick="EditProperty(<? echo $recordId ?>,<? echo $apartmentId ?>)" class="btn btn-sm btn-primary bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Edit Property"><i class="fal fa-edit"></i></button>&nbsp;
-                                                        <?php if($this->session->userdata('role_id') == SUPER_ADMIN){ ?>
-                                                        <button type="button" onclick="DeleteProperty(<? echo $recordId ?>,<? echo $apartmentId ?>)" class="btn btn-sm btn-primary bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Delete Property"><i class="fal fa-times"></i></button>
-                                                    <?php } ?>
+                                                        <?php if ($this->session->userdata('role_id') == SUPER_ADMIN) { ?>
+                                                            <button type="button" onclick="DeleteProperty(<? echo $recordId ?>,<? echo $apartmentId ?>)" class="btn btn-sm btn-primary bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Delete Property"><i class="fal fa-times"></i></button>
+                                                        <?php } ?>
                                                     </center>
                                                 </td>
                                             </tr>
@@ -114,7 +114,6 @@ $heading = "Property";
 <!-- this overlay is activated only when mobile menu is triggered -->
 <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div>
 <script type="text/javascript">
-
     $(document).ready(function() {
 
         $('#<?= str_replace(' ', '', $heading) ?>_datatable_tabletools').dataTable({
@@ -206,7 +205,7 @@ $heading = "Property";
             success: function(result) {
                 $('.modal-title').html('Add New Property');
                 $('#modal-body').html(result);
-                
+
                 $('#myModal').modal();
             }
         });
@@ -214,10 +213,10 @@ $heading = "Property";
 
 
     // Modal For Edit User
-    function EditProperty(recordId,apartmentId) {
+    function EditProperty(recordId, apartmentId) {
         var value = {
             recordId: recordId,
-            apartmentId:apartmentId,
+            apartmentId: apartmentId,
         };
         $.ajax({
             url: baseurl + 'property_edit',
@@ -234,39 +233,36 @@ $heading = "Property";
     }
 
     // Delete User
-    function DeleteProperty(recordId,apartmentId) {
+    function DeleteProperty(recordId, apartmentId) {
         var value = {
             recordId: recordId,
-            apartmentId:apartmentId,
+            apartmentId: apartmentId,
         };
-        Swal.fire(
-                    {
-                        title: "Are you sure want to delete?",
-                        text: "You won't be able to revert this!",
-                        type: "warning",
-                        confirmButtonColor: '#437dd0',
-                        showCancelButton: true,
-                        confirmButtonText: "Yes, delete it!",
-                    }).then(function(result)
-                    {
-                        if (result.value)
-                        {
-                           $.ajax({
-                                url: baseurl + 'delete_property',
-                                type: 'POST',
-                                data: value,
-                                success: function(result) {
-                                    var value='Delete Sucessfully';
-                                    DeleteToast(value);
-                                    window.location = baseurl + 'property';
+        Swal.fire({
+            title: "Are you sure want to delete?",
+            text: "You won't be able to revert this!",
+            type: "warning",
+            confirmButtonColor: '#437dd0',
+            showCancelButton: true,
+            confirmButtonText: "Yes, delete it!",
+        }).then(function(result) {
+            if (result.value) {
+                $.ajax({
+                    url: baseurl + 'delete_property',
+                    type: 'POST',
+                    data: value,
+                    success: function(result) {
+                        var value = 'Delete Sucessfully';
+                        DeleteToast(value);
+                        window.location = baseurl + 'property';
 
-                                }
-                            });
-                           // var value='Update Sucessfully';
-                            //DeleteToast(value);
-                            Swal.fire("Deleted!", "Deleted Sucessfully.", "success");
-                        }
-                    });
+                    }
+                });
+                // var value='Update Sucessfully';
+                //DeleteToast(value);
+                Swal.fire("Deleted!", "Deleted Sucessfully.", "success");
+            }
+        });
         // if (confirm('Are you sure you want to delete Property?')) {
         //     $.ajax({
         //         url: baseurl + 'delete_property',

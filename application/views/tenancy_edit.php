@@ -51,7 +51,7 @@ $endDate = date("d/M/Y", strtotime($tenancyInfo[0]['end_date']));
         <div class="col-md-12 mt-3">
             <label class="form-label">Tenant for Tenancy<span style="color: red">*</span></label>
             <select class="custom-select required" name="tenant" id="tenant" readonly required="">
-                <option selected value="<?php echo $tenancyInfo[0]['record_id']; ?>"><?php echo ucfirst($tenancyInfo[0]['name']); ?></option>
+                <option selected value="<?php echo $tenancyInfo[0]['tenant_id']; ?>"><?php echo ucfirst($tenancyInfo[0]['name']); ?></option>
                 <?php for ($i = 0; $i < count($tenantInfo); $i++) {
                     if ($tenantInfo[$i]['record_id'] == $tenancyInfo[0]['tenant_id']) {
                         continue;
@@ -426,4 +426,16 @@ $endDate = date("d/M/Y", strtotime($tenancyInfo[0]['end_date']));
             return true;
         }
     }
+
+    $(".cheque_no").keypress(function(e) {
+        var keyCode = e.keyCode || e.which;
+        var regex = /^[0-9 ]+$/;
+        var isValid = regex.test(String.fromCharCode(keyCode));
+        if (!isValid) {
+            return false
+        }
+        if ($(".contact").val().length > 10) {
+            return false;
+        }
+    });
 </script>

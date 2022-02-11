@@ -326,6 +326,18 @@
         $('#appendrow').on('focus', ".datepicker", function() {
             $(this).datepicker();
         });
+
+        $(".cheque_no").keypress(function(e) {
+            var keyCode = e.keyCode || e.which;
+            var regex = /^[0-9 ]+$/;
+            var isValid = regex.test(String.fromCharCode(keyCode));
+            if (!isValid) {
+                return false
+            }
+            if ($(".contact").val().length > 10) {
+                return false;
+            }
+        });
     });
 
 
@@ -403,4 +415,16 @@
             return true;
         }
     }
+
+    $(".cheque_no").keypress(function(e) {
+        var keyCode = e.keyCode || e.which;
+        var regex = /^[0-9 ]+$/;
+        var isValid = regex.test(String.fromCharCode(keyCode));
+        if (!isValid) {
+            return false
+        }
+        if ($(".contact").val().length > 10) {
+            return false;
+        }
+    });
 </script>
