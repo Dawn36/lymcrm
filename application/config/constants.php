@@ -98,6 +98,6 @@ defined('SUB_ADMIN') OR define('SUB_ADMIN', 2);
 defined('OWNER') OR define('OWNER', 3);
 defined('TENANT') OR define('TENANT', 4);
 defined('SMTPHOST') OR define('SMTPHOST', 'smtp.googlemail.com');
-defined('SMTPUSER') OR define('SMTPUSER', 'dawngill08@gmail.com');
-defined('SMTPPASS') OR define('SMTPPASS', 'randikechootA1');
+defined('SMTPUSER') OR define('SMTPUSER', 'uhfdev@gmail.com');
+defined('SMTPPASS') OR define('SMTPPASS', 'karachipakistan');
 
