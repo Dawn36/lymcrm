@@ -6,7 +6,7 @@
         <div class="col-md-12 mb-3">
 
             <label class="form-label">To<span class="text-danger">*</span></label>
-            <input class="form-control context-menu" readonly style="background-color: #fff;" placeholder="Enter to" type="text" id="to" name="to" required="">
+            <input class="form-control context-menu" placeholder="Enter to" type="text" id="to" name="to" required="">
             <div class="invalid-feedback">
                 Please Enter to.
             </div>

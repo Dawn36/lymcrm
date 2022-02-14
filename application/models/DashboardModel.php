@@ -44,6 +44,16 @@ class DashboardModel  extends CI_Model
 		log_message('debug', $this->db->last_query());
 		return $data;
 	}
+	function GetEmailSystem()
+	{
+		$this->db->select('tenant_name,GROUP_CONCAT(end_date)AS end_date_group ,GROUP_CONCAT(`check`) AS `check`');
+		// $this->db->where('status', 'active');
+		$this->db->group_by('tenancy_id');
+		$data = $this->db->get('email_history')->result_array();
+		// print_r($role) ;
+		log_message('debug', $this->db->last_query());
+		return $data;
+	}
 	function GetRenewCount()
 	{
 		$date = Date("Y-m-d");

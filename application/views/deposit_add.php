@@ -50,9 +50,9 @@
         </div>
 
         <div class="col-md-12 mt-3  mb-3">
-            <label class="form-label">Cheque #<span style="color: red">*</span></label>
+            <label class="form-label" id="cheque_cash">Cheque #<span style="color: red">*</span></label>
             <select class="custom-select required" name="cheque_no" id="cheque_no" required="">
-                <option value="">Select Cheque</option>
+                <option value="">Select Cheque / Cash</option>
 
             </select>
             <div class="invalid-feedback">
@@ -74,6 +74,7 @@
     function GetCheque() {
         var type = $("#type").val();
         var tenantId = $("#tenant").val();
+         $("#cheque_cash").text(type.toUpperCase());
         var data = {
             type: type,
             tenantId: tenantId
@@ -88,7 +89,7 @@
                 if (resulta.length >= 1) {
                     $('#cheque_no').html('');
                     var option = document.createElement("option");
-                    option.text = "Select Cheque";
+                    option.text = "Select "+type;
                     option.value = "";
                     var select = document.getElementById("cheque_no");
                     select.appendChild(option);
@@ -101,7 +102,7 @@
                         select.appendChild(option);
                     }
                 } else {
-                    $('#cheque_no').html('<option value="">No Cheque Found</option>');
+                    $('#cheque_no').html('<option value="">No '+type+' Found</option>');
                 }
 
 

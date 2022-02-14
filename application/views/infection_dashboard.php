@@ -368,33 +368,60 @@
                                  </tr>
                              </thead>
                              <tbody>
-                                 <?php foreach ($emailInfo as $key => $val) {
-                                        $endDate = date('Y-m-d', strtotime($val['end_date']));
-                                        $thirtyDays = ($endDate == date('Y-m-d', strtotime('+30 days'))) ? $val['end_date'] : '-';
-                                        $sixtyDays = ($endDate == date('Y-m-d', strtotime('+60 days'))) ? $val['end_date'] : '-';
-                                        $ninetyDays = ($endDate == date('Y-m-d', strtotime('+90 days'))) ? $val['end_date'] : '-';
-                                        // if()
-                                        $status = ($endDate <= date('Y-m-d', strtotime('+30 days'))) ? 'Completed' : 'Pending'
-                                    ?>
+                                 <?php 
+                                 for ($i=0; $i <count($emailInfo) ; $i++) { 
+                                  
+                                    $sendDate= explode(",", $emailInfo[$i]['end_date_group']);
+                                    $check= explode(",", $emailInfo[$i]['check']);
+                                    $dateDate['30']='';
+                                    $dateDate['60']='';
+                                    $dateDate['90']='';
+                                    for ($j=0; $j < count($check) ; $j++) { 
+                                        $dateDate[$check[$j]]=$sendDate[$j];
+                                    }
+                                    
+                                    $sendCount=count($sendDate);
+                                    if($sendCount == '3')
+                                    {
+                                        $status='Complete';
+                                    }
+                                    else
+                                    {
+                                        $status='Pending';
+                                    }
+                                    
+                                  ?>
                                      <tr>
                                          <td>
-                                             <center><?php echo ucwords($val['tenant_name']) ?></center>
+                                             <center><?php echo ucfirst($emailInfo[$i]['tenant_name']) ?></center>
                                          </td>
                                          <td>
-                                             <center><?php echo $thirtyDays ?></center>
+                                             <center><?php 
+                                             if($dateDate[30] != "")
+                                             {
+                                                echo date("Y-m-d",strtotime($dateDate[30]));
+                                             } ?></center>
                                          </td>
                                          <td>
-                                             <center><?php echo $sixtyDays ?></center>
+                                             <center><?php 
+                                             if($dateDate[60] != "")
+                                             {
+                                                echo date("Y-m-d",strtotime($dateDate[60]));
+                                             } ?></center>
+                                         </td>
+                                          <td>
+                                             <center><?php 
+                                             if($dateDate[90] != "")
+                                             {
+                                                echo date("Y-m-d",strtotime($dateDate[90]));
+                                             } ?></center>
                                          </td>
                                          <td>
-                                             <center><?php echo $ninetyDays ?></center>
-                                         </td>
-                                         <td>
-                                             <center><?php echo $status ?></center>
+                                             <center><?=$status?></center>
                                          </td>
 
                                      </tr>
-                                 <? } ?>
+                                 <?php } ?>
 
                              </tbody>
                          </table>
