@@ -1,5 +1,5 @@
 <?php echo validation_errors('<div class="alert alert-danger">', '</div'); ?>
-<form class="needs-validation" name='addDepositForm' id='addDepositForm' method='post' action="/deposit_verification" novalidate>
+<form class="needs-validation" name='addDepositForm' id='addDepositForm' method='post' action="/deposit_verification" novalidate  enctype="multipart/form-data">
 
     <div class="card mb-g">
         <div class="col-md-12 mt-3" style="display: none;">
@@ -59,6 +59,9 @@
                 Please Select Cheque Number.
             </div>
         </div>
+        <div class="col-md-12 mb-3">
+           <input class="form-control alphaonly mt-3" type="file" onchange="return fileValidation()" id='file_uploade' name='deposit[]' multiple>
+        </div>
     </div>
 
     <div class="row">
@@ -71,6 +74,24 @@
 </form>
 
 <script>
+     function fileValidation() {
+        var fileInput = document.getElementById('file_uploade');
+
+        var filePath = fileInput.value;
+
+        var allowedExtensions =
+            /(\.jpg|\.jpeg|\.png|\.gif)$/i;
+
+        if (!allowedExtensions.exec(filePath)) {
+           // alert('Invalid file type only png file is accepted!');
+            value='Invalid file type only png, jpg, jpeg, gif file is accepted!';
+            Toast(value);
+            fileInput.value = '';
+            return false;
+        } else {
+            return true;
+        }
+    }
     function GetCheque() {
         var type = $("#type").val();
         var tenantId = $("#tenant").val();

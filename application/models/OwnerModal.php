@@ -12,6 +12,15 @@ class OwnerModal  extends CI_Model
 			return false;
 		}
 	}
+	public function AddOwnerLastInsertedId($arrInfo, $tableName)
+	{
+		$result = $this->db->insert($tableName, $arrInfo);
+		$last_id = $this->db->insert_id();
+		log_message('debug', $this->db->last_query());
+	
+			return $last_id;
+		
+	}
 	public function ShowOwner($tableName)
 	{
 		log_message('debug', 'ShowOwner');

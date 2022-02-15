@@ -223,7 +223,41 @@ class DepositController extends CI_Controller
             $arrInfo['created_at'] = date("Y-m-d h:i:s");
             $arrInfo['created_by'] =  $this->session->userdata('user_id');
             $arrInfo['created_name'] =  $this->session->userdata('user_name');
-            $check = $this->OWNER->AddOwner($arrInfo, $tableName);
+            
+            $depositId = $this->OWNER->AddOwnerLastInsertedId($arrInfo, $tableName);
+            $tableName='deposit_attachment';
+             $files = $_FILES;
+                $cpt = count($_FILES['deposit']['name']);
+              if($_FILES['deposit']['name'][0] == "")
+              {
+                $cpt=0;
+              }
+                if($depositId != '')
+                {
+                     for($i=0; $i<$cpt; $i++)
+                {           
+                    $_FILES['deposit']['name']= $files['deposit']['name'][$i];
+                    $_FILES['deposit']['type']= $files['deposit']['type'][$i];
+                    $_FILES['deposit']['tmp_name']= $files['deposit']['tmp_name'][$i];
+                    $_FILES['deposit']['error']= $files['deposit']['error'][$i];
+                    $_FILES['deposit']['size']= $files['deposit']['size'][$i];    
+
+                    $this->upload->initialize($this->set_upload_options());
+                    $this->upload->do_upload('deposit');
+                    $dataInfo[] = $this->upload->data();
+                    $arrInfo=array();
+
+                        $arrInfo['deposit_id'] = $depositId;
+                        $arrInfo['file_name'] = $dataInfo[$i]['file_name'];
+                        $arrInfo['file_path'] = base_url() . 'uploads/deposit/' . $dataInfo[$i]['file_name'];
+                        $arrInfo['file_type'] = $dataInfo[$i]['file_ext'];
+                        $arrInfo['created_at'] = date("Y-m-d h:i:s");
+                        $arrInfo['created_by'] =  $this->session->userdata('user_id');
+                        $arrInfo['created_name'] =  $this->session->userdata('user_name');
+                        $arrInfo['status'] = "active";
+                        $check = $this->OWNER->AddOwner($arrInfo,$tableName);
+                }
+                }
             if ($check == true) {
                 redirect('/deposit');
             } else {
