@@ -56,6 +56,9 @@ $heading = "Deposit Slip";
                                                 <center>Payment Type</center>
                                             </th>
                                             <th nowrap>
+                                                <center>Payment Date</center>
+                                            </th>
+                                            <th nowrap>
                                                 <center>Cheque #</center>
                                             </th>
                                             <th nowrap>
@@ -76,22 +79,25 @@ $heading = "Deposit Slip";
                                         <?php for($i=0; $i< count($depositSlip); $i++){ ?>
                                         <tr id="1">
                                             <td nowrap hidden> 
-                                               <?php echo $depositSlip[$i]['installment'] ?>
+                                               <?php echo ucwords($depositSlip[$i]['installment']) ?>
                                             </td>
                                             <td nowrap>
-                                                <?php echo $depositSlip[$i]['building_name'] ?>
+                                                <?php echo ucwords($depositSlip[$i]['building_name']) ?>
                                             </td>
                                             <td nowrap>
-                                               <?php echo $depositSlip[$i]['apartment_number'] ?>
+                                               <?php echo ucwords($depositSlip[$i]['apartment_number']) ?>
                                             </td>
                                             <td nowrap>
-                                               <?php echo $depositSlip[$i]['name'] ?>
+                                               <?php echo ucwords($depositSlip[$i]['name']) ?>
                                             </td>
                                             <td nowrap>
                                                <?php echo $depositSlip[$i]['email'] ?>
                                             </td>
                                             <td nowrap>
-                                                <?php echo $depositSlip[$i]['type'] ?>
+                                                <?php echo ucwords($depositSlip[$i]['type']) ?>
+                                            </td>
+                                            <td nowrap>
+                                                <?php echo date("Y-m-d" ,strtotime($depositSlip[$i]['payment_date'])) ?>
                                             </td>
                                             <td nowrap>
                                                 <center><?php echo $depositSlip[$i]['cheque_no'] ?></center>
@@ -100,7 +106,7 @@ $heading = "Deposit Slip";
                                                 <center><?php echo number_format($depositSlip[$i]['amount']) ?></center>
                                             </td>
                                             <td nowrap>
-                                                <center><?php echo $depositSlip[$i]['created_name'] ?></center>
+                                                <center><?php echo ucwords($depositSlip[$i]['created_name']) ?></center>
                                             </td>
                                             <td nowrap>
                                                 <center><?php echo date("Y-m-d",strtotime($depositSlip[$i]['created_at'])) ?></center>

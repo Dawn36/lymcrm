@@ -74,13 +74,15 @@ $heading = "Renew Tenancy";
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php for ($i = 0; $i < count($tenancyInfo); $i++) {
+                                        <?php 
+                                        for ($i = 0; $i < count($tenancyInfo); $i++) {
                                             if (strtotime((new DateTime())->format("Y-m-d H:i:s")) <= strtotime($tenancyInfo[$i]['end_date'])) {
                                                 continue;
                                             }
                                             $recordId = $tenancyInfo[$i]['record_id'];
+
                                         ?>
-                                            <tr id="<?php echo $recordId; ?>">
+                                            <tr id="<?php echo $recordId; ?>" style='color : <?=$tenancyInfo[$i]['is_tenancy'] == 'no' ? "red" : '' ?>'>
                                                 <td nowrap>
                                                     <center><?php echo $tenancyInfo[$i]['tenancy_no'] ?></center>
                                                 </td>
@@ -119,7 +121,7 @@ $heading = "Renew Tenancy";
                                                         <button onclick="ViewPayments(<?php echo $recordId; ?>)" class="btn btn-sm btn-primary bg-brand-gradient" title="Payment Details"><i class="fal fa-eye"></i></button>
                                                         <button title="Renew Tenancy" onclick="RenewTenancy(<?php echo $recordId; ?>)" class="btn btn-sm btn-primary bg-brand-gradient" title="Renew Tenancy" <?php if ($tenancyInfo[$i]['is_renew'] == 'yes') { ?> disabled <?php } ?>><i class="fal fa-check"></i></button>
                                                         <?php if ($this->session->userdata('role_id') == SUPER_ADMIN) { ?>
-                                                            <button title="Delete Tenancy" type="button" onclick="DeleteTenancy(<?php echo $recordId; ?>,<?php echo $tenancyInfo[$i]['apartment_id'] ?>)" data-id="<?php echo $i; ?>" class="btn btn-sm btn-primary bg-brand-gradient" title="Delete Tenancy" <?php if ($tenancyInfo[$i]['is_renew'] == 'yes') { ?> disabled <?php } ?>><i class="fal fa-times"></i></button>
+                                                            <button title="Terminated " type="button" onclick="DeleteTenancy(<?php echo $recordId; ?>,<?php echo $tenancyInfo[$i]['apartment_id'] ?>)" data-id="<?php echo $i; ?>" class="btn btn-sm btn-primary bg-brand-gradient" title="Terminated " <?php if ($tenancyInfo[$i]['is_renew'] == 'yes') { ?> disabled <?php } ?>><i class="fal fa-times"></i></button>
                                                         <?php } ?>
                                                     </center>
                                                 </td>

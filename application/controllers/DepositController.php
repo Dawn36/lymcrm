@@ -258,11 +258,45 @@ class DepositController extends CI_Controller
                         $check = $this->OWNER->AddOwner($arrInfo,$tableName);
                 }
                 }
-            if ($check == true) {
+                $autoSend=$arrPost['auto_send'];
+                if($autoSend == '1')
+                {
+                    $depositData = $this->DEPOSIT->GetChequeSlipEmail($depositId);
+                    $data['depositData'] = $depositData;
+                    $subject="Deposit Slip for [[INSTALLMENT]] Installment";
+                    $content="<p>Dear [[OWNERNAME]],<br>Attached herewith is a deposit slip for the [[INSTALLMENT]] installment against <br> the rent of your apartment [[APARTMENTNO]],[[BUILDINGNAME]] Kindly confirm clearance with <br>your bank in due course of time. <br> Best Regards <br> FOR L.Y.M REAL ESTATE BROKERS LLC</p>";
+                    if($depositData[0]['installment'] == "1")
+                    {
+                        $installment=$depositData[0]['installment'].'st';
+                    }
+                     else if($depositData[0]['installment'] == "2")
+                    {
+                        $installment=$depositData[0]['installment'].'nd';
+                    }
+                     else if($depositData[0]['installment'] == "3")
+                    {
+                        $installment=$depositData[0]['installment'].'rd';
+                    }
+                    else
+                    {
+                        $installment=$depositData[0]['installment'].'th';
+                    }
+                    $subject=str_replace("[[INSTALLMENT]]",$installment,$subject);
+                    $content=str_replace("[[OWNERNAME]]",$depositData[0]['name'],$content);
+                    $content=str_replace("[[INSTALLMENT]]",$installment,$content);
+                    $content=str_replace("[[APARTMENTNO]]",$depositData[0]['apartment_number'],$content);
+                    $content=str_replace("[[BUILDINGNAME]]",$depositData[0]['building_name'],$content);
+                    $data['subject'] =$subject;
+                    $data['content'] =$content;
+                    return  $this->load->view('deposit_email_auto',$data);
+                }
+                else
+                {
+                   if ($check == true) {
                 redirect('/deposit');
-            } else {
-                die("asd");
-            }
+            }  
+                }
+            
         } else {
             redirect('login');
         }
