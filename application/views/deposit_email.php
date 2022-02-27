@@ -45,8 +45,27 @@
             <button id="js-add-btn" onclick="SendMail()" class="btn btn-primary btn-md float-right" type="button" data-dismiss="modal"><i class="fal fa-paper-plane" style="margin-right: 4px"></i>Send Email</button>
         </div>
     </div>
+    
 </form>
+<div class="row">
+    <div class="col-xl-12">
+        <div id="panel-1" class="panel">
+            <div class="panel-container show">
+                <div class="panel-content">
+                    <div id="js-lightgallery">
+                        <?php for ($i=0; $i <count($depositImg) ; $i++) { 
+                          
+                        ?>
+                        <a href="<?php echo $depositImg[$i]['file_path'] ?>" target="_blank"><img class="img-responsive" src="<?php echo $depositImg[$i]['file_path'] ?>" alt="image" style="height: 118px; width: 118px"></a>
+                            
+                       <?php }  ?>
 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script type="text/javascript">
      function fileValidation() {

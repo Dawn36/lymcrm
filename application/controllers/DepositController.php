@@ -190,9 +190,10 @@ class DepositController extends CI_Controller
     public function DepositEmail()
     {
         log_message('debug', 'DepositEmail');
-
-
-        return  $this->load->view('deposit_email');
+        $arrPost = $this->input->post();
+        $depositId = $arrPost['depositId'];
+        $data['depositImg'] = $this->DEPOSIT->GetDepositImg($depositId);
+        return  $this->load->view('deposit_email',$data);
     }
 
     public function LoadDepositImage()
@@ -288,6 +289,7 @@ class DepositController extends CI_Controller
                     $content=str_replace("[[BUILDINGNAME]]",$depositData[0]['building_name'],$content);
                     $data['subject'] =$subject;
                     $data['content'] =$content;
+                    $data['depositImg'] = $this->DEPOSIT->GetDepositImg($depositId);
                     return  $this->load->view('deposit_email_auto',$data);
                 }
                 else

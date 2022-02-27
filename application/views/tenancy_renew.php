@@ -120,6 +120,7 @@ $heading = "Renew Tenancy";
                                                     <center>
                                                         <button onclick="ViewPayments(<?php echo $recordId; ?>)" class="btn btn-sm btn-primary bg-brand-gradient" title="Payment Details"><i class="fal fa-eye"></i></button>
                                                         <button title="Renew Tenancy" onclick="RenewTenancy(<?php echo $recordId; ?>)" class="btn btn-sm btn-primary bg-brand-gradient" title="Renew Tenancy" <?php if ($tenancyInfo[$i]['is_renew'] == 'yes') { ?> disabled <?php } ?>><i class="fal fa-check"></i></button>
+                                                        <button onclick="EditTenancy(<?php echo $recordId; ?>)" <?php if ($tenancyInfo[$i]['is_renew'] == 'yes') { ?> disabled <?php } ?> class="btn btn-sm btn-primary bg-brand-gradient" title="Extended Tenancy"><i class="fal fa-edit"></i></button>
                                                         <?php if ($this->session->userdata('role_id') == SUPER_ADMIN) { ?>
                                                             <button title="Terminated " type="button" onclick="DeleteTenancy(<?php echo $recordId; ?>,<?php echo $tenancyInfo[$i]['apartment_id'] ?>)" data-id="<?php echo $i; ?>" class="btn btn-sm btn-primary bg-brand-gradient" title="Terminated " <?php if ($tenancyInfo[$i]['is_renew'] == 'yes') { ?> disabled <?php } ?>><i class="fal fa-times"></i></button>
                                                         <?php } ?>
@@ -253,7 +254,7 @@ $heading = "Renew Tenancy";
             type: 'POST',
             data: value,
             success: function(result) {
-                $('.modal-title').html('Edit Tenancy');
+                $('.modal-title').html('Extended Tenancy');
                 $('#modal-body').html(result);
                 $('#myModal').modal();
 

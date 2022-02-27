@@ -101,6 +101,10 @@ class TenancyController extends CI_Controller
             $tenInfo['updated_name']    =  $this->session->userdata('user_name');
 
             $this->TENANCY->Update($tableName, $tenInfo, $paymentId);
+            if($arrPost['payment_id'][$i] == '0')
+            {
+                 $this->TENANCY->Add($tenInfo, $tableName);
+            }
         }
         redirect('/tenancy');
     }

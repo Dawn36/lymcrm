@@ -82,19 +82,19 @@ $endDate = date("d/M/Y", strtotime($tenancyInfo[0]['end_date']));
                 Please Add Rent Amount.
             </div>
         </div>
+        <input type="hidden" id="numberofpayment" value="<?php echo $tenancyInfo[0]['no_of_payments']; ?>">
         <div class="col-md-12 mt-3 mb-3">
             <label class="form-label">No of Payments<span style="color: red">*</span></label>
-            <input class="form-control" placeholder="Add no of payments" value="<?php echo $tenancyInfo[0]['no_of_payments']; ?>" id="no_of_payments" name="no_of_payments" readonly required>
+            <input class="form-control" placeholder="Add no of payments" value="<?php echo $tenancyInfo[0]['no_of_payments']; ?>" id="no_of_payments" name="no_of_payments" required>
             <div class="invalid-feedback">
                 Please Add No Of Payments.
             </div>
         </div>
     </div>
 
-
     <div id="appendrow">
         <?php for ($i = 0; $i < count($paymentInfo); $i++) { ?>
-
+            <div id="drow<?php echo $i ?>" class="forDelete">
             <input value="<?php echo $paymentInfo[$i]['record_id']; ?>" id="payment_id" name="payment_id[]" style="display : none">
             <div class="card mb-g">
                 <div class="col-md-12 mt-3" style="display: none;">
@@ -130,7 +130,7 @@ $endDate = date("d/M/Y", strtotime($tenancyInfo[0]['end_date']));
                     <label class="form-label">Cheque #<span style="color: red">*</span></label>
                     <input class="form-control cheque_no" placeholder=" Add Cheque No" value="<?php echo $paymentInfo[$i]['cheque_no'] ?>" type="number" id="cheque_no" name="cheque_no[]" required>
                     <div class="invalid-feedback">
-                        Please Add Cheque No.
+                        Please select cash or cheque.
                     </div>
                 </div>
                 <div class="col-md-12 mt-3 mb-3">
@@ -141,6 +141,7 @@ $endDate = date("d/M/Y", strtotime($tenancyInfo[0]['end_date']));
                     </div>
                 </div>
             </div>
+        </div>
         <?php } ?>
 
     </div>
@@ -211,7 +212,7 @@ $endDate = date("d/M/Y", strtotime($tenancyInfo[0]['end_date']));
         if ($('.payment_type').val() == '') {
             var value = 'payment type is required';
             Toast(value);
-            $('#payment_type').focus();
+            $('.payment_type').focus();
             return false;
         }
 
@@ -287,15 +288,26 @@ $endDate = date("d/M/Y", strtotime($tenancyInfo[0]['end_date']));
 
 
     $("#no_of_payments").keyup(function() {
-
-
-        $('#appendrow').children().remove();
+        numberOfPayment=$('#numberofpayment').val();
         var count = $("#no_of_payments").val();
         var rowIdx = 0;
+        var forDelete=document.querySelectorAll('.forDelete');
+        // for (let index = 0; index < forDelete.length; index++) {
+        //     debugger;
+        //     if(count-1 < index)
+        //     {
+        //         $('#drow'+index).remove();
+        //     }
+        // }
         for (let index = 0; index < count; index++) {
+             if(numberOfPayment > index)
+            {
+                continue;
+            }
+            
 
-            $('#appendrow').append(` <div id="drow${++rowIdx}">
-        
+            $('#appendrow').append(` <div id="drow${index}" class="forDelete">
+                        <input value="0" id="payment_id" name="payment_id[]" style="display : none">
                             <div class="card mb-g">
                         <div class="col-md-12 mt-3" style="display: none;">
                             <input type="text" style="display: none;">
@@ -308,13 +320,13 @@ $endDate = date("d/M/Y", strtotime($tenancyInfo[0]['end_date']));
                                 <option value="cheque">Cheque</option>
                             </select>
                             <div class="invalid-feedback">
-                                Please Select Building.
+                                Please select cash or cheque.
                             </div>
                         </div>
                         <div class="col-md-12 mt-3">
                             <label class="form-label">Date<span style="color: red">*</span></label>
                             <div class="input-group">
-                                <input type="text" class="form-control date" readonly="" placeholder="Select date" id="date" name="date[]" style="background: white;">
+                                <input type="text" class="form-control date" readonly="" placeholder="Select date" id="date" name="date[]" style="background: white;" value="<?php echo Date("d/M/Y"); ?>">
                                 <div class="input-group-append">
                                     <span class="input-group-text fs-xl">
                                         <i class="fal fa-calendar-alt"></i>
@@ -343,13 +355,13 @@ $endDate = date("d/M/Y", strtotime($tenancyInfo[0]['end_date']));
         }
 
         $('.date').datepicker({
-            format: 'dd/mm/yyyy',
+            format: 'dd/M/yyyy',
             autoclose: 'true'
         });
     });
 
     $('.date').datepicker({
-        format: 'dd/mm/yyyy',
+        format: 'dd/M/yyyy',
         autoclose: 'true'
     });
 
