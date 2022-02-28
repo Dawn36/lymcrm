@@ -288,7 +288,8 @@
                     type: "warning",
                     confirmButtonColor: '#437dd0',
                     showCancelButton: true,
-                    confirmButtonText: "Yes, Add it!",
+                    confirmButtonText: "Send it now",
+                    cancelButtonText: "Send it later"
                 }).then(function(result) {
                      if(result.dismiss == 'cancel')
                         {
