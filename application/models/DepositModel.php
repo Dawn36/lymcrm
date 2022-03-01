@@ -52,7 +52,7 @@ class DepositModel  extends CI_Model{
 	public function GetChequeSlip()
 	{
 		$this->db->select('d.record_id,pay.record_id AS payment_id,b.building_name,
-a.apartment_number,o.name,o.email,d.type,
+a.apartment_number,o.name,o.email,pay.payment_type AS type,
 pay.cheque_no,pay.amount,pay.payment_date,
 d.created_name,pay.installment,d.created_at');
     	$this->db->from('deposit d'); 

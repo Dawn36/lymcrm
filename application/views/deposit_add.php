@@ -60,6 +60,11 @@
             </div>
         </div>
         <div class="col-md-12  mb-3">
+            <label class="form-label">Amount</label>
+            <input class="form-control" placeholder="Amount" type="text" id="amount"  disabled>
+
+        </div>
+        <div class="col-md-12  mb-3">
             <label class="form-label">Cheque / Cash Date</label>
             <input class="form-control" placeholder="Cheque / Cash Date" type="text" id="payment_date"  disabled>
 
@@ -102,18 +107,23 @@
         if(val == 1)
         {
             $("#payment_date").val("No Date Found");
+            $("#amount").val("No Date Found");
         }
         if(val == "")
         {
             $("#payment_date").val("Cheque / Cash Date");
+            $("#amount").val("Amount");
         }
         else
         {
            var id = $("#cheque_no").find(':selected').data('record_id');
         for (var i = 0; i < checkArray.length; i++) {
+            
             if (checkArray[i].record_id == id) {
                 paymentDate=checkArray[i].payment_date.split(" ");
                 $("#payment_date").val(paymentDate[0]);
+                $("#amount").val(checkArray[i].amount);
+             
             }
         } 
         }
@@ -273,16 +283,6 @@
             $('#cheque_no').focus();
             return false;
         }
-        Swal.fire({
-            title: "Are you sure you want to add?",
-            type: "warning",
-            confirmButtonColor: '#437dd0',
-            showCancelButton: true,
-            confirmButtonText: "Yes, Add it!",
-        }).then(function(result) {
-           
-
-            if (result.value) {
                 Swal.fire({
                     title: "Do you want to send Email?",
                     type: "warning",
@@ -324,8 +324,6 @@
                         
                     }
                 });
-            }
-        });
-
+            
     }
 </script>

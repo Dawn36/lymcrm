@@ -76,7 +76,7 @@ class TenancyController extends CI_Controller
         $arrInfo['updated_name']    =  $this->session->userdata('user_name');
 
         $this->TENANCY->Update($tableName, $arrInfo, $recordId);
-
+        $aa=1;
         //inserting the payments details in payment table connected to the above inserted data
         for ($i = 0; $i < $arrInfo['no_of_payments']; $i++) {
             $tableName = 'payment';
@@ -85,7 +85,8 @@ class TenancyController extends CI_Controller
             $tenInfo['installment']     = $i + 1;
             $tenInfo['payment_type']    = $arrPost['payment_type'][$i];
             if ($tenInfo['payment_type'] == 'cash') {
-                $tenInfo['cheque_no'] = 0;
+                $tenInfo['cheque_no'] = "Cash ".$aa;
+                $aa++;
             } else {
                 $tenInfo['cheque_no']       = $arrPost['cheque_no'][$i];
             }
@@ -115,13 +116,14 @@ class TenancyController extends CI_Controller
 
             log_message('debug', 'EditTenancy');
             $arrPost = $this->input->post();
-            $recordId =  $arrPost['recordId'];;
+            $recordId =  $arrPost['recordId'];
             $tableName = 'tenant';
             $data['tenantInfo'] = $this->OWNER->ShowOwner($tableName);
             $tableName = 'tenancy';
             $data['tenancyInfo'] = $this->TENANCY->ShowEdit($tableName, $recordId);
             $tableName = 'payment';
             $data['paymentInfo'] = $this->TENANCY->ViewPayments($recordId, $tableName);
+             $data['tenancyForDate'] = $arrPost['tenancy'];
             return  $this->load->view('tenancy_edit', $data);
         } else {
             redirect('login');
@@ -177,12 +179,19 @@ class TenancyController extends CI_Controller
 
             $cid = $this->TENANCY->Add($arrInfo, $tableName);
             //inserting the payments details in payment table connected to the above inserted data
+            $aa=1;
             for ($i = 0; $i < $arrInfo['no_of_payments']; $i++) {
                 $tableName = 'payment';
                 $tenInfo['tenancy_id']      = $cid;
                 $tenInfo['installment']     = $i + 1;
                 $tenInfo['payment_type']    = $arrPost['payment_type'][$i];
-                $tenInfo['cheque_no']       = $arrPost['cheque_no'][$i];
+                if ($tenInfo['payment_type'] == 'cash') {
+                $tenInfo['cheque_no'] = "Cash ".$aa;
+                $aa++;
+                } else {
+                    $tenInfo['cheque_no']       = $arrPost['cheque_no'][$i];
+                }
+                //$tenInfo['cheque_no']       = $arrPost['cheque_no'][$i];
                 $tenInfo['amount']          = $arrPost['amount'][$i];
                 $tenInfo['status']          = 'active';
                 $date                       = str_replace('/', '-', $arrPost['date'][$i]);

@@ -8,7 +8,7 @@
 
 $startDate = date("d/M/Y", strtotime($tenancyInfo[0]['start_date']));
 $endDate = date("d/M/Y", strtotime($tenancyInfo[0]['end_date']));
-
+echo $tenancyForDate;
 ?>
 <form class="needs-validation" name='tenancy_submit' id='tenancy_submit' method='post' action="/tenancy_update" novalidate>
 
@@ -64,6 +64,7 @@ $endDate = date("d/M/Y", strtotime($tenancyInfo[0]['end_date']));
                 Please Select Tenant.
             </div>
         </div>
+        <?php if($tenancyForDate == 'tenancy') { ?>
         <div class="col-md-12 mt-3">
             <label class="form-label">Start And End Date<span style="color: red">*</span></label>
             <div class="input-group">
@@ -75,6 +76,33 @@ $endDate = date("d/M/Y", strtotime($tenancyInfo[0]['end_date']));
                 </div>
             </div>
         </div>
+        <?php } else { ?>
+        <div class="col-md-12 mt-3">
+            <label class="form-label">Start Date<span style="color: red">*</span></label>
+            <div class="input-group">
+                    <input style="background-color: white;" value="<?php echo $startDate ?>" class="form-control" id="datepicker-1" disabled>
+                    <div class="input-group-append aa">
+                        <span class="input-group-text fs-xl" id="calicon">
+                            <i class="fal fa-calendar-alt"></i>
+                        </span>
+                    </div>
+                
+            </div>
+        </div>
+        <div class="col-md-12 mt-3">
+            <label class="form-label">End Date<span style="color: red">*</span></label>
+            <div class="input-group">
+                    <input style="background-color: white;" value="<?php echo $endDate ?>"  class="form-control" id="datepicker-2" readonly>
+                    <input type="hidden" name="daterange" id="datepicker-3" value="">
+                    <div class="input-group-append aa">
+                        <span class="input-group-text fs-xl" id="calicon">
+                            <i class="fal fa-calendar-alt"></i>
+                        </span>
+                    </div>
+                
+            </div>
+        </div>
+    <?php } ?>
         <div class="col-md-12 mt-3">
             <label class="form-label">Rent Amount<span style="color: red">*</span></label>
             <input class="form-control" placeholder=" Add Rent Amount" value="<?php echo $tenancyInfo[0]['rent_amount']; ?>" type="text" id="rent_amount" name="rent_amount" required>
@@ -155,6 +183,19 @@ $endDate = date("d/M/Y", strtotime($tenancyInfo[0]['end_date']));
 </form>
 
 <script>
+    $(document).ready(function() {
+    $('#datepicker-2').datepicker({
+         autoclose: true,
+    startDate: new Date('<?php echo $endDate ?>'),
+    format: "d/M/yyyy",
+    orientation: "bottom left"
+        });
+    // $('.aa').click(function() {
+    // $("#datepicker-1").focus();
+    //     });
+
+    });
+
     function SubmitFrom() {
 
         var form = $("#tenancy_submit")
@@ -256,6 +297,11 @@ $endDate = date("d/M/Y", strtotime($tenancyInfo[0]['end_date']));
             confirmButtonText: "Yes, update it!",
         }).then(function(result) {
             if (result.value) {
+                <?php if($tenancyForDate != 'tenancy') { ?>
+               var date=$('#datepicker-1').val()+ "-" +$('#datepicker-2').val();
+               $("#datepicker-3").val(date);
+               console.log(date);
+           <?php } ?>
                 $("#tenancy_submit").submit();
                 // var value='Update Sucessfully';
                 //DeleteToast(value);
@@ -274,6 +320,9 @@ $endDate = date("d/M/Y", strtotime($tenancyInfo[0]['end_date']));
     }
 
     $('input[name="daterange"]').daterangepicker({
+       
+  
+        // minDate: new Date('10/Feb/2022'),
         opens: 'left',
         drops: 'up',
         locale: {
@@ -281,6 +330,7 @@ $endDate = date("d/M/Y", strtotime($tenancyInfo[0]['end_date']));
         }
 
     }, function(start, end, label) {
+
         console.log("A new date selection was made: " + start.format('DD-MMM-YYYY') + ' to ' + end.format('DD-MMM-YYYY'));
     });
 

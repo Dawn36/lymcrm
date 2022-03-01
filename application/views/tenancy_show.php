@@ -249,6 +249,7 @@ $heading = "Tenancy";
     // Modal For Edit Tenancy
     function EditTenancy(recordId) {
         var value = {
+            tenancy: 'tenancy',
             recordId: recordId
         };
         $.ajax({

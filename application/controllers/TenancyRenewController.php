@@ -124,12 +124,19 @@ class TenancyRenewController extends CI_Controller
 
             $cid = $this->TENANCY->Add($arrInfo, $tableName);
             //inserting the payments details in payment table connected to the above inserted data
+            $aa=1;
             for ($i = 0; $i < $arrInfo['no_of_payments']; $i++) {
                 $tableName = 'payment';
                 $tenInfo['tenancy_id']      = $cid;
                 $tenInfo['installment']     = $i + 1;
                 $tenInfo['payment_type']    = $arrPost['payment_type'][$i];
-                $tenInfo['cheque_no']       = $arrPost['cheque_no'][$i];
+                 if ($tenInfo['payment_type'] == 'cash') {
+                $tenInfo['cheque_no'] = "Cash ".$aa;
+                $aa++;
+                } else {
+                    $tenInfo['cheque_no']       = $arrPost['cheque_no'][$i];
+                }
+               // $tenInfo['cheque_no']       = $arrPost['cheque_no'][$i];
                 $tenInfo['amount']          = $arrPost['amount'][$i];
                 $tenInfo['status']          = 'active';
                 $date                       = str_replace('/', '-', $arrPost['date'][$i]);
