@@ -198,7 +198,7 @@
         var amount = document.querySelectorAll('#amount');
         var total = 0;
         for (let index = 0; index < amountCount; index++) {
-            total += parseInt(amount[index].value);
+            total += parseFloat(amount[index].value);
         }
 
         if (rentAmount != total) {

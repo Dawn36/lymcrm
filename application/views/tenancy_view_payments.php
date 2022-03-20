@@ -3,7 +3,7 @@
 // echo '<pre>';
 // print_r($tenancyInfo);
 // echo '<pre>';
-// print_r($paymentInfo);
+//print_r($paymentInfo);
 
 $heading = "Tenancy";
 ?>
@@ -133,7 +133,7 @@ $heading = "Tenancy";
                                                     <center><?php echo date('d-M-Y', strtotime($paymentInfo[$i]['payment_date'])); ?></center>
                                                 </td>
                                                 <td nowrap>
-                                                    <center><?php echo number_format($paymentInfo[$i]['amount']) ?></center>
+                                                    <center><?php echo $paymentInfo[$i]['amount'] ?></center>
                                                 </td>
 
 

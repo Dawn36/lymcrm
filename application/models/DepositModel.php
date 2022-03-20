@@ -10,6 +10,7 @@ class DepositModel  extends CI_Model{
     	$this->db->join('tenancy tc ', 'tc.building_id = b.record_id', 'INNER');
     	$this->db->where('tc.is_renew','no');
     	$this->db->where('tc.status','active');
+    	$this->db->order_by('b.building_name', 'ASC');
     	$query = $this->db->get(); 
     	log_message('debug', $this->db->last_query());
     	return $query->result_array();	 

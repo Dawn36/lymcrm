@@ -124,7 +124,7 @@ $heading = "Tenancy";
                                                         <button onclick="ViewPayments(<?php echo $recordId; ?>)" class="btn btn-sm btn-primary bg-brand-gradient payment" title="View Payments"><i class="fal fa-eye"></i></button>
                                                         <button onclick="EditTenancy(<?php echo $recordId; ?>)" class="btn btn-sm btn-primary bg-brand-gradient edit" title="Edit Tenancy"><i class="fal fa-edit"></i></button>
                                                         <?php if ($this->session->userdata('role_id') == SUPER_ADMIN) { ?>
-                                                            <button type="button" onclick="DeleteTenancy(<?php echo $recordId; ?>,<?php echo $tenancyInfo[$i]['apartment_id'] ?>,<?php echo $tenancyInfo[$i]['tenancy_no'] ?>)" data-id="<?php echo $i; ?>" class="btn btn-sm btn-primary bg-brand-gradient delete" title="Delete Tenancy"><i class="fal fa-times"></i></button>
+                                                            <button type="button" onclick="DeleteTenancy(<?php echo $recordId; ?>,<?php echo $tenancyInfo[$i]['apartment_id'] ?>)" data-id="<?php echo $i; ?>" class="btn btn-sm btn-primary bg-brand-gradient delete" title="Delete Tenancy"><i class="fal fa-times"></i></button>
                                                         <?php } ?>
                                                     </center>
                                                 </td>

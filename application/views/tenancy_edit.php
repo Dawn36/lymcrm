@@ -8,7 +8,7 @@
 
 $startDate = date("d/M/Y", strtotime($tenancyInfo[0]['start_date']));
 $endDate = date("d/M/Y", strtotime($tenancyInfo[0]['end_date']));
-echo $tenancyForDate;
+//echo $tenancyForDate;
 ?>
 <form class="needs-validation" name='tenancy_submit' id='tenancy_submit' method='post' action="/tenancy_update" novalidate>
 
@@ -64,45 +64,45 @@ echo $tenancyForDate;
                 Please Select Tenant.
             </div>
         </div>
-        <?php if($tenancyForDate == 'tenancy') { ?>
-        <div class="col-md-12 mt-3">
-            <label class="form-label">Start And End Date<span style="color: red">*</span></label>
-            <div class="input-group">
-                <input type="text" class="form-control" value="<?php echo $startDate ?> - <?php echo $endDate ?>" type="text" readonly="" id="daterange" name="daterange" placeholder="Select date" style="background: white;" required>
-                <div class="input-group-append">
-                    <span class="input-group-text fs-xl">
-                        <i class="fal fa-calendar-alt"></i>
-                    </span>
+        <?php if ($tenancyForDate == 'tenancy') { ?>
+            <div class="col-md-12 mt-3">
+                <label class="form-label">Start And End Date<span style="color: red">*</span></label>
+                <div class="input-group">
+                    <input type="text" class="form-control" value="<?php echo $startDate ?> - <?php echo $endDate ?>" type="text" readonly="" id="daterange" name="daterange" placeholder="Select date" style="background: white;" required>
+                    <div class="input-group-append">
+                        <span class="input-group-text fs-xl">
+                            <i class="fal fa-calendar-alt"></i>
+                        </span>
+                    </div>
                 </div>
             </div>
-        </div>
         <?php } else { ?>
-        <div class="col-md-12 mt-3">
-            <label class="form-label">Start Date<span style="color: red">*</span></label>
-            <div class="input-group">
+            <div class="col-md-12 mt-3">
+                <label class="form-label">Start Date<span style="color: red">*</span></label>
+                <div class="input-group">
                     <input style="background-color: white;" value="<?php echo $startDate ?>" class="form-control" id="datepicker-1" disabled>
                     <div class="input-group-append aa">
                         <span class="input-group-text fs-xl" id="calicon">
                             <i class="fal fa-calendar-alt"></i>
                         </span>
                     </div>
-                
+
+                </div>
             </div>
-        </div>
-        <div class="col-md-12 mt-3">
-            <label class="form-label">End Date<span style="color: red">*</span></label>
-            <div class="input-group">
-                    <input style="background-color: white;" value="<?php echo $endDate ?>"  class="form-control" id="datepicker-2" readonly>
+            <div class="col-md-12 mt-3">
+                <label class="form-label">End Date<span style="color: red">*</span></label>
+                <div class="input-group">
+                    <input style="background-color: white;" value="<?php echo $endDate ?>" class="form-control" id="datepicker-2" readonly>
                     <input type="hidden" name="daterange" id="datepicker-3" value="">
                     <div class="input-group-append aa">
                         <span class="input-group-text fs-xl" id="calicon">
                             <i class="fal fa-calendar-alt"></i>
                         </span>
                     </div>
-                
+
+                </div>
             </div>
-        </div>
-    <?php } ?>
+        <?php } ?>
         <div class="col-md-12 mt-3">
             <label class="form-label">Rent Amount<span style="color: red">*</span></label>
             <input class="form-control" placeholder=" Add Rent Amount" value="<?php echo $tenancyInfo[0]['rent_amount']; ?>" type="text" id="rent_amount" name="rent_amount" required>
@@ -123,53 +123,53 @@ echo $tenancyForDate;
     <div id="appendrow">
         <?php for ($i = 0; $i < count($paymentInfo); $i++) { ?>
             <div id="drow<?php echo $i ?>" class="forDelete">
-            <input value="<?php echo $paymentInfo[$i]['record_id']; ?>" id="payment_id" name="payment_id[]" style="display : none">
-            <div class="card mb-g">
-                <div class="col-md-12 mt-3" style="display: none;">
-                    <input type="text" style="display: none;">
-                </div>
-                <div class="col-md-12 mt-3">
-                    <label class="form-label">Select Payment Type:<span style="color: red">*</span></label>
-                    <select class="custom-select required" name="payment_type[]" id="payment_type" required="">
-                        <option selected value="<?php echo $paymentInfo[$i]['payment_type'] ?>"><?php echo ucfirst($paymentInfo[$i]['payment_type']); ?></option>
-                        <?php if ($paymentInfo[$i]['payment_type'] == 'cheque') { ?>
-                            <option value="cash">Cash</option>
-                        <?php } ?>
-                        <?php if ($paymentInfo[$i]['payment_type'] == 'cash') { ?>
-                            <option value="cheque">Cheque</option>
-                        <?php } ?>
-                    </select>
-                    <div class="invalid-feedback">
-                        Please Select Building.
+                <input value="<?php echo $paymentInfo[$i]['record_id']; ?>" id="payment_id" name="payment_id[]" style="display : none">
+                <div class="card mb-g">
+                    <div class="col-md-12 mt-3" style="display: none;">
+                        <input type="text" style="display: none;">
                     </div>
-                </div>
-                <div class="col-md-12 mt-3">
-                    <label class="form-label">Date<span style="color: red">*</span></label>
-                    <div class="input-group">
-                        <input type="text" class="form-control date" value="<?php echo date("d/M/Y", strtotime($paymentInfo[$i]['payment_date'])) ?>" placeholder=" Select date" id="date" name="date[]">
-                        <div class="input-group-append">
-                            <span class="input-group-text fs-xl">
-                                <i class="fal fa-calendar-alt"></i>
-                            </span>
+                    <div class="col-md-12 mt-3">
+                        <label class="form-label">Select Payment Type:<span style="color: red">*</span></label>
+                        <select class="custom-select required" name="payment_type[]" id="payment_type" required="">
+                            <option selected value="<?php echo $paymentInfo[$i]['payment_type'] ?>"><?php echo ucfirst($paymentInfo[$i]['payment_type']); ?></option>
+                            <?php if ($paymentInfo[$i]['payment_type'] == 'cheque') { ?>
+                                <option value="cash">Cash</option>
+                            <?php } ?>
+                            <?php if ($paymentInfo[$i]['payment_type'] == 'cash') { ?>
+                                <option value="cheque">Cheque</option>
+                            <?php } ?>
+                        </select>
+                        <div class="invalid-feedback">
+                            Please Select Building.
+                        </div>
+                    </div>
+                    <div class="col-md-12 mt-3">
+                        <label class="form-label">Date<span style="color: red">*</span></label>
+                        <div class="input-group">
+                            <input type="text" class="form-control date" value="<?php echo date("d/M/Y", strtotime($paymentInfo[$i]['payment_date'])) ?>" placeholder=" Select date" id="date" name="date[]">
+                            <div class="input-group-append">
+                                <span class="input-group-text fs-xl">
+                                    <i class="fal fa-calendar-alt"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 mt-3" id="cheque_no_div" <?php if ($paymentInfo[$i]['payment_type'] == 'cash') { ?> style="display: none;" <?php } ?>>
+                        <label class="form-label">Cheque #<span style="color: red">*</span></label>
+                        <input class="form-control cheque_no" placeholder=" Add Cheque No" value="<?php echo $paymentInfo[$i]['cheque_no'] ?>" type="number" id="cheque_no" name="cheque_no[]" required>
+                        <div class="invalid-feedback">
+                            Please select cash or cheque.
+                        </div>
+                    </div>
+                    <div class="col-md-12 mt-3 mb-3">
+                        <label class="form-label">Amount<span style="color: red">*</span></label>
+                        <input class="form-control" placeholder="Add Amount" value="<?php echo $paymentInfo[$i]['amount'] ?>" id="amount" name="amount[]" required>
+                        <div class="invalid-feedback">
+                            Please Add Amount.
                         </div>
                     </div>
                 </div>
-                <div class="col-md-12 mt-3" id="cheque_no_div" <?php if ($paymentInfo[$i]['payment_type'] == 'cash') { ?> style="display: none;" <?php } ?>>
-                    <label class="form-label">Cheque #<span style="color: red">*</span></label>
-                    <input class="form-control cheque_no" placeholder=" Add Cheque No" value="<?php echo $paymentInfo[$i]['cheque_no'] ?>" type="number" id="cheque_no" name="cheque_no[]" required>
-                    <div class="invalid-feedback">
-                        Please select cash or cheque.
-                    </div>
-                </div>
-                <div class="col-md-12 mt-3 mb-3">
-                    <label class="form-label">Amount<span style="color: red">*</span></label>
-                    <input class="form-control" placeholder="Add Amount" value="<?php echo $paymentInfo[$i]['amount'] ?>" id="amount" name="amount[]" required>
-                    <div class="invalid-feedback">
-                        Please Add Amount.
-                    </div>
-                </div>
             </div>
-        </div>
         <?php } ?>
 
     </div>
@@ -184,15 +184,15 @@ echo $tenancyForDate;
 
 <script>
     $(document).ready(function() {
-    $('#datepicker-2').datepicker({
-         autoclose: true,
-    startDate: new Date('<?php echo $endDate ?>'),
-    format: "d/M/yyyy",
-    orientation: "bottom left"
+        $('#datepicker-2').datepicker({
+            autoclose: true,
+            startDate: new Date('<?php echo $endDate ?>'),
+            format: "d/M/yyyy",
+            orientation: "bottom left"
         });
-    // $('.aa').click(function() {
-    // $("#datepicker-1").focus();
-    //     });
+        // $('.aa').click(function() {
+        // $("#datepicker-1").focus();
+        //     });
 
     });
 
@@ -262,7 +262,7 @@ echo $tenancyForDate;
         var amount = document.querySelectorAll('#amount');
         var total = 0;
         for (let index = 0; index < amountCount; index++) {
-            total += parseInt(amount[index].value);
+            total += parseFloat(amount[index].value);
         }
 
         if (rentAmount != total) {
@@ -289,23 +289,31 @@ echo $tenancyForDate;
             }
 
         }
+        <?php if ($tenancyForDate != 'tenancy') { ?>
+
+            var lable = 'Yes, Extended it!';
+            var title = 'Extend';
+        <?php } else { ?>
+            var lable = 'Yes, update it!';
+            var title = 'Update';
+        <?php } ?>
         Swal.fire({
-            title: "Are you sure you want to update?",
+            title: "Are you sure you want to " + title + "?",
             type: "warning",
             confirmButtonColor: '#437dd0',
             showCancelButton: true,
-            confirmButtonText: "Yes, update it!",
+            confirmButtonText: lable,
         }).then(function(result) {
             if (result.value) {
-                <?php if($tenancyForDate != 'tenancy') { ?>
-               var date=$('#datepicker-1').val()+ "-" +$('#datepicker-2').val();
-               $("#datepicker-3").val(date);
-               console.log(date);
-           <?php } ?>
+                <?php if ($tenancyForDate != 'tenancy') { ?>
+                    var date = $('#datepicker-1').val() + "-" + $('#datepicker-2').val();
+                    $("#datepicker-3").val(date);
+                    console.log(date);
+                <?php } ?>
                 $("#tenancy_submit").submit();
                 // var value='Update Sucessfully';
                 //DeleteToast(value);
-                Swal.fire("Updated!", "Updated Sucessfully.", "success");
+                Swal.fire(title + "ed!", title + "ed Sucessfully.", "success");
             }
         });
         // if (confirm("Do you want to add tenancy?")) {
@@ -320,8 +328,8 @@ echo $tenancyForDate;
     }
 
     $('input[name="daterange"]').daterangepicker({
-       
-  
+
+
         // minDate: new Date('10/Feb/2022'),
         opens: 'left',
         drops: 'up',
@@ -338,10 +346,10 @@ echo $tenancyForDate;
 
 
     $("#no_of_payments").keyup(function() {
-        numberOfPayment=$('#numberofpayment').val();
+        numberOfPayment = $('#numberofpayment').val();
         var count = $("#no_of_payments").val();
         var rowIdx = 0;
-        var forDelete=document.querySelectorAll('.forDelete');
+        var forDelete = document.querySelectorAll('.forDelete');
         // for (let index = 0; index < forDelete.length; index++) {
         //     debugger;
         //     if(count-1 < index)
@@ -350,11 +358,10 @@ echo $tenancyForDate;
         //     }
         // }
         for (let index = 0; index < count; index++) {
-             if(numberOfPayment > index)
-            {
+            if (numberOfPayment > index) {
                 continue;
             }
-            
+
 
             $('#appendrow').append(` <div id="drow${index}" class="forDelete">
                         <input value="0" id="payment_id" name="payment_id[]" style="display : none">

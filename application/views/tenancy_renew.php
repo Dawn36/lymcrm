@@ -122,7 +122,7 @@ $heading = "Renew Tenancy";
                                                         <button title="Renew Tenancy" onclick="RenewTenancy(<?php echo $recordId; ?>)" class="btn btn-sm btn-primary bg-brand-gradient" title="Renew Tenancy" <?php if ($tenancyInfo[$i]['is_renew'] == 'yes') { ?> disabled <?php } ?>><i class="fal fa-check"></i></button>
                                                         <button onclick="EditTenancy(<?php echo $recordId; ?>)" <?php if ($tenancyInfo[$i]['is_renew'] == 'yes') { ?> disabled <?php } ?> class="btn btn-sm btn-primary bg-brand-gradient" title="Extended Tenancy"><i class="fal fa-edit"></i></button>
                                                         <?php if ($this->session->userdata('role_id') == SUPER_ADMIN) { ?>
-                                                            <button title="Terminated " type="button" onclick="DeleteTenancy(<?php echo $recordId; ?>,<?php echo $tenancyInfo[$i]['apartment_id'] ?>)" data-id="<?php echo $i; ?>" class="btn btn-sm btn-primary bg-brand-gradient" title="Terminated " <?php if ($tenancyInfo[$i]['is_renew'] == 'yes') { ?> disabled <?php } ?>><i class="fal fa-times"></i></button>
+                                                            <button title="Terminate" type="button" onclick="DeleteTenancy(<?php echo $recordId; ?>,<?php echo $tenancyInfo[$i]['apartment_id'] ?>)" data-id="<?php echo $i; ?>" class="btn btn-sm btn-primary bg-brand-gradient" title="Terminate" <?php if ($tenancyInfo[$i]['is_renew'] == 'yes') { ?> disabled <?php } ?>><i class="fal fa-times"></i></button>
                                                         <?php } ?>
                                                     </center>
                                                 </td>
@@ -307,12 +307,11 @@ $heading = "Renew Tenancy";
 
         };
         Swal.fire({
-            title: "Are you sure want to delete?",
-            text: "You won't be able to revert this!",
+            title: "Are you sure want to Terminate?",
             type: "warning",
             confirmButtonColor: '#437dd0',
             showCancelButton: true,
-            confirmButtonText: "Yes, delete it!",
+            confirmButtonText: "Yes, terminate it!",
         }).then(function(result) {
             if (result.value) {
                 $.ajax({
@@ -329,7 +328,7 @@ $heading = "Renew Tenancy";
                 });
                 // var value='Update Sucessfully';
                 //DeleteToast(value);
-                Swal.fire("Deleted!", "Deleted Sucessfully.", "success");
+                Swal.fire("Terminate!", "Terminated Sucessfully.", "success");
             }
         });
         // if (confirm('Are you sure you want to delete Tenancy?')) {

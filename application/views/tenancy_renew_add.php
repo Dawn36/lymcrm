@@ -3,7 +3,7 @@
 // print_r($buildingInfo);
 // print_r($tenantInfo);
 // echo '<pre>';
- //print_r($tenancyInfo);
+$endDate = date("d/M/Y", strtotime($tenancyInfo[0]['end_date']));
 ?>
 <form class="needs-validation" name='tenancy_submit' id='tenancy_submit' method='post' action="/tenancy_renew_submit" novalidate>
 
@@ -15,7 +15,7 @@
 
         <div class="col-md-12 mt-3">
             <label class="form-label">Tenancy #<span style="color: red">*</span></label>
-            <input class="form-control" placeholder="Add tenancy #" id="tenancy_no" name="tenancy_no" value="<?php echo $tenancyInfo[0]['tenancy_no']; ?>"  required>
+            <input class="form-control" placeholder="Add tenancy #" id="tenancy_no" name="tenancy_no" value="<?php echo $tenancyInfo[0]['tenancy_no']; ?>" required>
             <div class="invalid-feedback">
                 Please Select Tenancy.
             </div>
@@ -46,14 +46,13 @@
         <div class="col-md-12 mt-3">
             <label class="form-label">Tenant for Tenancy<span style="color: red">*</span></label>
             <select class="custom-select required" name="tenant" id="tenant" readonly required="">
-                <?php for ($i = 0; $i < count($tenantInfo); $i++) { 
-                    if($tenancyInfo[0]['tenant_id'] == $tenantInfo[$i]['record_id'])
-                    {
+                <?php for ($i = 0; $i < count($tenantInfo); $i++) {
+                    if ($tenancyInfo[0]['tenant_id'] == $tenantInfo[$i]['record_id']) {
 
-                    ?>
-                    <option selected readonly value="<?php echo $tenantInfo[$i]['record_id']; ?>"><?php echo ucfirst($tenantInfo[$i]['name']); ?></option>
+                ?>
+                        <option selected readonly value="<?php echo $tenantInfo[$i]['record_id']; ?>"><?php echo ucfirst($tenantInfo[$i]['name']); ?></option>
                 <?php }
-                    } ?>
+                } ?>
             </select>
             <div class="invalid-feedback">
                 Please Select Tenant.
@@ -204,7 +203,7 @@
         var amount = document.querySelectorAll('#amount');
         var total = 0;
         for (let index = 0; index < amountCount; index++) {
-            total += parseInt(amount[index].value);
+            total += parseFloat(amount[index].value);
         }
 
         if (rentAmount != total) {
@@ -258,7 +257,7 @@
     $('input[name="daterange"]').daterangepicker({
         opens: 'left',
         drops: 'up',
-        minDate: new Date(),
+        minDate: new Date('<?= $endDate ?>'),
         locale: {
             format: 'DD/MMM/YYYY'
         }
