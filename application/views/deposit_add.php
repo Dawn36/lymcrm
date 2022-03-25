@@ -1,5 +1,5 @@
 <?php echo validation_errors('<div class="alert alert-danger">', '</div'); ?>
-<form class="needs-validation" name='addDepositForm' id='addDepositForm' method='post' action="/deposit_verification" novalidate  enctype="multipart/form-data">
+<form class="needs-validation" name='addDepositForm' id='addDepositForm' method='post' action="/deposit_verification" novalidate enctype="multipart/form-data">
     <input type="hidden" name="auto_send" id="auto_send" value="0">
     <div class="card mb-g">
         <div class="col-md-12 mt-3" style="display: none;">
@@ -61,16 +61,16 @@
         </div>
         <div class="col-md-12  mb-3">
             <label class="form-label">Amount</label>
-            <input class="form-control" placeholder="Amount" type="text" id="amount"  disabled>
+            <input class="form-control" placeholder="Amount" type="text" id="amount" disabled>
 
         </div>
         <div class="col-md-12  mb-3">
             <label class="form-label">Cheque / Cash Date</label>
-            <input class="form-control" placeholder="Cheque / Cash Date" type="text" id="payment_date"  disabled>
+            <input class="form-control" placeholder="Cheque / Cash Date" type="text" id="payment_date" disabled>
 
         </div>
         <div class="col-md-12 mb-3">
-           <input class="form-control alphaonly mt-3" type="file" onchange="return fileValidation()" id='file_uploade' name='deposit[]' multiple>
+            <input class="form-control alphaonly mt-3" type="file" onchange="return fileValidation()" id='file_uploade' name='deposit[]' multiple>
         </div>
     </div>
 
@@ -84,7 +84,7 @@
 </form>
 
 <script>
-     function fileValidation() {
+    function fileValidation() {
         var fileInput = document.getElementById('file_uploade');
 
         var filePath = fileInput.value;
@@ -93,8 +93,8 @@
             /(\.jpg|\.jpeg|\.png|\.gif)$/i;
 
         if (!allowedExtensions.exec(filePath)) {
-           // alert('Invalid file type only png file is accepted!');
-            value='Invalid file type only png, jpg, jpeg, gif file is accepted!';
+            // alert('Invalid file type only png file is accepted!');
+            value = 'Invalid file type only png, jpg, jpeg, gif file is accepted!';
             Toast(value);
             fileInput.value = '';
             return false;
@@ -102,37 +102,35 @@
             return true;
         }
     }
-    var checkArray='';
+    var checkArray = '';
+
     function GetPaymentDate(val) {
-        if(val == 1)
-        {
+        if (val == 1) {
             $("#payment_date").val("No Date Found");
             $("#amount").val("No Date Found");
         }
-        if(val == "")
-        {
+        if (val == "") {
             $("#payment_date").val("Cheque / Cash Date");
             $("#amount").val("Amount");
-        }
-        else
-        {
-           var id = $("#cheque_no").find(':selected').data('record_id');
-        for (var i = 0; i < checkArray.length; i++) {
-            
-            if (checkArray[i].record_id == id) {
-                paymentDate=checkArray[i].payment_date.split(" ");
-                $("#payment_date").val(paymentDate[0]);
-                $("#amount").val(checkArray[i].amount);
-             
+        } else {
+            var id = $("#cheque_no").find(':selected').data('record_id');
+            for (var i = 0; i < checkArray.length; i++) {
+
+                if (checkArray[i].record_id == id) {
+                    paymentDate = checkArray[i].payment_date.split(" ");
+                    $("#payment_date").val(paymentDate[0]);
+                    $("#amount").val(checkArray[i].amount);
+
+                }
             }
-        } 
         }
-        
+
     }
+
     function GetCheque() {
         var type = $("#type").val();
         var tenantId = $("#tenant").val();
-         $("#cheque_cash").text(type.toUpperCase());
+        $("#cheque_cash").text(type.toUpperCase());
         var data = {
             type: type,
             tenantId: tenantId
@@ -148,7 +146,7 @@
                 if (resulta.length >= 1) {
                     $('#cheque_no').html('');
                     var option = document.createElement("option");
-                    option.text = "Select "+type;
+                    option.text = "Select " + type;
                     option.value = "";
                     var select = document.getElementById("cheque_no");
                     select.appendChild(option);
@@ -162,7 +160,7 @@
                         select.appendChild(option);
                     }
                 } else {
-                    $('#cheque_no').html('<option value="">No '+type+' Found</option>');
+                    $('#cheque_no').html('<option value="">No ' + type + ' Found</option>');
                     GetPaymentDate('1');
                 }
 
@@ -283,47 +281,46 @@
             $('#cheque_no').focus();
             return false;
         }
-                Swal.fire({
-                    title: "Do you want to send Email?",
-                    type: "warning",
-                    confirmButtonColor: '#437dd0',
-                    showCancelButton: true,
-                    confirmButtonText: "Send it now",
-                    cancelButtonText: "Send it later"
-                }).then(function(result) {
-                     if(result.dismiss == 'cancel')
-                        {
-                            $('#auto_send').val('0');
-                            $("#addDepositForm").submit();
-                            Swal.fire("Added!", "added Sucessfully.", "success");
-                        }
-                    if (result.value) {
-                       
-                        $('#auto_send').val('1');
-                         var addDepositForm = document.getElementById('addDepositForm');
-                            var formData = new FormData(addDepositForm); 
-                        $.ajax({
-                             
-                            url: baseurl + 'deposit_verification',
-                            type: 'POST',
-                            data: formData,
-                            success: function(result) {
-                                $('.modal-title').html('Email Deposit Slip');
-                                //  $('#modal-body').html(``);
-                                $('#modal-body').html(result);
-                                $('#myModal').modal();
+        Swal.fire({
+            title: "Do you want to send Email?",
+            type: "warning",
+            confirmButtonColor: '#437dd0',
+            showCancelButton: true,
+            confirmButtonText: "Send it now",
+            cancelButtonText: "Send it later"
+        }).then(function(result) {
+            if (result.dismiss == 'cancel') {
+                $('#auto_send').val('0');
+                $("#addDepositForm").submit();
+                Swal.fire("Added!", "added Sucessfully.", "success");
+            }
+            if (result.value) {
 
-                            },
-                            cache: false,
-                            contentType: false,
-                            processData: false
-                        });
-                        
-                        // var value='Update Sucessfully';
-                        //DeleteToast(value);
-                        
-                    }
+                $('#auto_send').val('1');
+                var addDepositForm = document.getElementById('addDepositForm');
+                var formData = new FormData(addDepositForm);
+                $.ajax({
+
+                    url: baseurl + 'deposit_verification',
+                    type: 'POST',
+                    data: formData,
+                    success: function(result) {
+                        $('.modal-title').html('Email Deposit Slip');
+                        //  $('#modal-body').html(``);
+                        $('#modal-body').html(result);
+                        $('#myModal').modal();
+
+                    },
+                    cache: false,
+                    contentType: false,
+                    processData: false
                 });
-            
+
+                // var value='Update Sucessfully';
+                //DeleteToast(value);
+
+            }
+        });
+
     }
 </script>
