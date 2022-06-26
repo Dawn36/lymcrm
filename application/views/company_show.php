@@ -1,5 +1,5 @@
 <?php
-$heading = "Owner";
+$heading = "Company";
 
 ?>
 <style type="text/css">
@@ -12,7 +12,7 @@ $heading = "Owner";
 
     <ol class="breadcrumb page-breadcrumb">
         <li class="breadcrumb-item"><a href="javascript:void(0);">Lymcrm</a></li>
-        <li class="breadcrumb-item">Owner</li>
+        <li class="breadcrumb-item">Company</li>
 
         <li class="position-absolute pos-top pos-right d-none d-sm-block"><span class="js-get-date"></span></li>
     </ol>
@@ -20,11 +20,10 @@ $heading = "Owner";
     <div id="content">
         <div class="row">
             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
-                <h1> <span class="page-title txt-color-blueDark">Owner</span></h1>
+                <h1> <span class="page-title txt-color-blueDark">Company</span></h1>
             </div>
             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-8">
-                <button onclick="AddOwner()" class="btn btn-primary float-right bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Add Owner" type="button"><i class="fas fa-plus" style="margin-right: 4px"></i>Add Owner</button>
-                <button class=" btn btn-primary float-right bg-brand-gradient mr-3" onclick="OwnerUploader()"><i class="fas fa-file-import mr-2"></i>Import Owner</button>
+                <button onclick="AddCompany()" class="btn btn-primary float-right bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Add Company" type="button"><i class="fas fa-plus" style="margin-right: 4px"></i>Add Company</button>
             </div>
         </div>
         <section id="" class="">
@@ -47,13 +46,13 @@ $heading = "Owner";
                                                 <center>Contact#</center>
                                             </th>
                                             <th nowrap>
+                                                <center>Address</center>
+                                            </th>
+                                            <th nowrap>
                                                 <center>Created By</center>
                                             </th>
                                             <th nowrap>
                                                 <center>Updated By</center>
-                                            </th>
-                                            <th nowrap>
-                                                <center>Status</center>
                                             </th>
                                             <th nowrap>
                                                 <center>
@@ -94,9 +93,9 @@ $heading = "Owner";
                                                 </td>
                                                 <td nowrap>
                                                     <center>
-                                                        <button onclick="EditOwner(<?php echo $ownerId ?>)" class="btn btn-sm btn-primary bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Edit Owner"><i class="fal fa-edit"></i></button>&nbsp;
+                                                        <button onclick="EditCompany(<?php echo $ownerId ?>)" class="btn btn-sm btn-primary bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Edit Company"><i class="fal fa-edit"></i></button>&nbsp;
                                                         <?php if ($this->session->userdata('role_id') == SUPER_ADMIN) { ?>
-                                                            <button onclick="DeleteOwner(<?php echo $ownerId ?>)" class="btn btn-sm btn-primary bg-brand-gradient " data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Delete Owner"><i class="fal fa-times"></i></button>
+                                                            <button onclick="DeleteCompany(<?php echo $ownerId ?>)" class="btn btn-sm btn-primary bg-brand-gradient " data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Delete Company"><i class="fal fa-times"></i></button>
                                                         <? } ?>
                                                     </center>
                                                 </td>
@@ -132,17 +131,17 @@ $heading = "Owner";
     // }
 
 
-    function EditOwner(id) {
+    function EditCompany(id) {
         var data = {
             id: id,
             tablename: 'owner'
         };
         $.ajax({
-            url: baseurl + 'owner_edit',
+            url: baseurl + 'company_edit',
             type: 'POST',
             data: data,
             success: function(result) {
-                $('.modal-title').html('Edit Owner');
+                $('.modal-title').html('Edit Company');
                 $('#modal-body').html(result);
                 // $('#modal-body').children()[0][0].value = id;
                 $('#myModal').modal();
@@ -151,7 +150,7 @@ $heading = "Owner";
 
     }
 
-    function DeleteOwner(id) {
+    function DeleteCompany(id) {
 
         Swal.fire({
             title: "Are you sure want to delete?",
@@ -181,17 +180,7 @@ $heading = "Owner";
                 Swal.fire("Deleted!", "Deleted Sucessfully.", "success");
             }
         });
-        //      var data = { id: id , tablename : 'owner'};
-        //  $.ajax({
-        //     url: baseurl + 'delete',
-        //     type: 'POST',
-        //     data: data,
-        //     success: function(result) {
-        //         var value='Delete Sucessfully';
-        //         DeleteToast(value);
-        //        window.location.reload();
-        //     }
-        // }); 
+
     }
 
 
@@ -201,28 +190,15 @@ $heading = "Owner";
         DeleteToast(value);
     }
 
-    function AddOwner() {
+    function AddCompany() {
         $.ajax({
-            url: baseurl + 'owner_add',
+            url: baseurl + 'company_add',
             success: function(result) {
 
-                $('.modal-title').html('Add Owner');
+                $('.modal-title').html('Add Company');
                 $('#modal-body').html(result);
                 // $('#modal-body').children()[0][0].value = id;
                 $('#myModal').modal();
-            }
-        });
-
-    }
-
-    function OwnerUploader() {
-        $.ajax({
-            url: baseurl + 'owner_uploader',
-            success: function(result) {
-                $('#modal-title-small').html('Upload Owner');
-                $('#modal-body-center-small').html(result);
-                // $('#modal-body').children()[0][0].value = id;
-                $('#myModalCenterSmall').modal();
             }
         });
 

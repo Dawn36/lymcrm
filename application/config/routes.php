@@ -87,6 +87,17 @@ $route['admin_delete'] = '/AdminControllers/DeleteAdmin';
 $route['admin_password_exit'] = '/AdminControllers/PasswordExit';
 $route['admin_change_password_modal'] = '/AdminControllers/ChangePasswordModal';
 $route['change_password'] = '/AdminControllers/ChangePassword';
+//////////////////////   Company ///////////////////////////////////////////
+$route['company']             = '/CompanyControllers';
+$route['company_add']         = '/CompanyControllers/LoadAddScreen';
+$route['company_edit']        = '/CompanyControllers/LoadEditScreen';
+
+///////////////////// Complaint ////////////////////////////////////////////
+$route['complaint']             = '/ComplaintControllers';
+$route['complaint_add']         = '/ComplaintControllers/LoadAddScreen';
+$route['complaint_edit']        = '/ComplaintControllers/LoadEditScreen';
+$route['assign_complaint']        = '/ComplaintControllers/AssignComplaint';
+
 
 /////////////////////      Owner     ////////////////////////////////////////////
 $route['owner']             = '/OwnerControllers';

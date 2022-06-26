@@ -16,12 +16,15 @@ $profilePicture = $this->session->userdata('profile_picture') ? $this->session->
     .mr4 {
         margin-right: 4px;
     }
-    .pointer {cursor: pointer;}
+
+    .pointer {
+        cursor: pointer;
+    }
 </style>
 <!-- BEGIN Left Aside -->
 <aside class="page-sidebar">
     <div class="page-logo">
-        <a href="/infection_dashboard" class="page-logo-link press-scale-down d-flex align-items-center position-relative" >
+        <a href="/infection_dashboard" class="page-logo-link press-scale-down d-flex align-items-center position-relative">
             <!-- <img src="/ssets/dist/img/logo-2.png" alt="SmartAdmin WebApp" aria-roledescription="logo"> -->
             <img src="/assets/dist/img/logo-2.png" style="height: 50px;margin-left: 44px;">
 
@@ -99,6 +102,16 @@ $profilePicture = $this->session->userdata('profile_picture') ? $this->session->
                         <span class="nav-link-text" data-i18n="nav.Tenancy">Renew Tenancy</span>
                     </a>
                 </li>
+                <li>
+                    <a href="/company" title="Company" data-filter-tags="Company"><i class="fas fa-city"></i>
+                        <span class="nav-link-text" data-i18n="nav.Company">Company</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/complaint" title="Complaint" data-filter-tags="Complaint"><i class="fal fa-file"></i>
+                        <span class="nav-link-text" data-i18n="nav.Complaint">Complaint</span>
+                    </a>
+                </li>
             </ul>
         <?php }
         if ($this->session->userdata('role_id') == OWNER) { ?>
@@ -113,6 +126,11 @@ $profilePicture = $this->session->userdata('profile_picture') ? $this->session->
                         <span class="nav-link-text" data-i18n="nav.Tenant">Tenant/Tenancy</span>
                     </a>
                 </li>
+                <li>
+                    <a href="/complaint" title="Complaint" data-filter-tags="Complaint"><i class="fal fa-file"></i>
+                        <span class="nav-link-text" data-i18n="nav.Complaint">Complaint</span>
+                    </a>
+                </li>
             </ul>
         <?php }
         if ($this->session->userdata('role_id') == TENANT) { ?>
@@ -120,6 +138,11 @@ $profilePicture = $this->session->userdata('profile_picture') ? $this->session->
                 <li>
                     <a href="/tenant_tenancy" title="Tenancy" data-filter-tags="Tenancy"><i class="fas fa-file-contract"></i>
                         <span class="nav-link-text" data-i18n="nav.Tenancy">Tenancy</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/complaint" title="Complaint" data-filter-tags="Complaint"><i class="fal fa-file"></i>
+                        <span class="nav-link-text" data-i18n="nav.Complaint">Complaint</span>
                     </a>
                 </li>
 
@@ -228,9 +251,10 @@ $profilePicture = $this->session->userdata('profile_picture') ? $this->session->
 
     <script>
         $(".swatches li").click(function() {
-    $(".swatches li").removeClass('active');
-    $(this).addClass('active');
-});
+            $(".swatches li").removeClass('active');
+            $(this).addClass('active');
+        });
+
         function AddUser() {
 
         }

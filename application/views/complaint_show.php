@@ -1,5 +1,5 @@
 <?php
-$heading = "Owner";
+$heading = "Complaint";
 
 ?>
 <style type="text/css">
@@ -12,7 +12,7 @@ $heading = "Owner";
 
     <ol class="breadcrumb page-breadcrumb">
         <li class="breadcrumb-item"><a href="javascript:void(0);">Lymcrm</a></li>
-        <li class="breadcrumb-item">Owner</li>
+        <li class="breadcrumb-item">Complaint</li>
 
         <li class="position-absolute pos-top pos-right d-none d-sm-block"><span class="js-get-date"></span></li>
     </ol>
@@ -20,12 +20,13 @@ $heading = "Owner";
     <div id="content">
         <div class="row">
             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
-                <h1> <span class="page-title txt-color-blueDark">Owner</span></h1>
+                <h1> <span class="page-title txt-color-blueDark">Complaint</span></h1>
             </div>
-            <div class="col-xs-12 col-sm-7 col-md-7 col-lg-8">
-                <button onclick="AddOwner()" class="btn btn-primary float-right bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Add Owner" type="button"><i class="fas fa-plus" style="margin-right: 4px"></i>Add Owner</button>
-                <button class=" btn btn-primary float-right bg-brand-gradient mr-3" onclick="OwnerUploader()"><i class="fas fa-file-import mr-2"></i>Import Owner</button>
-            </div>
+            <?php if ($this->session->userdata('role_id') != OWNER) { ?>
+                <div class="col-xs-12 col-sm-7 col-md-7 col-lg-8">
+                    <button onclick="AddComplaint()" class="btn btn-primary float-right bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Add Complaint" type="button"><i class="fas fa-plus" style="margin-right: 4px"></i>Add Complaint</button>
+                </div>
+            <?php } ?>
         </div>
         <section id="" class="">
             <div class="row">
@@ -38,70 +39,121 @@ $heading = "Owner";
                                     <thead class="bg-primary-600 bg-brand-gradient">
                                         <tr>
                                             <th nowrap>
-                                                <center>Name</center>
+                                                <center>Complaint #</center>
                                             </th>
                                             <th nowrap>
-                                                <center>Email</center>
+                                                <center>Tenant</center>
                                             </th>
                                             <th nowrap>
-                                                <center>Contact#</center>
+                                                <center>Building</center>
                                             </th>
                                             <th nowrap>
-                                                <center>Created By</center>
+                                                <center>Appartment </center>
                                             </th>
                                             <th nowrap>
-                                                <center>Updated By</center>
+                                                <center>Owner</center>
                                             </th>
                                             <th nowrap>
-                                                <center>Status</center>
+                                                <center>Complaint Date</center>
                                             </th>
                                             <th nowrap>
-                                                <center>
+                                                <center>Complaint Status</center>
+                                            </th>
+                                            <?php if ($this->session->userdata('role_id') == SUPER_ADMIN) { ?>
+
+                                                <th nowrap>
+                                                    <center>Cost</center>
+                                                </th>
+                                                <th nowrap>
+                                                    <center>Assign to</center>
+                                                </th>
+                                                <th nowrap>
+                                                    <center>Assign Date</center>
+                                                </th>
+                                            <?php } ?>
+
+                                            <th nowrap>
+                                                <center>Complaint Message</center>
+                                            </th>
+                                            <?php if ($this->session->userdata('role_id') != OWNER) { ?>
+                                                <th nowrap>
                                                     <center>Action</center>
-                                            </th>
+                                                </th>
+                                            <?php } ?>
                                         </tr>
                                     </thead>
                                     <tbody>
 
-                                        <?php for ($i = 0; $i < count($ownerData); $i++) {
-                                            $ownerId = $ownerData[$i]['record_id'];
-                                        ?>
-                                            <tr style="cursor:pointer">
+                                        <tr style="cursor:pointer">
+
+                                            <td>
+                                                <center>1</center>
+                                            </td>
+                                            <td>
+                                                <center>Abudla</center>
+                                            </td>
+                                            <td>
+                                                <center>aaa</center>
+                                            </td>
+                                            <td>
+                                                <center>12
+
+                                                </center>
+                                            </td>
+                                            <td>
+                                                <center>Dawn
+
+                                                </center>
+                                            </td>
+                                            <td>
+                                                <center>12/09/2022
+
+                                                </center>
+                                            </td>
+                                            <td>
+                                                <center>pending
+
+                                                </center>
+                                            </td>
+                                            <?php if ($this->session->userdata('role_id') == SUPER_ADMIN) { ?>
 
                                                 <td>
-                                                    <center><?php echo  ucwords($ownerData[$i]['name']) ?></center>
+                                                    <center>
+                                                        100
+                                                    </center>
                                                 </td>
                                                 <td>
-                                                    <center><?php echo $ownerData[$i]['email'] ?></center>
-                                                </td>
-                                                <td>
-                                                    <center><?php echo $ownerData[$i]['phone_number'] ?></center>
-                                                </td>
-                                                <td>
-                                                    <center><?php echo ucwords($ownerData[$i]['created_name']) ?>
+                                                    <center>
 
                                                     </center>
                                                 </td>
                                                 <td>
-                                                    <center><?php echo ucwords($ownerData[$i]['updated_name']) ?>
+                                                    <center>
 
                                                     </center>
                                                 </td>
-                                                <td>
-                                                    <center><?php echo ucwords($ownerData[$i]['status']) ?>
 
-                                                    </center>
-                                                </td>
+                                            <?php } ?>
+
+                                            <td>
+                                                <center>pani nhi ahraha
+
+                                                </center>
+                                            </td>
+                                            <?php if ($this->session->userdata('role_id') != OWNER) { ?>
+
                                                 <td nowrap>
                                                     <center>
-                                                        <button onclick="EditOwner(<?php echo $ownerId ?>)" class="btn btn-sm btn-primary bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Edit Owner"><i class="fal fa-edit"></i></button>&nbsp;
+                                                        <button onclick="EditComplaint('1')" class="btn btn-sm btn-primary bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Edit Complaint"><i class="fal fa-edit"></i></button>&nbsp;
                                                         <?php if ($this->session->userdata('role_id') == SUPER_ADMIN) { ?>
-                                                            <button onclick="DeleteOwner(<?php echo $ownerId ?>)" class="btn btn-sm btn-primary bg-brand-gradient " data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Delete Owner"><i class="fal fa-times"></i></button>
+                                                            <button onclick="AssignComplaint('1')" class="btn btn-sm btn-primary bg-brand-gradient " data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Assign Complaint"><i class="fal fa-align-left"></i></button>
+                                                            <button onclick="DeleteComplaint('1')" class="btn btn-sm btn-primary bg-brand-gradient " data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Delete Complaint"><i class="fal fa-times"></i></button>
                                                         <? } ?>
                                                     </center>
                                                 </td>
-                                            </tr>
-                                        <?  } ?>
+                                            <?php } ?>
+
+                                        </tr>
 
                                     </tbody>
                                 </table>
@@ -121,28 +173,17 @@ $heading = "Owner";
 <!-- this overlay is activated only when mobile menu is triggered -->
 <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div>
 <script type="text/javascript">
-    //     if(location.href.split('=')[1].split('=')[0] == '1')
-    // {
-    //     Message("File Uploaded Sucessfully");
-    // }
-
-    // if(location.href.split('=')[1].split('=')[0] == '0')
-    // {
-    //     Message("Header not match"); 
-    // }
-
-
-    function EditOwner(id) {
+    function EditComplaint(id) {
         var data = {
             id: id,
             tablename: 'owner'
         };
         $.ajax({
-            url: baseurl + 'owner_edit',
+            url: baseurl + 'complaint_edit',
             type: 'POST',
             data: data,
             success: function(result) {
-                $('.modal-title').html('Edit Owner');
+                $('.modal-title').html('Edit Complaint');
                 $('#modal-body').html(result);
                 // $('#modal-body').children()[0][0].value = id;
                 $('#myModal').modal();
@@ -151,7 +192,26 @@ $heading = "Owner";
 
     }
 
-    function DeleteOwner(id) {
+    function AssignComplaint(id) {
+        var data = {
+            id: id,
+            tablename: 'owner'
+        };
+        $.ajax({
+            url: baseurl + 'assign_complaint',
+            type: 'POST',
+            data: data,
+            success: function(result) {
+                $('.modal-title').html('Assign Company');
+                $('#modal-body').html(result);
+                // $('#modal-body').children()[0][0].value = id;
+                $('#myModal').modal();
+            }
+        });
+
+    }
+
+    function DeleteComplaint(id) {
 
         Swal.fire({
             title: "Are you sure want to delete?",
@@ -181,48 +241,18 @@ $heading = "Owner";
                 Swal.fire("Deleted!", "Deleted Sucessfully.", "success");
             }
         });
-        //      var data = { id: id , tablename : 'owner'};
-        //  $.ajax({
-        //     url: baseurl + 'delete',
-        //     type: 'POST',
-        //     data: data,
-        //     success: function(result) {
-        //         var value='Delete Sucessfully';
-        //         DeleteToast(value);
-        //        window.location.reload();
-        //     }
-        // }); 
+
     }
 
-
-
-    function Message(message) {
-        var value = message;
-        DeleteToast(value);
-    }
-
-    function AddOwner() {
+    function AddComplaint() {
         $.ajax({
-            url: baseurl + 'owner_add',
+            url: baseurl + 'complaint_add',
             success: function(result) {
 
-                $('.modal-title').html('Add Owner');
+                $('.modal-title').html('Add Complaint');
                 $('#modal-body').html(result);
                 // $('#modal-body').children()[0][0].value = id;
                 $('#myModal').modal();
-            }
-        });
-
-    }
-
-    function OwnerUploader() {
-        $.ajax({
-            url: baseurl + 'owner_uploader',
-            success: function(result) {
-                $('#modal-title-small').html('Upload Owner');
-                $('#modal-body-center-small').html(result);
-                // $('#modal-body').children()[0][0].value = id;
-                $('#myModalCenterSmall').modal();
             }
         });
 
