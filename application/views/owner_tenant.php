@@ -83,10 +83,10 @@ $heading = "Property";
                                                     <center><?php echo $getTenantProperty[$i]['apartment_number'] ?></center>
                                                 </td>
                                                 <td>
-                                                    <center><?php echo date('Y-m-d', strtotime($getTenantTenancy[$i]['start_date'])); ?></center>
+                                                    <center><?php echo date('Y-m-d', strtotime($getTenantProperty[$i]['start_date'])); ?></center>
                                                 </td>
                                                 <td>
-                                                    <center><?php echo date('Y-m-d', strtotime($getTenantTenancy[$i]['end_date'])); ?></center>
+                                                    <center><?php echo date('Y-m-d', strtotime($getTenantProperty[$i]['end_date'])); ?></center>
                                                 </td>
                                                 <td>
                                                     <center><?php echo $getTenantProperty[$i]['no_of_payments'] ?></center>

@@ -62,40 +62,41 @@ $heading = "Company";
                                     </thead>
                                     <tbody>
 
-                                        <?php for ($i = 0; $i < count($ownerData); $i++) {
-                                            $ownerId = $ownerData[$i]['record_id'];
+                                        <?php for ($i = 0; $i < count($companyData); $i++) {
+                                            $companyId = $companyData[$i]['record_id'];
                                         ?>
                                             <tr style="cursor:pointer">
 
                                                 <td>
-                                                    <center><?php echo  ucwords($ownerData[$i]['name']) ?></center>
+                                                    <center><?php echo  ucwords($companyData[$i]['name']) ?></center>
                                                 </td>
                                                 <td>
-                                                    <center><?php echo $ownerData[$i]['email'] ?></center>
+                                                    <center><?php echo $companyData[$i]['email'] ?></center>
                                                 </td>
                                                 <td>
-                                                    <center><?php echo $ownerData[$i]['phone_number'] ?></center>
+                                                    <center><?php echo $companyData[$i]['phone_number'] ?></center>
                                                 </td>
                                                 <td>
-                                                    <center><?php echo ucwords($ownerData[$i]['created_name']) ?>
+                                                    <center><?php echo ucwords($companyData[$i]['address']) ?>
 
                                                     </center>
                                                 </td>
                                                 <td>
-                                                    <center><?php echo ucwords($ownerData[$i]['updated_name']) ?>
+                                                    <center><?php echo ucwords($companyData[$i]['created_name']) ?>
 
                                                     </center>
                                                 </td>
                                                 <td>
-                                                    <center><?php echo ucwords($ownerData[$i]['status']) ?>
+                                                    <center><?php echo ucwords($companyData[$i]['updated_name']) ?>
 
                                                     </center>
                                                 </td>
+
                                                 <td nowrap>
                                                     <center>
-                                                        <button onclick="EditCompany(<?php echo $ownerId ?>)" class="btn btn-sm btn-primary bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Edit Company"><i class="fal fa-edit"></i></button>&nbsp;
+                                                        <button onclick="EditCompany(<?php echo $companyId ?>)" class="btn btn-sm btn-primary bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Edit Company"><i class="fal fa-edit"></i></button>&nbsp;
                                                         <?php if ($this->session->userdata('role_id') == SUPER_ADMIN) { ?>
-                                                            <button onclick="DeleteCompany(<?php echo $ownerId ?>)" class="btn btn-sm btn-primary bg-brand-gradient " data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Delete Company"><i class="fal fa-times"></i></button>
+                                                            <button onclick="DeleteCompany(<?php echo $companyId ?>)" class="btn btn-sm btn-primary bg-brand-gradient " data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Delete Company"><i class="fal fa-times"></i></button>
                                                         <? } ?>
                                                     </center>
                                                 </td>
@@ -134,7 +135,7 @@ $heading = "Company";
     function EditCompany(id) {
         var data = {
             id: id,
-            tablename: 'owner'
+            tablename: 'company'
         };
         $.ajax({
             url: baseurl + 'company_edit',
@@ -163,7 +164,7 @@ $heading = "Company";
             if (result.value) {
                 var data = {
                     id: id,
-                    tablename: 'owner'
+                    tablename: 'company'
                 };
                 $.ajax({
                     url: baseurl + 'delete',

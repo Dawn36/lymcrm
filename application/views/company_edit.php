@@ -16,12 +16,12 @@
 </style>
 
 <div class="card mb-g">
-    <form class="needs-validation" method="post" action="#" id='companyeditforms' name='companyeditforms'>
-        <input type="hidden" name="table_name" value="owner">
-        <input type="hidden" name="record_id" value="<?php echo $ownerData[0]['record_id'] ?>">
+    <form class="needs-validation" method="post" action="edit_company" id='companyeditforms' name='companyeditforms'>
+        <input type="hidden" name="table_name" value="company">
+        <input type="hidden" name="record_id" value="<?php echo $companyData[0]['record_id'] ?>">
         <div class="col-md-12 mt-3 mb-3">
             <label class="form-label">Name<span class="text-danger">*</span></label>
-            <input class="form-control" placeholder="Enter Name" type="text" id='company_name' name='name' value="<?php echo $ownerData[0]['name'] ?>" required="">
+            <input class="form-control" placeholder="Enter Name" type="text" id='company_name' name='name' value="<?php echo $companyData[0]['name'] ?>" required="">
 
             <div class="invalid-feedback">
                 Please Enter the Name.
@@ -29,7 +29,7 @@
         </div>
         <div class="col-md-12 mb-3">
             <label class="form-label">Email<span class="text-danger">*</span></label>
-            <input class="form-control" placeholder="Enter Email" type="text" id='company_email' name='email' value="<?php echo $ownerData[0]['email'] ?>" required="" onblur="CheckValidEmail(this.id)">
+            <input class="form-control" placeholder="Enter Email" type="text" id='company_email' name='email' value="<?php echo $companyData[0]['email'] ?>" required="" onblur="CheckValidEmail(this.id)">
 
             <div class="invalid-feedback">
                 Please Enter the Email.
@@ -37,7 +37,7 @@
         </div>
         <div class="col-md-12 mb-3">
             <label class="form-label">Address</label>
-            <input class="form-control" placeholder="Enter address" type="text" id='address' name='address'>
+            <input class="form-control" placeholder="Enter address" type="text" id='address' name='address' value="<?php echo $companyData[0]['address'] ?>">
             <div class="invalid-feedback">
                 Please Enter address.
             </div>
@@ -47,7 +47,7 @@
 
         <div class="col-md-12 mb-3">
             <label class="form-label">Contact<span class="text-danger">*</span></label>
-            <input class="form-control" placeholder="Enter Contact" type="text" id='contact' name='contact' value="<?php echo $ownerData[0]['phone_number'] ?>">
+            <input class="form-control" placeholder="Enter Contact" type="text" id='contact' name='contact' value="<?php echo $companyData[0]['phone_number'] ?>">
             <div class="invalid-feedback">
                 Please Enter Contact.
             </div>
@@ -114,7 +114,6 @@
 
             Swal.fire({
                 title: "Are you sure you want to update?",
-                text: "You won't be able to revert this!",
                 type: "warning",
                 confirmButtonColor: '#437dd0',
                 showCancelButton: true,

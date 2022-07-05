@@ -22,9 +22,14 @@ $heading = "Complaint";
             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
                 <h1> <span class="page-title txt-color-blueDark">Complaint</span></h1>
             </div>
-            <?php if ($this->session->userdata('role_id') != OWNER) { ?>
+            <?php if ($this->session->userdata('role_id') == SUPER_ADMIN) { ?>
                 <div class="col-xs-12 col-sm-7 col-md-7 col-lg-8">
                     <button onclick="AddComplaint()" class="btn btn-primary float-right bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Add Complaint" type="button"><i class="fas fa-plus" style="margin-right: 4px"></i>Add Complaint</button>
+                </div>
+            <?php } ?>
+            <?php if ($this->session->userdata('role_id') == TENANT) { ?>
+                <div class="col-xs-12 col-sm-7 col-md-7 col-lg-8">
+                    <button onclick="AddTenantComplaint()" class="btn btn-primary float-right bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Add Complaint" type="button"><i class="fas fa-plus" style="margin-right: 4px"></i>Add Complaint</button>
                 </div>
             <?php } ?>
         </div>
@@ -75,85 +80,95 @@ $heading = "Complaint";
                                             <th nowrap>
                                                 <center>Complaint Message</center>
                                             </th>
-                                            <?php if ($this->session->userdata('role_id') != OWNER) { ?>
-                                                <th nowrap>
-                                                    <center>Action</center>
-                                                </th>
-                                            <?php } ?>
+                                            <th nowrap>
+                                                <center>Action</center>
+                                            </th>
                                         </tr>
                                     </thead>
                                     <tbody>
-
-                                        <tr style="cursor:pointer">
-
-                                            <td>
-                                                <center>1</center>
-                                            </td>
-                                            <td>
-                                                <center>Abudla</center>
-                                            </td>
-                                            <td>
-                                                <center>aaa</center>
-                                            </td>
-                                            <td>
-                                                <center>12
-
-                                                </center>
-                                            </td>
-                                            <td>
-                                                <center>Dawn
-
-                                                </center>
-                                            </td>
-                                            <td>
-                                                <center>12/09/2022
-
-                                                </center>
-                                            </td>
-                                            <td>
-                                                <center>pending
-
-                                                </center>
-                                            </td>
-                                            <?php if ($this->session->userdata('role_id') == SUPER_ADMIN) { ?>
+                                        <?php for ($i = 0; $i < count($complaintData); $i++) {
+                                            $complaintId = $complaintData[$i]['record_id'];
+                                        ?>
+                                            <tr style="cursor:pointer">
 
                                                 <td>
-                                                    <center>
-                                                        100
-                                                    </center>
+                                                    <center><?php echo $complaintId ?></center>
                                                 </td>
                                                 <td>
-                                                    <center>
+                                                    <center><?php echo ucwords($complaintData[$i]['tenant_name'])  ?></center>
+                                                </td>
+                                                <td>
+                                                    <center><?php echo ucwords($complaintData[$i]['building_name'])  ?></center>
+                                                </td>
+                                                <td>
+                                                    <center><?php echo ucwords($complaintData[$i]['apartment_number'])  ?>
 
                                                     </center>
                                                 </td>
                                                 <td>
-                                                    <center>
+                                                    <center><?php echo ucwords($complaintData[$i]['owner_name'])  ?>
 
                                                     </center>
                                                 </td>
+                                                <td>
+                                                    <center><?php echo DATE("Y-m-d", strtotime($complaintData[$i]['complaint_date']))  ?>
 
-                                            <?php } ?>
+                                                    </center>
+                                                </td>
+                                                <td>
+                                                    <center><?php echo ucwords($complaintData[$i]['complaint_status'])  ?>
 
-                                            <td>
-                                                <center>pani nhi ahraha
+                                                    </center>
+                                                </td>
+                                                <?php if ($this->session->userdata('role_id') == SUPER_ADMIN) { ?>
 
-                                                </center>
-                                            </td>
-                                            <?php if ($this->session->userdata('role_id') != OWNER) { ?>
+                                                    <td>
+                                                        <center>
+                                                            <?php echo ucwords($complaintData[$i]['cost'])  ?>
+                                                        </center>
+                                                    </td>
+                                                    <td>
+                                                        <center>
+                                                            <?php echo ucwords($complaintData[$i]['company_name'])  ?>
+
+                                                        </center>
+                                                    </td>
+                                                    <td>
+                                                        <center>
+                                                            <?php echo  $complaintData[$i]['assigned_date']  ?>
+
+                                                        </center>
+                                                    </td>
+
+                                                <?php } ?>
+
+                                                <td>
+                                                    <center><?php echo strip_tags($complaintData[$i]['description'])  ?>
+
+                                                    </center>
+                                                </td>
 
                                                 <td nowrap>
                                                     <center>
-                                                        <button onclick="EditComplaint('1')" class="btn btn-sm btn-primary bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Edit Complaint"><i class="fal fa-edit"></i></button>&nbsp;
-                                                        <?php if ($this->session->userdata('role_id') == SUPER_ADMIN) { ?>
-                                                            <button onclick="AssignComplaint('1')" class="btn btn-sm btn-primary bg-brand-gradient " data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Assign Complaint"><i class="fal fa-align-left"></i></button>
-                                                            <button onclick="DeleteComplaint('1')" class="btn btn-sm btn-primary bg-brand-gradient " data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Delete Complaint"><i class="fal fa-times"></i></button>
-                                                        <? } ?>
+                                                        <button onclick="LoadDepositImage('<?php echo $complaintId ?>')" type="button" class="btn btn-sm btn-primary bg-brand-gradient" title="Attachment"><i class="fal fa-camera"></i></button>
+                                                        <?php if ($this->session->userdata('role_id') != OWNER) { ?>
+                                                            <?php if ($this->session->userdata('role_id') == TENANT) { ?>
+                                                                <?php if ($complaintData[$i]['complaint_status'] != 'assigned') { ?>
+                                                                    <button onclick="EditComplaintTenant('<?php echo $complaintId ?>')" class="btn btn-sm btn-primary bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Edit Complaint"><i class="fal fa-edit"></i></button>&nbsp;
+                                                                    <button onclick="DeleteComplaint('<?php echo $complaintId ?>')" class="btn btn-sm btn-primary bg-brand-gradient " data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Delete Complaint"><i class="fal fa-times"></i></button>
+                                                            <? }
+                                                            } ?>
+                                                            <?php if ($this->session->userdata('role_id') == SUPER_ADMIN) { ?>
+                                                                <button onclick="EditComplaintAdmin('<?php echo $complaintId ?>')" class="btn btn-sm btn-primary bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Edit Complaint"><i class="fal fa-edit"></i></button>&nbsp;
+                                                                <button onclick="AssignComplaint('<?php echo $complaintId ?>')" class="btn btn-sm btn-primary bg-brand-gradient " data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Assign Complaint"><i class="fal fa-align-left"></i></button>
+                                                                <button onclick="DeleteComplaint('<?php echo $complaintId ?>')" class="btn btn-sm btn-primary bg-brand-gradient " data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Delete Complaint"><i class="fal fa-times"></i></button>
+                                                            <? } ?>
+                                                        <?php } ?>
                                                     </center>
                                                 </td>
                                             <?php } ?>
 
-                                        </tr>
+                                            </tr>
 
                                     </tbody>
                                 </table>
@@ -173,10 +188,10 @@ $heading = "Complaint";
 <!-- this overlay is activated only when mobile menu is triggered -->
 <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div>
 <script type="text/javascript">
-    function EditComplaint(id) {
+    function EditComplaintAdmin(id) {
         var data = {
             id: id,
-            tablename: 'owner'
+            tablename: 'complaint'
         };
         $.ajax({
             url: baseurl + 'complaint_edit',
@@ -192,10 +207,41 @@ $heading = "Complaint";
 
     }
 
+    function EditComplaintTenant(id) {
+        var data = {
+            id: id,
+            tablename: 'complaint'
+        };
+        $.ajax({
+            url: baseurl + 'complaint_tenant_edit',
+            type: 'POST',
+            data: data,
+            success: function(result) {
+                $('.modal-title').html('Edit Complaint');
+                $('#modal-body').html(result);
+                // $('#modal-body').children()[0][0].value = id;
+                $('#myModal').modal();
+            }
+        });
+
+    }
+
+    function AddTenantComplaint() {
+        $.ajax({
+            url: baseurl + 'complaint_tenant_add',
+            success: function(result) {
+
+                $('.modal-title').html('Add Complaint');
+                $('#modal-body').html(result);
+                // $('#modal-body').children()[0][0].value = id;
+                $('#myModal').modal();
+            }
+        });
+    }
+
     function AssignComplaint(id) {
         var data = {
             id: id,
-            tablename: 'owner'
         };
         $.ajax({
             url: baseurl + 'assign_complaint',
@@ -243,6 +289,8 @@ $heading = "Complaint";
         });
 
     }
+
+
 
     function AddComplaint() {
         $.ajax({
@@ -342,4 +390,54 @@ $heading = "Complaint";
 
         });
     });
+
+    function LoadDepositImage(id) {
+        var value = {
+            id: id,
+        };
+        $.ajax({
+            url: baseurl + 'complaint_image',
+            type: 'POST',
+            data: value,
+            success: function(result) {
+                $('.modal-title').html('Attachments');
+                //  $('#modal-body').html(``);
+                $('#modal-body').html(result);
+                $('#myModal').modal();
+
+            }
+        });
+    }
+
+    function DeleteComplaint(buildingId) {
+        Swal.fire({
+            title: "Are you sure want to delete?",
+            text: "You won't be able to revert this!",
+            type: "warning",
+            confirmButtonColor: '#437dd0',
+            showCancelButton: true,
+            confirmButtonText: "Yes, delete it!",
+        }).then(function(result) {
+            if (result.value) {
+                var data = {
+                    id: buildingId,
+                    tablename: 'complaint'
+                };
+                $.ajax({
+                    url: baseurl + 'delete',
+                    type: 'POST',
+                    data: data,
+                    success: function(result) {
+                        var value = 'Delete Sucessfully';
+                        DeleteToast(value);
+                        window.location.reload();
+                    }
+                });
+                // var value='Update Sucessfully';
+                //DeleteToast(value);
+                Swal.fire("Deleted!", "Deleted Sucessfully.", "success");
+            }
+        });
+
+    }
 </script>

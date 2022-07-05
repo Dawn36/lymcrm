@@ -1,13 +1,18 @@
-<form class="needs-validation" name='addPropertyForm' id='addPropertyForm' method='post' action="#" novalidate>
+<form class="needs-validation" name='addPropertyForm' id='addPropertyForm' method='post' action="assigned_complaint" novalidate>
 
     <div class="card mb-g">
         <div class="col-md-12 mt-3" style="display: none;">
             <input type="text" style="display: none;">
         </div>
         <div class="col-md-12 mb-3 mt-3">
+            <input hidden name='complaint_id' value="<?php echo $complaintId ?>" />
             <label class="form-label">Company Name<span style="color: red">*</span></label>
-            <select class="custom-select" name="building_id" id="building" required="">
+            <select class="custom-select" name="company_id" id="company_id" required="" onchange="getCompany()">
                 <option value="">Select Company Name</option>
+                <?php for ($i = 0; $i < count($company); $i++) {
+                ?>
+                    <option value="<?php echo $company[$i]['record_id'] ?>"><?php echo ucfirst($company[$i]['name']) ?></option>
+                <?php } ?>
             </select>
             <div class="invalid-feedback">
                 Please Select Company Name.
@@ -15,7 +20,7 @@
         </div>
         <div class="col-md-12 mb-3">
             <label class="form-label">Company Email</label>
-            <input class="form-control" placeholder="" type="text" id='cost' name='cost'>
+            <input class="form-control" placeholder="" type="text" id='company_email' name='company_email' readonly>
             <div class="invalid-feedback">
                 Please Enter Company Email.
             </div>
@@ -34,6 +39,20 @@
 </form>
 
 <script>
+    aa = JSON.parse('<?= $companyjson ?>');
+
+    function getCompany() {
+        companyId = $('#company_id').val();
+        for (var i = 0; i < aa.length; i++) {
+            if (aa[i].record_id == companyId) {
+                $("#company_email").val(aa[i].email);
+            }
+            if (companyId == '') {
+                $("#company_email").val('');
+            }
+        }
+    }
+
     function SubmitProperty() {
 
         var form = $("#addPropertyForm")
@@ -44,34 +63,18 @@
         }
         form.addClass('was-validated');
 
-        if ($('#building').val() == '') {
-            var value = 'Building is required';
-            Toast(value);
-            return false;
-        }
-        if ($('#appartment_no').val() == '') {
-            var value = 'Appartment number is required';
+        if ($('#company_id').val() == '') {
+            var value = 'Company Name is required';
             Toast(value);
             return false;
         }
 
-        if ($('#Community').val() == '') {
-            var value = 'Community is required';
-            Toast(value);
-            return false;
-        }
-        if ($('#owner').val() == '') {
-            var value = 'Owner name is required';
-            Toast(value);
-            return false;
-        }
         Swal.fire({
-            title: "Are you sure you want to add?",
-            text: "You won't be able to revert this!",
+            title: "Are you sure you want to assign?",
             type: "warning",
             confirmButtonColor: '#437dd0',
             showCancelButton: true,
-            confirmButtonText: "Yes, Add it!",
+            confirmButtonText: "Yes, assign it!",
         }).then(function(result) {
             if (result.value) {
                 $("#addPropertyForm").submit();

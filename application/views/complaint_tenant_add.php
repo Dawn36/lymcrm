@@ -6,8 +6,12 @@
         </div>
         <div class="col-md-12 mb-3 mt-3">
             <label class="form-label">Building<span style="color: red">*</span></label>
-            <select class="custom-select" onchange="GetCommunity()" name="building_id" id="building" required="">
+            <select class="custom-select" name="building_id" id="building_id" required="" onchange="GetApartment()">
                 <option value="">Select Building</option>
+                <?php for ($i = 0; $i < count($building); $i++) {
+                ?>
+                    <option value="<?php echo $building[$i]['building_id'] ?>"><?php echo ucfirst($building[$i]['building_name']) ?></option>
+                <?php } ?>
             </select>
             <div class="invalid-feedback">
                 Please Select Building.
@@ -34,7 +38,7 @@
         <div class="col-md-12 mb-3">
             <label class="form-label">Tenant <span style="color: red">*</span></label>
             <select class="custom-select" name="tenant_id" id="tenant_id" required="">
-                <option value="">Select Tenant </option>
+                <option value="<?php echo $tenant_id ?>"><?php echo $tenant_name ?></option>
             </select>
             <div class="invalid-feedback">
                 Please Select Tenant.
@@ -84,50 +88,22 @@
             return true;
         }
     }
-    GetBuilding();
-    var buildingArr = '';
 
-    function GetBuilding() {
 
-        $.ajax({
-            url: baseurl + 'building_get',
-
-            success: function(result) {
-
-                $('#building').html('');
-                buildingArr = JSON.parse(result);
-                var option = document.createElement("option");
-                option.text = "Select Building";
-                option.value = "";
-                var select = document.getElementById("building");
-                select.appendChild(option);
-                for (var i = 0; i < buildingArr.length; i++) {
-                    var option = document.createElement("option");
-                    option.text = buildingArr[i].building_name.replace(/(\w)(\w*)/g,
-                        function(g0, g1, g2) {
-                            return g1.toUpperCase() + g2.toLowerCase();
-                        });
-                    option.value = buildingArr[i].record_id;
-                    var select = document.getElementById("building");
-                    select.appendChild(option);
-                }
-            }
-        });
-    }
-
-    function GetCommunity() {
-        var id = $("#building").val();
+    function GetApartment() {
+        var id = $("#building_id").val();
         var data = {
-            id: id
+            buildingId: id
         };
         $.ajax({
-            url: baseurl + 'building_apartments',
+            url: baseurl + 'complaint_tenant_apartment',
             type: 'POST',
             data: data,
             success: function(result) {
+
                 resulta = JSON.parse(result);
 
-                if (resulta.length >= 1) {
+                if (resulta.apartment.length >= 1) {
                     $('#appartment_no').html('');
                     var option = document.createElement("option");
                     option.text = "Select Appartment";
@@ -135,10 +111,10 @@
                     var select = document.getElementById("appartment_no");
                     select.appendChild(option);
 
-                    for (var i = 0; i < resulta.length; i++) {
+                    for (var i = 0; i < resulta.apartment.length; i++) {
                         var option = document.createElement("option");
-                        option.text = resulta[i].apartment_number;
-                        option.value = resulta[i].record_id;
+                        option.text = resulta.apartment[i].apartment_number;
+                        option.value = resulta.apartment[i].apartment_id;
                         var select = document.getElementById("appartment_no");
                         select.appendChild(option);
                     }
@@ -151,19 +127,19 @@
     }
 
     function GetOwnerTenant() {
-        var building_id = $("#building").val();
+        var building_id = $("#building_id").val();
         var apartment_id = $("#appartment_no").val();
         var data = {
-            building_id: building_id,
-            apartment_id: apartment_id,
+            buildingId: building_id,
+            apartmentId: apartment_id,
         };
         $.ajax({
-            url: baseurl + 'get_owner_tenant',
+            url: baseurl + 'complaint_tenant_owner',
             type: 'POST',
             data: data,
             success: function(result) {
                 resulta = JSON.parse(result);
-
+                debugger;
                 if (resulta.owner.length >= 1) {
                     $('#owner_id').html('');
                     for (var i = 0; i < resulta.owner.length; i++) {
@@ -184,24 +160,6 @@
 
 
                 }
-                if (resulta.tenant.length >= 1) {
-                    $('#tenant_id').html('');
-                    for (var i = 0; i < resulta.tenant.length; i++) {
-                        var option = document.createElement("option");
-                        option.text = resulta.tenant[i].name;
-                        option.value = resulta.tenant[i].record_id;
-                        var select = document.getElementById("tenant_id");
-                        select.appendChild(option);
-                    }
-                } else {
-                    $('#tenant_id').html('');
-                    var option = document.createElement("option");
-                    option.text = "Select Tenant";
-                    option.value = "";
-                    var select = document.getElementById("tenant_id");
-                    select.appendChild(option);
-                }
-
 
             }
         });

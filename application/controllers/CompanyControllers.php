@@ -14,8 +14,8 @@ class CompanyControllers extends CI_Controller
         if ($this->session->userdata('name')) {
             $this->load->view('main_header');
             $this->load->view('sidebar');
-            $tableName = 'owner';
-            $data['ownerData'] =  $this->OWNER->ShowOwner($tableName);
+            $tableName = 'company';
+            $data['companyData'] =  $this->OWNER->ShowOwner($tableName);
             $this->load->view('company_show', $data);
             $this->load->view('footer');
         } else {
@@ -36,20 +36,21 @@ class CompanyControllers extends CI_Controller
             $arrPost = $this->input->post();
             $id = $arrPost['id'];
             $tableName = $arrPost['tablename'];
-            $data['ownerData'] =  $this->OWNER->ShowOwnerEdit($tableName, $id);
+            $data['companyData'] =  $this->OWNER->ShowOwnerEdit($tableName, $id);
             return $this->load->view('company_edit', $data);
         } else {
             redirect('login');
         }
     }
 
-    public function AddOwnerTenant()
+    public function AddCompany()
     {
         if ($this->session->userdata('name')) {
             $arrPost = $this->input->post();
             $tableName = $arrPost['table_name'];
             $arrInfo['name'] = $arrPost['name'];
             $arrInfo['email'] = $arrPost['email'];
+            $arrInfo['address'] = $arrPost['address'];
             $arrInfo['phone_number'] = $arrPost['contact'];
             $arrInfo['created_at'] = date("Y-m-d h:i:s");
             $arrInfo['created_by'] =  $this->session->userdata('user_id');
@@ -78,7 +79,7 @@ class CompanyControllers extends CI_Controller
             }
         }
     }
-    public function EditOwnerTenant()
+    public function EditCompany()
     {
         if ($this->session->userdata('name')) {
             $arrPost = $this->input->post();
@@ -86,6 +87,7 @@ class CompanyControllers extends CI_Controller
             $recordId = $arrPost['record_id'];
             $arrInfo['name'] = $arrPost['name'];
             $arrInfo['email'] = $arrPost['email'];
+            $arrInfo['address'] = $arrPost['address'];
             $arrInfo['phone_number'] = $arrPost['contact'];
             $arrInfo['updated_at'] = date("Y-m-d h:i:s");
             $arrInfo['updated_by'] =  $this->session->userdata('user_id');

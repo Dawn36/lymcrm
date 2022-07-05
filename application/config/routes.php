@@ -91,12 +91,26 @@ $route['change_password'] = '/AdminControllers/ChangePassword';
 $route['company']             = '/CompanyControllers';
 $route['company_add']         = '/CompanyControllers/LoadAddScreen';
 $route['company_edit']        = '/CompanyControllers/LoadEditScreen';
+$route['add_company']         = '/CompanyControllers/AddCompany';
+$route['edit_company']         = '/CompanyControllers/EditCompany';
+
+
 
 ///////////////////// Complaint ////////////////////////////////////////////
+$route['complaint_image']     = '/ComplaintControllers/LoadDepositImage';
+$route['complaint_tenant_add']     = '/ComplaintControllers/ComplaintTenantAdd';
+$route['complaint_tenant_edit']        = '/ComplaintControllers/LoadTenantEditScreen';
+$route['complaint_tenant_apartment']     = '/ComplaintControllers/ComplaintTenantApartment';
+$route['complaint_tenant_owner']     = '/ComplaintControllers/ComplaintTenantOwner';
+$route['assigned_complaint']     = '/ComplaintControllers/AssignedComplaint';
 $route['complaint']             = '/ComplaintControllers';
 $route['complaint_add']         = '/ComplaintControllers/LoadAddScreen';
-$route['complaint_edit']        = '/ComplaintControllers/LoadEditScreen';
+$route['complaint_edit']         = '/ComplaintControllers/LoadEditScreen';
+$route['complaint_submit']         = '/ComplaintControllers/AddComplaint';
+$route['complaint_update']         = '/ComplaintControllers/EditComplaint';
 $route['assign_complaint']        = '/ComplaintControllers/AssignComplaint';
+$route['building_apartments']        = '/ComplaintControllers/GetApartment';
+$route['get_owner_tenant']         = '/ComplaintControllers/GetOwnerTenant';
 
 
 /////////////////////      Owner     ////////////////////////////////////////////

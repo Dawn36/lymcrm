@@ -16,8 +16,8 @@
 </style>
 
 <div class="card mb-g">
-    <form class="needs-validation" method="post" action="#" id='companyaddform' name='companyaddform'>
-        <input type="hidden" name="table_name" value="owner">
+    <form class="needs-validation" method="post" action="/add_company" id='companyaddform' name='companyaddform'>
+        <input type="hidden" name="table_name" value="company">
         <div class="col-md-12 mt-3 mb-3">
             <label class="form-label">Name<span class="text-danger">*</span></label>
             <input class="form-control" placeholder="Enter Name" type="text" id='company_name' name='name' required="">
@@ -97,7 +97,6 @@
                     } else {
                         Swal.fire({
                             title: "Are you sure you want to add?",
-                            text: "You won't be able to revert this!",
                             type: "warning",
                             confirmButtonColor: '#437dd0',
                             showCancelButton: true,
