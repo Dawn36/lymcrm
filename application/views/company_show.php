@@ -101,7 +101,7 @@ $heading = "Company";
                                                     </center>
                                                 </td>
                                             </tr>
-                                        <?  } ?>
+                                        <?php  } ?>
 
                                     </tbody>
                                 </table>

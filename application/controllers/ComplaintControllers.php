@@ -218,14 +218,30 @@ class ComplaintControllers extends CI_Controller
             redirect('/complaint');
         }
     }
+    function ShowCompaintCostSceen()
+    {
+        $arrPost = $this->input->post();
+        $id = $arrPost['id'];
+        $data['id'] =  $id;
+        return $this->load->view('complaint_cost', $data);
+    }
+    public function ComplaintCostUpdate()
+    {
+        $arrPost = $this->input->post();
+        $id = $arrPost['complaint_id'];
+        $tableName = 'complaint';
+        if ($this->session->userdata('role_id') == SUPER_ADMIN || $this->session->userdata('role_id') == SUB_ADMIN) {
+            $arrInfo['cost'] = $arrPost['cost'];
+            $arrInfo['complaint_status'] = 'completed';
+        }
+        $this->OWNER->UpdateOwner($arrInfo, $tableName, $id);
+        redirect('/complaint');
+    }
     public function EditComplaint()
     {
         if ($this->session->userdata('name')) {
             $arrPost = $this->input->post();
-            if ($this->session->userdata('role_id') == SUPER_ADMIN || $this->session->userdata('role_id') == SUB_ADMIN) {
-                $arrInfo['cost'] = $arrPost['cost'];
-                $arrInfo['complaint_status'] = $arrPost['complaint_status'];
-            }
+
             $files = $_FILES;
             $id = $arrPost['complaint_id'];
             $tableName = 'complaint';

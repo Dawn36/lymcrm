@@ -48,7 +48,7 @@
                 Please Select Tenant.
             </div>
         </div>
-        <div class="col-md-12 mb-3">
+        <!-- <div class="col-md-12 mb-3">
             <label class="form-label">Status <span style="color: red">*</span></label>
             <select class="custom-select" name="complaint_status" id="complaint_status" required="">
                 <option value="">Select Status </option>
@@ -65,7 +65,7 @@
                 Please Enter Maintenance cost.
             </div>
 
-        </div>
+        </div> -->
 
         <div class="col-md-12 mb-3">
             <label class="form-label">Description<span style="color: red">*</span></label>
@@ -268,16 +268,7 @@
             Toast(value);
             return false;
         }
-        if ($('#complaint_status').val() == '') {
-            var value = 'Status is required';
-            Toast(value);
-            return false;
-        }
-        if ($('#cost').val() == '') {
-            var value = 'Cost is required';
-            Toast(value);
-            return false;
-        }
+
         Swal.fire({
             title: "Are you sure you want to update?",
             type: "warning",

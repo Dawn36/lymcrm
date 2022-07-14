@@ -159,8 +159,15 @@ $heading = "Complaint";
                                                             <? }
                                                             } ?>
                                                             <?php if ($this->session->userdata('role_id') == SUPER_ADMIN) { ?>
+                                                                <?php if ($complaintData[$i]['complaint_status'] != 'pending') { ?>
+                                                                    <button onclick="ComplaintCost('<?php echo $complaintId ?>')" class="btn btn-sm btn-primary bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Complaint Cost"><i class="fa fa-dollar"></i></button>&nbsp;
+                                                                <?
+                                                                } ?>
                                                                 <button onclick="EditComplaintAdmin('<?php echo $complaintId ?>')" class="btn btn-sm btn-primary bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Edit Complaint"><i class="fal fa-edit"></i></button>&nbsp;
-                                                                <button onclick="AssignComplaint('<?php echo $complaintId ?>')" class="btn btn-sm btn-primary bg-brand-gradient " data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Assign Complaint"><i class="fal fa-align-left"></i></button>
+                                                                <?php if ($complaintData[$i]['complaint_status'] != 'completed') { ?>
+                                                                    <button onclick="AssignComplaint('<?php echo $complaintId ?>')" class="btn btn-sm btn-primary bg-brand-gradient " data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Assign Complaint"><i class="fal fa-align-left"></i></button>
+                                                                <?
+                                                                } ?>
                                                                 <button onclick="DeleteComplaint('<?php echo $complaintId ?>')" class="btn btn-sm btn-primary bg-brand-gradient " data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Delete Complaint"><i class="fal fa-times"></i></button>
                                                             <? } ?>
                                                         <?php } ?>
@@ -188,6 +195,25 @@ $heading = "Complaint";
 <!-- this overlay is activated only when mobile menu is triggered -->
 <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div>
 <script type="text/javascript">
+    function ComplaintCost(id) {
+        var data = {
+            id: id,
+            tablename: 'complaint'
+        };
+        $.ajax({
+            url: baseurl + 'complaint_cost',
+            type: 'POST',
+            data: data,
+            success: function(result) {
+                $('.modal-title').html('Add Complaint Cost');
+                $('#modal-body').html(result);
+                // $('#modal-body').children()[0][0].value = id;
+                $('#myModal').modal();
+            }
+        });
+
+    }
+
     function EditComplaintAdmin(id) {
         var data = {
             id: id,

@@ -25,6 +25,7 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
     <link rel="stylesheet" media="screen, print" href="/assets/dist/css/app.bundle.css">
     <!-- Place favicon.ico in the root directory -->
     <link id="mytheme" rel="stylesheet" href="/assets/dist/css/themes/cust-theme-3.css">
+    <link rel="stylesheet" href="/assets/icon.css">
     <!-- <link rel="apple-touch-icon" sizes="180x180" href="/assets/dist/img/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/dist/img/favicon/favicon-32x32.png"> -->
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/dist/img/logo-2.png">
