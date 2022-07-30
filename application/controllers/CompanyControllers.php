@@ -48,6 +48,7 @@ class CompanyControllers extends CI_Controller
         if ($this->session->userdata('name')) {
             $arrPost = $this->input->post();
             $tableName = $arrPost['table_name'];
+            $arrInfo['company_name'] = $arrPost['company_name'];
             $arrInfo['name'] = $arrPost['name'];
             $arrInfo['email'] = $arrPost['email'];
             $arrInfo['address'] = $arrPost['address'];
@@ -85,6 +86,7 @@ class CompanyControllers extends CI_Controller
             $arrPost = $this->input->post();
             $tableName = $arrPost['table_name'];
             $recordId = $arrPost['record_id'];
+            $arrInfo['company_name'] = $arrPost['company_name'];
             $arrInfo['name'] = $arrPost['name'];
             $arrInfo['email'] = $arrPost['email'];
             $arrInfo['address'] = $arrPost['address'];

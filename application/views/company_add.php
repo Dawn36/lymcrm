@@ -19,6 +19,14 @@
     <form class="needs-validation" method="post" action="/add_company" id='companyaddform' name='companyaddform'>
         <input type="hidden" name="table_name" value="company">
         <div class="col-md-12 mt-3 mb-3">
+            <label class="form-label">Company Name<span class="text-danger">*</span></label>
+            <input class="form-control" placeholder="Enter Name" type="text" id='name' name='company_name' required="">
+
+            <div class="invalid-feedback">
+                Please Enter the Company Name.
+            </div>
+        </div>
+        <div class="col-md-12 mt-3 mb-3">
             <label class="form-label">Name<span class="text-danger">*</span></label>
             <input class="form-control" placeholder="Enter Name" type="text" id='company_name' name='name' required="">
 
@@ -45,8 +53,8 @@
 
 
         <div class="col-md-12 mb-3">
-            <label class="form-label">Contact</label>
-            <input class="form-control" placeholder="Enter Contact" type="text" id='contact' name='contact'>
+            <label class="form-label">Contact<span class="text-danger">*</span></label>
+            <input class="form-control" placeholder="Enter Contact" type="text" id='contact' name='contact' required="">
             <div class="invalid-feedback">
                 Please Enter Contact.
             </div>
@@ -128,9 +136,14 @@
             event.stopPropagation()
         }
         form.addClass('was-validated');
-
-        if ($('#company_name').val() == '') {
+        if ($('#name').val() == '') {
             var value = 'Company name is required';
+            Toast(value);
+            $('#name').focus();
+            return false;
+        }
+        if ($('#company_name').val() == '') {
+            var value = 'Name is required';
             Toast(value);
             $('#company_name').focus();
             return false;
@@ -141,10 +154,10 @@
             $('#company_email').focus();
             return false;
         }
-        if ($('#address').val() == '') {
-            var value = 'Address is required';
+        if ($('#contact').val() == '') {
+            var value = 'Contact is required';
             Toast(value);
-            $('#address').focus();
+            $('#contact').focus();
             return false;
         }
         if (emailCheck == "") {

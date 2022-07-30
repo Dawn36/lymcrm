@@ -114,4 +114,33 @@ class DashboardModel  extends CI_Model
 		log_message('debug', $this->db->last_query());
 		return $query->result_array();
 	}
+	function GetComplaint()
+	{
+		$this->db->select("SUM(CASE WHEN complaint_status='completed' THEN 1 ELSE 0 END)AS complete,
+		SUM(CASE WHEN complaint_status='assigned' THEN 1 ELSE 0 END) AS assigned,
+		SUM(CASE WHEN complaint_status='pending' THEN 1 ELSE 0 END) AS pending");
+		$this->db->where('status', 'active');
+		$data = $this->db->get('complaint')->result_array();
+		// print_r($role) ;
+		log_message('debug', $this->db->last_query());
+		return $data;
+	}
+	function GetComplaintPendingEmailSend()
+	{
+		$this->db->select('*');
+		$this->db->where('complaint_status', 'pending');
+		$data = $this->db->get('email_complaint')->result_array();
+		// print_r($role) ;
+		log_message('debug', $this->db->last_query());
+		return $data;
+	}
+	function GetComplaintAssignedEmailSend()
+	{
+		$this->db->select('*');
+		$this->db->where('complaint_status', 'assigned');
+		$data = $this->db->get('email_complaint')->result_array();
+		// print_r($role) ;
+		log_message('debug', $this->db->last_query());
+		return $data;
+	}
 }

@@ -65,7 +65,9 @@ $heading = "Complaint";
                                                 <center>Complaint Status</center>
                                             </th>
                                             <?php if ($this->session->userdata('role_id') == SUPER_ADMIN) { ?>
-
+                                                <th nowrap>
+                                                    <center>Currency</center>
+                                                </th>
                                                 <th nowrap>
                                                     <center>Cost</center>
                                                 </th>
@@ -79,6 +81,9 @@ $heading = "Complaint";
 
                                             <th nowrap>
                                                 <center>Complaint Message</center>
+                                            </th>
+                                            <th nowrap>
+                                                <center>Remarks</center>
                                             </th>
                                             <th nowrap>
                                                 <center>Action</center>
@@ -121,7 +126,11 @@ $heading = "Complaint";
                                                     </center>
                                                 </td>
                                                 <?php if ($this->session->userdata('role_id') == SUPER_ADMIN) { ?>
-
+                                                    <td>
+                                                        <center>
+                                                            <?php echo ucwords($complaintData[$i]['currency'])  ?>
+                                                        </center>
+                                                    </td>
                                                     <td>
                                                         <center>
                                                             <?php echo ucwords($complaintData[$i]['cost'])  ?>
@@ -147,6 +156,11 @@ $heading = "Complaint";
 
                                                     </center>
                                                 </td>
+                                                <td>
+                                                    <center>
+                                                        <?php echo ucwords($complaintData[$i]['remarks'])  ?>
+                                                    </center>
+                                                </td>
 
                                                 <td nowrap>
                                                     <center>
@@ -160,7 +174,9 @@ $heading = "Complaint";
                                                             } ?>
                                                             <?php if ($this->session->userdata('role_id') == SUPER_ADMIN) { ?>
                                                                 <?php if ($complaintData[$i]['complaint_status'] != 'pending') { ?>
-                                                                    <button onclick="ComplaintCost('<?php echo $complaintId ?>')" class="btn btn-sm btn-primary bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Complaint Cost"><i class="fa fa-dollar"></i></button>&nbsp;
+                                                                    <button onclick="SendWhatsappSms('<?php echo $complaintId ?>')" class="btn btn-sm btn-primary bg-brand-gradient " data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Send Complaint By whatsapp"><i class="fas fa-sms"></i></button>
+
+                                                                    <button onclick="ComplaintCost('<?php echo $complaintId ?>')" class="btn btn-sm btn-primary bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Complaint Cost"><i class="fa fa-money"></i></button>&nbsp;
                                                                 <?
                                                                 } ?>
                                                                 <button onclick="EditComplaintAdmin('<?php echo $complaintId ?>')" class="btn btn-sm btn-primary bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Edit Complaint"><i class="fal fa-edit"></i></button>&nbsp;
@@ -195,6 +211,24 @@ $heading = "Complaint";
 <!-- this overlay is activated only when mobile menu is triggered -->
 <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div>
 <script type="text/javascript">
+    function SendWhatsappSms(id) {
+        var data = {
+            id: id,
+            tablename: 'complaint'
+        };
+        $.ajax({
+            url: baseurl + 'complaint_send_whatsapp',
+            type: 'POST',
+            data: data,
+            success: function(result) {
+                result = JSON.parse(result);
+                url = `https://api.whatsapp.com/send?text=` + result
+                window.open(url, '_blank');
+            }
+        });
+
+    }
+
     function ComplaintCost(id) {
         var data = {
             id: id,

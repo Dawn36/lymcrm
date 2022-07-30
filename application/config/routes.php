@@ -110,6 +110,7 @@ $route['complaint_submit']         = '/ComplaintControllers/AddComplaint';
 $route['complaint_update']         = '/ComplaintControllers/EditComplaint';
 $route['complaint_cost']         = '/ComplaintControllers/ShowCompaintCostSceen';
 $route['complaint_cost_update']         = '/ComplaintControllers/ComplaintCostUpdate';
+$route['complaint_send_whatsapp']         = '/ComplaintControllers/SendWhatsappComplaint';
 $route['assign_complaint']        = '/ComplaintControllers/AssignComplaint';
 $route['building_apartments']        = '/ComplaintControllers/GetApartment';
 $route['get_owner_tenant']         = '/ComplaintControllers/GetOwnerTenant';

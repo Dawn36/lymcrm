@@ -25,6 +25,9 @@ class Dashboard extends CI_Controller
 			$data['totalRevenue'] = $this->DASHBOARD->GetTotalRevenue();
 			$data['totalPaid'] = $this->DASHBOARD->GetTotalPaid();
 			$data['emailInfo'] =  $this->DASHBOARD->GetEmailSystem();
+			$data['complaint'] =  $this->DASHBOARD->GetComplaint();
+			$data['complaintEmailPending'] =  $this->DASHBOARD->GetComplaintPendingEmailSend();
+			$data['complaintEmailAssigned'] =  $this->DASHBOARD->GetComplaintAssignedEmailSend();
 			$this->load->view('infection_dashboard', $data);
 			$this->load->view('footer');
 		} else {

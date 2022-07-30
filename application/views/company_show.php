@@ -37,6 +37,9 @@ $heading = "Company";
                                     <thead class="bg-primary-600 bg-brand-gradient">
                                         <tr>
                                             <th nowrap>
+                                                <center>Company Name</center>
+                                            </th>
+                                            <th nowrap>
                                                 <center>Name</center>
                                             </th>
                                             <th nowrap>
@@ -66,7 +69,9 @@ $heading = "Company";
                                             $companyId = $companyData[$i]['record_id'];
                                         ?>
                                             <tr style="cursor:pointer">
-
+                                                <td>
+                                                    <center><?php echo  ucwords($companyData[$i]['company_name']) ?></center>
+                                                </td>
                                                 <td>
                                                     <center><?php echo  ucwords($companyData[$i]['name']) ?></center>
                                                 </td>

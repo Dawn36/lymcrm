@@ -47,7 +47,7 @@ class ComplaintModel  extends CI_Model
         c.`description`,
         com.`name` AS company_name,
         c.`assigned_date`,
-        c.`cost`');
+        c.`cost`,c.`currency`,c.`remarks`');
         $this->db->from('complaint c');
         $this->db->join('building b', 'c.`building_id` = b.`record_id`', 'INNER');
         $this->db->join('apartment a', 'a.`record_id` = c.`apartment_id`', 'INNER');
@@ -105,6 +105,32 @@ class ComplaintModel  extends CI_Model
         $this->db->where('o.status', 'active');
         $this->db->where('p.building_id', $buildingId);
         $this->db->where('p.apartment_id', $apartmentId);
+        $query = $this->db->get();
+        log_message('debug', $this->db->last_query());
+        return $query->result_array();
+    }
+    public function ComplaintDataEmail($id)
+    {
+        $this->db->select('c.`record_id`,b.`building_name`,a.`apartment_number`,t.`email`,t.`name` ');
+        $this->db->from('complaint c');
+        $this->db->join('building b', 'b.`record_id`=c.`building_id`', 'INNER');
+        $this->db->join('apartment a', 'a.`record_id`=c.`apartment_id`', 'INNER');
+        $this->db->join('tenant t', 'c.`tenant_id`=t.`record_id`', 'INNER');
+        $this->db->where('c.record_id', $id);
+        $query = $this->db->get();
+        log_message('debug', $this->db->last_query());
+        return $query->result_array();
+    }
+    public function ComplaintAssignedEmail($id)
+    {
+        $this->db->select('t.`record_id` AS tenant_id,b.`building_name`,a.`apartment_number`,t.`name`,t.`email`,c.`description`,t.`phone_number` AS tenant_number,c.`record_id`,cc.`company_name`,cc.`name` AS contact_person ,cc.`email` AS contact_email,
+        cc.`phone_number`');
+        $this->db->from('complaint c');
+        $this->db->join('tenant t', 't.`record_id`=c.`tenant_id`', 'INNER');
+        $this->db->join('company cc', 'cc.`record_id`=c.`company_id`', 'INNER');
+        $this->db->join('building b', 'b.`record_id`=c.`building_id`', 'INNER');
+        $this->db->join('apartment a', 'a.`record_id`=c.`apartment_id`', 'INNER');
+        $this->db->where('c.record_id', $id);
         $query = $this->db->get();
         log_message('debug', $this->db->last_query());
         return $query->result_array();

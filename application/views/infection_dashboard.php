@@ -265,6 +265,46 @@
                                 </div>
                             </div> -->
      </div>
+     <div class="subheader">
+         <h1 class="subheader-title">
+             <i class='subheader-icon fas fa-bell'></i>Lym <span class='fw-300'>Complaint</span>
+         </h1>
+     </div>
+     <div class="row">
+         <div class="col-sm-4 col-xl-4">
+             <div class="p-3 rounded overflow-hidden position-relative text-white mb-g" style="background-color: #e31717;">
+                 <div class="">
+                     <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                         <?php echo number_format($complaint[0]['pending']) ?>
+                         <small class="m-0 l-h-n">Total number of Complaint Pending</small>
+                     </h3>
+                 </div>
+                 <i class="fal fa-bell-exclamation position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
+             </div>
+         </div>
+         <div class="col-sm-4 col-xl-4">
+             <div class="p-3 bg-primary-300 rounded overflow-hidden position-relative text-white mb-g" style="background-color: #6e3232;">
+                 <div class="">
+                     <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                         <?php echo number_format($complaint[0]['assigned']) ?>
+                         <small class="m-0 l-h-n">Total number of Complaint Assigned</small>
+                     </h3>
+                 </div>
+                 <i class="fal fa-address-card position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
+             </div>
+         </div>
+         <div class="col-sm-4 col-xl-4">
+             <div class="p-3 bg-success-200 rounded overflow-hidden position-relative text-white mb-g">
+                 <div class="">
+                     <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                         <?php echo number_format($complaint[0]['complete']) ?>
+                         <small class="m-0 l-h-n">Total number of Complaint Completed</small>
+                     </h3>
+                 </div>
+                 <i class="fal fa-check-double position-absolute pos-right pos-bottom opacity-15 mb-n5 mr-n6" style="font-size: 8rem;"></i>
+             </div>
+         </div>
+     </div>
      <div class="row">
 
          <div class="col-lg-12 mt">
@@ -368,58 +408,214 @@
                                  </tr>
                              </thead>
                              <tbody>
-                                 <?php 
-                                 for ($i=0; $i <count($emailInfo) ; $i++) { 
-                                  
-                                    $sendDate= explode(",", $emailInfo[$i]['end_date_group']);
-                                    $check= explode(",", $emailInfo[$i]['check']);
-                                    $dateDate['30']='';
-                                    $dateDate['60']='';
-                                    $dateDate['90']='';
-                                    for ($j=0; $j < count($check) ; $j++) { 
-                                        $dateDate[$check[$j]]=$sendDate[$j];
-                                    }
-                                    
-                                    $sendCount=count($sendDate);
-                                    if($sendCount == '3')
-                                    {
-                                        $status='Complete';
-                                    }
-                                    else
-                                    {
-                                        $status='Pending';
-                                    }
-                                    
-                                  ?>
+                                 <?php
+                                    for ($i = 0; $i < count($emailInfo); $i++) {
+
+                                        $sendDate = explode(",", $emailInfo[$i]['end_date_group']);
+                                        $check = explode(",", $emailInfo[$i]['check']);
+                                        $dateDate['30'] = '';
+                                        $dateDate['60'] = '';
+                                        $dateDate['90'] = '';
+                                        for ($j = 0; $j < count($check); $j++) {
+                                            $dateDate[$check[$j]] = $sendDate[$j];
+                                        }
+
+                                        $sendCount = count($sendDate);
+                                        if ($sendCount == '3') {
+                                            $status = 'Complete';
+                                        } else {
+                                            $status = 'Pending';
+                                        }
+
+                                    ?>
                                      <tr>
                                          <td>
                                              <center><?php echo ucfirst($emailInfo[$i]['tenant_name']) ?></center>
                                          </td>
                                          <td>
-                                             <center><?php 
-                                             if($dateDate[30] != "")
-                                             {
-                                                echo date("Y-m-d",strtotime($dateDate[30]));
-                                             } ?></center>
+                                             <center><?php
+                                                        if ($dateDate[30] != "") {
+                                                            echo date("Y-m-d", strtotime($dateDate[30]));
+                                                        } ?></center>
                                          </td>
                                          <td>
-                                             <center><?php 
-                                             if($dateDate[60] != "")
-                                             {
-                                                echo date("Y-m-d",strtotime($dateDate[60]));
-                                             } ?></center>
-                                         </td>
-                                          <td>
-                                             <center><?php 
-                                             if($dateDate[90] != "")
-                                             {
-                                                echo date("Y-m-d",strtotime($dateDate[90]));
-                                             } ?></center>
+                                             <center><?php
+                                                        if ($dateDate[60] != "") {
+                                                            echo date("Y-m-d", strtotime($dateDate[60]));
+                                                        } ?></center>
                                          </td>
                                          <td>
-                                             <center><?=$status?></center>
+                                             <center><?php
+                                                        if ($dateDate[90] != "") {
+                                                            echo date("Y-m-d", strtotime($dateDate[90]));
+                                                        } ?></center>
+                                         </td>
+                                         <td>
+                                             <center><?= $status ?></center>
                                          </td>
 
+                                     </tr>
+                                 <?php } ?>
+
+                             </tbody>
+                         </table>
+                     </div>
+                     <!-- end widget content -->
+                 </div>
+                 <!-- end widget div -->
+             </div>
+             <!-- end widget -->
+         </div>
+     </div>
+     <div class="row">
+
+         <div class="col-lg-12 mt">
+             <div id="panel-1" class="panel">
+                 <div class="panel-hdr">
+                     <h2>
+                         Complaint Pending /<span class="fw-300"><i>email send</i></span>
+                     </h2>
+                 </div>
+                 <div class="panel-container show">
+                     <div class="panel-content">
+
+                         <table id="datatable_tabletools" class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline">
+                             <thead class="bg-primary-600 bg-brand-gradient">
+                                 <tr>
+                                     <th nowrap>
+                                         <center>Complaint #</center>
+                                     </th>
+                                     <th nowrap>
+                                         <center>Tenant</center>
+                                     </th>
+                                     <th nowrap>
+                                         <center>Building</center>
+                                     </th>
+                                     <th nowrap>
+                                         <center>Appartment</center>
+                                     </th>
+                                     <th nowrap>
+                                         <center>Owner</center>
+                                     </th>
+                                     <th nowrap>
+                                         <center>Complaint Status</center>
+                                     </th>
+                                     <th nowrap>
+                                         <center>Email Send Date</center>
+                                     </th>
+
+                                 </tr>
+                             </thead>
+                             <tbody>
+                                 <?php
+                                    for ($i = 0; $i < count($complaintEmailPending); $i++) {
+                                    ?>
+                                     <tr>
+                                         <td>
+                                             <center><?php echo ucfirst($complaintEmailPending[$i]['complaint_id']) ?></center>
+                                         </td>
+                                         <td>
+                                             <center><?php echo ucfirst($complaintEmailPending[$i]['tenant_name']) ?></center>
+                                         </td>
+                                         <td>
+                                             <center><?php echo ucfirst($complaintEmailPending[$i]['building_name']) ?></center>
+                                         </td>
+                                         <td>
+                                             <center><?php echo ucfirst($complaintEmailPending[$i]['appartment_name']) ?></center>
+                                         </td>
+                                         <td>
+                                             <center><?php echo ucfirst($complaintEmailPending[$i]['owner_name']) ?></center>
+                                         </td>
+                                         <td>
+                                             <center><?php echo ucfirst($complaintEmailPending[$i]['complaint_status']) ?></center>
+                                         </td>
+                                         <td>
+                                             <center><?php echo Date("Y-m-d H:i a", strtotime($complaintEmailPending[$i]['created_at'])) ?></center>
+                                         </td>
+                                     </tr>
+                                 <?php } ?>
+
+                             </tbody>
+                         </table>
+                     </div>
+                     <!-- end widget content -->
+                 </div>
+                 <!-- end widget div -->
+             </div>
+             <!-- end widget -->
+         </div>
+     </div>
+     <div class="row">
+
+         <div class="col-lg-12 mt">
+             <div id="panel-1" class="panel">
+                 <div class="panel-hdr">
+                     <h2>
+                         Complaint Pending /<span class="fw-300"><i>email send</i></span>
+                     </h2>
+                 </div>
+                 <div class="panel-container show">
+                     <div class="panel-content">
+
+                         <table id="datatable_tabletools" class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline">
+                             <thead class="bg-primary-600 bg-brand-gradient">
+                                 <tr>
+                                     <th nowrap>
+                                         <center>Complaint #</center>
+                                     </th>
+                                     <th nowrap>
+                                         <center>Tenant</center>
+                                     </th>
+                                     <th nowrap>
+                                         <center>Building</center>
+                                     </th>
+                                     <th nowrap>
+                                         <center>Appartment</center>
+                                     </th>
+                                     <th nowrap>
+                                         <center>Owner</center>
+                                     </th>
+                                     <th nowrap>
+                                         <center>Assign to</center>
+                                     </th>
+                                     <th nowrap>
+                                         <center>Complaint Status</center>
+                                     </th>
+                                     <th nowrap>
+                                         <center>Email Send Date</center>
+                                     </th>
+
+                                 </tr>
+                             </thead>
+                             <tbody>
+                                 <?php
+                                    for ($i = 0; $i < count($complaintEmailAssigned); $i++) {
+                                    ?>
+                                     <tr>
+                                         <td>
+                                             <center><?php echo ucfirst($complaintEmailAssigned[$i]['complaint_id']) ?></center>
+                                         </td>
+                                         <td>
+                                             <center><?php echo ucfirst($complaintEmailAssigned[$i]['tenant_name']) ?></center>
+                                         </td>
+                                         <td>
+                                             <center><?php echo ucfirst($complaintEmailAssigned[$i]['building_name']) ?></center>
+                                         </td>
+                                         <td>
+                                             <center><?php echo ucfirst($complaintEmailAssigned[$i]['appartment_name']) ?></center>
+                                         </td>
+                                         <td>
+                                             <center><?php echo ucfirst($complaintEmailAssigned[$i]['owner_name']) ?></center>
+                                         </td>
+                                         <td>
+                                             <center><?php echo ucfirst($complaintEmailAssigned[$i]['assign_to']) ?></center>
+                                         </td>
+                                         <td>
+                                             <center><?php echo ucfirst($complaintEmailAssigned[$i]['complaint_status']) ?></center>
+                                         </td>
+                                         <td>
+                                             <center><?php echo Date("Y-m-d H:i a", strtotime($complaintEmailAssigned[$i]['created_at'])) ?></center>
+                                         </td>
                                      </tr>
                                  <?php } ?>
 
