@@ -28,6 +28,7 @@ class Dashboard extends CI_Controller
 			$data['complaint'] =  $this->DASHBOARD->GetComplaint();
 			$data['complaintEmailPending'] =  $this->DASHBOARD->GetComplaintPendingEmailSend();
 			$data['complaintEmailAssigned'] =  $this->DASHBOARD->GetComplaintAssignedEmailSend();
+			$data['complaintEmailCompleted'] =  $this->DASHBOARD->GetComplaintCompleteEmailSend();
 			$this->load->view('infection_dashboard', $data);
 			$this->load->view('footer');
 		} else {

@@ -530,7 +530,7 @@
                                              <center><?php echo ucfirst($complaintEmailPending[$i]['complaint_status']) ?></center>
                                          </td>
                                          <td>
-                                             <center><?php echo Date("Y-m-d H:i a", strtotime($complaintEmailPending[$i]['created_at'])) ?></center>
+                                             <center><?php echo Date("Y-m-d h:i a", strtotime($complaintEmailPending[$i]['created_at'])) ?></center>
                                          </td>
                                      </tr>
                                  <?php } ?>
@@ -551,7 +551,7 @@
              <div id="panel-1" class="panel">
                  <div class="panel-hdr">
                      <h2>
-                         Complaint Pending /<span class="fw-300"><i>email send</i></span>
+                         Complaint Assigned /<span class="fw-300"><i>email send</i></span>
                      </h2>
                  </div>
                  <div class="panel-container show">
@@ -614,7 +614,7 @@
                                              <center><?php echo ucfirst($complaintEmailAssigned[$i]['complaint_status']) ?></center>
                                          </td>
                                          <td>
-                                             <center><?php echo Date("Y-m-d H:i a", strtotime($complaintEmailAssigned[$i]['created_at'])) ?></center>
+                                             <center><?php echo Date("Y-m-d h:i a", strtotime($complaintEmailAssigned[$i]['created_at'])) ?></center>
                                          </td>
                                      </tr>
                                  <?php } ?>
@@ -629,7 +629,84 @@
              <!-- end widget -->
          </div>
      </div>
+     <div class="row">
 
+         <div class="col-lg-12 mt">
+             <div id="panel-1" class="panel">
+                 <div class="panel-hdr">
+                     <h2>
+                         Complaint Completed /<span class="fw-300"><i>email send</i></span>
+                     </h2>
+                 </div>
+                 <div class="panel-container show">
+                     <div class="panel-content">
+
+                         <table id="datatable_tabletools" class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline">
+                             <thead class="bg-primary-600 bg-brand-gradient">
+                                 <tr>
+                                     <th nowrap>
+                                         <center>Complaint #</center>
+                                     </th>
+                                     <th nowrap>
+                                         <center>Tenant</center>
+                                     </th>
+                                     <th nowrap>
+                                         <center>Building</center>
+                                     </th>
+                                     <th nowrap>
+                                         <center>Appartment</center>
+                                     </th>
+                                     <th nowrap>
+                                         <center>Owner</center>
+                                     </th>
+                                     <th nowrap>
+                                         <center>Complaint Status</center>
+                                     </th>
+                                     <th nowrap>
+                                         <center>Email Send Date</center>
+                                     </th>
+
+                                 </tr>
+                             </thead>
+                             <tbody>
+                                 <?php
+                                    for ($i = 0; $i < count($complaintEmailCompleted); $i++) {
+                                    ?>
+                                     <tr>
+                                         <td>
+                                             <center><?php echo ucfirst($complaintEmailCompleted[$i]['complaint_id']) ?></center>
+                                         </td>
+                                         <td>
+                                             <center><?php echo ucfirst($complaintEmailCompleted[$i]['tenant_name']) ?></center>
+                                         </td>
+                                         <td>
+                                             <center><?php echo ucfirst($complaintEmailCompleted[$i]['building_name']) ?></center>
+                                         </td>
+                                         <td>
+                                             <center><?php echo ucfirst($complaintEmailCompleted[$i]['appartment_name']) ?></center>
+                                         </td>
+                                         <td>
+                                             <center><?php echo ucfirst($complaintEmailCompleted[$i]['owner_name']) ?></center>
+                                         </td>
+                                         <td>
+                                             <center><?php echo ucfirst($complaintEmailCompleted[$i]['complaint_status']) ?></center>
+                                         </td>
+                                         <td>
+                                             <center><?php echo Date("Y-m-d h:i a", strtotime($complaintEmailCompleted[$i]['created_at'])) ?></center>
+                                         </td>
+                                     </tr>
+                                 <?php } ?>
+
+                             </tbody>
+                         </table>
+                     </div>
+                     <!-- end widget content -->
+                 </div>
+                 <!-- end widget div -->
+             </div>
+             <!-- end widget -->
+         </div>
+     </div>
  </main>
  <script type="text/javascript">
      /* Activate smart panels */

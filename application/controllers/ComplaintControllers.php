@@ -151,7 +151,7 @@ class ComplaintControllers extends CI_Controller
             Your maintenance request has been registered under the MR#: (" . $recordId . ") and assigned to M/S " . ucwords($data[0]['company_name']) . ". Mr. " . ucwords($data[0]['contact_person']) . " shall contact you for coordinating an appointment at the earliest. You may contact Mr. " . ucwords($data[0]['contact_person']) . " at " . $data[0]['phone_number'] . " " . $data[0]['contact_email'] . " for faster facilitation.<br><br> 
             
             Kindly note that the matter shall be treated in accordance with the maintenance clause mentioned in your tenancy contract.<br>
-            CC: Dear " . ucwords($data[0]['contact_person']) . ", please contact the tenant to resolve issue as per above mentioned complaint and quote at the earliest. Tenant can be contacted at " . $data[0]['phone_number'] . " or " . $data[0]['email'] . ". ";
+            CC: Dear " . ucwords($data[0]['contact_person']) . ", please contact the tenant to resolve issue as per above mentioned complaint and quote at the earliest. Tenant can be contacted at " . $data[0]['contact_person'] . " or " . $data[0]['email'] . ". ";
 
 
             $config['smtp_host'] = SMTPHOST;
@@ -374,9 +374,74 @@ class ComplaintControllers extends CI_Controller
             $arrInfo['cost'] = $arrPost['cost'];
             $arrInfo['currency'] = $arrPost['currency'];
             $arrInfo['remarks'] = $arrPost['remarks'];
+            $arrInfo['paid_by'] = $arrPost['paid_by'];
+            $arrInfo['bill'] = $arrPost['bill'];
             $arrInfo['complaint_status'] = 'completed';
         }
         $this->OWNER->UpdateOwner($arrInfo, $tableName, $id);
+
+        $tableName = 'complaint';
+        $dataComplaint = $this->OWNER->ShowOwnerEdit($tableName, $arrPost['complaint_id']);
+        $tableName = 'tenant';
+        $dataTenant = $this->OWNER->ShowOwnerEdit($tableName, $dataComplaint[0]['tenant_id']);
+
+        // $to = $dataTenant[0]['email'];
+        $to = 'dawngill08@gmail.com';
+        $subject = "Complaint resolved";
+        $emailcontent = "Dear " . ucwords($dataTenant[0]['name']) . "<br>,
+
+
+        We have been informed by  the (maintenance company) that the issue, as per complaint # (" . $arrPost['complaint_id'] . ") has been resolved. If it has not been resolved, please reply within 24 hours of receiving this email otherwise we will consider this complaint as closed.<br> 
+
+        Thanks";
+
+
+        $config['smtp_host'] = SMTPHOST;
+        $config['smtp_user'] = SMTPUSER;
+        $config['smtp_pass'] = SMTPPASS;
+        $config['smtp_port'] = '465';
+        $config['mailtype'] = 'html';
+        $config['smtp_crypto'] = 'ssl';
+        $config['protocol'] = 'smtp';
+        $config['charset'] = 'iso-8859-1';
+        $config['newline'] = "\r\n";
+
+        $this->email->initialize($config);
+
+
+
+        $this->email->from(SMTPUSER);
+        $this->email->to($to);
+        $this->email->bcc('accounts@lymdubai.com');
+        $this->email->cc('accounts@lymdubai.com');
+
+        $this->email->subject($subject);
+        $this->email->message($emailcontent);
+        $this->email->send();
+
+
+        $tableName = 'building';
+        $dataBuilding = $this->OWNER->ShowOwnerEdit($tableName, $dataComplaint[0]['building_id']);
+        $tableName = 'apartment';
+        $dataApartment = $this->OWNER->ShowOwnerEdit($tableName, $dataComplaint[0]['apartment_id']);
+        $tableName = 'owner';
+        $dataOwner = $this->OWNER->ShowOwnerEdit($tableName, $dataComplaint[0]['owner_id']);
+
+        $tableName = 'email_complaint';
+        $arrInfo = array();
+        $arrInfo['tenant_id'] = $dataComplaint[0]['tenant_id'];
+        $arrInfo['tenant_name'] = $dataTenant[0]['name'];
+        $arrInfo['complaint_id'] = $arrPost['complaint_id'];
+        $arrInfo['building_id'] = $dataComplaint[0]['building_id'];
+        $arrInfo['building_name'] = $dataBuilding[0]['building_name']; //
+        $arrInfo['appartment_id'] = $dataComplaint[0]['apartment_id'];
+        $arrInfo['appartment_name'] = $dataApartment[0]['apartment_number']; //
+        $arrInfo['owner_id'] = $dataComplaint[0]['owner_id'];
+        $arrInfo['owner_name'] = $dataOwner[0]['name']; //
+        $arrInfo['complaint_status'] = 'completed';
+        $arrInfo['created_at'] = Date("Y-m-d h:i:s");
+
+        $this->OWNER->AddOwner($arrInfo, $tableName);
         redirect('/complaint');
     }
     public function EditComplaint()

@@ -8,9 +8,10 @@
         <div class="col-md-12 mb-3 mt-3">
             <label class="form-label">Currency<span style="color: red">*</span></label>
             <select class="custom-select" name="currency" id="currency" required="">
-                <option value="">Select currency</option>
-                <option value="ALL Lek">ALL Lek</option>
-                <option value="AFN ؋">AFN ؋</option>
+                <!-- <option value="">Select currency</option> -->
+                <option value="Aed د.إ">Aed د.إ</option>
+                <!-- <option value="ALL Lek">ALL Lek</option> -->
+                <!-- <option value="AFN ؋">AFN ؋</option>
                 <option value="ARS $">ARS $</option>
                 <option value="AWG ƒ">AWG ƒ</option>
                 <option value="AUD $">AUD $</option>
@@ -64,7 +65,7 @@
                 <option value="KZT	лв">KZT лв</option>
                 <option value="KPW	₩">KPW ₩</option>
                 <option value="KRW	₩">KRW ₩</option>
-                <option value="KGS	лв">KGS лв</option>
+                <option value="KGS	лв">KGS лв</option> -->
             </select>
             <div class="invalid-feedback">
                 Please Select Currency.
@@ -72,7 +73,7 @@
         </div>
         <div class="col-md-12 mb-3">
             <label class="form-label" style="margin-top: 14px;">Maintenance cost<span style="color: red">*</span></label>
-            <input class="form-control" placeholder="Enter Maintenance cost" type="text" id='cost' name='cost' required>
+            <input class="form-control" placeholder="Enter Maintenance cost" type="number" id='cost' name='cost' required>
             <div class="invalid-feedback">
                 Please Enter Maintenance cost.
             </div>
@@ -86,6 +87,26 @@
             </div>
 
         </div>
+        <div class="col-md-12 mb-3">
+            <div class="frame-wrap">
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" class="custom-control-input" id="paid_by" name="paid_by" value="paid owner">
+                    <label class="custom-control-label" for="paid_by">Paid by owner</label>
+                </div>
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" class="custom-control-input" id="paid_bys" name="paid_by" checked value="paid tenant">
+                    <label class="custom-control-label" for="paid_bys">Paid by Tenant</label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 mb-3">
+        <label class="form-label" style="margin-top: 14px;">bill #</label>
+        <input class="form-control" placeholder="Enter bill Number" type="number" id='bill' name='bill'></input>
+        <div class="invalid-feedback">
+            Please Enter Remarks cost.
+        </div>
+
     </div>
 
     <div class="row">
@@ -112,6 +133,7 @@
             Toast(value);
             return false;
         }
+
         if ($('#cost').val() == '') {
             var value = 'Cost is required';
             Toast(value);
@@ -121,6 +143,14 @@
             var value = 'remarks is required';
             Toast(value);
             return false;
+        }
+
+        if (document.getElementById('paid_by').checked) {
+            if ($('#bill').val() == '') {
+                var value = 'Bill number is required';
+                Toast(value);
+                return false;
+            }
         }
         Swal.fire({
             title: "Are you sure you want to add cost?",

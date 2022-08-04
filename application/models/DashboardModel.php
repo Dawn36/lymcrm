@@ -143,4 +143,13 @@ class DashboardModel  extends CI_Model
 		log_message('debug', $this->db->last_query());
 		return $data;
 	}
+	function GetComplaintCompleteEmailSend()
+	{
+		$this->db->select('*');
+		$this->db->where('complaint_status', 'completed');
+		$data = $this->db->get('email_complaint')->result_array();
+		// print_r($role) ;
+		log_message('debug', $this->db->last_query());
+		return $data;
+	}
 }
