@@ -22,7 +22,7 @@ $heading = "Complaint";
             <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
                 <h1> <span class="page-title txt-color-blueDark">Complaint</span></h1>
             </div>
-            <?php if ($this->session->userdata('role_id') == SUPER_ADMIN) { ?>
+            <?php if ($this->session->userdata('role_id') == SUPER_ADMIN || $this->session->userdata('role_id') == SUB_ADMIN) { ?>
                 <div class="col-xs-12 col-sm-7 col-md-7 col-lg-8">
                     <button onclick="AddComplaint()" class="btn btn-primary float-right bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Add Complaint" type="button"><i class="fas fa-plus" style="margin-right: 4px"></i>Add Complaint</button>
                 </div>
@@ -71,6 +71,14 @@ $heading = "Complaint";
                                                 <th nowrap>
                                                     <center>Cost</center>
                                                 </th>
+                                                <th nowrap>
+                                                    <center>Assign to</center>
+                                                </th>
+                                                <th nowrap>
+                                                    <center>Assign Date</center>
+                                                </th>
+                                            <?php }
+                                            if ($this->session->userdata('role_id') == SUB_ADMIN) { ?>
                                                 <th nowrap>
                                                     <center>Assign to</center>
                                                 </th>
@@ -149,6 +157,20 @@ $heading = "Complaint";
                                                         </center>
                                                     </td>
 
+                                                <?php }
+                                                if ($this->session->userdata('role_id') == SUB_ADMIN) { ?>
+                                                    <td>
+                                                        <center>
+                                                            <?php echo ucwords($complaintData[$i]['company_name'])  ?>
+
+                                                        </center>
+                                                    </td>
+                                                    <td>
+                                                        <center>
+                                                            <?php echo  $complaintData[$i]['assigned_date']  ?>
+
+                                                        </center>
+                                                    </td>
                                                 <?php } ?>
 
                                                 <td>
@@ -185,7 +207,13 @@ $heading = "Complaint";
                                                                 <?
                                                                 } ?>
                                                                 <button onclick="DeleteComplaint('<?php echo $complaintId ?>')" class="btn btn-sm btn-primary bg-brand-gradient " data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Delete Complaint"><i class="fal fa-times"></i></button>
-                                                            <? } ?>
+                                                            <? }
+                                                            if ($this->session->userdata('role_id') == SUB_ADMIN) { ?>
+                                                                <button onclick="EditComplaintTenant('<?php echo $complaintId ?>')" class="btn btn-sm btn-primary bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Edit Complaint"><i class="fal fa-edit"></i></button>&nbsp;
+                                                                <button onclick="AssignComplaint('<?php echo $complaintId ?>')" class="btn btn-sm btn-primary bg-brand-gradient " data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Assign Complaint"><i class="fal fa-align-left"></i></button>
+
+
+                                                            <? }  ?>
                                                         <?php } ?>
                                                     </center>
                                                 </td>
