@@ -210,9 +210,10 @@ $heading = "Complaint";
                                                             <? }
                                                             if ($this->session->userdata('role_id') == SUB_ADMIN) { ?>
                                                                 <button onclick="EditComplaintTenant('<?php echo $complaintId ?>')" class="btn btn-sm btn-primary bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Edit Complaint"><i class="fal fa-edit"></i></button>&nbsp;
-                                                                <button onclick="AssignComplaint('<?php echo $complaintId ?>')" class="btn btn-sm btn-primary bg-brand-gradient " data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Assign Complaint"><i class="fal fa-align-left"></i></button>
-
-
+                                                                <!-- <button onclick="AssignComplaint('<?php echo $complaintId ?>')" class="btn btn-sm btn-primary bg-brand-gradient " data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Assign Complaint"><i class="fal fa-align-left"></i></button> -->
+                                                                <?php if ($complaintData[$i]['complaint_status'] == 'assigned') { ?>
+                                                                    <button onclick="ComplaintCost('<?php echo $complaintId ?>')" class="btn btn-sm btn-primary bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Complaint Cost"><i class="fa fa-money"></i></button>&nbsp;
+                                                                <?php } ?>
                                                             <? }  ?>
                                                         <?php } ?>
                                                     </center>
