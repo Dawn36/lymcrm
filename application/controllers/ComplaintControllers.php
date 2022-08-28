@@ -139,6 +139,7 @@ class ComplaintControllers extends CI_Controller
             $recordId = $arrPost['complaint_id'];
             $arrInfo['company_id'] = $arrPost['company_id'];
             $arrInfo['complaint_status'] = 'assigned';
+            $arrInfo['assigned_remarks'] = $arrPost['assigned_remarks'];
             $arrInfo['assigned_date'] = Date('Y-m-d');
 
             $check = $this->OWNER->UpdateOwner($arrInfo, $tableName, $recordId);

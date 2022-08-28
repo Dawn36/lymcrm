@@ -45,6 +45,7 @@ class ComplaintModel  extends CI_Model
         c.`complaint_date`,
         c.`complaint_status`,
         c.`description`,
+        c.`assigned_remarks`,
         com.`name` AS company_name,
         c.`assigned_date`,
         c.`cost`,c.`currency`,c.`remarks`');

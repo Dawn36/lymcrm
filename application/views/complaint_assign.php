@@ -24,6 +24,13 @@
             <div class="invalid-feedback">
                 Please Enter Company Email.
             </div>
+        </div>
+        <div class="col-md-12 mb-3">
+            <label class="form-label" style="margin-top: 14px;">Remarks</label>
+            <textarea class="form-control" placeholder="Enter Remarks " type="text" id='assigned_remarks' name='assigned_remarks'></textarea>
+            <div class="invalid-feedback">
+                Please Enter Remarks .
+            </div>
 
         </div>
 

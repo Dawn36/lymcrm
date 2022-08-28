@@ -66,6 +66,9 @@ $heading = "Complaint";
                                             </th>
                                             <?php if ($this->session->userdata('role_id') == SUPER_ADMIN) { ?>
                                                 <th nowrap>
+                                                    <center>Assign Remarks</center>
+                                                </th>
+                                                <th nowrap>
                                                     <center>Currency</center>
                                                 </th>
                                                 <th nowrap>
@@ -79,6 +82,9 @@ $heading = "Complaint";
                                                 </th>
                                             <?php }
                                             if ($this->session->userdata('role_id') == SUB_ADMIN) { ?>
+                                                <th nowrap>
+                                                    <center>Assign Remarks</center>
+                                                </th>
                                                 <th nowrap>
                                                     <center>Assign to</center>
                                                 </th>
@@ -136,6 +142,11 @@ $heading = "Complaint";
                                                 <?php if ($this->session->userdata('role_id') == SUPER_ADMIN) { ?>
                                                     <td>
                                                         <center>
+                                                            <?php echo ucwords($complaintData[$i]['assigned_remarks'])  ?>
+                                                        </center>
+                                                    </td>
+                                                    <td>
+                                                        <center>
                                                             <?php echo ucwords($complaintData[$i]['currency'])  ?>
                                                         </center>
                                                     </td>
@@ -159,6 +170,16 @@ $heading = "Complaint";
 
                                                 <?php }
                                                 if ($this->session->userdata('role_id') == SUB_ADMIN) { ?>
+                                                    <td>
+                                                        <center>
+                                                            <?php echo ucwords($complaintData[$i]['assigned_remarks'])  ?>
+                                                        </center>
+                                                    </td>
+                                                    <td>
+                                                        <center>
+                                                            <?php echo ucwords($complaintData[$i]['currency'])  ?>
+                                                        </center>
+                                                    </td>
                                                     <td>
                                                         <center>
                                                             <?php echo ucwords($complaintData[$i]['company_name'])  ?>
@@ -197,10 +218,11 @@ $heading = "Complaint";
                                                             <?php if ($this->session->userdata('role_id') == SUPER_ADMIN) { ?>
                                                                 <?php if ($complaintData[$i]['complaint_status'] != 'pending') { ?>
                                                                     <button onclick="SendWhatsappSms('<?php echo $complaintId ?>')" class="btn btn-sm btn-primary bg-brand-gradient " data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Send Complaint By whatsapp"><i class="fas fa-sms"></i></button>
-
-                                                                    <button onclick="ComplaintCost('<?php echo $complaintId ?>')" class="btn btn-sm btn-primary bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Complaint Cost"><i class="fa fa-money"></i></button>&nbsp;
                                                                 <?
                                                                 } ?>
+                                                                <?php if ($complaintData[$i]['complaint_status'] == 'assigned') { ?>
+                                                                    <button onclick="ComplaintCost('<?php echo $complaintId ?>')" class="btn btn-sm btn-primary bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Complaint Cost"><i class="fa fa-money"></i></button>&nbsp;
+                                                                <?php } ?>
                                                                 <button onclick="EditComplaintAdmin('<?php echo $complaintId ?>')" class="btn btn-sm btn-primary bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Edit Complaint"><i class="fal fa-edit"></i></button>&nbsp;
                                                                 <?php if ($complaintData[$i]['complaint_status'] != 'completed') { ?>
                                                                     <button onclick="AssignComplaint('<?php echo $complaintId ?>')" class="btn btn-sm btn-primary bg-brand-gradient " data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Assign Complaint"><i class="fal fa-align-left"></i></button>
@@ -209,6 +231,10 @@ $heading = "Complaint";
                                                                 <button onclick="DeleteComplaint('<?php echo $complaintId ?>')" class="btn btn-sm btn-primary bg-brand-gradient " data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Delete Complaint"><i class="fal fa-times"></i></button>
                                                             <? }
                                                             if ($this->session->userdata('role_id') == SUB_ADMIN) { ?>
+                                                                <?php if ($complaintData[$i]['complaint_status'] != 'completed') { ?>
+                                                                    <button onclick="AssignComplaint('<?php echo $complaintId ?>')" class="btn btn-sm btn-primary bg-brand-gradient " data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Assign Complaint"><i class="fal fa-align-left"></i></button>
+                                                                <?
+                                                                } ?>
                                                                 <button onclick="EditComplaintTenant('<?php echo $complaintId ?>')" class="btn btn-sm btn-primary bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Edit Complaint"><i class="fal fa-edit"></i></button>&nbsp;
                                                                 <!-- <button onclick="AssignComplaint('<?php echo $complaintId ?>')" class="btn btn-sm btn-primary bg-brand-gradient " data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Assign Complaint"><i class="fal fa-align-left"></i></button> -->
                                                                 <?php if ($complaintData[$i]['complaint_status'] == 'assigned') { ?>
