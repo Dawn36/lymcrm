@@ -20,6 +20,10 @@
     }*/
  </style>
  <?php
+<<<<<<< HEAD
+=======
+ $heading='Dashboard';
+>>>>>>> 3bdb593 (Initial commit)
     //////// paid working processbar////////////////////////
     $totalRePaid = $totalRevenue[0]['rent_amount'] + $totalPaid[0]['amount'];
     if ($totalRePaid > 0) {
@@ -190,7 +194,11 @@
                  <div class="">
                      <h3 class="display-4 d-block l-h-n m-0 fw-500">
                          <?php echo number_format($propertyCount[0]['property_count']) ?>
+<<<<<<< HEAD
                          <small class="m-0 l-h-n">Total number of Propertys</small>
+=======
+                         <small class="m-0 l-h-n">Total number of Properties</small>
+>>>>>>> 3bdb593 (Initial commit)
                      </h3>
                  </div>
                  <i class="fal fa-home position-absolute pos-right pos-bottom opacity-15  mb-n1 mr-n4" style="font-size: 6rem;"></i>
@@ -242,6 +250,7 @@
                  <i class="fal fa-gem position-absolute pos-right pos-bottom opacity-15  mb-n1 mr-n4" style="font-size: 6rem;"></i>
              </div>
          </div>
+<<<<<<< HEAD
          <!--   <div class="col-sm-3 col-xl-3">
                                 <div class="p-3 bg-success-200 rounded overflow-hidden position-relative text-white mb-g">
                                     <div class="">
@@ -253,6 +262,19 @@
                                     <i class="fal fa-lightbulb position-absolute pos-right pos-bottom opacity-15 mb-n5 mr-n6" style="font-size: 8rem;"></i>
                                 </div>
                             </div> -->
+=======
+           <div class="col-sm-4 col-xl-4" onclick="GetDepositSlipNotSend()" style="cursor: pointer;">
+                <div class="p-3 bg-success-900 rounded overflow-hidden position-relative text-white mb-g">
+                    <div class="">
+                        <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                        <?php echo number_format($depositEmailNotSend[0]['email_not_send']) ?>
+                            <small class="m-0 l-h-n">Total number of deposit slips email not send</small>
+                        </h3>
+                    </div>
+                    <i class="fal fa-lightbulb position-absolute pos-right pos-bottom opacity-15 mb-n5 mr-n6" style="font-size: 8rem;"></i>
+                </div>
+            </div>
+>>>>>>> 3bdb593 (Initial commit)
          <!--  <div class="col-sm-3 col-xl-3">
                                 <div class="p-3 bg-info-200 rounded overflow-hidden position-relative text-white mb-g">
                                     <div class="">
@@ -265,7 +287,11 @@
                                 </div>
                             </div> -->
      </div>
+<<<<<<< HEAD
      <div class="subheader">
+=======
+      <div class="subheader">
+>>>>>>> 3bdb593 (Initial commit)
          <h1 class="subheader-title">
              <i class='subheader-icon fas fa-bell'></i>Lym <span class='fw-300'>Complaint</span>
          </h1>
@@ -317,7 +343,11 @@
                  <div class="panel-container show">
                      <div class="panel-content">
 
+<<<<<<< HEAD
                          <table id="datatable_tabletools" class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline">
+=======
+                         <table id="datatable_tabletools" class="table table-bordered table-hover aa table-striped w-100 dataTable dtr-inline">
+>>>>>>> 3bdb593 (Initial commit)
                              <thead class="bg-primary-600 bg-brand-gradient">
                                  <tr>
                                      <th nowrap>
@@ -386,7 +416,11 @@
                  <div class="panel-container show">
                      <div class="panel-content">
 
+<<<<<<< HEAD
                          <table id="datatable_tabletools" class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline">
+=======
+                         <table id="datatable_tabletools1" class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline">
+>>>>>>> 3bdb593 (Initial commit)
                              <thead class="bg-primary-600 bg-brand-gradient">
                                  <tr>
                                      <th nowrap>
@@ -401,13 +435,20 @@
                                      <th nowrap>
                                          <center>90 Days</center>
                                      </th>
+<<<<<<< HEAD
                                      <th nowrap>
                                          <center>Status</center>
                                      </th>
+=======
+                                     <!--<th nowrap>-->
+                                     <!--    <center>Status</center>-->
+                                     <!--</th>-->
+>>>>>>> 3bdb593 (Initial commit)
 
                                  </tr>
                              </thead>
                              <tbody>
+<<<<<<< HEAD
                                  <?php
                                     for ($i = 0; $i < count($emailInfo); $i++) {
 
@@ -428,11 +469,37 @@
                                         }
 
                                     ?>
+=======
+                                 <?php 
+                                 for ($i=0; $i <count($emailInfo) ; $i++) { 
+                                  
+                                    $sendDate= explode(",", $emailInfo[$i]['end_date_group']);
+                                    $check= explode(",", $emailInfo[$i]['check']);
+                                    $dateDate['30']='';
+                                    $dateDate['60']='';
+                                    $dateDate['90']='';
+                                    for ($j=0; $j < count($check) ; $j++) { 
+                                        $dateDate[$check[$j]]=$sendDate[$j];
+                                    }
+                                    
+                                    $sendCount=count($sendDate);
+                                    if($sendCount == '3')
+                                    {
+                                        $status='Complete';
+                                    }
+                                    else
+                                    {
+                                        $status='Pending';
+                                    }
+                                    
+                                  ?>
+>>>>>>> 3bdb593 (Initial commit)
                                      <tr>
                                          <td>
                                              <center><?php echo ucfirst($emailInfo[$i]['tenant_name']) ?></center>
                                          </td>
                                          <td>
+<<<<<<< HEAD
                                              <center><?php
                                                         if ($dateDate[30] != "") {
                                                             echo date("Y-m-d", strtotime($dateDate[30]));
@@ -453,6 +520,31 @@
                                          <td>
                                              <center><?= $status ?></center>
                                          </td>
+=======
+                                             <center><?php 
+                                             if($dateDate[30] != "")
+                                             {
+                                                echo date("Y-m-d",strtotime($dateDate[30]));
+                                             } ?></center>
+                                         </td>
+                                         <td>
+                                             <center><?php 
+                                             if($dateDate[60] != "")
+                                             {
+                                                echo date("Y-m-d",strtotime($dateDate[60]));
+                                             } ?></center>
+                                         </td>
+                                          <td>
+                                             <center><?php 
+                                             if($dateDate[90] != "")
+                                             {
+                                                echo date("Y-m-d",strtotime($dateDate[90]));
+                                             } ?></center>
+                                         </td>
+                                         <!--<td>-->
+                                         <!--    <center><?=$status?></center>-->
+                                         <!--</td>-->
+>>>>>>> 3bdb593 (Initial commit)
 
                                      </tr>
                                  <?php } ?>
@@ -479,7 +571,11 @@
                  <div class="panel-container show">
                      <div class="panel-content">
 
+<<<<<<< HEAD
                          <table id="datatable_tabletools" class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline">
+=======
+                         <table id="complaint_pending" class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline">
+>>>>>>> 3bdb593 (Initial commit)
                              <thead class="bg-primary-600 bg-brand-gradient">
                                  <tr>
                                      <th nowrap>
@@ -557,7 +653,11 @@
                  <div class="panel-container show">
                      <div class="panel-content">
 
+<<<<<<< HEAD
                          <table id="datatable_tabletools" class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline">
+=======
+                         <table id="complaint_assigned" class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline">
+>>>>>>> 3bdb593 (Initial commit)
                              <thead class="bg-primary-600 bg-brand-gradient">
                                  <tr>
                                      <th nowrap>
@@ -641,7 +741,11 @@
                  <div class="panel-container show">
                      <div class="panel-content">
 
+<<<<<<< HEAD
                          <table id="datatable_tabletools" class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline">
+=======
+                         <table id="complaint_completed" class="table table-bordered table-hover table-striped w-100 dataTable dtr-inline">
+>>>>>>> 3bdb593 (Initial commit)
                              <thead class="bg-primary-600 bg-brand-gradient">
                                  <tr>
                                      <th nowrap>
@@ -707,6 +811,10 @@
              <!-- end widget -->
          </div>
      </div>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 3bdb593 (Initial commit)
  </main>
  <script type="text/javascript">
      /* Activate smart panels */
@@ -715,6 +823,417 @@
  <!-- The order of scripts is irrelevant. Please check out the plugin pages for more details about these plugins below: -->
 
  <script>
+<<<<<<< HEAD
+=======
+ $(document).ready(function() {
+    $('#complaint_completed').dataTable({
+        responsive: true,
+        lengthChange: false,
+        dom:
+            /*  --- Layout Structure 
+              --- Options
+              l - length changing input control
+              f - filtering input
+              t - The table!
+              i - Table information summary
+              p - pagination control
+              r - processing display element
+              B - buttons
+              R - ColReorder
+              S - Select
+
+              --- Markup
+              < and >       - div element
+              <"class" and >    - div with a class
+              <"#id" and >    - div with an ID
+              <"#id.class" and >  - div with an ID and a class
+
+              --- Further reading
+              https://datatables.net/reference/option/dom
+              --------------------------------------
+             */
+            "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
+            "<'row'<'col-sm-12'tr>>" +
+            "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+         buttons: [
+                /*{
+                    extend:    'colvis',
+                    text:      'Column Visibility',
+                    titleAttr: 'Col visibility',
+                    className: 'mr-sm-3'
+                },*/
+                {
+                    extend: 'pdfHtml5',
+                    title: '<?php echo $heading; ?>',
+                    text: 'PDF',
+                    titleAttr: 'Generate PDF',
+                    className: 'btn-outline-danger btn-sm mr-1'
+                },
+                {
+                    extend: 'excelHtml5',
+                    title: '<?php echo $heading; ?>',
+                    text: 'Excel',
+                    titleAttr: 'Generate Excel',
+                    className: 'btn-outline-success btn-sm mr-1'
+                },
+                {
+                    extend: 'csvHtml5',
+                    title: '<?php echo $heading; ?>',
+                    text: 'CSV',
+                    titleAttr: 'Generate CSV',
+                    className: 'btn-outline-primary btn-sm mr-1'
+                },
+                {
+                    extend: 'copyHtml5',
+                    title: '<?php echo $heading; ?>',
+                    text: 'Copy',
+                    titleAttr: 'Copy to clipboard',
+                    className: 'btn-outline-primary btn-sm mr-1'
+                },
+                {
+                    extend: 'print',
+                    text: 'Print',
+                    titleAttr: 'Print Table',
+                    title: '<?php echo $heading; ?>',
+                    customize: function(win) {
+                        $(win.document.body).find('h1').css('text-align', 'center');
+                        $(win.document.body).css('font-size', '9px');
+                        $(win.document.body).find('table')
+                            .addClass('compact')
+                            .css('font-size', 'inherit');
+                    },
+                    className: 'btn-outline-primary btn-sm'
+                }
+            ],
+
+    });
+    $('#complaint_assigned').dataTable({
+        responsive: true,
+        lengthChange: false,
+        dom:
+            /*  --- Layout Structure 
+              --- Options
+              l - length changing input control
+              f - filtering input
+              t - The table!
+              i - Table information summary
+              p - pagination control
+              r - processing display element
+              B - buttons
+              R - ColReorder
+              S - Select
+
+              --- Markup
+              < and >       - div element
+              <"class" and >    - div with a class
+              <"#id" and >    - div with an ID
+              <"#id.class" and >  - div with an ID and a class
+
+              --- Further reading
+              https://datatables.net/reference/option/dom
+              --------------------------------------
+             */
+            "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
+            "<'row'<'col-sm-12'tr>>" +
+            "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+         buttons: [
+                /*{
+                    extend:    'colvis',
+                    text:      'Column Visibility',
+                    titleAttr: 'Col visibility',
+                    className: 'mr-sm-3'
+                },*/
+                {
+                    extend: 'pdfHtml5',
+                    title: '<?php echo $heading; ?>',
+                    text: 'PDF',
+                    titleAttr: 'Generate PDF',
+                    className: 'btn-outline-danger btn-sm mr-1'
+                },
+                {
+                    extend: 'excelHtml5',
+                    title: '<?php echo $heading; ?>',
+                    text: 'Excel',
+                    titleAttr: 'Generate Excel',
+                    className: 'btn-outline-success btn-sm mr-1'
+                },
+                {
+                    extend: 'csvHtml5',
+                    title: '<?php echo $heading; ?>',
+                    text: 'CSV',
+                    titleAttr: 'Generate CSV',
+                    className: 'btn-outline-primary btn-sm mr-1'
+                },
+                {
+                    extend: 'copyHtml5',
+                    title: '<?php echo $heading; ?>',
+                    text: 'Copy',
+                    titleAttr: 'Copy to clipboard',
+                    className: 'btn-outline-primary btn-sm mr-1'
+                },
+                {
+                    extend: 'print',
+                    text: 'Print',
+                    titleAttr: 'Print Table',
+                    title: '<?php echo $heading; ?>',
+                    customize: function(win) {
+                        $(win.document.body).find('h1').css('text-align', 'center');
+                        $(win.document.body).css('font-size', '9px');
+                        $(win.document.body).find('table')
+                            .addClass('compact')
+                            .css('font-size', 'inherit');
+                    },
+                    className: 'btn-outline-primary btn-sm'
+                }
+            ],
+
+    });
+    $('#complaint_pending').dataTable({
+        responsive: true,
+        lengthChange: false,
+        dom:
+            /*  --- Layout Structure 
+              --- Options
+              l - length changing input control
+              f - filtering input
+              t - The table!
+              i - Table information summary
+              p - pagination control
+              r - processing display element
+              B - buttons
+              R - ColReorder
+              S - Select
+
+              --- Markup
+              < and >       - div element
+              <"class" and >    - div with a class
+              <"#id" and >    - div with an ID
+              <"#id.class" and >  - div with an ID and a class
+
+              --- Further reading
+              https://datatables.net/reference/option/dom
+              --------------------------------------
+             */
+            "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
+            "<'row'<'col-sm-12'tr>>" +
+            "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+         buttons: [
+                /*{
+                    extend:    'colvis',
+                    text:      'Column Visibility',
+                    titleAttr: 'Col visibility',
+                    className: 'mr-sm-3'
+                },*/
+                {
+                    extend: 'pdfHtml5',
+                    title: '<?php echo $heading; ?>',
+                    text: 'PDF',
+                    titleAttr: 'Generate PDF',
+                    className: 'btn-outline-danger btn-sm mr-1'
+                },
+                {
+                    extend: 'excelHtml5',
+                    title: '<?php echo $heading; ?>',
+                    text: 'Excel',
+                    titleAttr: 'Generate Excel',
+                    className: 'btn-outline-success btn-sm mr-1'
+                },
+                {
+                    extend: 'csvHtml5',
+                    title: '<?php echo $heading; ?>',
+                    text: 'CSV',
+                    titleAttr: 'Generate CSV',
+                    className: 'btn-outline-primary btn-sm mr-1'
+                },
+                {
+                    extend: 'copyHtml5',
+                    title: '<?php echo $heading; ?>',
+                    text: 'Copy',
+                    titleAttr: 'Copy to clipboard',
+                    className: 'btn-outline-primary btn-sm mr-1'
+                },
+                {
+                    extend: 'print',
+                    text: 'Print',
+                    titleAttr: 'Print Table',
+                    title: '<?php echo $heading; ?>',
+                    customize: function(win) {
+                        $(win.document.body).find('h1').css('text-align', 'center');
+                        $(win.document.body).css('font-size', '9px');
+                        $(win.document.body).find('table')
+                            .addClass('compact')
+                            .css('font-size', 'inherit');
+                    },
+                    className: 'btn-outline-primary btn-sm'
+                }
+            ],
+
+    });
+         $('#datatable_tabletools').dataTable({
+        responsive: true,
+        lengthChange: false,
+        dom:
+            /*  --- Layout Structure 
+              --- Options
+              l - length changing input control
+              f - filtering input
+              t - The table!
+              i - Table information summary
+              p - pagination control
+              r - processing display element
+              B - buttons
+              R - ColReorder
+              S - Select
+
+              --- Markup
+              < and >       - div element
+              <"class" and >    - div with a class
+              <"#id" and >    - div with an ID
+              <"#id.class" and >  - div with an ID and a class
+
+              --- Further reading
+              https://datatables.net/reference/option/dom
+              --------------------------------------
+             */
+            "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
+            "<'row'<'col-sm-12'tr>>" +
+            "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+         buttons: [
+                /*{
+                    extend:    'colvis',
+                    text:      'Column Visibility',
+                    titleAttr: 'Col visibility',
+                    className: 'mr-sm-3'
+                },*/
+                {
+                    extend: 'pdfHtml5',
+                    title: '<?php echo $heading; ?>',
+                    text: 'PDF',
+                    titleAttr: 'Generate PDF',
+                    className: 'btn-outline-danger btn-sm mr-1'
+                },
+                {
+                    extend: 'excelHtml5',
+                    title: '<?php echo $heading; ?>',
+                    text: 'Excel',
+                    titleAttr: 'Generate Excel',
+                    className: 'btn-outline-success btn-sm mr-1'
+                },
+                {
+                    extend: 'csvHtml5',
+                    title: '<?php echo $heading; ?>',
+                    text: 'CSV',
+                    titleAttr: 'Generate CSV',
+                    className: 'btn-outline-primary btn-sm mr-1'
+                },
+                {
+                    extend: 'copyHtml5',
+                    title: '<?php echo $heading; ?>',
+                    text: 'Copy',
+                    titleAttr: 'Copy to clipboard',
+                    className: 'btn-outline-primary btn-sm mr-1'
+                },
+                {
+                    extend: 'print',
+                    text: 'Print',
+                    titleAttr: 'Print Table',
+                    title: '<?php echo $heading; ?>',
+                    customize: function(win) {
+                        $(win.document.body).find('h1').css('text-align', 'center');
+                        $(win.document.body).css('font-size', '9px');
+                        $(win.document.body).find('table')
+                            .addClass('compact')
+                            .css('font-size', 'inherit');
+                    },
+                    className: 'btn-outline-primary btn-sm'
+                }
+            ],
+
+    });
+    // initialize datatable
+    $('#datatable_tabletools1').dataTable({
+        responsive: true,
+        lengthChange: false,
+        dom:
+            /*  --- Layout Structure 
+              --- Options
+              l - length changing input control
+              f - filtering input
+              t - The table!
+              i - Table information summary
+              p - pagination control
+              r - processing display element
+              B - buttons
+              R - ColReorder
+              S - Select
+
+              --- Markup
+              < and >       - div element
+              <"class" and >    - div with a class
+              <"#id" and >    - div with an ID
+              <"#id.class" and >  - div with an ID and a class
+
+              --- Further reading
+              https://datatables.net/reference/option/dom
+              --------------------------------------
+             */
+            "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
+            "<'row'<'col-sm-12'tr>>" +
+            "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+         buttons: [
+                /*{
+                    extend:    'colvis',
+                    text:      'Column Visibility',
+                    titleAttr: 'Col visibility',
+                    className: 'mr-sm-3'
+                },*/
+                {
+                    extend: 'pdfHtml5',
+                    title: '<?php echo $heading; ?>',
+                    text: 'PDF',
+                    titleAttr: 'Generate PDF',
+                    className: 'btn-outline-danger btn-sm mr-1'
+                },
+                {
+                    extend: 'excelHtml5',
+                    title: '<?php echo $heading; ?>',
+                    text: 'Excel',
+                    titleAttr: 'Generate Excel',
+                    className: 'btn-outline-success btn-sm mr-1'
+                },
+                {
+                    extend: 'csvHtml5',
+                    title: '<?php echo $heading; ?>',
+                    text: 'CSV',
+                    titleAttr: 'Generate CSV',
+                    className: 'btn-outline-primary btn-sm mr-1'
+                },
+                {
+                    extend: 'copyHtml5',
+                    title: '<?php echo $heading; ?>',
+                    text: 'Copy',
+                    titleAttr: 'Copy to clipboard',
+                    className: 'btn-outline-primary btn-sm mr-1'
+                },
+                {
+                    extend: 'print',
+                    text: 'Print',
+                    titleAttr: 'Print Table',
+                    title: '<?php echo $heading; ?>',
+                    customize: function(win) {
+                        $(win.document.body).find('h1').css('text-align', 'center');
+                        $(win.document.body).css('font-size', '9px');
+                        $(win.document.body).find('table')
+                            .addClass('compact')
+                            .css('font-size', 'inherit');
+                    },
+                    className: 'btn-outline-primary btn-sm'
+                }
+            ],
+
+    });
+});
+>>>>>>> 3bdb593 (Initial commit)
      var totalRevenue = parseInt($('#totalRevenue').val());
      var paid = parseInt($('#paid').val());
      var unPaid = parseInt($('#unPaid').val());
@@ -781,4 +1300,24 @@
              }
          });
      }
+<<<<<<< HEAD
+=======
+     function GetDepositSlipNotSend(depositId) {
+         var value = {
+             depositId: depositId,
+
+         };
+         $.ajax({
+             url: baseurl + 'deposit_slip_not_send',
+             type: 'POST',
+             data: value,
+             success: function(result) {
+                 $('#modal-title-center').html('Deposit slip not send');
+                 $('#modal-body-center').html(result);
+                 $('#myModalCenter').modal();
+
+             }
+         });
+     }
+>>>>>>> 3bdb593 (Initial commit)
  </script>

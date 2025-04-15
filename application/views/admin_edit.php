@@ -36,10 +36,17 @@ margin-right: 6px;
                   </div>
                   <div class="col-md-12 mb-3">
                       <label class="form-label">Phone Number</label>
+<<<<<<< HEAD
                       <input class="form-control" placeholder="Enter Email" type="text" id='contact_number' name='contact_number' value="<?php echo $adminInfo[0]['phone_number'] ?>" >
                        
                       <div class="invalid-feedback">
                           Please Enter the Email.
+=======
+                      <input class="form-control" placeholder="Enter Contact Number" type="text" id='contact_number' name='contact_number' value="<?php echo $adminInfo[0]['phone_number'] ?>" >
+                       
+                      <div class="invalid-feedback">
+                          Please Enter the Contact.
+>>>>>>> 3bdb593 (Initial commit)
                       </div>
                   </div>
              
@@ -124,11 +131,19 @@ margin-right: 6px;
         check=SubmitFromAdminEdit();
         if(check == true)
         {
+<<<<<<< HEAD
           
                  Swal.fire(
                     {
                         title: "Are you sure you want to update?",
                         text: "You won't be able to revert this!",
+=======
+           
+                 Swal.fire(
+                    {
+                        title: "Are you sure?",
+                        // text: "You won't be able to revert this!",
+>>>>>>> 3bdb593 (Initial commit)
                         type: "warning",
                         confirmButtonColor: '#437dd0',
                         showCancelButton: true,
@@ -140,6 +155,7 @@ margin-right: 6px;
                             $("#admineditform").submit();
                            // var value='Update Sucessfully';
                             //DeleteToast(value);
+<<<<<<< HEAD
                             Swal.fire("Updated!", "Update Sucessfully.", "success");
                         }
                     });
@@ -147,6 +163,15 @@ margin-right: 6px;
                 // $("#admineditform").submit();
                 //   var value='Update Sucessfully';
                 // DeleteToast(value);
+=======
+                            Swal.fire("Updated!", "Updated Sucessfully.", "success");
+                        }
+                    });
+            
+                //$("#admineditform").submit();
+                 // var value='Update Sucessfully';
+               // DeleteToast(value);
+>>>>>>> 3bdb593 (Initial commit)
             
         }
     }

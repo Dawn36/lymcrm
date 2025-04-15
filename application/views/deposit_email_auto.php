@@ -66,6 +66,10 @@
     </div>
 </div>
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 3bdb593 (Initial commit)
 <script type="text/javascript">
      function fileValidation() {
         var fileInput = document.getElementById('file_uploade');

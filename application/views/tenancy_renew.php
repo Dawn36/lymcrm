@@ -74,6 +74,7 @@ $heading = "Renew Tenancy";
                                         </tr>
                                     </thead>
                                     <tbody>
+<<<<<<< HEAD
                                         <?php 
                                         for ($i = 0; $i < count($tenancyInfo); $i++) {
                                             if (strtotime((new DateTime())->format("Y-m-d H:i:s")) <= strtotime($tenancyInfo[$i]['end_date'])) {
@@ -81,6 +82,14 @@ $heading = "Renew Tenancy";
                                             }
                                             $recordId = $tenancyInfo[$i]['record_id'];
 
+=======
+                                        <?php for ($i = 0; $i < count($tenancyInfo); $i++) {
+                                            if ($tenancyInfo[$i]['is_renew'] != 'yes') {
+                                                if (strtotime((new DateTime())->format("Y-m-d H:i:s")) <= strtotime($tenancyInfo[$i]['end_date'])) {
+                                                    continue;
+                                                }
+                                                $recordId = $tenancyInfo[$i]['record_id'];
+>>>>>>> 3bdb593 (Initial commit)
                                         ?>
                                             <tr id="<?php echo $recordId; ?>" style='color : <?=$tenancyInfo[$i]['is_tenancy'] == 'no' ? "red" : '' ?>'>
                                                 <td nowrap>
@@ -127,7 +136,12 @@ $heading = "Renew Tenancy";
                                                     </center>
                                                 </td>
                                             </tr>
+<<<<<<< HEAD
                                         <?php } ?>
+=======
+                                        <?php }
+                                        } ?>
+>>>>>>> 3bdb593 (Initial commit)
                                     </tbody>
                                 </table>
                             </div>
@@ -140,14 +154,21 @@ $heading = "Renew Tenancy";
             </div>
         </section>
     </div>
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 3bdb593 (Initial commit)
 
 </main>
 <!-- this overlay is activated only when mobile menu is triggered -->
 <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div>
 <script type="text/javascript">
     $(document).ready(function() {
+<<<<<<< HEAD
 
+=======
+>>>>>>> 3bdb593 (Initial commit)
         $('#renu_datatable_tabletools').dataTable({
             responsive: true,
             lengthChange: false,
@@ -243,7 +264,10 @@ $heading = "Renew Tenancy";
         });
     }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 3bdb593 (Initial commit)
     // Modal For Edit Tenancy
     function EditTenancy(recordId) {
         var value = {
@@ -262,6 +286,10 @@ $heading = "Renew Tenancy";
             }
         });
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 3bdb593 (Initial commit)
     // Modal For Edit Tenancy
     function EmailTenancy(id) {
         var value = {
@@ -298,6 +326,7 @@ $heading = "Renew Tenancy";
             }
         });
     }
+<<<<<<< HEAD
 
     // Delete Tenancy
     function DeleteTenancy(tenancyId, apartmentId) {
@@ -331,6 +360,53 @@ $heading = "Renew Tenancy";
                 Swal.fire("Terminate!", "Terminated Sucessfully.", "success");
             }
         });
+=======
+    // Delete Tenancy
+    
+    function DeleteTenancy(tenancyId,apartmentId) {
+        var value = {
+            tenancyId: tenancyId,
+            apartmentId: apartmentId,
+        };
+        $.ajax({
+            url: baseurl + 'tenancy_terminate',
+            type: 'POST',
+            data: value,
+            success: function(result) {
+                $('.modal-title').html('Terminate tenancy');
+                $('#modal-body-center').html(result);
+                $('#myModalCenter').modal();
+
+            }
+        });
+    }
+    // function DeleteTenancy(tenancyId, apartmentId) {
+    //     var value = {
+    //         tenancyId: tenancyId,
+    //         apartmentId: apartmentId,
+
+    //     };
+    //     Swal.fire({
+    //         title: "Are you sure want to Terminate?",
+    //         // text: "You won't be able to revert this!",
+    //         type: "warning",
+    //         confirmButtonColor: '#437dd0',
+    //         showCancelButton: true,
+    //         confirmButtonText: "Yes, terminate it!",
+    //     }).then(function(result) {
+    //         if (result.value) {
+    //             $.ajax({
+    //                 url: baseurl + 'tenancy_renew_delete',
+    //                 type: 'POST',
+    //                 data: value,
+    //                 success: function(result) {
+    //                     window.location.reload();
+    //                 }
+    //             });
+    //             Swal.fire("Terminate!", "Terminated Sucessfully.", "success");
+    //         }
+    //     });
+>>>>>>> 3bdb593 (Initial commit)
         // if (confirm('Are you sure you want to delete Tenancy?')) {
         //     $.ajax({
         //         url: baseurl + 'tenancy_delete',
@@ -348,7 +424,11 @@ $heading = "Renew Tenancy";
         // } else {
         //     return false;
         // }
+<<<<<<< HEAD
     }
+=======
+    // }
+>>>>>>> 3bdb593 (Initial commit)
 
     function ViewPayments(tenancyId) {
         var value = {

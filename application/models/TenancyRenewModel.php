@@ -95,7 +95,11 @@ class TenancyRenewModel  extends CI_Model
         $this->db->select('*');
         $this->db->join('tenant', 'tenant.record_id = tenancy.tenant_id', 'INNER');
         $this->db->where('tenancy.record_id', $tenancyId);
+<<<<<<< HEAD
         $this->db->where('tenancy.status', 'active');
+=======
+        $this->db->where('tenancy.status', 1);
+>>>>>>> 3bdb593 (Initial commit)
         $result = $this->db->get($tableName)->result_array();
 
         log_message('debug', $this->db->last_query());

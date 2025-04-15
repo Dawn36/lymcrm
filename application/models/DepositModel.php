@@ -63,6 +63,29 @@ d.created_name,pay.installment,d.created_at');
     	$this->db->join('owner o', 'o.record_id=p.owner_id', 'INNER');
     	$this->db->join('payment pay', 'pay.record_id=d.payment_id', 'INNER');
     	$this->db->where('d.status','active');
+<<<<<<< HEAD
+=======
+    	$this->db->where('o.status','active');
+    	$query = $this->db->get(); 
+    	log_message('debug', $this->db->last_query());
+    	return $query->result_array();	 
+	}
+	public function GetDepositSlipNotSend()
+	{
+		$this->db->select('d.record_id,pay.record_id AS payment_id,b.building_name,
+a.apartment_number,o.name,o.email,pay.payment_type AS type,
+pay.cheque_no,pay.amount,pay.payment_date,
+d.created_name,pay.installment,d.created_at');
+    	$this->db->from('deposit d'); 
+    	$this->db->join('building b', 'd.building_id=b.record_id', 'INNER');
+    	$this->db->join('apartment a', 'd.apartment_id=a.record_id', 'INNER');
+    	$this->db->join('property p', 'p.apartment_id = d.apartment_id', 'INNER');
+    	$this->db->join('owner o', 'o.record_id=p.owner_id', 'INNER');
+    	$this->db->join('payment pay', 'pay.record_id=d.payment_id', 'INNER');
+    	$this->db->where('d.status','active');
+    	$this->db->where('d.is_email_send','no');
+    	$this->db->where('o.status','active');
+>>>>>>> 3bdb593 (Initial commit)
     	$query = $this->db->get(); 
     	log_message('debug', $this->db->last_query());
     	return $query->result_array();	 

@@ -7,6 +7,10 @@ class UserModel extends CI_Model
         $this->db->select('*');
         $this->db->where('status','active');
         $this->db->where('is_user','no');
+<<<<<<< HEAD
+=======
+		$this->db->order_by('email', 'ASC');
+>>>>>>> 3bdb593 (Initial commit)
         return $this->db->get($tableName)->result_array();    
 
     }

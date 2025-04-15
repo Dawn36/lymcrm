@@ -26,7 +26,11 @@ class TenancyModel  extends CI_Model
     {
         $userId = $this->session->userdata('user_id');
         $this->db->select('*');
+<<<<<<< HEAD
         $this->db->select('tenancy.`record_id`');
+=======
+        $this->db->select('tenancy.`record_id`,tenancy.`created_at AS created_ata`');
+>>>>>>> 3bdb593 (Initial commit)
         $this->db->join('building as b', 'b.record_id = tenancy.building_id', 'INNER');
         $this->db->join('apartment as a', 'a.record_id = tenancy.apartment_id', 'INNER');
         $this->db->join('tenant', 'tenant.record_id = tenancy.tenant_id', 'INNER');
@@ -125,6 +129,11 @@ class TenancyModel  extends CI_Model
         $this->db->from('building b'); 
         $this->db->join('property p', 'b.record_id=p.building_id', 'INNER');
         $this->db->where('p.status', 'active');
+<<<<<<< HEAD
+=======
+        $this->db->where('b.status', 'active');
+		$this->db->order_by('b.building_name', 'ASC');
+>>>>>>> 3bdb593 (Initial commit)
         $query = $this->db->get(); 
         // print_r($role) ;
         log_message('debug', $this->db->last_query());

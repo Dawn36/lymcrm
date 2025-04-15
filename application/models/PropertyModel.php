@@ -23,6 +23,23 @@ class PropertyModel  extends CI_Model{
 		
         
 	}
+<<<<<<< HEAD
+=======
+	public function GetOwnerDeposit($tenancyId)
+	 {
+	 	$this->db->select('*');
+	 	$this->db->from('deposit d'); 
+    	$this->db->join('payment pay', 'pay.record_id=d.payment_id', 'INNER');
+        $this->db->where('d.status','active');
+        $this->db->where('d.tenancy_id',$tenancyId);
+        $this->db->where('pay.is_deposit','yes');
+        $query = $this->db->get(); 
+        log_message('debug',$this->db->last_query());
+        return   $query->result_array();
+		
+        
+	}
+>>>>>>> 3bdb593 (Initial commit)
 	public function UpdateApartment($recordId,$tableName,$arrInfo)
 	 {
 	 	
@@ -125,6 +142,7 @@ class PropertyModel  extends CI_Model{
     	return $query->result_array();
         
 	}
+<<<<<<< HEAD
 	public function GetOwnerDeposit($tenancyId)
 	 {
 	 	$this->db->select('*');
@@ -140,6 +158,9 @@ class PropertyModel  extends CI_Model{
         
 	}
 	   public function GetDepositImgs($tenancyId)
+=======
+	  public function GetDepositImgs($tenancyId)
+>>>>>>> 3bdb593 (Initial commit)
     {
         $this->db->select('*');
         $this->db->from('deposit d'); 

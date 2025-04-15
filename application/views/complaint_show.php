@@ -86,11 +86,21 @@ $heading = "Complaint";
                                                     <center>Assign Remarks</center>
                                                 </th>
                                                 <th nowrap>
+<<<<<<< HEAD
+=======
+                                                    <center>Currency</center>
+                                                </th>
+                                                <th nowrap>
+>>>>>>> 3bdb593 (Initial commit)
                                                     <center>Assign to</center>
                                                 </th>
                                                 <th nowrap>
                                                     <center>Assign Date</center>
                                                 </th>
+<<<<<<< HEAD
+=======
+                                                
+>>>>>>> 3bdb593 (Initial commit)
                                             <?php } ?>
 
                                             <th nowrap>

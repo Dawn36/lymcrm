@@ -3,7 +3,11 @@
 // echo '<pre>';
 // print_r($tenancyInfo);
 // echo '<pre>';
+<<<<<<< HEAD
 //print_r($paymentInfo);
+=======
+// print_r($paymentInfo);
+>>>>>>> 3bdb593 (Initial commit)
 
 $heading = "Tenancy";
 ?>
@@ -12,7 +16,11 @@ $heading = "Tenancy";
         margin-top: 10px;
     }
 </style>
+<<<<<<< HEAD
 <main id="js-page-content" role="main">
+=======
+<main id="js-page-content" role="main" class="">
+>>>>>>> 3bdb593 (Initial commit)
 
 
     <div id="content">

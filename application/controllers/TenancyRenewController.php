@@ -27,12 +27,34 @@ class TenancyRenewController extends CI_Controller
             redirect('login');
         }
     }
+<<<<<<< HEAD
+=======
+    
+    public function ArchiveIndex()
+    {
+        if ($this->session->userdata('name')) {
+            $this->load->view('main_header');
+            $this->load->view('sidebar');
+            $tableName = 'tenancy';
+            $data['tenancyInfo'] = $this->TENANCY->Show($tableName);
+            $this->load->view('tenancy_archive', $data);
+            $this->load->view('footer');
+        } else {
+            redirect('login');
+        }
+    }
+>>>>>>> 3bdb593 (Initial commit)
 
     function DeleteTenancy()
     {
         if ($this->session->userdata('name')) {
             $arrPost = $this->input->post();
+<<<<<<< HEAD
 
+=======
+            $endDate= str_replace('/', '-', $arrPost['endDate']);
+            $endDate= DATE("Y-m-d",strtotime($endDate));
+>>>>>>> 3bdb593 (Initial commit)
             $recordId = $arrPost['apartmentId'];
             $tableName = 'apartment';
             $isTenancy = 'no';
@@ -41,6 +63,10 @@ class TenancyRenewController extends CI_Controller
             $tableName                  = 'tenancy';
             $recordId                   = $arrPost['tenancyId'];
             $reInfo['is_renew']         = 'yes';
+<<<<<<< HEAD
+=======
+            $reInfo['end_date']         = $endDate;
+>>>>>>> 3bdb593 (Initial commit)
             $reInfo['status']           = 'active';
             $reInfo['updated_at']       = date("Y-m-d h:i:s");
             $reInfo['updated_by']       = $this->session->userdata('user_id');
@@ -124,19 +150,30 @@ class TenancyRenewController extends CI_Controller
 
             $cid = $this->TENANCY->Add($arrInfo, $tableName);
             //inserting the payments details in payment table connected to the above inserted data
+<<<<<<< HEAD
             $aa=1;
+=======
+             $aa=1;
+>>>>>>> 3bdb593 (Initial commit)
             for ($i = 0; $i < $arrInfo['no_of_payments']; $i++) {
                 $tableName = 'payment';
                 $tenInfo['tenancy_id']      = $cid;
                 $tenInfo['installment']     = $i + 1;
                 $tenInfo['payment_type']    = $arrPost['payment_type'][$i];
+<<<<<<< HEAD
+=======
+                //$tenInfo['cheque_no']       = $arrPost['cheque_no'][$i];
+>>>>>>> 3bdb593 (Initial commit)
                  if ($tenInfo['payment_type'] == 'cash') {
                 $tenInfo['cheque_no'] = "Cash ".$aa;
                 $aa++;
                 } else {
                     $tenInfo['cheque_no']       = $arrPost['cheque_no'][$i];
                 }
+<<<<<<< HEAD
                // $tenInfo['cheque_no']       = $arrPost['cheque_no'][$i];
+=======
+>>>>>>> 3bdb593 (Initial commit)
                 $tenInfo['amount']          = $arrPost['amount'][$i];
                 $tenInfo['status']          = 'active';
                 $date                       = str_replace('/', '-', $arrPost['date'][$i]);

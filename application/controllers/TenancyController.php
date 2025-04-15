@@ -28,13 +28,21 @@ class TenancyController extends CI_Controller
         }
     }
 
+<<<<<<< HEAD
     public function AddTenancy()
+=======
+   public function AddTenancy()
+>>>>>>> 3bdb593 (Initial commit)
     {
         if ($this->session->userdata('name')) {
 
             log_message('debug', 'AddTenancy');
+<<<<<<< HEAD
             // $tableName = 'building';
             // $data['buildingInfo'] = $this->OWNER->ShowOwner($tableName);
+=======
+            //$tableName = 'building';
+>>>>>>> 3bdb593 (Initial commit)
             $data['buildingInfo'] = $this->TENANCY->GetOwnerBuilding();
             $tableName = 'tenant';
             $data['tenantInfo'] = $this->OWNER->ShowOwner($tableName);
@@ -179,19 +187,30 @@ class TenancyController extends CI_Controller
 
             $cid = $this->TENANCY->Add($arrInfo, $tableName);
             //inserting the payments details in payment table connected to the above inserted data
+<<<<<<< HEAD
             $aa=1;
+=======
+             $aa=1;
+>>>>>>> 3bdb593 (Initial commit)
             for ($i = 0; $i < $arrInfo['no_of_payments']; $i++) {
                 $tableName = 'payment';
                 $tenInfo['tenancy_id']      = $cid;
                 $tenInfo['installment']     = $i + 1;
                 $tenInfo['payment_type']    = $arrPost['payment_type'][$i];
+<<<<<<< HEAD
+=======
+                //$tenInfo['cheque_no']       = $arrPost['cheque_no'][$i];
+>>>>>>> 3bdb593 (Initial commit)
                 if ($tenInfo['payment_type'] == 'cash') {
                 $tenInfo['cheque_no'] = "Cash ".$aa;
                 $aa++;
                 } else {
                     $tenInfo['cheque_no']       = $arrPost['cheque_no'][$i];
                 }
+<<<<<<< HEAD
                 //$tenInfo['cheque_no']       = $arrPost['cheque_no'][$i];
+=======
+>>>>>>> 3bdb593 (Initial commit)
                 $tenInfo['amount']          = $arrPost['amount'][$i];
                 $tenInfo['status']          = 'active';
                 $date                       = str_replace('/', '-', $arrPost['date'][$i]);
@@ -253,4 +272,26 @@ class TenancyController extends CI_Controller
             redirect('login');
         }
     }
+<<<<<<< HEAD
 }
+=======
+    function TenancyTerminate()
+    {
+        if ($this->session->userdata('name')) {
+            $arrPost = $this->input->post();
+            $tenancyId =  $arrPost['tenancyId'];
+            $apartmentId =  $arrPost['apartmentId'];
+            $tableName = 'tenancy';
+            $data['tenancyInfo'] = $this->TENANCY->ViewTenancy($tenancyId, $tableName);
+            $data['apartmentId'] = $apartmentId;
+            $data['tenancyId'] = $tenancyId;
+
+        return  $this->load->view('tenancy_terminate',$data);
+        }
+        else {
+            redirect('login');
+        }
+    }
+}
+?>
+>>>>>>> 3bdb593 (Initial commit)

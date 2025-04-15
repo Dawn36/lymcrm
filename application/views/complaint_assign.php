@@ -11,7 +11,11 @@
                 <option value="">Select Company Name</option>
                 <?php for ($i = 0; $i < count($company); $i++) {
                 ?>
+<<<<<<< HEAD
                     <option value="<?php echo $company[$i]['record_id'] ?>"><?php echo ucfirst($company[$i]['name']) ?></option>
+=======
+                    <option value="<?php echo $company[$i]['record_id'] ?>"><?php echo ucfirst($company[$i]['company_name']) ?></option>
+>>>>>>> 3bdb593 (Initial commit)
                 <?php } ?>
             </select>
             <div class="invalid-feedback">
@@ -24,16 +28,25 @@
             <div class="invalid-feedback">
                 Please Enter Company Email.
             </div>
+<<<<<<< HEAD
         </div>
         <div class="col-md-12 mb-3">
+=======
+
+        </div>
+         <div class="col-md-12 mb-3">
+>>>>>>> 3bdb593 (Initial commit)
             <label class="form-label" style="margin-top: 14px;">Remarks</label>
             <textarea class="form-control" placeholder="Enter Remarks " type="text" id='assigned_remarks' name='assigned_remarks'></textarea>
             <div class="invalid-feedback">
                 Please Enter Remarks .
             </div>
 
+<<<<<<< HEAD
         </div>
 
+=======
+>>>>>>> 3bdb593 (Initial commit)
     </div>
 
     <div class="row">

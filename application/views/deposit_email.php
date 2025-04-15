@@ -6,7 +6,11 @@
         <div class="col-md-12 mb-3">
 
             <label class="form-label">To<span class="text-danger">*</span></label>
+<<<<<<< HEAD
             <input class="form-control context-menu" placeholder="Enter to" type="text" id="to" name="to" required="">
+=======
+            <input class="form-control context-menu" readonly style="background-color: #fff;" placeholder="Enter to" type="text" id="to" name="to" required="">
+>>>>>>> 3bdb593 (Initial commit)
             <div class="invalid-feedback">
                 Please Enter to.
             </div>
@@ -45,7 +49,10 @@
             <button id="js-add-btn" onclick="SendMail()" class="btn btn-primary btn-md float-right" type="button" data-dismiss="modal"><i class="fal fa-paper-plane" style="margin-right: 4px"></i>Send Email</button>
         </div>
     </div>
+<<<<<<< HEAD
     
+=======
+>>>>>>> 3bdb593 (Initial commit)
 </form>
 <div class="row">
     <div class="col-xl-12">
@@ -67,8 +74,14 @@
     </div>
 </div>
 
+<<<<<<< HEAD
 <script type="text/javascript">
      function fileValidation() {
+=======
+
+<script type="text/javascript">
+      function fileValidation() {
+>>>>>>> 3bdb593 (Initial commit)
         var fileInput = document.getElementById('file_uploade');
 
         var filePath = fileInput.value;

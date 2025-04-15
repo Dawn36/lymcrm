@@ -11,6 +11,7 @@ $heading = "Email History";
                                 <table id="datatable_tabletools12" class="table table-bordered table-hover table-striped w-100">
                                     <thead class="bg-primary-600 bg-brand-gradient">
                                         <tr>
+<<<<<<< HEAD
                                             <th >
                                                 <center>Owner Name</center>
                                             </th>
@@ -30,6 +31,27 @@ $heading = "Email History";
                                                 <center>Send by</center>
                                             </th>
                                              <th >
+=======
+                                            <th nowrap>
+                                                <center>Owner Name</center>
+                                            </th>
+                                            <th nowrap>
+                                                <center>Owner Email</center>
+                                            </th>
+                                            <th nowrap>
+                                                <center>Installment</center>
+                                            </th>
+                                            <th nowrap>
+                                                <center>Building Name</center>
+                                            </th>
+                                            <th nowrap>
+                                                <center>Apartment No</center>
+                                            </th>
+                                            <th nowrap>
+                                                <center>Send by</center>
+                                            </th>
+                                             <th nowrap>
+>>>>>>> 3bdb593 (Initial commit)
                                                 <center>Send At</center>
                                             </th>
                                         </tr>
@@ -84,6 +106,7 @@ $heading = "Email History";
 
 
 <script type="text/javascript">
+<<<<<<< HEAD
     // DataTable();
     // function DataTable() {
     //     $('#datatable_tabletools12').dataTable({
@@ -93,6 +116,13 @@ $heading = "Email History";
     //         responsive: false,
     //         lengthChange: false,
     //         scrollX: true,
+=======
+    // $(document).ready(function() {
+
+    //     $('#datatable_tabletools12').dataTable({
+    //         responsive: true,
+    //         lengthChange: false,
+>>>>>>> 3bdb593 (Initial commit)
     //         dom:
     //             /*  --- Layout Structure 
     //                 --- Options
@@ -120,12 +150,20 @@ $heading = "Email History";
     //             "<'row'<'col-sm-12'tr>>" +
     //             "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
     //         buttons: [
+<<<<<<< HEAD
     //             {
+=======
+    //             /*{
+>>>>>>> 3bdb593 (Initial commit)
     //                 extend:    'colvis',
     //                 text:      'Column Visibility',
     //                 titleAttr: 'Col visibility',
     //                 className: 'mr-sm-3'
+<<<<<<< HEAD
     //             },
+=======
+    //             },*/
+>>>>>>> 3bdb593 (Initial commit)
     //             {
     //                 extend: 'pdfHtml5',
     //                 title: '<?php echo $heading; ?>',
@@ -170,7 +208,11 @@ $heading = "Email History";
     //             }
     //         ]
     //     });
+<<<<<<< HEAD
     // }
+=======
+    // });
+>>>>>>> 3bdb593 (Initial commit)
 
   
   

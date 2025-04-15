@@ -230,7 +230,11 @@ $heading = "Apartment";
         Swal.fire(
                     {
                         title: "Are you sure want to delete?",
+<<<<<<< HEAD
                         text: "You won't be able to revert this!",
+=======
+                        // text: "You won't be able to revert this!",
+>>>>>>> 3bdb593 (Initial commit)
                         type: "warning",
                         confirmButtonColor: '#437dd0',
                         showCancelButton: true,
@@ -245,8 +249,13 @@ $heading = "Apartment";
                                 data: value,
                                 success: function(result) {
                                    // location.reload();
+<<<<<<< HEAD
                                     var value='Delete Sucessfully';
                                     DeleteToast(value);
+=======
+                                  //  var value='Delete Sucessfully';
+                                  //  DeleteToast(value);
+>>>>>>> 3bdb593 (Initial commit)
                                     window.location.reload();
 
                                 }

@@ -9,7 +9,11 @@ class CrondTabModel extends CI_Model
             ->join('tenancy', 'tenancy.tenant_id = tenant.record_id')
             ->where($whereClause)
             ->where('tenancy.status', 'active')
+<<<<<<< HEAD
             ->where('tenancy.is_renew', 'no')
+=======
+             ->where('tenancy.is_renew', 'no')
+>>>>>>> 3bdb593 (Initial commit)
             ->where('tenant.status', 'active');
         $rs = $this->db->get()->result_array();
         log_message('debug', $this->db->last_query());

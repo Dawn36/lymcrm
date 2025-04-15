@@ -163,7 +163,11 @@
         }
         Swal.fire({
             title: "Are you sure you want to add?",
+<<<<<<< HEAD
             text: "You won't be able to revert this!",
+=======
+            // text: "You won't be able to revert this!",
+>>>>>>> 3bdb593 (Initial commit)
             type: "warning",
             confirmButtonColor: '#437dd0',
             showCancelButton: true,

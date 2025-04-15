@@ -82,7 +82,11 @@ class AdminControllers extends CI_Controller
             $userId = $this->session->userdata('user_id');
             $dataInfo['password'] = base64_encode($arrPost['new_password']);
             $this->USER->UpdateOwnerIsUser($dataInfo, $userId, $tableName);
+<<<<<<< HEAD
             redirect('logout');
+=======
+            redirect('/logout');
+>>>>>>> 3bdb593 (Initial commit)
         }
     }
     public function AdminVerification()

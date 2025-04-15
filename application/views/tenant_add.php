@@ -1,7 +1,15 @@
+<<<<<<< HEAD
 <form class="needs-validation" name='addTenantForm' id='addTenantForm' method='post' action="/add" novalidate>
 
     <div class="card mb-g">
         <input type="hidden">
+=======
+
+<form class="needs-validation" name='addTenantForm' id='addTenantForm' method='post' action="/add" novalidate>
+
+    <div class="card mb-g">
+        <input type="hidden" >
+>>>>>>> 3bdb593 (Initial commit)
         <input type="hidden" name="table_name" value="tenant">
         <div class="col-md-12 mt-3 mb-3">
             <label class="form-label">Tenant Name<span class="text-danger">*</span></label>
@@ -13,7 +21,11 @@
         </div>
         <div class="col-md-12 mb-3">
             <label class="form-label">Tenant Email<span class="text-danger">*</span></label>
+<<<<<<< HEAD
             <input class="form-control" onblur="CheckValidEmail(this.id) " placeholder="Enter Tenant Email" type="email" id="tenant_email" name="email" required="">
+=======
+            <input class="form-control"onblur="CheckValidEmail(this.id) " placeholder="Enter Tenant Email" type="email" id="tenant_email" name="email" required="">
+>>>>>>> 3bdb593 (Initial commit)
             <div class="invalid-feedback">
                 Please Enter Tenant Email.
             </div>
@@ -21,7 +33,11 @@
         </div>
         <div class="col-md-12 mb-3">
             <label class="form-label">Contact</label>
+<<<<<<< HEAD
             <input class="form-control" placeholder="Enter Mobile Number" type="text" id="contact" name="contact">
+=======
+            <input class="form-control" placeholder="Enter Mobile Number" type="text" id="contact" name="contact" >
+>>>>>>> 3bdb593 (Initial commit)
             <div class="invalid-feedback">
                 Please Enter Contact Number.
             </div>

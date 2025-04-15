@@ -15,6 +15,19 @@ class DashboardModel  extends CI_Model
 		log_message('debug', $this->db->last_query());
 		return $data;
 	}
+<<<<<<< HEAD
+=======
+	function GetEmailSystem()
+	{
+		$this->db->select('tenant_name,GROUP_CONCAT(end_date)AS end_date_group ,GROUP_CONCAT(`check`) AS `check`');
+		// $this->db->where('status', 'active');
+		$this->db->group_by('tenancy_id');
+		$data = $this->db->get('email_history')->result_array();
+		// print_r($role) ;
+		log_message('debug', $this->db->last_query());
+		return $data;
+	}
+>>>>>>> 3bdb593 (Initial commit)
 	function GetEmailHistory($depositId)
 	{
 		$this->db->select('*');
@@ -44,6 +57,7 @@ class DashboardModel  extends CI_Model
 		log_message('debug', $this->db->last_query());
 		return $data;
 	}
+<<<<<<< HEAD
 	function GetEmailSystem()
 	{
 		$this->db->select('tenant_name,GROUP_CONCAT(end_date)AS end_date_group ,GROUP_CONCAT(`check`) AS `check`');
@@ -57,6 +71,11 @@ class DashboardModel  extends CI_Model
 	function GetRenewCount()
 	{
 		$date = Date("Y-m-d");
+=======
+	function GetRenewCount()
+	{
+	    $date=Date("Y-m-d");
+>>>>>>> 3bdb593 (Initial commit)
 		$this->db->select('COUNT(*) AS renew_count');
 		$this->db->where('status', 'active');
 		$this->db->where('DATE(end_date) <=', $date);
@@ -152,4 +171,16 @@ class DashboardModel  extends CI_Model
 		log_message('debug', $this->db->last_query());
 		return $data;
 	}
+<<<<<<< HEAD
+=======
+	function GetDepositEmailNotSend()
+	{
+		$this->db->select('COUNT(*) AS email_not_send');
+		$this->db->where('is_email_send', 'no');
+		$data = $this->db->get('deposit')->result_array();
+		// print_r($role) ;
+		log_message('debug', $this->db->last_query());
+		return $data;
+	}
+>>>>>>> 3bdb593 (Initial commit)
 }

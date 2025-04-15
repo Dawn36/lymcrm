@@ -97,7 +97,11 @@ $heading = "All Admin";
 
                                                 <td nowrap>
                                                     <center>
+<<<<<<< HEAD
                                                         <button onclick="ResetUser(<?php echo $userId ?>)" class="btn btn-sm btn-primary bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Reset Password"><i class="fas fa-key"></i></button>&nbsp;
+=======
+                                                        <button onclick="ResetUser(<?php echo $userId ?>)" class="btn btn-sm btn-primary bg-brand-gradient" data-content="The new password of this sub admin is 1234" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Reset Password"><i class="fas fa-key"></i></button>&nbsp;
+>>>>>>> 3bdb593 (Initial commit)
                                                         <button onclick="EditAdmin(<?php echo $userId ?>)" class="btn btn-sm btn-primary bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Edit Admin"><i class="fal fa-edit"></i></button>&nbsp;
                                                         <button onclick="DeleteAdmin(<?php echo $userId ?>)" class="btn btn-sm btn-primary bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Delete Admin"><i class="fal fa-times"></i></button>
                                                     </center>
@@ -246,7 +250,11 @@ $heading = "All Admin";
              Swal.fire(
                     {
                         title: "Are you sure want to delete?",
+<<<<<<< HEAD
                         text: "You won't be able to revert this!",
+=======
+                        // text: "You won't be able to revert this!",
+>>>>>>> 3bdb593 (Initial commit)
                         type: "warning",
                         confirmButtonColor: '#437dd0',
                         showCancelButton: true,

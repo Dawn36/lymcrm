@@ -131,23 +131,39 @@ class ComplaintControllers extends CI_Controller
             redirect('login');
         }
     }
+<<<<<<< HEAD
     public function AssignedComplaint()
+=======
+     public function AssignedComplaint()
+>>>>>>> 3bdb593 (Initial commit)
     {
         if ($this->session->userdata('name')) {
             $arrPost = $this->input->post();
             $tableName = 'complaint';
             $recordId = $arrPost['complaint_id'];
             $arrInfo['company_id'] = $arrPost['company_id'];
+<<<<<<< HEAD
             $arrInfo['complaint_status'] = 'assigned';
             $arrInfo['assigned_remarks'] = $arrPost['assigned_remarks'];
+=======
+            $arrInfo['assigned_remarks'] = $arrPost['assigned_remarks'];
+            $arrInfo['complaint_status'] = 'assigned';
+>>>>>>> 3bdb593 (Initial commit)
             $arrInfo['assigned_date'] = Date('Y-m-d');
 
             $check = $this->OWNER->UpdateOwner($arrInfo, $tableName, $recordId);
             $data = $this->COMPLAINT->ComplaintAssignedEmail($recordId);
 
+<<<<<<< HEAD
             $to = $data[0]['email'];
             $subject = "Maintenance Complaint #(. $recordId .)";
             $emailcontent = "Dear " . ucwords($data[0]['name']) . ",<br>
+=======
+             $to = $data[0]['email'];
+            $to='dawngill08@gmail.com';
+            $subject = "Maintenance Complaint #(. $recordId .)";
+             $emailcontent = "Dear " . ucwords($data[0]['name']) . ",<br>
+>>>>>>> 3bdb593 (Initial commit)
 
             Your maintenance request has been registered under the MR#: (" . $recordId . ") and assigned to M/S " . ucwords($data[0]['company_name']) . ". Mr. " . ucwords($data[0]['contact_person']) . " shall contact you for coordinating an appointment at the earliest. You may contact Mr. " . ucwords($data[0]['contact_person']) . " at " . $data[0]['phone_number'] . " " . $data[0]['contact_email'] . " for faster facilitation.<br><br> 
             
@@ -166,6 +182,7 @@ class ComplaintControllers extends CI_Controller
             $config['newline'] = "\r\n";
 
             $this->email->initialize($config);
+<<<<<<< HEAD
             $this->email->from(SMTPUSER);
             $this->email->to($to);
             $this->email->bcc('accounts@lymdubai.com');
@@ -177,6 +194,24 @@ class ComplaintControllers extends CI_Controller
 
             $to = $data[0]['contact_email'];
             $subject = "Maintenance Complaint #(. $recordId .)";
+=======
+
+
+            $list=array('reception@lymdubai.com');
+            $this->email->from(SMTPFROM);
+            $this->email->to($to);
+            $this->email->bcc('imran@lymdubai.com');
+            $this->email->bcc('accounts@lymdubai.com');
+            $this->email->cc($list);
+
+            $this->email->subject($subject);
+            $this->email->message($emailcontent);
+            $this->email->send();
+
+             $to = $data[0]['contact_email'];
+            $to='dawngill08@gmail.com';
+            $subject = "Maintenance Complaint ";
+>>>>>>> 3bdb593 (Initial commit)
             $emailcontent = "Dear " . ucwords($data[0]['contact_person']) . "<br>
 
             Following maintenance Complaint number (" . $recordId . ") for Building: " . ucwords($data[0]['building_name']) . " and Apartment: " . $data[0]['apartment_number'] . "  is being marked to you for rectification.<br> 
@@ -188,17 +223,31 @@ class ComplaintControllers extends CI_Controller
             
             Thanks";
 
+<<<<<<< HEAD
 
             $this->email->from(SMTPUSER);
             $this->email->to($to);
             $this->email->bcc('accounts@lymdubai.com');
             $this->email->cc('accounts@lymdubai.com');
+=======
+            $list=array('reception@lymdubai.com');
+            $this->email->from(SMTPFROM);
+            $this->email->to($to);
+            $this->email->bcc('imran@lymdubai.com');
+            $this->email->bcc('accounts@lymdubai.com');
+            $this->email->cc($list);
+>>>>>>> 3bdb593 (Initial commit)
 
             $this->email->subject($subject);
             $this->email->message($emailcontent);
             $this->email->send();
+<<<<<<< HEAD
 
             $tableName = 'complaint';
+=======
+            die($this->email->print_debugger());
+             $tableName = 'complaint';
+>>>>>>> 3bdb593 (Initial commit)
             $dataComplaint = $this->OWNER->ShowOwnerEdit($tableName, $arrPost['complaint_id']);
 
             $tableName = 'owner';
@@ -225,14 +274,22 @@ class ComplaintControllers extends CI_Controller
             redirect('login');
         }
     }
+<<<<<<< HEAD
     public function SendWhatsappComplaint()
+=======
+      public function SendWhatsappComplaint()
+>>>>>>> 3bdb593 (Initial commit)
     {
         if ($this->session->userdata('name')) {
             $arrPost = $this->input->post();
             $recordId = $arrPost['id'];
 
             $data = $this->COMPLAINT->ComplaintAssignedEmail($recordId);
+<<<<<<< HEAD
             $message = "Dear " . ucwords($data[0]['contact_person']) . ",please contact the " . ucwords($data[0]['name']) . "," . $data[0]['tenant_number'] . " tenant of (apartment/villa " . $data[0]['apartment_number'] . ") (building:" . ucwords($data[0]['building_name']) . ") to resolve the (" . strip_tags($data[0]['description']) . ") issue. tenant to resolve issue as per above mentioned complaint and quote at the earliest. Tenant can be contacted at " . $data[0]['tenant_number'] . " or " . $data[0]['email'] . ". ";
+=======
+            $message = "Dear " . ucwords($data[0]['contact_person']) . ",please contact the " . ucwords($data[0]['name']) . "," . $data[0]['tenant_number'] . " tenant of (apartment/villa " . $data[0]['apartment_number'] . ") (building:" . ucwords($data[0]['building_name']) . ") to resolve the (" . strip_tags($data[0]['description']) . ") issue. tenant to resolve issue as per above mentioned complaint and quote at the earliest. Tenant can be contacted at " . $data[0]['tenant_number'] . " or " . $data[0]['t_email'] . ". ";
+>>>>>>> 3bdb593 (Initial commit)
             echo json_encode($message);
         } else {
             redirect('login');
@@ -306,7 +363,14 @@ class ComplaintControllers extends CI_Controller
                 }
             }
             $data = $this->COMPLAINT->ComplaintDataEmail($id);
+<<<<<<< HEAD
 
+=======
+            //$data[0]['email']
+           //print_r($data);
+           //die();
+            //$to = 'dawngill08@gmail.com';
+>>>>>>> 3bdb593 (Initial commit)
             $to = $data[0]['email'];
             $subject = "Maintenance Complaint #" . $id . " Property: " . $data[0]['building_name'] . " " . $data[0]['apartment_number'];
             $emailcontent = "A maintenance complaint has been received for the above mentioned property and action shall be taken within 24 hours (excluding weekends)";
@@ -326,6 +390,7 @@ class ComplaintControllers extends CI_Controller
 
 
 
+<<<<<<< HEAD
             $this->email->from(SMTPUSER);
             $this->email->to($to);
             $this->email->bcc('accounts@lymdubai.com');
@@ -336,6 +401,21 @@ class ComplaintControllers extends CI_Controller
             $this->email->send();
 
             $tableName = 'owner';
+=======
+            $this->email->from(SMTPFROM);
+            $this->email->to($to);
+            $this->email->bcc('imran@lymdubai.com');
+            $this->email->bcc('accounts@lymdubai.com');
+            $this->email->cc('reception@lymdubai.com');
+
+            $this->email->subject($subject);
+            $this->email->message($emailcontent);
+
+
+            $this->email->send();
+            //$this->email->send();
+             $tableName = 'owner';
+>>>>>>> 3bdb593 (Initial commit)
             $dataOwner = $this->OWNER->ShowOwnerEdit($tableName, $arrPost['owner_id']);
 
             $tableName = 'email_complaint';
@@ -351,9 +431,13 @@ class ComplaintControllers extends CI_Controller
             $arrInfo['owner_name'] = $dataOwner[0]['name'];
             $arrInfo['complaint_status'] = 'pending';
             $arrInfo['created_at'] = Date("Y-m-d h:i:s");
+<<<<<<< HEAD
 
             $this->OWNER->AddOwner($arrInfo, $tableName);
             //$this->email->send();
+=======
+            $check = $this->OWNER->AddOwner($arrInfo, $tableName);
+>>>>>>> 3bdb593 (Initial commit)
             log_message('debug', $this->email->print_debugger());
 
             redirect('/complaint');
@@ -366,7 +450,11 @@ class ComplaintControllers extends CI_Controller
         $data['id'] =  $id;
         return $this->load->view('complaint_cost', $data);
     }
+<<<<<<< HEAD
     public function ComplaintCostUpdate()
+=======
+     public function ComplaintCostUpdate()
+>>>>>>> 3bdb593 (Initial commit)
     {
         $arrPost = $this->input->post();
         $id = $arrPost['complaint_id'];
@@ -386,8 +474,13 @@ class ComplaintControllers extends CI_Controller
         $tableName = 'tenant';
         $dataTenant = $this->OWNER->ShowOwnerEdit($tableName, $dataComplaint[0]['tenant_id']);
 
+<<<<<<< HEAD
         // $to = $dataTenant[0]['email'];
         $to = 'dawngill08@gmail.com';
+=======
+         $to = $dataTenant[0]['email'];
+        //$to = 'dawngill08@gmail.com';
+>>>>>>> 3bdb593 (Initial commit)
         $subject = "Complaint resolved";
         $emailcontent = "Dear " . ucwords($dataTenant[0]['name']) . "<br>,
 
@@ -411,11 +504,20 @@ class ComplaintControllers extends CI_Controller
 
 
 
+<<<<<<< HEAD
         $this->email->from(SMTPUSER);
         $this->email->to($to);
         $this->email->bcc('accounts@lymdubai.com');
         $this->email->cc('accounts@lymdubai.com');
 
+=======
+        $this->email->from(SMTPFROM);
+        $this->email->to($to);
+        $this->email->bcc('imran@lymdubai.com');
+        $this->email->bcc('accounts@lymdubai.com');
+        $this->email->cc('reception@lymdubai.com');
+        
+>>>>>>> 3bdb593 (Initial commit)
         $this->email->subject($subject);
         $this->email->message($emailcontent);
         $this->email->send();

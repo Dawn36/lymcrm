@@ -16,17 +16,27 @@ $profilePicture = $this->session->userdata('profile_picture') ? $this->session->
     .mr4 {
         margin-right: 4px;
     }
+<<<<<<< HEAD
 
     .pointer {
         cursor: pointer;
     }
+=======
+    .pointer {cursor: pointer;}
+>>>>>>> 3bdb593 (Initial commit)
 </style>
 <!-- BEGIN Left Aside -->
 <aside class="page-sidebar">
     <div class="page-logo">
+<<<<<<< HEAD
         <a href="/infection_dashboard" class="page-logo-link press-scale-down d-flex align-items-center position-relative">
             <!-- <img src="/ssets/dist/img/logo-2.png" alt="SmartAdmin WebApp" aria-roledescription="logo"> -->
             <img src="/assets/dist/img/logo-2.png" style="height: 50px;margin-left: 44px;">
+=======
+        <a href="/infection_dashboard" class="page-logo-link press-scale-down d-flex align-items-center position-relative" >
+            <!-- <img src="/ssets/dist/img/logo-2.png" alt="SmartAdmin WebApp" aria-roledescription="logo"> -->
+            <img src="/assets/dist/img/logo-2.png" style="height: 50px; margin-left: 44px;">
+>>>>>>> 3bdb593 (Initial commit)
 
             <span class="page-logo-text mr-1"></span>
             <span class="position-absolute text-white opacity-50 small pos-top pos-right mr-2 mt-n2"></span>
@@ -49,8 +59,13 @@ $profilePicture = $this->session->userdata('profile_picture') ? $this->session->
             <img src="/assets/dist/img/card-backgrounds/cover-2-lg.png" class="cover" alt="cover">
         </div>
         <?php if ($this->session->userdata('role_id') == SUPER_ADMIN || $this->session->userdata('role_id') == SUB_ADMIN) { ?>
+<<<<<<< HEAD
             <ul id="js-nav-menu" class="swatches nav-menu">
                 <li class="">
+=======
+            <ul id="js-nav-menu" class="nav-menu">
+                <li>
+>>>>>>> 3bdb593 (Initial commit)
                     <a href="/dashboard" title="Dashboard" data-filter-tags="Dashboard"><i class="fas fa-analytics"></i>
                         <span class="nav-link-text" data-i18n="nav.dashboard">Dashboard</span>
                     </a>
@@ -103,6 +118,14 @@ $profilePicture = $this->session->userdata('profile_picture') ? $this->session->
                     </a>
                 </li>
                 <li>
+<<<<<<< HEAD
+=======
+                    <a href="/tenancy_archive" title="Renew Tenancy" data-filter-tags="Renew Tenancy"><i class="fas fa-file-contract"></i>
+                        <span class="nav-link-text" data-i18n="nav.Tenancy">Archive Tenancy</span>
+                    </a>
+                </li>
+                <li>
+>>>>>>> 3bdb593 (Initial commit)
                     <a href="/company" title="Company" data-filter-tags="Company"><i class="fas fa-city"></i>
                         <span class="nav-link-text" data-i18n="nav.Company">Company</span>
                     </a>
@@ -126,7 +149,11 @@ $profilePicture = $this->session->userdata('profile_picture') ? $this->session->
                         <span class="nav-link-text" data-i18n="nav.Tenant">Tenant/Tenancy</span>
                     </a>
                 </li>
+<<<<<<< HEAD
                 <li>
+=======
+                 <li>
+>>>>>>> 3bdb593 (Initial commit)
                     <a href="/complaint" title="Complaint" data-filter-tags="Complaint"><i class="fal fa-file"></i>
                         <span class="nav-link-text" data-i18n="nav.Complaint">Complaint</span>
                     </a>
@@ -140,7 +167,11 @@ $profilePicture = $this->session->userdata('profile_picture') ? $this->session->
                         <span class="nav-link-text" data-i18n="nav.Tenancy">Tenancy</span>
                     </a>
                 </li>
+<<<<<<< HEAD
                 <li>
+=======
+                  <li>
+>>>>>>> 3bdb593 (Initial commit)
                     <a href="/complaint" title="Complaint" data-filter-tags="Complaint"><i class="fal fa-file"></i>
                         <span class="nav-link-text" data-i18n="nav.Complaint">Complaint</span>
                     </a>
@@ -204,7 +235,11 @@ $profilePicture = $this->session->userdata('profile_picture') ? $this->session->
         <div class="ml-auto d-flex">
             <!-- app user menu -->
             <div>
+<<<<<<< HEAD
                 <a href="#" data-toggle="dropdown" title="" class="header-icon d-flex align-items-center justify-content-center ml-2 ">
+=======
+                <a href="#" data-toggle="dropdown" title="" class="header-icon d-flex align-items-center justify-content-center ml-2">
+>>>>>>> 3bdb593 (Initial commit)
                     <img src="<?php echo $profilePicture ?>" class="profile-image rounded-circle pointer" alt="">
                     <!-- you can also add username next to the avatar with the codes below:
                                     <span class="ml-1 mr-1 text-truncate text-truncate-header hidden-xs-down">Me</span>
@@ -250,11 +285,14 @@ $profilePicture = $this->session->userdata('profile_picture') ? $this->session->
     <!-- the #js-page-content id is needed for some plugins to initialize -->
 
     <script>
+<<<<<<< HEAD
         $(".swatches li").click(function() {
             $(".swatches li").removeClass('active');
             $(this).addClass('active');
         });
 
+=======
+>>>>>>> 3bdb593 (Initial commit)
         function AddUser() {
 
         }

@@ -3,6 +3,10 @@
 // print_r($buildingInfo);
 // print_r($tenantInfo);
 // echo '<pre>';
+<<<<<<< HEAD
+=======
+// print_r($tenancyInfo);
+>>>>>>> 3bdb593 (Initial commit)
 $endDate = date("d/M/Y", strtotime($tenancyInfo[0]['end_date']));
 ?>
 <form class="needs-validation" name='tenancy_submit' id='tenancy_submit' method='post' action="/tenancy_renew_submit" novalidate>
@@ -15,7 +19,11 @@ $endDate = date("d/M/Y", strtotime($tenancyInfo[0]['end_date']));
 
         <div class="col-md-12 mt-3">
             <label class="form-label">Tenancy #<span style="color: red">*</span></label>
+<<<<<<< HEAD
             <input class="form-control" placeholder="Add tenancy #" id="tenancy_no" name="tenancy_no" value="<?php echo $tenancyInfo[0]['tenancy_no']; ?>" required>
+=======
+            <input class="form-control" placeholder="Add tenancy #" id="tenancy_no" name="tenancy_no" value="<?php echo $tenancyInfo[0]['tenancy_no']; ?>" readonly required>
+>>>>>>> 3bdb593 (Initial commit)
             <div class="invalid-feedback">
                 Please Select Tenancy.
             </div>
@@ -46,6 +54,7 @@ $endDate = date("d/M/Y", strtotime($tenancyInfo[0]['end_date']));
         <div class="col-md-12 mt-3">
             <label class="form-label">Tenant for Tenancy<span style="color: red">*</span></label>
             <select class="custom-select required" name="tenant" id="tenant" readonly required="">
+<<<<<<< HEAD
                 <?php for ($i = 0; $i < count($tenantInfo); $i++) {
                     if ($tenancyInfo[0]['tenant_id'] == $tenantInfo[$i]['record_id']) {
 
@@ -53,6 +62,16 @@ $endDate = date("d/M/Y", strtotime($tenancyInfo[0]['end_date']));
                         <option selected readonly value="<?php echo $tenantInfo[$i]['record_id']; ?>"><?php echo ucfirst($tenantInfo[$i]['name']); ?></option>
                 <?php }
                 } ?>
+=======
+                <?php for ($i = 0; $i < count($tenantInfo); $i++) { 
+                    if($tenancyInfo[0]['tenant_id'] == $tenantInfo[$i]['record_id'])
+                    {
+
+                    ?>
+                    <option selected readonly value="<?php echo $tenantInfo[$i]['record_id']; ?>"><?php echo ucfirst($tenantInfo[$i]['name']); ?></option>
+                <?php }
+                    } ?>
+>>>>>>> 3bdb593 (Initial commit)
             </select>
             <div class="invalid-feedback">
                 Please Select Tenant.
@@ -306,7 +325,11 @@ $endDate = date("d/M/Y", strtotime($tenancyInfo[0]['end_date']));
                         </div>
                         <div class="col-md-12 mt-3" id="cheque_no_div">
                             <label class="form-label">Cheque #<span style="color: red">*</span></label>
+<<<<<<< HEAD
                             <input class="form-control cheque_no" placeholder=" Add Cheque No" type="text" id="cheque_no" name="cheque_no[]" value="" autocomplete="off" required>
+=======
+                            <input class="form-control cheque_no" placeholder=" Add Cheque No" type="text" id="cheque_no" autocomplete="off" name="cheque_no[]" value="" required>
+>>>>>>> 3bdb593 (Initial commit)
                             <div class="invalid-feedback">
                                 Please Add Cheque No.
                             </div>

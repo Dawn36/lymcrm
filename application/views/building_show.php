@@ -123,11 +123,19 @@ $heading = "Building";
 <!-- this overlay is activated only when mobile menu is triggered -->
 <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div>
 <script type="text/javascript">
+<<<<<<< HEAD
     function DeleteBuilding(buildingId) {
          Swal.fire(
                     {
                         title: "Are you sure want to delete?",
                         text: "You won't be able to revert this!",
+=======
+   function DeleteBuilding(buildingId) {
+         Swal.fire(
+                    {
+                        title: "Are you sure want to delete?",
+                        // text: "You won't be able to revert this!",
+>>>>>>> 3bdb593 (Initial commit)
                         type: "warning",
                         confirmButtonColor: '#437dd0',
                         showCancelButton: true,
@@ -145,11 +153,20 @@ $heading = "Building";
                                     type: 'POST',
                                     data: data,
                                     success: function(result) {
+<<<<<<< HEAD
                                         var value = 'Delete Sucessfully';
                                         DeleteToast(value);
                                         window.location.reload();
                                     }
                                 });
+=======
+                                       // var value = 'Delete Sucessfully';
+                                      //  DeleteToast(value);
+                                      //  window.location.reload();
+                                    }
+                                });
+                                window.location.reload();
+>>>>>>> 3bdb593 (Initial commit)
                            // var value='Update Sucessfully';
                             //DeleteToast(value);
                             Swal.fire("Deleted!", "Deleted Sucessfully.", "success");

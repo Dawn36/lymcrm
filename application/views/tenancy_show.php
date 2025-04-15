@@ -114,7 +114,11 @@ $heading = "Tenancy";
                                                     <center><?php echo ucfirst($tenancyInfo[$i]['created_name']) ?></center>
                                                 </td>
                                                 <td nowrap>
+<<<<<<< HEAD
                                                     <center><?php echo date('d-M-Y', strtotime($tenancyInfo[$i]['created_at'])); ?></center>
+=======
+                                                    <center><?php echo date('d-M-Y', strtotime($tenancyInfo[$i]['created_ata'])); ?></center>
+>>>>>>> 3bdb593 (Initial commit)
                                                 </td>
                                                 <!-- <td nowrap>
                                                     <center><?php echo date('d-M-Y', strtotime($tenancyInfo[$i]['updated_at'])); ?></center>
@@ -125,6 +129,10 @@ $heading = "Tenancy";
                                                         <button onclick="EditTenancy(<?php echo $recordId; ?>)" class="btn btn-sm btn-primary bg-brand-gradient edit" title="Edit Tenancy"><i class="fal fa-edit"></i></button>
                                                         <?php if ($this->session->userdata('role_id') == SUPER_ADMIN) { ?>
                                                             <button type="button" onclick="DeleteTenancy(<?php echo $recordId; ?>,<?php echo $tenancyInfo[$i]['apartment_id'] ?>)" data-id="<?php echo $i; ?>" class="btn btn-sm btn-primary bg-brand-gradient delete" title="Delete Tenancy"><i class="fal fa-times"></i></button>
+<<<<<<< HEAD
+=======
+                                                            <button title="Early Terminate" type="button" onclick="TerminateTenancy(<?php echo $recordId; ?>,<?php echo $tenancyInfo[$i]['apartment_id'] ?>)" data-id="<?php echo $i; ?>" class="btn btn-sm btn-primary bg-brand-gradient"  <?php if ($tenancyInfo[$i]['is_renew'] == 'yes') { ?> disabled <?php } ?>><i class="fal fa-window-close"></i></button>
+>>>>>>> 3bdb593 (Initial commit)
                                                         <?php } ?>
                                                     </center>
                                                 </td>
@@ -309,7 +317,11 @@ $heading = "Tenancy";
         };
         Swal.fire({
             title: "Are you sure want to delete?",
+<<<<<<< HEAD
             text: "You won't be able to revert this!",
+=======
+            // text: "You won't be able to revert this!",
+>>>>>>> 3bdb593 (Initial commit)
             type: "warning",
             confirmButtonColor: '#437dd0',
             showCancelButton: true,
@@ -368,4 +380,24 @@ $heading = "Tenancy";
             }
         });
     }
+<<<<<<< HEAD
+=======
+    function TerminateTenancy(tenancyId,apartmentId) {
+        var value = {
+            tenancyId: tenancyId,
+            apartmentId: apartmentId,
+        };
+        $.ajax({
+            url: baseurl + 'tenancy_terminate',
+            type: 'POST',
+            data: value,
+            success: function(result) {
+                $('.modal-title').html('Terminate tenancy');
+                $('#modal-body-center').html(result);
+                $('#myModalCenter').modal();
+
+            }
+        });
+    }
+>>>>>>> 3bdb593 (Initial commit)
 </script>

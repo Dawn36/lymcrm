@@ -19,6 +19,10 @@ class Dashboard extends CI_Controller
 			$data['userCount'] = $this->DASHBOARD->GetUsersCount();
 			$data['renewCount'] = $this->DASHBOARD->GetRenewCount();
 			$data['ownerCount'] = $this->DASHBOARD->GetOwnerCount();
+<<<<<<< HEAD
+=======
+			$data['depositEmailNotSend'] = $this->DASHBOARD->GetDepositEmailNotSend();
+>>>>>>> 3bdb593 (Initial commit)
 			$data['propertyCount'] = $this->DASHBOARD->GetPropertyCount();
 			$data['tenantCount'] = $this->DASHBOARD->GetTenantCount();
 			$data['emailSelf'] = $this->DASHBOARD->GetEmailSelf();
@@ -26,6 +30,10 @@ class Dashboard extends CI_Controller
 			$data['totalPaid'] = $this->DASHBOARD->GetTotalPaid();
 			$data['emailInfo'] =  $this->DASHBOARD->GetEmailSystem();
 			$data['complaint'] =  $this->DASHBOARD->GetComplaint();
+<<<<<<< HEAD
+=======
+			$data['complaint'] =  $this->DASHBOARD->GetComplaint();
+>>>>>>> 3bdb593 (Initial commit)
 			$data['complaintEmailPending'] =  $this->DASHBOARD->GetComplaintPendingEmailSend();
 			$data['complaintEmailAssigned'] =  $this->DASHBOARD->GetComplaintAssignedEmailSend();
 			$data['complaintEmailCompleted'] =  $this->DASHBOARD->GetComplaintCompleteEmailSend();

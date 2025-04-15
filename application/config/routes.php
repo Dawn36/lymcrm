@@ -55,12 +55,35 @@ defined('BASEPATH') or exit('No direct script access allowed');
 $route['default_controller'] = 'login';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+<<<<<<< HEAD
 $route['login'] = 'login';
 $route['auth'] = 'login/userAuth';
 $route['landing_page'] = 'login/landingPage';
 $route['logoutNew'] = 'AdminControllers/logout';
 $route['logout'] = 'login/logout';;
 
+=======
+$route['login'] = 'login/index';
+$route['auth'] = 'login/userAuth';
+$route['landing_page'] = 'login/landingPage';
+$route['logout'] = 'login/logout';
+$route['infection_form'] = 'infection/index';
+$route['info_submit'] = 'infection/formDataSubmit';
+$route['info_updation'] = 'infection/formDataUpation';
+$route['viewdata'] = 'infection/viewSubmitedFormData';
+$route['get_antibiotic'] = 'infection/getAntibioticsList';
+$route['get_bed'] = 'infection/getBedList';
+$route['check_org_name'] = 'bed/checkOrgName';
+$route['check_mr_num'] = 'infection/checkMrNumber';
+$route['delete_lov'] = '/Bed/LovsDelete';
+$route['delete_ward'] = '/Ward/WardDelete';
+$route['delete_bed'] = '/Bed/bedDelete';
+$route['check_ward'] = 'ward/checkWard';
+$route['user_added'] = 'users/UsersAdd';
+$route['source'] = '/Bed/Source';
+$route['source_add'] = '/Bed/SourceAdd';
+$route['delete_source'] = '/Bed/SourceDelete';
+>>>>>>> 3bdb593 (Initial commit)
 ///////////////////////////// Dashboard /////////////////////////////////////
 $route['infection_dashboard'] = '/Dashboard';
 $route['get_all_email']             = '/Dashboard/GetHistory';
@@ -97,6 +120,10 @@ $route['edit_company']         = '/CompanyControllers/EditCompany';
 
 
 ///////////////////// Complaint ////////////////////////////////////////////
+<<<<<<< HEAD
+=======
+$route['complaint_send_whatsapp']         = '/ComplaintControllers/SendWhatsappComplaint';
+>>>>>>> 3bdb593 (Initial commit)
 $route['complaint_image']     = '/ComplaintControllers/LoadDepositImage';
 $route['complaint_tenant_add']     = '/ComplaintControllers/ComplaintTenantAdd';
 $route['complaint_tenant_edit']        = '/ComplaintControllers/LoadTenantEditScreen';
@@ -104,6 +131,7 @@ $route['complaint_tenant_apartment']     = '/ComplaintControllers/ComplaintTenan
 $route['complaint_tenant_owner']     = '/ComplaintControllers/ComplaintTenantOwner';
 $route['assigned_complaint']     = '/ComplaintControllers/AssignedComplaint';
 $route['complaint']             = '/ComplaintControllers';
+<<<<<<< HEAD
 $route['complaint_add']         = '/ComplaintControllers/LoadAddScreen';
 $route['complaint_edit']         = '/ComplaintControllers/LoadEditScreen';
 $route['complaint_submit']         = '/ComplaintControllers/AddComplaint';
@@ -111,11 +139,23 @@ $route['complaint_update']         = '/ComplaintControllers/EditComplaint';
 $route['complaint_cost']         = '/ComplaintControllers/ShowCompaintCostSceen';
 $route['complaint_cost_update']         = '/ComplaintControllers/ComplaintCostUpdate';
 $route['complaint_send_whatsapp']         = '/ComplaintControllers/SendWhatsappComplaint';
+=======
+$route['complaint_cost']         = '/ComplaintControllers/ShowCompaintCostSceen';
+$route['complaint_cost_update']         = '/ComplaintControllers/ComplaintCostUpdate';
+$route['complaint_add']         = '/ComplaintControllers/LoadAddScreen';
+$route['complaint_edit']        = '/ComplaintControllers/LoadEditScreen';
+$route['complaint_edit']         = '/ComplaintControllers/LoadEditScreen';
+$route['complaint_submit']         = '/ComplaintControllers/AddComplaint';
+$route['complaint_update']         = '/ComplaintControllers/EditComplaint';
+>>>>>>> 3bdb593 (Initial commit)
 $route['assign_complaint']        = '/ComplaintControllers/AssignComplaint';
 $route['building_apartments']        = '/ComplaintControllers/GetApartment';
 $route['get_owner_tenant']         = '/ComplaintControllers/GetOwnerTenant';
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 3bdb593 (Initial commit)
 /////////////////////      Owner     ////////////////////////////////////////////
 $route['owner']             = '/OwnerControllers';
 $route['owner_add']         = '/OwnerControllers/LoadAddScreen';
@@ -123,6 +163,10 @@ $route['owner_edit']        = '/OwnerControllers/LoadEditScreen';
 $route['ownerCsv']             = '/OwnerControllers/ownerCsv';
 $route['owner_uploader']     = '/OwnerControllers/OwnerUploader';
 $route['download_file']     = '/OwnerControllers/DownloadFiles';
+<<<<<<< HEAD
+=======
+$route['owner_image']     = '/OwnerControllers/LoadOwnerImage';
+>>>>>>> 3bdb593 (Initial commit)
 // add owner And tenant
 $route['add']                  = '/OwnerControllers/AddOwnerTenant';
 $route['edit']                  = '/OwnerControllers/EditOwnerTenant';
@@ -183,6 +227,10 @@ $route['tenant_uploader']        = '/TenantController/TenantUploader';
 
 ///////////////////   Deposit slip route    //////////////////////////////////
 $route['deposit']           = '/DepositController';
+<<<<<<< HEAD
+=======
+$route['deposit_slip_not_send']= '/DepositController/DepositSlipNotSend';
+>>>>>>> 3bdb593 (Initial commit)
 $route['deposit_add']       = '/DepositController/DepositAdd';
 $route['deposit_edit']      = '/DepositController/DepositEdit';
 $route['deposit_email']     = '/DepositController/DepositEmail';
@@ -203,12 +251,20 @@ $route['tenancy_submit']    = '/TenancyController/TenancySubmit';
 $route['tenancy_update']    = '/TenancyController/TenancyUpdate';
 $route['tenancy_delete']    = '/TenancyController/DeleteTenancy';
 $route['tenancy_load_payments']    = '/TenancyController/TenancyLoadPayments';
+<<<<<<< HEAD
+=======
+$route['tenancy_terminate']    = '/TenancyController/TenancyTerminate';
+>>>>>>> 3bdb593 (Initial commit)
 
 ///////////////////   Crond Tab route    //////////////////////////////////
 $route['email']     = '/CrondTabControllers/SetEmail';
 
 ///////////////////   tenancy_renew    //////////////////////////////////
 $route['tenancy_renew']    = '/TenancyRenewController';
+<<<<<<< HEAD
+=======
+$route['tenancy_archive']    = '/TenancyRenewController/ArchiveIndex';
+>>>>>>> 3bdb593 (Initial commit)
 $route['tenancy_renew_add']    = '/TenancyRenewController/TenancyRenewAdd';
 $route['tenancy_renew_submit']    = '/TenancyRenewController/TenancyRenewSubmit';
 $route['tenancy_renew_delete']    = '/TenancyRenewController/DeleteTenancy';

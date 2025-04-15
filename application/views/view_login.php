@@ -174,7 +174,11 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
             });
             $("#user_name").keypress(function(e) {
                 var keyCode = e.keyCode || e.which;
+<<<<<<< HEAD
                 var regex = /^[A-Za-z@.]+$/;
+=======
+                var regex = /^[A-Za-z@0-9.]+$/;
+>>>>>>> 3bdb593 (Initial commit)
                 var isValid = regex.test(String.fromCharCode(keyCode));
                 if (!isValid) {
                     return false

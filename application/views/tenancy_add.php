@@ -65,7 +65,11 @@
         </div>
         <div class="col-md-12 mt-3">
             <label class="form-label">Rent Amount<span style="color: red">*</span></label>
+<<<<<<< HEAD
             <input class="form-control" placeholder=" Add Rent Amount" type="text" id="rent_amount" name="rent_amount" autocomplete="off" required>
+=======
+            <input class="form-control" placeholder=" Add Rent Amount" type="text" id="rent_amount" name="rent_amount" required>
+>>>>>>> 3bdb593 (Initial commit)
             <div class="invalid-feedback">
                 Please Add Rent Amount.
             </div>

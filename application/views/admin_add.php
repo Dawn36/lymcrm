@@ -35,7 +35,11 @@ margin-right: 6px;
                   </div>
                   <div class="col-md-12 mb-12 mb-3">
                       <label class="form-label">Phone Number</label>
+<<<<<<< HEAD
                       <input class="form-control" placeholder="Enter Email" type="text" id='contact_name' name='contact_number' >
+=======
+                      <input class="form-control" placeholder="Enter Contact Number" type="text" id='contact_name' name='contact_number' >
+>>>>>>> 3bdb593 (Initial commit)
                        
                       <div class="invalid-feedback">
                           Please Enter the Contact number.
@@ -154,7 +158,11 @@ function AddAdmin()
              Swal.fire(
                     {
                         title: "Are you sure you want to add?",
+<<<<<<< HEAD
                         text: "You won't be able to revert this!",
+=======
+                        // text: "You won't be able to revert this!",
+>>>>>>> 3bdb593 (Initial commit)
                         type: "warning",
                         confirmButtonColor: '#437dd0',
                         showCancelButton: true,
@@ -166,7 +174,11 @@ function AddAdmin()
                             $("#adminaddform").submit();
                            // var value='Update Sucessfully';
                             //DeleteToast(value);
+<<<<<<< HEAD
                             Swal.fire("Added!", "added Sucessfully.", "success");
+=======
+                            Swal.fire("Added!", "Added Sucessfully.", "success");
+>>>>>>> 3bdb593 (Initial commit)
                         }
                     });
             // if(confirm("Are you sure do you want to add?"))

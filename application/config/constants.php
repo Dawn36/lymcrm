@@ -97,7 +97,14 @@ defined('SUPER_ADMIN') OR define('SUPER_ADMIN', 1);
 defined('SUB_ADMIN') OR define('SUB_ADMIN', 2);
 defined('OWNER') OR define('OWNER', 3);
 defined('TENANT') OR define('TENANT', 4);
+<<<<<<< HEAD
 defined('SMTPHOST') OR define('SMTPHOST', 'smtp.googlemail.com');
 defined('SMTPUSER') OR define('SMTPUSER', 'uhfdev@gmail.com');
 defined('SMTPPASS') OR define('SMTPPASS', 'karachipakistan');
+=======
+defined('SMTPHOST') OR define('SMTPHOST', 'mail.lymcrm.com');
+defined('SMTPUSER') OR define('SMTPUSER', 'accounts@lymcrm.com');
+defined('SMTPFROM') OR define('SMTPFROM', 'accounts@lymdubai.com');
+defined('SMTPPASS') OR define('SMTPPASS', 'mYdrngj*A+wA');
+>>>>>>> 3bdb593 (Initial commit)
 

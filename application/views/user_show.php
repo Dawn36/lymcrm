@@ -53,10 +53,17 @@ $heading = "All Users";
                                             </th>
 
                                             <th nowrap>
+<<<<<<< HEAD
                                                 <center>Created At</center>
                                             </th>
                                             <th nowrap>
                                                 <center>Updated At</center>
+=======
+                                                <center>Created By</center>
+                                            </th>
+                                            <th nowrap>
+                                                <center>Updated By</center>
+>>>>>>> 3bdb593 (Initial commit)
                                             </th>
                                             <th nowrap>
                                                 <center>Status</center>
@@ -107,7 +114,11 @@ $heading = "All Users";
                                                 </td>
                                                 <td nowrap>
                                                     <center>
+<<<<<<< HEAD
                                                         <button onclick="ResetUser(<?php echo $userId ?>)" class="btn btn-sm btn-primary bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Reset Password"><i class="fas fa-key"></i></button>&nbsp;
+=======
+                                                        <button onclick="ResetUser(<?php echo $userId ?>)" class="btn btn-sm btn-primary bg-brand-gradient" data-toggle="popover" data-content="The new password of this user is 1234" data-trigger="hover" data-placement="top" title="" data-original-title="Reset Password"><i class="fas fa-key"></i></button>&nbsp;
+>>>>>>> 3bdb593 (Initial commit)
                                                         <button onclick="EditUser(<?php echo $ownerTenantId ?>,<?php echo  $usersType ?>,<?php echo $userId ?>)" class="btn btn-sm btn-primary bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Edit User"><i class="fal fa-edit"></i></button>&nbsp;
                                                         <?php if ($this->session->userdata('role_id') == SUPER_ADMIN) { ?>
                                                             <button type="button" onclick="DeleteUser(<?php echo $ownerTenantId ?>,<?php echo  $usersType ?>,<?php echo $userId ?>)" class="btn btn-sm btn-primary bg-brand-gradient" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-original-title="Delete User"><i class="fal fa-times"></i></button>
@@ -302,7 +313,11 @@ $heading = "All Users";
         Swal.fire(
                     {
                         title: "Are you sure want to delete?",
+<<<<<<< HEAD
                         text: "You won't be able to revert this!",
+=======
+                        // text: "You won't be able to revert this!",
+>>>>>>> 3bdb593 (Initial commit)
                         type: "warning",
                         confirmButtonColor: '#437dd0',
                         showCancelButton: true,

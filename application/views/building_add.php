@@ -1,4 +1,5 @@
 <style type="text/css">
+<<<<<<< HEAD
     .mt {
         margin-top: 10px;
     }
@@ -13,6 +14,21 @@
     .mr4 {
         margin-right: 4px;
     }
+=======
+.mt{
+    margin-top: 10px;
+}
+.eye{
+    float: right; 
+margin-top: -26px;
+margin-right: 6px;
+
+}
+.mr4{
+     margin-right: 4px;
+}
+
+>>>>>>> 3bdb593 (Initial commit)
 </style>
 <!-- <main id="js-page-content" role="main" class="page-content"> -->
 
@@ -31,6 +47,7 @@
     </div>
     
   </div> -->
+<<<<<<< HEAD
 <!--  <div class="row mt">
         <div class="col-xl-12">
             <div id="panel-1" class="panel">
@@ -75,6 +92,52 @@
 </form>
 </div>
 <!-- </div>
+=======
+ <!--  <div class="row mt">
+        <div class="col-xl-12">
+            <div id="panel-1" class="panel">
+                <div class="panel-container show"> -->
+                    <div class="card mb-g">
+                        <form class="needs-validation" method="post" action="/building_verification" id='addbuilding' name='addbuilding' >
+                      
+                  <div class="col-md-12  mt-3 mb-3">
+                      <label class="form-label">Building Name<span class="text-danger">*</span></label>
+                      <input class="form-control" placeholder="Enter Building Name" type="text" id='building_name' name='building_name' required="">
+                       
+                      <div class="invalid-feedback">
+                          Please Enter the Building Name.
+                      </div>
+                  </div>
+                   <div class="col-md-12 mb-3">
+                      <label class="form-label">Building Address<span class="text-danger">*</span></label>
+                      <input class="form-control" placeholder="Enter Building Address" type="text" id='building_address' name='building_address' required="">
+                       
+                      <div class="invalid-feedback">
+                          Please Enter Building Address.
+                      </div>
+                  </div>
+             
+                 
+                  <div class="col-md-12 mb-3">
+                      <label class="form-label">Community<span class="text-danger">*</span></label>
+                      <input class="form-control"   placeholder="Enter Community" type="text" id='community' name='community' required="">
+                      <div class="invalid-feedback">
+                          Please Enter Community.
+                      </div>
+                      
+                  </div>
+                  
+              </div>
+               <div class="row">
+        <div class="col-md-12 mb-3">
+            <button type="button" class="btn btn-secondary float-right mr-2" data-dismiss="modal">Close</button>
+            <button id='adminaddformsubmit' onclick="AddFromBuilding()" class="btn btn-primary float-right mr-2" type="submit">Add</button>
+        </div>
+    </div>
+          </form>
+      </div>
+  <!-- </div>
+>>>>>>> 3bdb593 (Initial commit)
 </div>
 </div>
 </div> -->
@@ -85,7 +148,11 @@
 <script type="text/javascript">
     // $('#building_name').blur(function() {
     function CheckExitBuilding(buldingName) {
+<<<<<<< HEAD
          alert(buldingName);
+=======
+        //  alert(buldingName);
+>>>>>>> 3bdb593 (Initial commit)
         var value = {
             buldingName: buldingName
         };
@@ -113,7 +180,11 @@
                     $("#addbuilding").submit();
                     // var value='Update Sucessfully';
                     //DeleteToast(value);
+<<<<<<< HEAD
                     Swal.fire("Added!", "added Sucessfully.", "success");
+=======
+                    Swal.fire("Added!", "Added Sucessfully.", "success");
+>>>>>>> 3bdb593 (Initial commit)
                 }
             });
                    

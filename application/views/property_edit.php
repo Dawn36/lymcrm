@@ -141,7 +141,11 @@
                  Swal.fire(
                     {
                         title: "Are you sure you want to update?",
+<<<<<<< HEAD
                         text: "You won't be able to revert this!",
+=======
+                        // text: "You won't be able to revert this!",
+>>>>>>> 3bdb593 (Initial commit)
                         type: "warning",
                         confirmButtonColor: '#437dd0',
                         showCancelButton: true,
@@ -153,7 +157,11 @@
                            $("#editPropertyForm").submit();
                            // var value='Update Sucessfully';
                             //DeleteToast(value);
+<<<<<<< HEAD
                             Swal.fire("Updated!", "Update Sucessfully.", "success");
+=======
+                            Swal.fire("Updated!", "Updated Sucessfully.", "success");
+>>>>>>> 3bdb593 (Initial commit)
                         }
                     });
         // if (confirm("Do you want to Update property?")) {
@@ -165,6 +173,10 @@
         //     return false;
         // }
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 3bdb593 (Initial commit)
  $("#community").keypress(function(e){
    var keyCode = e.keyCode || e.which;
     var regex = /^[A-Za-z0-9 ]+$/;

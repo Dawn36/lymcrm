@@ -24,18 +24,46 @@ class OwnerModal  extends CI_Model
 	public function ShowOwner($tableName)
 	{
 		log_message('debug', 'ShowOwner');
+<<<<<<< HEAD
 
+=======
+		$col = "";
+		if($tableName=="owner" || $tableName=="tenant"){
+			$col = "name";
+		}elseif($tableName=="building"){
+			$col = "building_name";
+		}
+>>>>>>> 3bdb593 (Initial commit)
 		$userId = $this->session->userdata('user_id');
 		$roleId = $this->session->userdata('role_id');
 		$this->db->select('*');
 		if ($tableName != 'email_history')
 			$this->db->where('status', 'active');
+<<<<<<< HEAD
 		$this->db->order_by('record_id', 'DESC');
+=======
+		$this->db->order_by($col, 'ASC');
+>>>>>>> 3bdb593 (Initial commit)
 		$owner = $this->db->get($tableName)->result_array();
 		// print_r($role) ;
 		log_message('debug', $this->db->last_query());
 		return $owner;
 	}
+<<<<<<< HEAD
+=======
+
+	public function GetOwnerImg($id)
+    {
+        $this->db->select('*');
+        $this->db->from('owner');
+        $this->db->where('status', 'active');
+        $this->db->where('record_id', $id);
+        $query = $this->db->get();
+        log_message('debug', $this->db->last_query());
+        return $query->result_array();
+    }
+
+>>>>>>> 3bdb593 (Initial commit)
 	function EmailExit($email, $tableName)
 	{
 		$userId = $this->session->userdata('user_id');

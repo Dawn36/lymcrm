@@ -134,12 +134,20 @@ $heading = "Tenant";
             }
         });
     }
+<<<<<<< HEAD
     function DeleteTenant(id) {
+=======
+   function DeleteTenant(id) {
+>>>>>>> 3bdb593 (Initial commit)
         var data = { id: id , tablename : 'tenant'};
         Swal.fire(
                     {
                         title: "Are you sure want to delete?",
+<<<<<<< HEAD
                         text: "You won't be able to revert this!",
+=======
+                        // text: "You won't be able to revert this!",
+>>>>>>> 3bdb593 (Initial commit)
                         type: "warning",
                         confirmButtonColor: '#437dd0',
                         showCancelButton: true,

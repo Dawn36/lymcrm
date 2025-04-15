@@ -79,13 +79,21 @@ $heading = "Deposit Slip";
                                         <?php for($i=0; $i< count($depositSlip); $i++){ ?>
                                         <tr id="1">
                                             <td nowrap hidden> 
+<<<<<<< HEAD
                                                <?php echo ucwords($depositSlip[$i]['installment']) ?>
+=======
+                                               <?php echo $depositSlip[$i]['installment'] ?>
+>>>>>>> 3bdb593 (Initial commit)
                                             </td>
                                             <td nowrap>
                                                 <?php echo ucwords($depositSlip[$i]['building_name']) ?>
                                             </td>
                                             <td nowrap>
+<<<<<<< HEAD
                                                <?php echo ucwords($depositSlip[$i]['apartment_number']) ?>
+=======
+                                               <?php echo $depositSlip[$i]['apartment_number'] ?>
+>>>>>>> 3bdb593 (Initial commit)
                                             </td>
                                             <td nowrap>
                                                <?php echo ucwords($depositSlip[$i]['name']) ?>
@@ -113,7 +121,11 @@ $heading = "Deposit Slip";
                                             </td>
                                             <td nowrap>
                                                 <center>
+<<<<<<< HEAD
                                                     <button onclick="LoadDepositImage(<?php echo $depositSlip[$i]['record_id'] ?>)" type="button" class="btn btn-sm btn-primary bg-brand-gradient"  title="Attachment"><i class="fal fa-camera"></i></button>&nbsp;
+=======
+                                                    <button onclick="LoadDepositImage(<?php echo $depositSlip[$i]['record_id'] ?>)"  type="button" class="btn btn-sm btn-primary bg-brand-gradient"  title="Attachment"><i class="fal fa-camera"></i></button>&nbsp;
+>>>>>>> 3bdb593 (Initial commit)
                                                     <button onclick="DepositEmail(<?php echo $depositSlip[$i]['record_id'] ?>)" class="btn btn-sm btn-primary bg-brand-gradient" ><i class="fal fa-envelope"></i></button>&nbsp;
                                                     <?php if ($this->session->userdata('role_id') == SUPER_ADMIN) { ?>
                                                     <button type="button" onclick="DeleteDepositSlip('<?php echo $depositSlip[$i]['record_id'] ?>','<?php echo $depositSlip[$i]['payment_id'] ?>')"class="btn btn-sm btn-primary bg-brand-gradient" title="Delete Property"><i class="fal fa-times"></i></button>
@@ -239,6 +251,7 @@ $heading = "Deposit Slip";
             }
         });
     }
+<<<<<<< HEAD
     function DeleteDepositSlip(depositId,paymentId) {
         var value = {
             depositId: depositId,
@@ -282,6 +295,24 @@ $heading = "Deposit Slip";
         //     }
         // });
     }
+=======
+    // function DeleteDepositSlip(depositId,paymentId) {
+    //     var value = {
+    //         depositId: depositId,
+    //         paymentId: paymentId,
+    //     };
+    //     $.ajax({
+    //         url: baseurl + 'deposit_delete',
+    //         type: 'POST',
+    //         data: value,
+    //         success: function(result) {
+    //             var value='Delete Sucessfully';
+    //             DeleteToast(value);
+    //             window.location.reload();
+    //         }
+    //     });
+    // }
+>>>>>>> 3bdb593 (Initial commit)
 
     // Modal For Edit User
     function DepositEdit(id) {
@@ -394,6 +425,7 @@ $heading = "Deposit Slip";
     }
 
     // Delete User
+<<<<<<< HEAD
     function DeleteDeposit(id) {
         var value = {
             id: id
@@ -412,4 +444,50 @@ $heading = "Deposit Slip";
             return false;
         }
     }
+=======
+    function DeleteDepositSlip(depositId,paymentId) {
+        var value = {
+            depositId: depositId,
+            paymentId: paymentId,
+        };
+        Swal.fire(
+                    {
+                        title: "Are you sure want to delete?",
+                        // text: "You won't be able to revert this!",
+                        type: "warning",
+                        confirmButtonColor: '#437dd0',
+                        showCancelButton: true,
+                        confirmButtonText: "Yes, delete it!",
+                    }).then(function(result)
+                    {
+                        if (result.value)
+                        {
+                            $.ajax({
+                                    url: baseurl + 'deposit_delete',
+                                    type: 'POST',
+                                    data: value,
+                                    success: function(result) {
+                                     //   var value='Delete Sucessfully';
+                                     //   DeleteToast(value);
+                                        window.location.reload();
+                                    }
+                                });
+                           // var value='Update Sucessfully';
+                            //DeleteToast(value);
+                            Swal.fire("Deleted!", "Deleted Sucessfully.", "success");
+                        }
+                    });
+        // $.ajax({
+        //     url: baseurl + 'deposit_delete',
+        //     type: 'POST',
+        //     data: value,
+        //     success: function(result) {
+        //         var value='Delete Sucessfully';
+        //         DeleteToast(value);
+        //         window.location.reload();
+        //     }
+        // });
+    }
+
+>>>>>>> 3bdb593 (Initial commit)
 </script>

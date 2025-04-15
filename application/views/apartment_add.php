@@ -83,7 +83,11 @@ margin-right: 6px;
              Swal.fire(
                     {
                         title: "Are you sure you want to add?",
+<<<<<<< HEAD
                         text: "You won't be able to revert this!",
+=======
+                        // text: "You won't be able to revert this!",
+>>>>>>> 3bdb593 (Initial commit)
                         type: "warning",
                         confirmButtonColor: '#437dd0',
                         showCancelButton: true,
@@ -95,7 +99,11 @@ margin-right: 6px;
                            $("#addapartment").submit();
                            // var value='Update Sucessfully';
                             //DeleteToast(value);
+<<<<<<< HEAD
                             Swal.fire("Added!", "added Sucessfully.", "success");
+=======
+                            Swal.fire("Added!", "Added Sucessfully.", "success");
+>>>>>>> 3bdb593 (Initial commit)
                         }
                     });
             // if(confirm("Are you sure do you want to add?"))

@@ -8,6 +8,10 @@ class OwnerControllers extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('OwnerModal', 'OWNER');
+<<<<<<< HEAD
+=======
+        $this->load->library('upload');
+>>>>>>> 3bdb593 (Initial commit)
 	}
 	public function Index()
 	{
@@ -53,6 +57,7 @@ class OwnerControllers extends CI_Controller
 			redirect('login');
 		}
 	}
+<<<<<<< HEAD
 
 	public function AddOwnerTenant()
     {
@@ -62,6 +67,55 @@ class OwnerControllers extends CI_Controller
             $arrInfo['name'] = $arrPost['name'];
             $arrInfo['email'] = $arrPost['email'];
             $arrInfo['phone_number'] = $arrPost['contact'];
+=======
+    private function set_upload_options()
+    {
+        //upload an image options
+        $config = array();
+        $config['upload_path'] = './uploads/owner/';
+        $config['allowed_types'] = '*';
+        $config['max_size']      = '0';
+        $config['overwrite']     = FALSE;
+
+        return $config;
+    }
+    
+    public function LoadOwnerImage()
+    {
+        //log_message('debug', 'ImageDeposit');
+        $arrPost = $this->input->post();
+
+        $id = $arrPost['id'];
+        $data['depositImg'] = $this->OWNER->GetOwnerImg($id);
+        return  $this->load->view('owner_image', $data);
+    }
+	public function AddOwnerTenant()
+    {
+        if ($this->session->userdata('name')) {
+            $this->upload->initialize($this->set_upload_options());
+
+            $arrPost = $this->input->post();
+            $tableName = $arrPost['table_name'];
+            $arrInfo['name'] = $arrPost['name'];
+            $arrInfo['email'] = $arrPost['email'];
+            $arrInfo['phone_number'] = $arrPost['contact'];
+            $arrInfo['emirates_available'] = $arrPost['emirates_available'];
+            $arrInfo['eid_number'] = $arrPost['eid_number'];
+            $arrInfo['eid_date_issue'] = $arrPost['eid_date_issue'];
+            $arrInfo['expiry_date'] = $arrPost['expiry_date'];
+            $arrInfo['passport_number'] = $arrPost['passport_number'];
+            $arrInfo['passport_date_issue'] = $arrPost['passport_date_issue'];
+            $arrInfo['passport_expiry_date'] = $arrPost['passport_expiry_date'];
+            
+            if ($this->upload->do_upload('eid_image')) {
+                $eidImage[] = $this->upload->data();
+                $arrInfo['eid_image'] = base_url() . 'uploads/owner/' . $eidImage[0]['file_name'];
+            }
+            if ($this->upload->do_upload('passport_image')) {
+                $passportImage[] = $this->upload->data();
+                $arrInfo['passport_image'] = base_url() . 'uploads/owner/' . $passportImage[0]['file_name'];
+            }
+>>>>>>> 3bdb593 (Initial commit)
             $arrInfo['created_at'] = date("Y-m-d h:i:s");
             $arrInfo['created_by'] =  $this->session->userdata('user_id');
             $arrInfo['created_name'] =  $this->session->userdata('user_name');
@@ -96,12 +150,37 @@ class OwnerControllers extends CI_Controller
     public function EditOwnerTenant()
     {
         if ($this->session->userdata('name')) {
+<<<<<<< HEAD
+=======
+            $this->upload->initialize($this->set_upload_options());
+            
+>>>>>>> 3bdb593 (Initial commit)
             $arrPost = $this->input->post();
             $tableName = $arrPost['table_name'];
             $recordId = $arrPost['record_id'];
             $arrInfo['name'] = $arrPost['name'];
             $arrInfo['email'] = $arrPost['email'];
             $arrInfo['phone_number'] = $arrPost['contact'];
+<<<<<<< HEAD
+=======
+            $arrInfo['emirates_available'] = $arrPost['emirates_available'];
+            $arrInfo['eid_number'] = $arrPost['eid_number'];
+            $arrInfo['eid_date_issue'] = $arrPost['eid_date_issue'];
+            $arrInfo['expiry_date'] = $arrPost['expiry_date'];
+            $arrInfo['passport_number'] = $arrPost['passport_number'];
+            $arrInfo['passport_date_issue'] = $arrPost['passport_date_issue'];
+            $arrInfo['passport_expiry_date'] = $arrPost['passport_expiry_date'];
+            
+            if ($this->upload->do_upload('eid_image')) {
+                $eidImage[] = $this->upload->data();
+                $arrInfo['eid_image'] = base_url() . 'uploads/owner/' . $eidImage[0]['file_name'];
+            }
+            if ($this->upload->do_upload('passport_image')) {
+                $passportImage[] = $this->upload->data();
+                $arrInfo['passport_image'] = base_url() . 'uploads/owner/' . $passportImage[0]['file_name'];
+            }
+
+>>>>>>> 3bdb593 (Initial commit)
             $arrInfo['updated_at'] = date("Y-m-d h:i:s");
             $arrInfo['updated_by'] =  $this->session->userdata('user_id');
             $arrInfo['updated_name'] =  $this->session->userdata('user_name');

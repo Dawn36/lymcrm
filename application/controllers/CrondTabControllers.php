@@ -56,7 +56,11 @@ class CrondTabControllers extends CI_Controller
 
 		foreach ($data as $key => $val) {
 			$email = $val['email'];
+<<<<<<< HEAD
 			$subject = "Again some text";
+=======
+			$subject = "Renewal Notice";
+>>>>>>> 3bdb593 (Initial commit)
 			$emailToName = $val['name'];
 			$message = "Dear $emailToName,<br><br>
 
@@ -71,6 +75,7 @@ class CrondTabControllers extends CI_Controller
 			You can check your new rent as per index<br>https://dubailand.gov.ae/en/eservices/rental-in<br><br>
 
 			Please note rent shall be based on the index at the time of renewal.";
+<<<<<<< HEAD
 
 			$message =str_replace("[[CHANGE]]",$daet,$message);
 		}
@@ -83,8 +88,56 @@ class CrondTabControllers extends CI_Controller
 
 		if ($this->email->send()) {
 			echo 'Email send.';
+=======
+			$message =str_replace("[[CHANGE]]",$daet,$message);
+		}
+
+		$this->email->initialize($config);
+		$this->email->from(SMTPFROM);
+		$this->email->to($email);
+		$this->email->subject($subject);
+		$this->email->message($message);
+          $this->email->cc('reception@lymdubai.com');
+          $this->email->bcc('imran@lymdubai.com');
+         $this->email->bcc('dawngill08@gmail.com');
+		if ($this->email->send()) {
+			echo 'Email send.';
+			$this->sendLog($data);
+>>>>>>> 3bdb593 (Initial commit)
 		} else {
 			show_error($this->email->print_debugger());
 		}
 	}
+<<<<<<< HEAD
+=======
+	
+
+	public function sendLog($data)
+	{
+		
+		$ch = curl_init();
+
+		curl_setopt($ch, CURLOPT_URL,"http://www.lymcrm.com/log.php");
+		curl_setopt($ch, CURLOPT_POST, 1);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, "logs=".json_encode($data));
+
+		// In real life you should use something like:
+		// curl_setopt($ch, CURLOPT_POSTFIELDS, 
+		//          http_build_query(array('postvar1' => 'value1')));
+
+		// Receive server response ...
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+		$server_output = curl_exec($ch);
+
+		curl_close ($ch);
+
+		// Further processing ...
+		if ($server_output == "OK") { 
+			
+		} else {
+			
+		}
+	}
+>>>>>>> 3bdb593 (Initial commit)
 }
