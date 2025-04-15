@@ -25,18 +25,11 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
     <link rel="stylesheet" media="screen, print" href="/assets/dist/css/app.bundle.css">
     <!-- Place favicon.ico in the root directory -->
     <link id="mytheme" rel="stylesheet" href="/assets/dist/css/themes/cust-theme-3.css">
-<<<<<<< HEAD
-    <link rel="stylesheet" href="/assets/icon.css">
-=======
->>>>>>> 3bdb593 (Initial commit)
     <!-- <link rel="apple-touch-icon" sizes="180x180" href="/assets/dist/img/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/dist/img/favicon/favicon-32x32.png"> -->
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/dist/img/logo-2.png">
     <link rel="mask-icon" href="/assets/dist/img/favicon/safari-pinned-tab.svg" color="#5bbad5">
-<<<<<<< HEAD
-=======
     <link rel="stylesheet" href="/assets/icon.css">
->>>>>>> 3bdb593 (Initial commit)
     <link rel="stylesheet" media="screen, print" href="/assets/dist/css/datagrid/datatables/datatables.bundle.css">
     <link rel="stylesheet" media="screen, print" href="/assets/dist/css/statistics/chartist/chartist.css">
     <link rel="stylesheet" media="screen, print" href="/assets/dist/css/fa-brands.css">
@@ -53,30 +46,16 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
     <link rel="stylesheet" media="screen, print" href="/assets/dist/css/miscellaneous/lightgallery/lightgallery.bundle.css">
     <link rel="stylesheet" media="screen, print" href="/assets/dist/css/formplugins/summernote/summernote.css">
 
-<<<<<<< HEAD
-    <style>
-        .pagination .page-link:hover {
-            background-color: #4679cb !important;
-            /* color: #fff; */
-        }
-
-        .header-btn[data-class='mobile-nav-on'] {
-=======
    <style>
    .pagination .page-link:hover {
     background-color: #4679cb !important;
     /* color: #fff; */
 }
    .header-btn[data-class='mobile-nav-on']{
->>>>>>> 3bdb593 (Initial commit)
             border-color: #4679cb !important;
             background-color: #4679cb !important;
             background-image: linear-gradient(to top, #4679cc, #4679cb) !important;
         }
-<<<<<<< HEAD
-
-=======
->>>>>>> 3bdb593 (Initial commit)
         .pace,
         .pace-active,
         .pace-progress {
@@ -385,39 +364,6 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
             });
         }
 
-<<<<<<< HEAD
-        function ResetUser(userId) {
-            var value = {
-                userId: userId,
-            };
-            Swal.fire({
-                title: "Are you sure want to Reset User?",
-                text: "You won't be able to revert this!",
-                type: "warning",
-                confirmButtonColor: '#437dd0',
-                showCancelButton: true,
-                confirmButtonText: "Yes, reset it!",
-            }).then(function(result) {
-                if (result.value) {
-                    $.ajax({
-                        url: baseurl + 'user_reset',
-                        type: 'POST',
-                        data: value,
-                        success: function(result) {
-                            //var value = 'Password Rest Sucessfully New password Is 1234';
-                            //  DeleteToast(value);
-                            window.location.reload();
-                            // redirect('HiringRequests/viewhiringrequest');
-                            // window.location = baseurl + 'user_show';
-
-                        }
-                    });
-                    // var value='Update Sucessfully';
-                    //DeleteToast(value);
-                    Swal.fire("Rest!", "Password Rest Sucessfully New password Is 1234.", "success");
-                }
-            });
-=======
          function ResetUser(userId) {
             var value = {
                 userId: userId,
@@ -452,7 +398,6 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
                             Swal.fire("Rest!", "Password Rest Sucessfully New password Is 1234.", "success");
                         }
                     });
->>>>>>> 3bdb593 (Initial commit)
             // if (confirm('Are you sure you want to rest Password?')) {
             //     $.ajax({
             //         url: baseurl + 'user_reset',
@@ -530,13 +475,8 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
          *	Note: the script is written in pure javascript and does not depend on thirdparty library
          **/
         'use strict';
-<<<<<<< HEAD
-
-        var classHolder = '',
-=======
              var classHolder ="",
        // var classHolder = document.getElementsByTagName("BODY")[0],
->>>>>>> 3bdb593 (Initial commit)
             /** 
              * Load from localstorage
              **/
@@ -547,11 +487,7 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
          * Load theme options
          **/
         if (themeSettings.themeOptions) {
-<<<<<<< HEAD
-            //classHolder.className = themeSettings.themeOptions;
-=======
             classHolder.className = themeSettings.themeOptions;
->>>>>>> 3bdb593 (Initial commit)
             console.log("%c✔ Theme settings loaded", "color: #148f32");
         } else {
             console.log("Heads up! Theme settings is empty or does not exist, loading default settings...");
